@@ -457,10 +457,32 @@ export function HomePage() {
             </a>
           </div>
 
-          <div className="mt-8 text-center">
-            <p className="font-mono text-xs" style={{ color: "#444" }}>
-              Ideas for future categories: permissions & access control · mobile security UX · accessibility & security · developer experience · compliance dashboards
-            </p>
+          <div className="mt-8">
+            <p className="font-mono text-xs mb-4 text-center" style={{ color: "#555" }}>Wanted patterns — help build these:</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              {[
+                "Permissions & access control",
+                "OAuth scopes management",
+                "Privacy dashboard",
+                "Cookie preferences center",
+                "Age verification (GDPR Art. 8)",
+                "CAPTCHA & bot detection",
+                "Biometric enrollment",
+                "Magic link authentication",
+                "Mobile app permissions",
+                "Secure clipboard handling",
+                "API key management UI",
+                "Secret rotation dashboard",
+                "Data processing agreements",
+                "Consent audit trail",
+                "GDPR data subject request",
+                "Incident response playbook UI",
+              ].map(item => (
+                <div key={item} className="border border-dashed rounded px-3 py-2 text-xs font-mono" style={{ borderColor: "#333", color: "#555" }}>
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
