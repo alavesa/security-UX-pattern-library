@@ -14,46 +14,48 @@ interface Alarm {
   shelved: boolean;
 }
 
+const FLOOD_ALARMS: Alarm[] = [
+  { id: 1, time: "14:32:01", priority: "low", message: "Tank T-201 level low", tag: "LT-201", acknowledged: false, shelved: false },
+  { id: 2, time: "14:32:01", priority: "low", message: "Pump P-101 seal leak minor", tag: "PT-101", acknowledged: false, shelved: false },
+  { id: 3, time: "14:32:02", priority: "medium", message: "Compressor C-301 vibration high", tag: "VT-301", acknowledged: false, shelved: false },
+  { id: 4, time: "14:32:02", priority: "low", message: "Cooling water temp deviation", tag: "TT-401", acknowledged: false, shelved: false },
+  { id: 5, time: "14:32:03", priority: "high", message: "Reactor R-101 pressure rising", tag: "PT-101R", acknowledged: false, shelved: false },
+  { id: 6, time: "14:32:03", priority: "low", message: "Instrument air pressure low", tag: "PT-501", acknowledged: false, shelved: false },
+  { id: 7, time: "14:32:04", priority: "low", message: "Flare pilot flame status", tag: "FS-601", acknowledged: false, shelved: false },
+  { id: 8, time: "14:32:04", priority: "critical", message: "REACTOR R-101 HIGH PRESSURE TRIP", tag: "PSH-101R", acknowledged: false, shelved: false },
+  { id: 9, time: "14:32:05", priority: "low", message: "Boiler feedwater temp low", tag: "TT-701", acknowledged: false, shelved: false },
+  { id: 10, time: "14:32:05", priority: "medium", message: "Stack emission SO2 above normal", tag: "AT-801", acknowledged: false, shelved: false },
+];
+
+const MANAGED_ALARMS: Alarm[] = [
+  { id: 8, time: "14:32:04", priority: "critical", message: "REACTOR R-101 HIGH PRESSURE TRIP", tag: "PSH-101R", acknowledged: false, shelved: false },
+  { id: 5, time: "14:32:03", priority: "high", message: "Reactor R-101 pressure rising — root cause of trip", tag: "PT-101R", acknowledged: false, shelved: false },
+  { id: 3, time: "14:32:02", priority: "medium", message: "Compressor C-301 vibration high — may be related", tag: "VT-301", acknowledged: false, shelved: false },
+];
+
 function AlarmFatigueDemo() {
   const [scenario, setScenario] = useState<"flood" | "managed" | "shelving">("flood");
   const [alarms, setAlarms] = useState<Alarm[]>([]);
   const [running, setRunning] = useState(false);
 
-  const FLOOD_ALARMS: Alarm[] = [
-    { id: 1, time: "14:32:01", priority: "low", message: "Tank T-201 level low", tag: "LT-201", acknowledged: false, shelved: false },
-    { id: 2, time: "14:32:01", priority: "low", message: "Pump P-101 seal leak minor", tag: "PT-101", acknowledged: false, shelved: false },
-    { id: 3, time: "14:32:02", priority: "medium", message: "Compressor C-301 vibration high", tag: "VT-301", acknowledged: false, shelved: false },
-    { id: 4, time: "14:32:02", priority: "low", message: "Cooling water temp deviation", tag: "TT-401", acknowledged: false, shelved: false },
-    { id: 5, time: "14:32:03", priority: "high", message: "Reactor R-101 pressure rising", tag: "PT-101R", acknowledged: false, shelved: false },
-    { id: 6, time: "14:32:03", priority: "low", message: "Instrument air pressure low", tag: "PT-501", acknowledged: false, shelved: false },
-    { id: 7, time: "14:32:04", priority: "low", message: "Flare pilot flame status", tag: "FS-601", acknowledged: false, shelved: false },
-    { id: 8, time: "14:32:04", priority: "critical", message: "REACTOR R-101 HIGH PRESSURE TRIP", tag: "PSH-101R", acknowledged: false, shelved: false },
-    { id: 9, time: "14:32:05", priority: "low", message: "Boiler feedwater temp low", tag: "TT-701", acknowledged: false, shelved: false },
-    { id: 10, time: "14:32:05", priority: "medium", message: "Stack emission SO2 above normal", tag: "AT-801", acknowledged: false, shelved: false },
-  ];
-
-  const MANAGED_ALARMS: Alarm[] = [
-    { id: 8, time: "14:32:04", priority: "critical", message: "REACTOR R-101 HIGH PRESSURE TRIP", tag: "PSH-101R", acknowledged: false, shelved: false },
-    { id: 5, time: "14:32:03", priority: "high", message: "Reactor R-101 pressure rising — root cause of trip", tag: "PT-101R", acknowledged: false, shelved: false },
-    { id: 3, time: "14:32:02", priority: "medium", message: "Compressor C-301 vibration high — may be related", tag: "VT-301", acknowledged: false, shelved: false },
-  ];
-
   useEffect(() => {
     if (!running) return;
     setAlarms([]);
 
-    const source = scenario === "flood" ? FLOOD_ALARMS : MANAGED_ALARMS;
+    const source = scenario === "flood" || scenario === "shelving" ? FLOOD_ALARMS : MANAGED_ALARMS;
+    const delay = scenario === "managed" ? 800 : 300;
     let idx = 0;
 
     const timer = setInterval(() => {
       if (idx < source.length) {
-        setAlarms(prev => [...prev, source[idx]]);
+        const alarm = source[idx];
+        setAlarms(prev => [...prev, { ...alarm }]);
         idx++;
       } else {
         clearInterval(timer);
         setRunning(false);
       }
-    }, scenario === "flood" ? 300 : 800);
+    }, delay);
 
     return () => clearInterval(timer);
   }, [running, scenario]);
