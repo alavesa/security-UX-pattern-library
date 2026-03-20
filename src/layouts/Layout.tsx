@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X } from "lucide-react";
 
 const AUTH_PATTERNS = [
   { path: "/patterns/auth/login", label: "login_flow", icon: LogIn },
@@ -12,6 +13,12 @@ const AUTH_PATTERNS = [
 export function Layout() {
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Close mobile menu on navigation
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen" style={{ background: "var(--bg)" }}>
@@ -24,6 +31,8 @@ export function Layout() {
               uxsec<span style={{ color: "var(--text)" }}>.dev</span>
             </span>
           </Link>
+
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-mono">
             <Link to="/" className="no-underline hover:underline" style={{ color: "var(--text)" }}>~/home</Link>
             <Link to="/score" className="no-underline hover:underline" style={{ color: "var(--green)" }}>score</Link>
@@ -32,7 +41,45 @@ export function Layout() {
             <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="no-underline hover:underline" style={{ color: "var(--text)" }}>github</a>
             <span className="text-xs" style={{ color: "#444" }}>by piia.alavesa</span>
           </nav>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden bg-transparent border-none cursor-pointer p-1"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen
+              ? <X className="w-5 h-5" style={{ color: "var(--green)" }} />
+              : <Menu className="w-5 h-5" style={{ color: "var(--text)" }} />
+            }
+          </button>
         </div>
+
+        {/* Mobile menu dropdown */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden border-t px-6 py-4 space-y-3 font-mono text-sm" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
+            <Link to="/" className="block no-underline py-1" style={{ color: "var(--text)" }}>~/home</Link>
+            <Link to="/score" className="block no-underline py-1" style={{ color: "var(--green)" }}>score</Link>
+            <Link to="/compliance" className="block no-underline py-1" style={{ color: "var(--cyan)" }}>compliance</Link>
+            <Link to="/maturity" className="block no-underline py-1" style={{ color: "var(--amber)" }}>maturity</Link>
+
+            <div className="border-t pt-3" style={{ borderColor: "var(--border)" }}>
+              <p className="text-xs mb-2" style={{ color: "#444" }}>patterns</p>
+              <Link to="/patterns/auth/login" className="block no-underline py-1 text-xs" style={{ color: "var(--text)" }}>auth/</Link>
+              <Link to="/patterns/threat/breach-notification" className="block no-underline py-1 text-xs" style={{ color: "var(--text)" }}>threat/</Link>
+              <Link to="/patterns/dark/confirmshaming" className="block no-underline py-1 text-xs" style={{ color: "var(--red)" }}>dark_patterns/</Link>
+              <Link to="/patterns/data/encryption" className="block no-underline py-1 text-xs" style={{ color: "var(--cyan)" }}>data/</Link>
+              <Link to="/patterns/owasp/broken-access-control" className="block no-underline py-1 text-xs" style={{ color: "var(--amber)" }}>owasp/</Link>
+              <Link to="/patterns/ai/disclosure" className="block no-underline py-1 text-xs" style={{ color: "#c084fc" }}>ai/</Link>
+            </div>
+
+            <div className="border-t pt-3" style={{ borderColor: "var(--border)" }}>
+              <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="block no-underline py-1 text-xs" style={{ color: "var(--text)" }}>github</a>
+              <span className="block text-xs py-1" style={{ color: "#444" }}>by piia.alavesa</span>
+            </div>
+          </nav>
+        )}
       </header>
 
       <div className="max-w-7xl mx-auto flex">

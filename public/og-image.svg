@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <!-- Scanlines -->
+  <defs>
+    <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="transparent"/>
+      <rect y="2" width="4" height="2" fill="rgba(0,0,0,0.05)"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#scanlines)"/>
+
+  <!-- Shield icon -->
+  <g transform="translate(520, 80)">
+    <path d="M80 0 L20 30 L20 80 C20 140 45 190 80 210 C115 190 140 140 140 80 L140 30 Z" fill="none" stroke="#00ff41" stroke-width="3" opacity="0.3"/>
+    <path d="M80 15 L30 40 L30 80 C30 130 50 175 80 195 C110 175 130 130 130 80 L130 40 Z" fill="none" stroke="#00ff41" stroke-width="4"/>
+    <rect x="65" y="75" width="30" height="35" rx="4" fill="none" stroke="#00ff41" stroke-width="3"/>
+    <path d="M70 75 L70 65 C70 55 75 48 80 48 C85 48 90 55 90 65 L90 75" fill="none" stroke="#00ff41" stroke-width="3"/>
+    <circle cx="80" cy="92" r="4" fill="#00ff41"/>
+  </g>
+
+  <!-- Text -->
+  <text x="600" y="350" font-family="monospace" font-size="72" font-weight="bold" fill="#00ff41" text-anchor="middle">uxsec.dev</text>
+  <text x="600" y="410" font-family="monospace" font-size="24" fill="#888888" text-anchor="middle">Security UX Pattern Library</text>
+  <text x="600" y="460" font-family="monospace" font-size="18" fill="#555555" text-anchor="middle">23 interactive patterns · 3 strategic tools · 8 regulations</text>
+
+  <!-- Bottom bar -->
+  <text x="600" y="560" font-family="monospace" font-size="14" fill="#444444" text-anchor="middle">by Piia Alavesa — M.Sc. Cyber Security + M.Sc. Information Systems</text>
+</svg>
