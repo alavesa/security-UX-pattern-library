@@ -178,6 +178,8 @@ const ALL_REGULATIONS: Regulation[] = [
   },
 ];
 
+const REG_BY_NAME = new Map(ALL_REGULATIONS.map(r => [r.name, r]));
+
 export function CompliancePage() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
@@ -223,7 +225,9 @@ export function CompliancePage() {
         {ALL_REGULATIONS.map(reg => (
           <button
             key={reg.id}
+            type="button"
             onClick={() => toggle(reg.id)}
+            aria-pressed={selected.has(reg.id)}
             className="border rounded-xl p-4 text-left transition-all cursor-pointer"
             style={{
               borderColor: selected.has(reg.id) ? reg.color : "var(--border)",
@@ -238,7 +242,7 @@ export function CompliancePage() {
               {selected.has(reg.id) && <CheckCircle2 className="w-4 h-4" style={{ color: reg.color }} />}
             </div>
             <p className="text-xs" style={{ color: "var(--text)" }}>{reg.fullName}</p>
-            <p className="text-xs mt-1" style={{ color: "#555" }}>{reg.patterns.length} patterns</p>
+            <p className="text-xs mt-1" style={{ color: "var(--text-dim)" }}>{reg.patterns.length} patterns</p>
           </button>
         ))}
       </div>
@@ -246,9 +250,9 @@ export function CompliancePage() {
       {/* Results */}
       {selected.size === 0 && (
         <div className="text-center py-12 border rounded-xl" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
-          <Filter className="w-10 h-10 mx-auto mb-3" style={{ color: "#333" }} />
+          <Filter className="w-10 h-10 mx-auto mb-3" style={{ color: "var(--text-dim)" }} />
           <p className="font-mono text-sm" style={{ color: "var(--text)" }}>Select one or more regulations above</p>
-          <p className="text-xs mt-1" style={{ color: "#555" }}>We'll show you which patterns to implement</p>
+          <p className="text-xs mt-1" style={{ color: "var(--text-dim)" }}>We'll show you which patterns to implement</p>
         </div>
       )}
 
@@ -267,8 +271,8 @@ export function CompliancePage() {
             </div>
 
             {/* Coverage by category */}
-            <div className="grid grid-cols-4 gap-3 mt-4">
-              {["Auth", "Threat", "Dark Patterns", "Data", "OWASP"].map(cat => {
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-4">
+              {[...new Set(filteredPatterns.map(p => p.pattern.category))].map(cat => {
                 const count = filteredPatterns.filter(p => p.pattern.category === cat).length;
                 if (count === 0) return null;
                 return (
@@ -301,12 +305,12 @@ export function CompliancePage() {
                 </div>
                 <div className="flex gap-1.5">
                   {regs.map(reg => {
-                    const regData = ALL_REGULATIONS.find(r => r.name === reg);
+                    const color = REG_BY_NAME.get(reg)?.color ?? '#888';
                     return (
                       <span
                         key={reg}
                         className="text-xs font-mono px-2 py-0.5 rounded"
-                        style={{ background: `${regData?.color}20`, color: regData?.color, border: `1px solid ${regData?.color}40` }}
+                        style={{ background: `${color}20`, color: color, border: `1px solid ${color}40` }}
                       >
                         {reg}
                       </span>

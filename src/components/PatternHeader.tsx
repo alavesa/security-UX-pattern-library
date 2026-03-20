@@ -5,12 +5,14 @@ interface PatternHeaderProps {
   tags: string[];
 }
 
-const SEVERITY_STYLES: Record<string, string> = {
-  critical: "background: rgba(255,51,51,0.15); color: #ff3333; border: 1px solid rgba(255,51,51,0.3)",
-  high: "background: rgba(255,170,0,0.15); color: #ffaa00; border: 1px solid rgba(255,170,0,0.3)",
-  medium: "background: rgba(0,229,255,0.15); color: #00e5ff; border: 1px solid rgba(0,229,255,0.3)",
-  low: "background: rgba(0,255,65,0.15); color: #00ff41; border: 1px solid rgba(0,255,65,0.3)",
+const SEVERITY_STYLES: Record<'critical' | 'high' | 'medium' | 'low', React.CSSProperties> = {
+  critical: { background: 'rgba(255,51,51,0.15)', color: '#ff3333', border: '1px solid rgba(255,51,51,0.3)' },
+  high: { background: 'rgba(255,170,0,0.15)', color: '#ffaa00', border: '1px solid rgba(255,170,0,0.3)' },
+  medium: { background: 'rgba(0,229,255,0.15)', color: '#00e5ff', border: '1px solid rgba(0,229,255,0.3)' },
+  low: { background: 'rgba(0,255,65,0.15)', color: '#00ff41', border: '1px solid rgba(0,255,65,0.3)' },
 };
+
+import React from 'react';
 
 export function PatternHeader({ title, description, severity, tags }: PatternHeaderProps) {
   return (
@@ -18,12 +20,12 @@ export function PatternHeader({ title, description, severity, tags }: PatternHea
       <div className="flex items-center gap-3 mb-3 flex-wrap">
         <span
           className="text-xs font-mono font-semibold px-2.5 py-1 rounded tracking-wide"
-          style={{ ...Object.fromEntries(SEVERITY_STYLES[severity].split(";").map(s => { const [k,v] = s.split(":").map(x => x.trim()); return [k.replace(/-([a-z])/g, (_, c) => c.toUpperCase()), v]; })) }}
+          style={SEVERITY_STYLES[severity]}
         >
           {severity.toUpperCase()}
         </span>
-        {tags.map(tag => (
-          <span key={tag} className="text-xs font-mono px-2.5 py-1 rounded" style={{ background: "var(--bg-elevated)", color: "var(--text)" }}>
+        {tags.map((tag, i) => (
+          <span key={`${tag}-${i}`} className="text-xs font-mono px-2.5 py-1 rounded" style={{ background: "var(--bg-elevated)", color: "var(--text)" }}>
             {tag}
           </span>
         ))}

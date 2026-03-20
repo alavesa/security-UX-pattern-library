@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { FileText, Download, Shield, AlertTriangle, CheckCircle2, Copy, CheckCheck } from "lucide-react";
 import { ALL_PATTERNS } from "../data/patterns";
 
+type RiskLevel = 'low' | 'medium' | 'high' | 'critical';
+
 interface ReportQuestion {
   id: string;
   question: string;
-  options: { label: string; value: string; patterns: string[]; risk: string }[];
+  options: { label: string; value: string; patterns: string[]; risk: RiskLevel }[];
 }
 
 const QUESTIONS: ReportQuestion[] = [
@@ -59,7 +61,7 @@ const QUESTIONS: ReportQuestion[] = [
     id: "environment",
     question: "What environment does your product operate in?",
     options: [
-      { label: "Industrial / OT (control systems, SCADA, manufacturing)", value: "industrial", patterns: ["/patterns/industrial/operator-auth", "/patterns/industrial/safety-critical", "/patterns/industrial/alarm-fatigue", "/patterns/owasp/broken-access-control", "/patterns/owasp/logging-monitoring"], risk: "critical" as string },
+      { label: "Industrial / OT (control systems, SCADA, manufacturing)", value: "industrial", patterns: ["/patterns/industrial/operator-auth", "/patterns/industrial/safety-critical", "/patterns/industrial/alarm-fatigue", "/patterns/owasp/broken-access-control", "/patterns/owasp/logging-monitoring"], risk: "critical" },
       { label: "Web / mobile application", value: "web", patterns: ["/patterns/dark/cookie-consent", "/patterns/dark/confirmshaming", "/patterns/data/encryption"], risk: "medium" },
       { label: "Internal / enterprise tool", value: "internal", patterns: ["/patterns/owasp/broken-access-control", "/patterns/owasp/security-misconfiguration", "/patterns/auth/session-timeout"], risk: "medium" },
     ],
@@ -82,7 +84,7 @@ export function ReportPage() {
       const selected = q.options.find(o => o.value === answers[q.id]);
       if (selected) {
         selected.patterns.forEach(p => patternPaths.add(p));
-        if (selected.risk === "high") highRiskCount++;
+        if (selected.risk === "high" || selected.risk === "critical") highRiskCount++;
       }
     }
 
@@ -98,7 +100,7 @@ export function ReportPage() {
     }
 
     return { patterns, riskLevel, byCategory, highRiskCount };
-  }, [answers, allAnswered]);
+  }, [answers]);
 
   const generateMarkdown = () => {
     if (!report) return "";
@@ -147,9 +149,12 @@ export function ReportPage() {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(generateMarkdown());
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    navigator.clipboard.writeText(generateMarkdown()).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {
+      // clipboard write failed
+    });
   };
 
   const handleDownload = () => {
@@ -159,7 +164,9 @@ export function ReportPage() {
     const a = document.createElement("a");
     a.href = url;
     a.download = `security-ux-report-${new Date().toISOString().split("T")[0]}.md`;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     URL.revokeObjectURL(url);
   };
 
@@ -270,10 +277,10 @@ export function ReportPage() {
               Next steps
             </h3>
             <ol className="space-y-2 text-xs" style={{ color: "var(--text-bright)" }}>
-              <li>1. Start with the top 3 patterns — they address your highest-risk areas</li>
-              <li>2. <Link to="/score" className="underline" style={{ color: "var(--green)" }}>Run the Security UX Score</Link> to benchmark your current state</li>
-              <li>3. <Link to="/compliance" className="underline" style={{ color: "var(--cyan)" }}>Check the Compliance Mapper</Link> for your specific regulations</li>
-              <li>4. <Link to="/maturity" className="underline" style={{ color: "var(--amber)" }}>Assess your maturity</Link> and create a roadmap</li>
+              <li>Start with the top 3 patterns — they address your highest-risk areas</li>
+              <li><Link to="/score" className="underline" style={{ color: "var(--green)" }}>Run the Security UX Score</Link> to benchmark your current state</li>
+              <li><Link to="/compliance" className="underline" style={{ color: "var(--cyan)" }}>Check the Compliance Mapper</Link> for your specific regulations</li>
+              <li><Link to="/maturity" className="underline" style={{ color: "var(--amber)" }}>Assess your maturity</Link> and create a roadmap</li>
             </ol>
           </div>
 

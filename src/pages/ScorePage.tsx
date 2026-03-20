@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Shield, ShieldCheck, ShieldAlert, CheckCircle2, XCircle, Copy, CheckCheck } from "lucide-react";
+import { ShieldCheck, ShieldAlert, CheckCircle2, XCircle, Copy, CheckCheck } from "lucide-react";
 
 interface CheckItem {
   id: string;
@@ -96,11 +96,16 @@ export function ScorePage() {
     });
   };
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
+    if (!navigator.clipboard) return;
     const text = `Security UX Score: ${grade} (${pct}%) — ${score}/${MAX_SCORE} points\n\nChecked: ${checked.size}/${CHECKS.length} items\n\nGenerated at uxsec.dev`;
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* clipboard write failed — permission denied or unsupported context */
+    }
   };
 
   return (
@@ -125,7 +130,7 @@ export function ScorePage() {
         </div>
 
         {/* Per-category breakdown */}
-        <div className="grid grid-cols-4 gap-4 mt-6">
+        <div className="grid grid-cols-3 gap-4 mt-6">
           {Array.from(categories.entries()).map(([name, { total, earned }]) => (
             <div key={name}>
               <div className="text-xs font-mono mb-1" style={{ color: "var(--text)" }}>{name}</div>

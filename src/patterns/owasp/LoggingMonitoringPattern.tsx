@@ -42,13 +42,13 @@ function LoggingMonitoringDemo() {
     idxRef.current = 0;
 
     const filteredLogs = filter === "all" ? [...MOCK_LOGS] :
-      MOCK_LOGS.filter(l => filter === "critical" ? l.type === "critical" : l.type !== "info");
+      MOCK_LOGS.filter(l => filter === "critical" ? l.type === "critical" : l.type === "warning");
 
     const timer = setInterval(() => {
       const i = idxRef.current;
       if (i < filteredLogs.length) {
-        setVisibleLogs(prev => [...prev, { ...filteredLogs[i] }]);
-        idxRef.current = i + 1;
+        idxRef.current++;
+        setVisibleLogs(filteredLogs.slice(0, idxRef.current));
       } else {
         clearInterval(timer);
         setDone(true);
@@ -116,7 +116,7 @@ function LoggingMonitoringDemo() {
           </h3>
 
           <div className="space-y-3">
-            <div className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
+            <div role="alert" aria-live="assertive" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
                 <div>
@@ -125,12 +125,12 @@ function LoggingMonitoringDemo() {
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block user</button>
-                <button className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">Investigate</button>
+                <button onClick={() => console.log("Action: Block user user42@example.com")} className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block user</button>
+                <button onClick={() => console.log("Action: Investigate user42@example.com")} className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">Investigate</button>
               </div>
             </div>
 
-            <div className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
+            <div role="alert" aria-live="assertive" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
                 <div>
@@ -139,12 +139,12 @@ function LoggingMonitoringDemo() {
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block IP</button>
-                <button className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">View logs</button>
+                <button onClick={() => console.log("Action: Block IP 197.210.xxx.xxx")} className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block IP</button>
+                <button onClick={() => console.log("Action: View logs for admin@example.com")} className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">View logs</button>
               </div>
             </div>
 
-            <div className="border border-amber-200 bg-amber-50 rounded-lg p-4">
+            <div role="alert" aria-live="polite" className="border border-amber-200 bg-amber-50 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" />
                 <div>
@@ -153,8 +153,8 @@ function LoggingMonitoringDemo() {
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Notify user</button>
-                <button className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Mark as safe</button>
+                <button onClick={() => console.log("Action: Notify user alex@example.com")} className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Notify user</button>
+                <button onClick={() => console.log("Action: Mark as safe alex@example.com")} className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Mark as safe</button>
               </div>
             </div>
           </div>
@@ -185,8 +185,8 @@ function LoggingMonitoringDemo() {
               { time: "14:30:15", event: "Accessed admin panel", severity: "warning", icon: AlertTriangle },
               { time: "14:28:00", event: "Logged in from 95.173.xxx.xxx (Moscow, RU)", severity: "warning", icon: AlertTriangle },
               { time: "14:00:00", event: "Account created via API", severity: "info", icon: Shield },
-            ].map(({ time, event, severity, icon: Icon }) => (
-              <div key={time} className="flex items-start gap-3 pl-4 relative">
+            ].map(({ time, event, severity, icon: Icon }, index) => (
+              <div key={index} className="flex items-start gap-3 pl-4 relative">
                 <div className={`absolute -left-[9px] w-4 h-4 rounded-full border-2 border-white ${
                   severity === "critical" ? "bg-red-500" : severity === "warning" ? "bg-amber-500" : "bg-gray-300"
                 }`} />
