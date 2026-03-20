@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Pattern demo container */
+.demo-container {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+/* Security severity badges */
+.security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.security-badge.critical { background: #fef2f2; color: #dc2626; }
+.security-badge.high { background: #fff7ed; color: #ea580c; }
+.security-badge.medium { background: #fefce8; color: #ca8a04; }
+.security-badge.low { background: #f0fdf4; color: #16a34a; }
