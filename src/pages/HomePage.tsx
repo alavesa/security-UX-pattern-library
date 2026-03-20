@@ -84,52 +84,81 @@ export function HomePage() {
             </a>
           </div>
 
-          {/* Terminal prompt */}
-          <div className="mt-12 font-mono text-sm text-left max-w-md mx-auto p-4 rounded" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          {/* Terminal prompt — all links clickable */}
+          <div className="mt-12 font-mono text-xs text-left max-w-lg mx-auto p-4 rounded" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <div style={{ color: "#444" }}>$ ls ./patterns</div>
-            <div style={{ color: "var(--green)" }}>
-              <span>🔒 5 auth patterns loaded</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   login_flow ............ OWASP A07, CWE-307</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   multi_factor_auth ..... OWASP A07, CWE-308</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   password_strength ..... OWASP A07, CWE-521</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   session_timeout ....... OWASP A07, CWE-613</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   account_recovery ...... OWASP A07, CWE-640</span>
-            </div>
-            <div style={{ color: "var(--green)" }}>
-              <span>🔒 3 threat response patterns loaded</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   breach_notification ... GDPR Art. 33, CWE-200</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   phishing_warning ...... OWASP A07, CWE-601</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   suspicious_activity ... OWASP A07, CWE-778</span>
-            </div>
-            <div style={{ color: "var(--red)" }}>
-              <span>⚠ 3 dark patterns documented</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   confirmshaming ........ EU DSA, Deceptive Design</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   cookie_consent ........ GDPR Art. 7, ePrivacy</span>
-            </div>
-            <div style={{ color: "var(--text)" }}>
-              <span>   hidden_unsubscribe .... GDPR Art. 17, Right to Erasure</span>
-            </div>
-            <div className="cursor-blink" style={{ color: "#444" }}>$</div>
+            <div className="mt-1" style={{ color: "var(--green)" }}>🔒 auth/ (5)</div>
+            {[
+              { path: "/patterns/auth/login", name: "login_flow", ref: "OWASP A07, CWE-307" },
+              { path: "/patterns/auth/mfa", name: "multi_factor_auth", ref: "OWASP A07, CWE-308" },
+              { path: "/patterns/auth/password-strength", name: "password_strength", ref: "OWASP A07, CWE-521" },
+              { path: "/patterns/auth/session-timeout", name: "session_timeout", ref: "OWASP A07, CWE-613" },
+              { path: "/patterns/auth/account-recovery", name: "account_recovery", ref: "OWASP A07, CWE-640" },
+            ].map(({ path, name, ref }) => (
+              <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
+                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+              </Link>
+            ))}
+
+            <div className="mt-2" style={{ color: "var(--green)" }}>🔒 threat/ (3)</div>
+            {[
+              { path: "/patterns/threat/breach-notification", name: "breach_notification", ref: "GDPR Art. 33, CWE-200" },
+              { path: "/patterns/threat/phishing-warning", name: "phishing_warning", ref: "OWASP A07, CWE-601" },
+              { path: "/patterns/threat/suspicious-activity", name: "suspicious_activity", ref: "OWASP A07, CWE-778" },
+            ].map(({ path, name, ref }) => (
+              <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
+                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+              </Link>
+            ))}
+
+            <div className="mt-2" style={{ color: "var(--red)" }}>⚠ dark_patterns/ (6)</div>
+            {[
+              { path: "/patterns/dark/confirmshaming", name: "confirmshaming", ref: "EU DSA" },
+              { path: "/patterns/dark/cookie-consent", name: "cookie_consent", ref: "GDPR Art. 7" },
+              { path: "/patterns/dark/hidden-unsubscribe", name: "hidden_unsubscribe", ref: "GDPR Art. 17" },
+              { path: "/patterns/dark/privacy-zuckering", name: "privacy_zuckering", ref: "GDPR Art. 5" },
+              { path: "/patterns/dark/bait-switch", name: "bait_and_switch", ref: "FTC Act §5" },
+              { path: "/patterns/dark/forced-continuity", name: "forced_continuity", ref: "FTC Neg. Option" },
+            ].map(({ path, name, ref }) => (
+              <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
+                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+              </Link>
+            ))}
+
+            <div className="mt-2" style={{ color: "var(--cyan)" }}>🔐 data/ (3)</div>
+            {[
+              { path: "/patterns/data/encryption", name: "encryption", ref: "OWASP A02, CWE-311" },
+              { path: "/patterns/data/file-upload", name: "file_upload", ref: "OWASP A03, CWE-434" },
+              { path: "/patterns/data/deletion", name: "data_deletion", ref: "GDPR Art. 17" },
+            ].map(({ path, name, ref }) => (
+              <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
+                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+              </Link>
+            ))}
+
+            <div className="mt-2" style={{ color: "var(--amber)" }}>🛡 owasp/ (3)</div>
+            {[
+              { path: "/patterns/owasp/broken-access-control", name: "A01_access_control", ref: "CWE-284" },
+              { path: "/patterns/owasp/security-misconfiguration", name: "A05_misconfiguration", ref: "CWE-16" },
+              { path: "/patterns/owasp/logging-monitoring", name: "A09_logging", ref: "CWE-778" },
+            ].map(({ path, name, ref }) => (
+              <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
+                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+              </Link>
+            ))}
+
+            <div className="mt-2" style={{ color: "#c084fc" }}>🤖 ai/ (3)</div>
+            {[
+              { path: "/patterns/ai/disclosure", name: "ai_disclosure", ref: "EU AI Act Art. 50" },
+              { path: "/patterns/ai/content-labeling", name: "content_labeling", ref: "Art. 50, C2PA" },
+              { path: "/patterns/ai/decision-explanation", name: "decision_explanation", ref: "GDPR Art. 22" },
+            ].map(({ path, name, ref }) => (
+              <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
+                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+              </Link>
+            ))}
+
+            <div className="cursor-blink mt-1" style={{ color: "#444" }}>$</div>
           </div>
         </div>
       </section>
