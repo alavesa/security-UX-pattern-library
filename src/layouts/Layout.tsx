@@ -82,18 +82,26 @@ const CATEGORIES: NavCategory[] = [
   },
 ];
 
-const TOOLS = [
+const ASSESS_TOOLS = [
   { path: "/score", label: "score", icon: Target, color: "var(--green)" },
   { path: "/compliance", label: "compliance", icon: ClipboardCheck, color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", icon: BarChart3, color: "var(--amber)" },
   { path: "/report", label: "report", icon: FileText, color: "#c084fc" },
+];
+
+const SYSTEM_TOOLS = [
   { path: "/tokens", label: "tokens", icon: Eye, color: "var(--green)" },
   { path: "/components", label: "API", icon: Settings, color: "var(--cyan)" },
 ];
 
+const ALL_TOOLS = [...ASSESS_TOOLS, ...SYSTEM_TOOLS];
+
 const HEADER_NAV: { path: string; label: string; color: string; matchPrefix?: string }[] = [
   { path: "/patterns/auth/login", label: "patterns", color: "var(--text)", matchPrefix: "/patterns" },
-  ...TOOLS,
+  { path: "/score", label: "score", color: "var(--green)" },
+  { path: "/compliance", label: "compliance", color: "var(--cyan)" },
+  { path: "/tokens", label: "tokens", color: "var(--amber)" },
+  { path: "/components", label: "API", color: "#c084fc" },
 ];
 
 const bgTint = (color: string, hex: string) => {
@@ -211,7 +219,7 @@ export function Layout() {
         {/* Mobile menu */}
         {mobileMenuOpen && (
           <nav className="md:hidden border-t px-6 py-4 space-y-1 font-mono text-sm max-h-[70vh] overflow-y-auto" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
-            {TOOLS.map(({ path, label, icon: Icon, color }) => (
+            {ALL_TOOLS.map(({ path, label, icon: Icon, color }) => (
               <Link key={path} to={path} className="flex items-center gap-2 no-underline px-3 py-2 rounded" style={{ color, background: headerActive(path) ? bgTint(color, "15") : "transparent" }}>
                 <Icon className="w-3.5 h-3.5" /> {label}
               </Link>
@@ -239,10 +247,28 @@ export function Layout() {
         {/* Sidebar — collapsible categories */}
         {!isHome && (
           <aside className="w-56 shrink-0 border-r min-h-[calc(100vh-3.5rem)] py-4 px-3 hidden lg:block overflow-y-auto" style={{ borderColor: "var(--border)" }}>
-            {/* Tools */}
+            {/* Assess tools */}
+            <div className="mb-3">
+              <p className="text-xs font-mono px-2 mb-2" style={{ color: "#444" }}>assess</p>
+              {ASSESS_TOOLS.map(({ path, label, icon: Icon, color }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className="flex items-center gap-2 px-2 py-1.5 rounded text-xs no-underline font-mono transition-colors"
+                  style={{
+                    color: headerActive(path) ? color : "var(--text)",
+                    background: headerActive(path) ? bgTint(color, "15") : "transparent",
+                  }}
+                >
+                  <Icon className="w-3.5 h-3.5" /> {label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Design system */}
             <div className="mb-4">
-              <p className="text-xs font-mono px-2 mb-2" style={{ color: "#444" }}>tools</p>
-              {TOOLS.map(({ path, label, icon: Icon, color }) => (
+              <p className="text-xs font-mono px-2 mb-2" style={{ color: "#444" }}>design system</p>
+              {SYSTEM_TOOLS.map(({ path, label, icon: Icon, color }) => (
                 <Link
                   key={path}
                   to={path}
