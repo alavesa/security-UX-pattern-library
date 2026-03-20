@@ -84,6 +84,21 @@ export function HomePage() {
             </a>
           </div>
 
+          {/* Stats */}
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
+            {[
+              { value: "23", label: "patterns", color: "var(--green)" },
+              { value: "6", label: "categories", color: "var(--cyan)" },
+              { value: "8", label: "regulations", color: "var(--amber)" },
+              { value: "3", label: "tools", color: "#c084fc" },
+            ].map(({ value, label, color }) => (
+              <div key={label} className="text-center">
+                <div className="text-3xl font-bold" style={{ color }}>{value}</div>
+                <div className="text-xs" style={{ color: "var(--text)" }}>{label}</div>
+              </div>
+            ))}
+          </div>
+
           {/* Terminal prompt — all links clickable */}
           <div className="mt-12 font-mono text-xs text-left max-w-lg mx-auto p-4 rounded" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <div style={{ color: "#444" }}>$ ls ./patterns</div>

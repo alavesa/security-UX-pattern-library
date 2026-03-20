@@ -5,6 +5,7 @@ import { PatternPage } from "./pages/PatternPage";
 import { ScorePage } from "./pages/ScorePage";
 import { CompliancePage } from "./pages/CompliancePage";
 import { MaturityPage } from "./pages/MaturityPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 import { LoginPattern } from "./patterns/auth/LoginPattern";
 import { MfaPattern } from "./patterns/auth/MfaPattern";
 import { PasswordStrengthPattern } from "./patterns/auth/PasswordStrengthPattern";
@@ -61,6 +62,7 @@ export default function App() {
           <Route path="patterns/ai/disclosure" element={<PatternPage><AIDisclosurePattern /></PatternPage>} />
           <Route path="patterns/ai/content-labeling" element={<PatternPage><AIContentLabelingPattern /></PatternPage>} />
           <Route path="patterns/ai/decision-explanation" element={<PatternPage><AIDecisionExplanationPattern /></PatternPage>} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

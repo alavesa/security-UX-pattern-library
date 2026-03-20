@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search } from "lucide-react";
+import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
   id: string;
@@ -75,7 +76,20 @@ export function Layout() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [openCategories, setOpenCategories] = useState<Set<string>>(new Set());
+
+  // Cmd+K to open search
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
 
   // Auto-open the category that contains the current page
   useEffect(() => {
@@ -126,7 +140,14 @@ export function Layout() {
                 {label}
               </Link>
             ))}
-            <span className="mx-2" style={{ color: "#222" }}>|</span>
+            <span className="mx-1" style={{ color: "#222" }}>|</span>
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-transparent border-none cursor-pointer font-mono text-xs"
+              style={{ color: "#555" }}
+            >
+              <Search className="w-3.5 h-3.5" /> <span className="text-xs px-1 py-0.5 rounded" style={{ background: "#1a1a1a", color: "#444" }}>⌘K</span>
+            </button>
             <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="no-underline px-3 py-1.5 rounded-md" style={{ color: "#555" }}>
               github
             </a>
@@ -252,6 +273,8 @@ export function Layout() {
           <Outlet />
         </main>
       </div>
+
+      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }
