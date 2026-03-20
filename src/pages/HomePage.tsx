@@ -60,9 +60,16 @@ export function HomePage() {
 
           <div className="flex gap-4 justify-center">
             <Link
-              to="/patterns/auth/login"
+              to="/score"
               className="inline-flex items-center gap-2 px-6 py-3 rounded font-mono font-medium text-sm no-underline transition-all hover:shadow-lg"
               style={{ background: "var(--green)", color: "var(--bg)", boxShadow: "0 0 20px var(--green-glow)" }}
+            >
+              $ get --score
+            </Link>
+            <Link
+              to="/patterns/auth/login"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded font-mono font-medium text-sm no-underline transition-all border"
+              style={{ borderColor: "var(--green-border)", color: "var(--green)", background: "transparent" }}
             >
               $ explore --patterns
             </Link>

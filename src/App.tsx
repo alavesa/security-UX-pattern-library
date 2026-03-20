@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./layouts/Layout";
 import { HomePage } from "./pages/HomePage";
 import { PatternPage } from "./pages/PatternPage";
+import { ScorePage } from "./pages/ScorePage";
 import { LoginPattern } from "./patterns/auth/LoginPattern";
 import { MfaPattern } from "./patterns/auth/MfaPattern";
 import { PasswordStrengthPattern } from "./patterns/auth/PasswordStrengthPattern";
@@ -26,6 +27,7 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path="score" element={<ScorePage />} />
           <Route path="patterns/auth/login" element={<PatternPage><LoginPattern /></PatternPage>} />
           <Route path="patterns/auth/mfa" element={<PatternPage><MfaPattern /></PatternPage>} />
           <Route path="patterns/auth/password-strength" element={<PatternPage><PasswordStrengthPattern /></PatternPage>} />
