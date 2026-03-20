@@ -4,6 +4,7 @@ import { HomePage } from "./pages/HomePage";
 import { PatternPage } from "./pages/PatternPage";
 import { ScorePage } from "./pages/ScorePage";
 import { CompliancePage } from "./pages/CompliancePage";
+import { MaturityPage } from "./pages/MaturityPage";
 import { LoginPattern } from "./patterns/auth/LoginPattern";
 import { MfaPattern } from "./patterns/auth/MfaPattern";
 import { PasswordStrengthPattern } from "./patterns/auth/PasswordStrengthPattern";
@@ -33,6 +34,7 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="score" element={<ScorePage />} />
           <Route path="compliance" element={<CompliancePage />} />
+          <Route path="maturity" element={<MaturityPage />} />
           <Route path="patterns/auth/login" element={<PatternPage><LoginPattern /></PatternPage>} />
           <Route path="patterns/auth/mfa" element={<PatternPage><MfaPattern /></PatternPage>} />
           <Route path="patterns/auth/password-strength" element={<PatternPage><PasswordStrengthPattern /></PatternPage>} />

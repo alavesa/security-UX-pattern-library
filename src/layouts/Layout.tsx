@@ -29,6 +29,7 @@ export function Layout() {
             <Link to="/" className="no-underline hover:underline" style={{ color: "var(--text)" }}>~/home</Link>
             <Link to="/score" className="no-underline hover:underline" style={{ color: "var(--green)" }}>score</Link>
             <Link to="/compliance" className="no-underline hover:underline" style={{ color: "var(--cyan)" }}>compliance</Link>
+            <Link to="/maturity" className="no-underline hover:underline" style={{ color: "var(--amber)" }}>maturity</Link>
             <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="no-underline hover:underline" style={{ color: "var(--text)" }}>github</a>
             <span className="text-xs" style={{ color: "#444" }}>by piia.alavesa</span>
           </nav>
