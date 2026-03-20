@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2 } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard } from "lucide-react";
 
 const AUTH_PATTERNS = [
   { path: "/patterns/auth/login", label: "login_flow", icon: LogIn },
@@ -95,6 +95,9 @@ export function Layout() {
                 { path: "/patterns/dark/confirmshaming", label: "confirmshaming", icon: ShieldOff },
                 { path: "/patterns/dark/cookie-consent", label: "cookie_consent", icon: Cookie },
                 { path: "/patterns/dark/hidden-unsubscribe", label: "hidden_unsubscribe", icon: Trash2 },
+                { path: "/patterns/dark/privacy-zuckering", label: "privacy_zuckering", icon: Eye },
+                { path: "/patterns/dark/bait-switch", label: "bait_and_switch", icon: MousePointerClick },
+                { path: "/patterns/dark/forced-continuity", label: "forced_continuity", icon: CreditCard },
               ].map(({ path, label, icon: Icon }) => (
                 <Link
                   key={path}

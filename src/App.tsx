@@ -13,6 +13,9 @@ import { SuspiciousActivityPattern } from "./patterns/threat/SuspiciousActivityP
 import { ConfirmshamingPattern } from "./patterns/darkpatterns/ConfirmshamingPattern";
 import { CookieConsentPattern } from "./patterns/darkpatterns/CookieConsentPattern";
 import { HiddenUnsubscribePattern } from "./patterns/darkpatterns/HiddenUnsubscribePattern";
+import { PrivacyZuckeringPattern } from "./patterns/darkpatterns/PrivacyZuckeringPattern";
+import { BaitSwitchPattern } from "./patterns/darkpatterns/BaitSwitchPattern";
+import { ForcedContinuityPattern } from "./patterns/darkpatterns/ForcedContinuityPattern";
 
 export default function App() {
   return (
@@ -31,6 +34,9 @@ export default function App() {
           <Route path="patterns/dark/confirmshaming" element={<PatternPage><ConfirmshamingPattern /></PatternPage>} />
           <Route path="patterns/dark/cookie-consent" element={<PatternPage><CookieConsentPattern /></PatternPage>} />
           <Route path="patterns/dark/hidden-unsubscribe" element={<PatternPage><HiddenUnsubscribePattern /></PatternPage>} />
+          <Route path="patterns/dark/privacy-zuckering" element={<PatternPage><PrivacyZuckeringPattern /></PatternPage>} />
+          <Route path="patterns/dark/bait-switch" element={<PatternPage><BaitSwitchPattern /></PatternPage>} />
+          <Route path="patterns/dark/forced-continuity" element={<PatternPage><ForcedContinuityPattern /></PatternPage>} />
         </Route>
       </Routes>
     </BrowserRouter>
