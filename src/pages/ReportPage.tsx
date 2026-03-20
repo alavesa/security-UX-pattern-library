@@ -55,6 +55,15 @@ const QUESTIONS: ReportQuestion[] = [
       { label: "Advanced — existing security practices", value: "advanced", patterns: ["/patterns/owasp/logging-monitoring"], risk: "low" },
     ],
   },
+  {
+    id: "environment",
+    question: "What environment does your product operate in?",
+    options: [
+      { label: "Industrial / OT (control systems, SCADA, manufacturing)", value: "industrial", patterns: ["/patterns/industrial/operator-auth", "/patterns/industrial/safety-critical", "/patterns/industrial/alarm-fatigue", "/patterns/owasp/broken-access-control", "/patterns/owasp/logging-monitoring"], risk: "critical" as string },
+      { label: "Web / mobile application", value: "web", patterns: ["/patterns/dark/cookie-consent", "/patterns/dark/confirmshaming", "/patterns/data/encryption"], risk: "medium" },
+      { label: "Internal / enterprise tool", value: "internal", patterns: ["/patterns/owasp/broken-access-control", "/patterns/owasp/security-misconfiguration", "/patterns/auth/session-timeout"], risk: "medium" },
+    ],
+  },
 ];
 
 export function ReportPage() {
@@ -159,7 +168,7 @@ export function ReportPage() {
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold font-mono mb-3 glow-text">Security UX Report</h1>
         <p className="text-base" style={{ color: "var(--text-bright)" }}>
-          Answer 5 questions. Get a custom report with prioritized patterns for your product.
+          Answer 6 questions. Get a custom report with prioritized patterns for your product.
         </p>
       </div>
 
@@ -171,7 +180,7 @@ export function ReportPage() {
             background: "var(--bg-card)",
           }}>
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-xs font-mono px-2 py-0.5 rounded" style={{ background: "var(--bg-elevated)", color: "var(--text)" }}>{qi + 1}/5</span>
+              <span className="text-xs font-mono px-2 py-0.5 rounded" style={{ background: "var(--bg-elevated)", color: "var(--text)" }}>{qi + 1}/{QUESTIONS.length}</span>
             </div>
             <h3 className="font-mono text-sm font-semibold mb-4" style={{ color: "var(--text-bright)" }}>{q.question}</h3>
             <div className="space-y-2">
@@ -202,7 +211,7 @@ export function ReportPage() {
       {!allAnswered && (
         <div className="text-center py-4">
           <p className="font-mono text-xs" style={{ color: "var(--text)" }}>
-            Answer all 5 questions ({Object.keys(answers).length}/5)
+            Answer all questions ({Object.keys(answers).length}/{QUESTIONS.length})
           </p>
         </div>
       )}
