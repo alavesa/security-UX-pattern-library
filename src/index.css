@@ -1,31 +1,84 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --green: #00ff41;
+  --green-dim: #00cc33;
+  --green-glow: rgba(0, 255, 65, 0.15);
+  --green-border: rgba(0, 255, 65, 0.25);
+  --red: #ff3333;
+  --amber: #ffaa00;
+  --cyan: #00e5ff;
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --bg-elevated: #1a1a1a;
+  --border: #222222;
+  --text: #888888;
+  --text-bright: #cccccc;
+}
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Pattern demo container */
-.demo-container {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 2rem;
+/* Scanline effect */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
 }
 
-/* Security severity badges */
+/* Terminal cursor blink */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: "█";
+  color: var(--green);
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+/* Green glow text */
+.glow-text {
+  color: var(--green);
+  text-shadow: 0 0 10px var(--green-glow), 0 0 20px var(--green-glow);
+}
+
+/* Monospace headings */
+h1, h2, h3, h4 {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Security severity badges — terminal style */
 .security-badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   padding: 2px 8px;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 500;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
-.security-badge.critical { background: #fef2f2; color: #dc2626; }
-.security-badge.high { background: #fff7ed; color: #ea580c; }
-.security-badge.medium { background: #fefce8; color: #ca8a04; }
-.security-badge.low { background: #f0fdf4; color: #16a34a; }
+.security-badge.critical { background: rgba(255, 51, 51, 0.15); color: #ff3333; border: 1px solid rgba(255, 51, 51, 0.3); }
+.security-badge.high { background: rgba(255, 170, 0, 0.15); color: #ffaa00; border: 1px solid rgba(255, 170, 0, 0.3); }
+.security-badge.medium { background: rgba(0, 229, 255, 0.15); color: #00e5ff; border: 1px solid rgba(0, 229, 255, 0.3); }
+.security-badge.low { background: rgba(0, 255, 65, 0.15); color: #00ff41; border: 1px solid rgba(0, 255, 65, 0.3); }

@@ -1,34 +1,34 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal } from "lucide-react";
 
 const AUTH_PATTERNS = [
   {
     path: "/patterns/auth/login",
-    label: "Login Flow",
+    label: "login_flow",
     icon: LogIn,
     description: "Secure login with rate limiting, error handling, and progressive disclosure",
   },
   {
     path: "/patterns/auth/mfa",
-    label: "Multi-Factor Authentication",
+    label: "multi_factor_auth",
     icon: Shield,
     description: "TOTP, SMS, and hardware key flows with clear user guidance",
   },
   {
     path: "/patterns/auth/password-strength",
-    label: "Password Strength",
+    label: "password_strength",
     icon: KeyRound,
     description: "Real-time feedback, zxcvbn-style scoring, and breach detection",
   },
   {
     path: "/patterns/auth/session-timeout",
-    label: "Session Timeout",
+    label: "session_timeout",
     icon: Timer,
     description: "Graceful timeout warnings, auto-save, and secure re-authentication",
   },
   {
     path: "/patterns/auth/account-recovery",
-    label: "Account Recovery",
+    label: "account_recovery",
     icon: UserCheck,
     description: "Secure recovery flows that balance usability with identity verification",
   },
@@ -38,72 +38,113 @@ export function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="px-6 py-24 text-center border-b border-gray-200">
+      <section className="px-6 py-24 text-center border-b" style={{ borderColor: "var(--border)" }}>
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-            <Lock className="w-4 h-4" />
-            Open Source Pattern Library
+          <div className="inline-flex items-center gap-2 text-sm font-mono px-4 py-1.5 rounded mb-6"
+            style={{ background: "var(--green-glow)", color: "var(--green)", border: "1px solid var(--green-border)" }}>
+            <Terminal className="w-4 h-4" />
+            open-source pattern library
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 tracking-tight mb-6">
-            Security UX Patterns
+
+          <h1 className="text-5xl font-bold tracking-tight mb-6 font-mono glow-text">
+            Security UX<br />Patterns
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed mb-8">
+
+          <p className="text-lg leading-relaxed mb-4 max-w-xl mx-auto" style={{ color: "var(--text-bright)" }}>
             Interactive patterns for designing secure user experiences.
+          </p>
+          <p className="text-sm leading-relaxed mb-8 max-w-lg mx-auto" style={{ color: "var(--text)" }}>
             Built from 20 years of UX design leadership and a double M.Sc. in
             Cyber Security and Information Systems.
           </p>
+
           <div className="flex gap-4 justify-center">
             <Link
               to="/patterns/auth/login"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors no-underline"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded font-mono font-medium text-sm no-underline transition-all hover:shadow-lg"
+              style={{ background: "var(--green)", color: "var(--bg)", boxShadow: "0 0 20px var(--green-glow)" }}
             >
-              Explore Patterns
+              $ explore --patterns
             </Link>
             <a
               href="https://github.com/alavesa/security-UX-pattern-library"
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-2 border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors no-underline"
+              className="inline-flex items-center gap-2 border px-6 py-3 rounded font-mono font-medium text-sm no-underline transition-colors"
+              style={{ borderColor: "var(--border)", color: "var(--text-bright)", background: "transparent" }}
             >
-              View on GitHub
+              $ git clone
             </a>
+          </div>
+
+          {/* Terminal prompt */}
+          <div className="mt-12 font-mono text-sm text-left max-w-md mx-auto p-4 rounded" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <div style={{ color: "#444" }}>$ patchpilots security ./auth-patterns</div>
+            <div style={{ color: "var(--green)" }}>
+              <span>🔒 5 patterns loaded</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   login_flow ............ OWASP A07, CWE-307</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   multi_factor_auth ..... OWASP A07, CWE-308</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   password_strength ..... OWASP A07, CWE-521</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   session_timeout ....... OWASP A07, CWE-613</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   account_recovery ...... OWASP A07, CWE-640</span>
+            </div>
+            <div className="cursor-blink" style={{ color: "#444" }}>$</div>
           </div>
         </div>
       </section>
 
-      {/* Pattern Categories */}
+      {/* Pattern Cards */}
       <section className="px-6 py-16 max-w-5xl mx-auto">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Authentication Patterns</h2>
-        <p className="text-gray-600 mb-8">How to design auth flows that are both secure and usable.</p>
+        <h2 className="text-xl font-mono mb-2 glow-text">./auth/</h2>
+        <p className="mb-8" style={{ color: "var(--text)" }}>Authentication patterns — the front door of security.</p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {AUTH_PATTERNS.map(({ path, label, icon: Icon, description }) => (
             <Link
               key={path}
               to={path}
-              className="group border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-sm transition-all no-underline"
+              className="group border rounded-lg p-6 no-underline transition-all"
+              style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--green-border)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px var(--green-glow)";
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "none";
+              }}
             >
-              <Icon className="w-8 h-8 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="font-semibold text-gray-900 mb-2">{label}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
+              <Icon className="w-6 h-6 mb-3" style={{ color: "var(--green)" }} />
+              <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
+              <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
             </Link>
           ))}
         </div>
 
         {/* Coming Soon */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Coming Soon</h2>
-          <p className="text-gray-600 mb-8">More pattern categories in development.</p>
+          <h2 className="text-xl font-mono mb-2" style={{ color: "#444" }}>./coming-soon/</h2>
+          <p className="mb-8" style={{ color: "#444" }}>More patterns in development.</p>
           <div className="grid md:grid-cols-3 gap-4">
             {[
-              { label: "Permissions & Access Control", desc: "Role-based access, consent flows, admin controls" },
-              { label: "Threat Response", desc: "Breach notifications, phishing warnings, incident response" },
-              { label: "Data Protection", desc: "Encryption indicators, secure sharing, privacy controls" },
+              { label: "permissions/", desc: "Role-based access, consent flows, admin controls" },
+              { label: "threat_response/", desc: "Breach notifications, phishing warnings, incident response" },
+              { label: "data_protection/", desc: "Encryption indicators, secure sharing, privacy controls" },
             ].map(({ label, desc }) => (
-              <div key={label} className="border border-dashed border-gray-200 rounded-xl p-6 opacity-50">
-                <Lock className="w-8 h-8 text-gray-300 mb-4" />
-                <h3 className="font-semibold text-gray-400 mb-2">{label}</h3>
-                <p className="text-sm text-gray-400">{desc}</p>
+              <div key={label} className="border border-dashed rounded-lg p-6" style={{ borderColor: "#222" }}>
+                <Lock className="w-6 h-6 mb-3" style={{ color: "#333" }} />
+                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "#444" }}>{label}</h3>
+                <p className="text-xs" style={{ color: "#333" }}>{desc}</p>
               </div>
             ))}
           </div>
@@ -111,9 +152,9 @@ export function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 px-6 py-8 text-center text-sm text-gray-400">
-        <p>Built by <a href="https://www.neversay.no" className="text-gray-600 hover:text-gray-900">Piia Alavesa</a> — Senior UX Design Leader</p>
-        <p className="mt-1">M.Sc. Cyber Security + M.Sc. Information Systems</p>
+      <footer className="border-t px-6 py-8 text-center font-mono text-xs" style={{ borderColor: "var(--border)", color: "#444" }}>
+        <p>built by <a href="https://www.neversay.no" className="hover:underline" style={{ color: "var(--green-dim)" }}>piia.alavesa</a> — senior ux design leader</p>
+        <p className="mt-1">m.sc. cyber security + m.sc. information systems</p>
       </footer>
     </div>
   );

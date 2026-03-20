@@ -1,35 +1,35 @@
-import type { ReactNode } from "react";
-
 interface PatternHeaderProps {
   title: string;
   description: string;
   severity: "critical" | "high" | "medium" | "low";
   tags: string[];
-  children?: ReactNode;
 }
 
-const SEVERITY_STYLES = {
-  critical: "bg-red-50 text-red-700 border-red-200",
-  high: "bg-orange-50 text-orange-700 border-orange-200",
-  medium: "bg-yellow-50 text-yellow-700 border-yellow-200",
-  low: "bg-green-50 text-green-700 border-green-200",
+const SEVERITY_STYLES: Record<string, string> = {
+  critical: "background: rgba(255,51,51,0.15); color: #ff3333; border: 1px solid rgba(255,51,51,0.3)",
+  high: "background: rgba(255,170,0,0.15); color: #ffaa00; border: 1px solid rgba(255,170,0,0.3)",
+  medium: "background: rgba(0,229,255,0.15); color: #00e5ff; border: 1px solid rgba(0,229,255,0.3)",
+  low: "background: rgba(0,255,65,0.15); color: #00ff41; border: 1px solid rgba(0,255,65,0.3)",
 };
 
 export function PatternHeader({ title, description, severity, tags }: PatternHeaderProps) {
   return (
     <div className="mb-8">
-      <div className="flex items-center gap-3 mb-3">
-        <span className={`text-xs font-medium px-2.5 py-1 rounded-full border ${SEVERITY_STYLES[severity]}`}>
-          {severity.toUpperCase()} SECURITY IMPACT
+      <div className="flex items-center gap-3 mb-3 flex-wrap">
+        <span
+          className="text-xs font-mono font-semibold px-2.5 py-1 rounded tracking-wide"
+          style={{ ...Object.fromEntries(SEVERITY_STYLES[severity].split(";").map(s => { const [k,v] = s.split(":").map(x => x.trim()); return [k.replace(/-([a-z])/g, (_, c) => c.toUpperCase()), v]; })) }}
+        >
+          {severity.toUpperCase()}
         </span>
         {tags.map(tag => (
-          <span key={tag} className="text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+          <span key={tag} className="text-xs font-mono px-2.5 py-1 rounded" style={{ background: "var(--bg-elevated)", color: "var(--text)" }}>
             {tag}
           </span>
         ))}
       </div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-3">{title}</h1>
-      <p className="text-lg text-gray-600 leading-relaxed">{description}</p>
+      <h1 className="text-3xl font-bold font-mono mb-3 glow-text">{title}</h1>
+      <p className="text-base leading-relaxed" style={{ color: "var(--text-bright)" }}>{description}</p>
     </div>
   );
 }
