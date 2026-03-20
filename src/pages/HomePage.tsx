@@ -173,6 +173,17 @@ export function HomePage() {
               </Link>
             ))}
 
+            <div className="mt-2" style={{ color: "#f97316" }}>🏭 industrial/ (3)</div>
+            {[
+              { path: "/patterns/industrial/operator-auth", name: "operator_auth", ref: "IEC 62443" },
+              { path: "/patterns/industrial/safety-critical", name: "safety_critical", ref: "IEC 61511" },
+              { path: "/patterns/industrial/alarm-fatigue", name: "alarm_fatigue", ref: "ISA-18.2" },
+            ].map(({ path, name, ref }) => (
+              <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
+                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+              </Link>
+            ))}
+
             <div className="cursor-blink mt-1" style={{ color: "#444" }}>$</div>
           </div>
         </div>
