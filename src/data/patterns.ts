@@ -36,6 +36,10 @@ export const ALL_PATTERNS: PatternInfo[] = [
   { path: "/patterns/ai/disclosure", label: "AI Disclosure", category: "ai", categoryColor: "#c084fc", tags: ["EU AI Act", "Art. 50", "chatbot", "transparency"] },
   { path: "/patterns/ai/content-labeling", label: "AI Content Labeling", category: "ai", categoryColor: "#c084fc", tags: ["EU AI Act", "Art. 50", "C2PA", "watermark", "deepfake"] },
   { path: "/patterns/ai/decision-explanation", label: "AI Decision Explanation", category: "ai", categoryColor: "#c084fc", tags: ["EU AI Act", "GDPR Art. 22", "high-risk AI", "explainability"] },
+  // Industrial
+  { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "industrial", categoryColor: "#f97316", tags: ["industrial", "IEC 62443", "OT security", "badge", "biometric", "emergency"] },
+  { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "industrial", categoryColor: "#f97316", tags: ["industrial", "IEC 61511", "safety", "emergency shutdown", "override"] },
+  { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "industrial", categoryColor: "#f97316", tags: ["industrial", "ISA-18.2", "EEMUA 191", "alarm management", "HMI"] },
 ];
 
 export function getPatternIndex(path: string): number {

@@ -30,6 +30,9 @@ import { LoggingMonitoringPattern } from "./patterns/owasp/LoggingMonitoringPatt
 import { AIDisclosurePattern } from "./patterns/ai/AIDisclosurePattern";
 import { AIContentLabelingPattern } from "./patterns/ai/AIContentLabelingPattern";
 import { AIDecisionExplanationPattern } from "./patterns/ai/AIDecisionExplanationPattern";
+import { OperatorAuthPattern } from "./patterns/industrial/OperatorAuthPattern";
+import { SafetyCriticalPattern } from "./patterns/industrial/SafetyCriticalPattern";
+import { AlarmFatiguePattern } from "./patterns/industrial/AlarmFatiguePattern";
 
 export default function App() {
   return (
@@ -64,6 +67,9 @@ export default function App() {
           <Route path="patterns/ai/disclosure" element={<PatternPage><AIDisclosurePattern /></PatternPage>} />
           <Route path="patterns/ai/content-labeling" element={<PatternPage><AIContentLabelingPattern /></PatternPage>} />
           <Route path="patterns/ai/decision-explanation" element={<PatternPage><AIDecisionExplanationPattern /></PatternPage>} />
+          <Route path="patterns/industrial/operator-auth" element={<PatternPage><OperatorAuthPattern /></PatternPage>} />
+          <Route path="patterns/industrial/safety-critical" element={<PatternPage><SafetyCriticalPattern /></PatternPage>} />
+          <Route path="patterns/industrial/alarm-fatigue" element={<PatternPage><AlarmFatiguePattern /></PatternPage>} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

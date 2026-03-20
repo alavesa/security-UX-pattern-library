@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell } from "lucide-react";
 import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
@@ -62,6 +62,14 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/ai/disclosure", label: "disclosure", icon: Bot },
       { path: "/patterns/ai/content-labeling", label: "labeling", icon: Sparkles },
       { path: "/patterns/ai/decision-explanation", label: "decisions", icon: Brain },
+    ],
+  },
+  {
+    id: "industrial", label: "industrial", color: "#f97316",
+    items: [
+      { path: "/patterns/industrial/operator-auth", label: "operator_auth", icon: Fingerprint },
+      { path: "/patterns/industrial/safety-critical", label: "safety_critical", icon: Zap },
+      { path: "/patterns/industrial/alarm-fatigue", label: "alarm_fatigue", icon: Bell },
     ],
   },
 ];

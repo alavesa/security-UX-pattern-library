@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell } from "lucide-react";
 
 const AUTH_PATTERNS = [
   {
@@ -87,8 +87,8 @@ export function HomePage() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
-              { value: "23", label: "patterns", color: "var(--green)" },
-              { value: "6", label: "categories", color: "var(--cyan)" },
+              { value: "26", label: "patterns", color: "var(--green)" },
+              { value: "7", label: "categories", color: "var(--cyan)" },
               { value: "8", label: "regulations", color: "var(--amber)" },
               { value: "4", label: "tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
@@ -368,6 +368,40 @@ export function HomePage() {
                 }}
               >
                 <Icon className="w-6 h-6 mb-3" style={{ color: "#c084fc" }} />
+                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Industrial */}
+        <div className="mt-16">
+          <h2 className="text-xl font-mono mb-2" style={{ color: "#f97316" }}>./industrial/</h2>
+          <p className="mb-2" style={{ color: "var(--text)" }}>Industrial security UX — where IT security meets operational technology. Designed for control rooms, not offices.</p>
+          <p className="text-xs mb-8" style={{ color: "#f97316" }}>From 20 years of industrial UX design leadership</p>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { path: "/patterns/industrial/operator-auth", label: "operator_auth", icon: Fingerprint, description: "Badge + PIN for gloved hands, adaptive biometrics, emergency override with accountability" },
+              { path: "/patterns/industrial/safety-critical", label: "safety_critical", icon: Zap, description: "Emergency shutdown hold-to-confirm, graduated safety overrides, parameter change with range context" },
+              { path: "/patterns/industrial/alarm-fatigue", label: "alarm_fatigue", icon: Bell, description: "Alarm flood vs smart grouping, root cause highlighting, alarm shelving — ISA-18.2 compliant" },
+            ].map(({ path, label, icon: Icon, description }) => (
+              <Link
+                key={path}
+                to={path}
+                className="group border rounded-lg p-6 no-underline transition-all"
+                style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(249,115,22,0.3)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(249,115,22,0.1)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <Icon className="w-6 h-6 mb-3" style={{ color: "#f97316" }} />
                 <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
               </Link>
