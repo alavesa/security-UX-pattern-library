@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, HardDrive } from "lucide-react";
 
 const AUTH_PATTERNS = [
   { path: "/patterns/auth/login", label: "login_flow", icon: LogIn },
@@ -115,11 +115,36 @@ export function Layout() {
               ))}
             </nav>
 
+            <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#444" }}>
+              $ ls data/
+            </h3>
+            <nav className="space-y-0.5">
+              {[
+                { path: "/patterns/data/encryption", label: "encryption_indicators", icon: Lock },
+                { path: "/patterns/data/file-upload", label: "secure_file_upload", icon: Upload },
+                { path: "/patterns/data/deletion", label: "data_deletion", icon: Trash2 },
+              ].map(({ path, label, icon: Icon }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className="flex items-center gap-3 px-3 py-2 rounded text-sm no-underline font-mono transition-colors"
+                  style={{
+                    color: location.pathname === path ? "var(--cyan)" : "var(--text)",
+                    background: location.pathname === path ? "rgba(0,229,255,0.1)" : "transparent",
+                    borderLeft: location.pathname === path ? "2px solid var(--cyan)" : "2px solid transparent",
+                  }}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {label}
+                </Link>
+              ))}
+            </nav>
+
             <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#333" }}>
               $ ls --coming-soon
             </h3>
             <nav className="space-y-0.5">
-              {["permissions/", "data_protection/", "privacy/"].map(label => (
+              {["permissions/", "privacy/"].map(label => (
                 <span key={label} className="flex items-center gap-3 px-3 py-2 text-sm font-mono" style={{ color: "#333" }}>
                   <Lock className="w-3.5 h-3.5" />
                   {label}

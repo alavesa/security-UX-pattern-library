@@ -16,6 +16,9 @@ import { HiddenUnsubscribePattern } from "./patterns/darkpatterns/HiddenUnsubscr
 import { PrivacyZuckeringPattern } from "./patterns/darkpatterns/PrivacyZuckeringPattern";
 import { BaitSwitchPattern } from "./patterns/darkpatterns/BaitSwitchPattern";
 import { ForcedContinuityPattern } from "./patterns/darkpatterns/ForcedContinuityPattern";
+import { EncryptionIndicatorPattern } from "./patterns/data/EncryptionIndicatorPattern";
+import { SecureFileUploadPattern } from "./patterns/data/SecureFileUploadPattern";
+import { DataDeletionPattern } from "./patterns/data/DataDeletionPattern";
 
 export default function App() {
   return (
@@ -37,6 +40,9 @@ export default function App() {
           <Route path="patterns/dark/privacy-zuckering" element={<PatternPage><PrivacyZuckeringPattern /></PatternPage>} />
           <Route path="patterns/dark/bait-switch" element={<PatternPage><BaitSwitchPattern /></PatternPage>} />
           <Route path="patterns/dark/forced-continuity" element={<PatternPage><ForcedContinuityPattern /></PatternPage>} />
+          <Route path="patterns/data/encryption" element={<PatternPage><EncryptionIndicatorPattern /></PatternPage>} />
+          <Route path="patterns/data/file-upload" element={<PatternPage><SecureFileUploadPattern /></PatternPage>} />
+          <Route path="patterns/data/deletion" element={<PatternPage><DataDeletionPattern /></PatternPage>} />
         </Route>
       </Routes>
     </BrowserRouter>

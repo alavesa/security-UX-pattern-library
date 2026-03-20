@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload } from "lucide-react";
 
 const AUTH_PATTERNS = [
   {
@@ -224,6 +224,39 @@ export function HomePage() {
           </div>
         </div>
 
+        {/* Data Protection */}
+        <div className="mt-16">
+          <h2 className="text-xl font-mono mb-2" style={{ color: "var(--cyan)" }}>./data/</h2>
+          <p className="mb-8" style={{ color: "var(--text)" }}>Data protection patterns — keeping data safe at rest, in transit, and on deletion.</p>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { path: "/patterns/data/encryption", label: "encryption_indicators", icon: Lock, description: "E2E messaging, connection security, and at-rest encryption dashboards" },
+              { path: "/patterns/data/file-upload", label: "secure_file_upload", icon: Upload, description: "File type blocking, malware scanning, encryption status feedback" },
+              { path: "/patterns/data/deletion", label: "data_deletion", icon: Trash2, description: "GDPR-compliant deletion with export, confirmation, and grace period" },
+            ].map(({ path, label, icon: Icon, description }) => (
+              <Link
+                key={path}
+                to={path}
+                className="group border rounded-lg p-6 no-underline transition-all"
+                style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,229,255,0.3)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(0,229,255,0.1)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <Icon className="w-6 h-6 mb-3" style={{ color: "var(--cyan)" }} />
+                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
         {/* Coming Soon */}
         <div className="mt-16">
           <h2 className="text-xl font-mono mb-2" style={{ color: "#444" }}>./coming-soon/</h2>
@@ -231,8 +264,8 @@ export function HomePage() {
           <div className="grid md:grid-cols-3 gap-4">
             {[
               { label: "permissions/", desc: "Role-based access, consent flows, admin controls" },
-              { label: "data_protection/", desc: "Encryption indicators, secure sharing, privacy controls" },
-              { label: "privacy/", desc: "Cookie consent, data export, account deletion" },
+              { label: "privacy/", desc: "Privacy dashboards, tracking controls, data portability" },
+              { label: "compliance/", desc: "GDPR notices, age verification, data processing agreements" },
             ].map(({ label, desc }) => (
               <div key={label} className="border border-dashed rounded-lg p-6" style={{ borderColor: "#222" }}>
                 <Lock className="w-6 h-6 mb-3" style={{ color: "#333" }} />
