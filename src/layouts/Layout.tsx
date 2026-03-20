@@ -74,6 +74,12 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/industrial/alarm-fatigue", label: "alarm_fatigue", icon: Bell },
     ],
   },
+  {
+    id: "governance", label: "governance", color: "var(--text-bright)",
+    items: [
+      { path: "/patterns/governance/design-review", label: "design_review", icon: ClipboardCheck },
+    ],
+  },
 ];
 
 const TOOLS = [
@@ -81,6 +87,8 @@ const TOOLS = [
   { path: "/compliance", label: "compliance", icon: ClipboardCheck, color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", icon: BarChart3, color: "var(--amber)" },
   { path: "/report", label: "report", icon: FileText, color: "#c084fc" },
+  { path: "/tokens", label: "tokens", icon: Eye, color: "var(--green)" },
+  { path: "/components", label: "API", icon: Settings, color: "var(--cyan)" },
 ];
 
 const HEADER_NAV: { path: string; label: string; color: string; matchPrefix?: string }[] = [

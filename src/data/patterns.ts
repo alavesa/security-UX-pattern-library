@@ -1,4 +1,4 @@
-export type Category = 'auth' | 'threat' | 'dark' | 'data' | 'owasp' | 'ai' | 'industrial';
+export type Category = 'auth' | 'threat' | 'dark' | 'data' | 'owasp' | 'ai' | 'industrial' | 'governance';
 
 export const CATEGORY_COLORS: Record<Category, string> = {
   auth: 'var(--green)',
@@ -8,6 +8,7 @@ export const CATEGORY_COLORS: Record<Category, string> = {
   owasp: 'var(--amber)',
   ai: 'var(--ai-color)',
   industrial: 'var(--industrial-color)',
+  governance: 'var(--text-bright)',
 };
 
 export interface PatternInfo {
@@ -54,6 +55,8 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "industrial", tags: ["industrial", "IEC 62443", "OT security", "badge", "biometric", "emergency"] },
   { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "industrial", tags: ["industrial", "IEC 61511", "safety", "emergency shutdown", "override"] },
   { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "industrial", tags: ["industrial", "ISA-18.2", "EEMUA 191", "alarm management", "HMI"] },
+  // Governance
+  { path: "/patterns/governance/design-review", label: "Security Design Review", category: "governance", tags: ["governance", "design system", "review", "checklist", "process"] },
 ];
 
 export const ALL_PATTERNS: PatternInfo[] = RAW_PATTERNS.map(p => ({
