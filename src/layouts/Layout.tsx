@@ -122,7 +122,11 @@ export function Layout() {
       {/* Header */}
       <header className="border-b sticky top-0 z-50" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2.5 no-underline">
+          <Link
+            to="/"
+            className="flex items-center gap-2.5 no-underline"
+            onClick={() => { if (location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          >
             <Shield className="w-4.5 h-4.5" style={{ color: "var(--green)" }} />
             <span className="font-mono font-bold text-sm tracking-tight" style={{ color: "var(--green)" }}>
               uxsec<span style={{ color: "var(--text)" }}>.dev</span>
