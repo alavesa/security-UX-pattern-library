@@ -355,16 +355,28 @@ export function HomePage() {
       <section className="px-6 py-16 max-w-5xl mx-auto">
         <h2 className="text-xl font-mono mb-6" style={{ color: "var(--text-bright)" }}>./sources/</h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           <div>
             <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--green)" }}>Standards & Frameworks</h3>
             <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
               <li><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>OWASP Top 10 (2021)</a> — Web application security risks</li>
               <li><a href="https://cwe.mitre.org/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>MITRE CWE</a> — Common Weakness Enumeration</li>
               <li><a href="https://pages.nist.gov/800-63-3/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>NIST SP 800-63B</a> — Digital Identity Guidelines</li>
-              <li><a href="https://gdpr-info.eu/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>GDPR</a> — General Data Protection Regulation (Articles 5, 7, 17, 20, 33, 34)</li>
+              <li><a href="https://gdpr-info.eu/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>GDPR</a> — Articles 5, 7, 17, 20, 22, 33, 34</li>
               <li><a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>WCAG 2.1</a> — Web Content Accessibility Guidelines</li>
               <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> — Consumer protection for subscriptions</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "#c084fc" }}>AI Regulation</h3>
+            <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
+              <li><a href="https://artificialintelligenceact.eu/article/50/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>EU AI Act Article 50</a> — AI transparency obligations (Aug 2026)</li>
+              <li><a href="https://artificialintelligenceact.eu/high-level-summary/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>EU AI Act Overview</a> — High-level summary of the regulation</li>
+              <li><a href="https://www.twobirds.com/en/insights/2026/taking-the-eu-ai-act-to-practice-understanding-the-draft-transparency-code-of-practice" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>AI Transparency Code of Practice</a> — Draft implementation guidance</li>
+              <li><a href="https://drata.com/blog/artificial-intelligence-regulations-state-and-federal-ai-laws-2026" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>US State AI Laws 2026</a> — Colorado, California, Illinois</li>
+              <li><a href="https://www.iab.com/guidelines/ai-transparency-and-disclosure-framework/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>IAB AI Transparency Framework</a> — Risk-based disclosure model</li>
+              <li><a href="https://c2pa.org/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>C2PA Standard</a> — Content provenance and authenticity</li>
             </ul>
           </div>
 
@@ -374,9 +386,9 @@ export function HomePage() {
               <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Verizon DBIR 2024</a> — Data Breach Investigations Report</li>
               <li><a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>IBM Cost of a Data Breach 2023</a> — 204-day average detection time</li>
               <li><a href="https://www.microsoft.com/en-us/security/blog/2019/08/20/one-simple-action-you-can-take-to-prevent-99-9-percent-of-account-attacks/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Microsoft MFA Study</a> — MFA prevents 99.9% of attacks</li>
-              <li><a href="https://arxiv.org/html/2601.13342v1" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Privacy Starts with UI (USEC 2026)</a> — Privacy patterns in UI/UX practice</li>
-              <li><a href="https://www.deceptive.design/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Deceptive Design</a> — Dark pattern documentation by Harry Brignull</li>
-              <li><a href="https://datatracker.ietf.org/doc/html/rfc6238" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>RFC 6238</a> — TOTP: Time-Based One-Time Password Algorithm</li>
+              <li><a href="https://arxiv.org/html/2601.13342v1" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Privacy Starts with UI (USEC 2026)</a> — Privacy patterns in UI/UX</li>
+              <li><a href="https://www.deceptive.design/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Deceptive Design</a> — Dark patterns by Harry Brignull</li>
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc6238" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>RFC 6238</a> — TOTP Algorithm</li>
             </ul>
           </div>
         </div>
