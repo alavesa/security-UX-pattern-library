@@ -351,8 +351,52 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Recent Enforcement */}
+      <section className="px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
+        <h2 className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>./recent_enforcement/</h2>
+        <p className="text-xs mb-6" style={{ color: "var(--text)" }}>Real fines for dark patterns and security failures — this is why these patterns matter.</p>
+
+        <div className="grid md:grid-cols-2 gap-4 mb-8">
+          {[
+            { company: "Amazon", fine: "$30M", authority: "FTC", reason: "Manipulative design patterns in subscription flows", year: "2026", link: "https://www.ketch.com/blog/posts/dark-patterns-are-they-illegal" },
+            { company: "Epic Games", fine: "$245M", authority: "FTC", reason: "Deceptive patterns tricking players (including children) into purchases", year: "2024", link: "https://www.deceptive.design/enforcement" },
+            { company: "TikTok", fine: "€345M", authority: "Irish DPC", reason: "Public-by-default accounts as a deceptive pattern", year: "2023", link: "https://www.deceptive.design/enforcement" },
+            { company: "Meta", fine: "€1.2B", authority: "Irish DPC", reason: "GDPR data transfer violations", year: "2023", link: "https://www.deceptive.design/enforcement" },
+          ].map(({ company, fine, authority, reason, year, link }) => (
+            <a
+              key={company}
+              href={link}
+              target="_blank"
+              rel="noopener"
+              className="border rounded-lg p-4 no-underline transition-all"
+              style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+              onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,51,51,0.3)"; }}
+              onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-mono font-bold text-sm" style={{ color: "var(--text-bright)" }}>{company}</span>
+                <span className="font-mono font-bold text-sm" style={{ color: "var(--red)" }}>{fine}</span>
+              </div>
+              <p className="text-xs mb-1" style={{ color: "var(--text)" }}>{reason}</p>
+              <p className="text-xs" style={{ color: "#555" }}>{authority} · {year}</p>
+            </a>
+          ))}
+        </div>
+
+        <div className="border rounded-lg p-4" style={{ borderColor: "rgba(255,170,0,0.2)", background: "rgba(255,170,0,0.05)" }}>
+          <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--amber)" }}>2026 enforcement trends</h3>
+          <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
+            <li><span style={{ color: "var(--amber)" }}>FTC Click-to-Cancel Rule</span> — actively enforcing since 2025, targets subscription dark patterns</li>
+            <li><span style={{ color: "var(--amber)" }}>20 US states</span> now enforce consumer privacy statutes (Kentucky, Rhode Island, Indiana joined Jan 2026)</li>
+            <li><span style={{ color: "var(--amber)" }}>EU AI-powered enforcement</span> — ML models scanning millions of websites for dark patterns</li>
+            <li><span style={{ color: "var(--amber)" }}>Breach response focus</span> — enforcement now judges HOW you responded, not just that it happened</li>
+            <li><span style={{ color: "var(--amber)" }}>EU AI Act Art. 50</span> — transparency obligations go live August 2026</li>
+          </ul>
+        </div>
+      </section>
+
       {/* Sources & References */}
-      <section className="px-6 py-16 max-w-5xl mx-auto">
+      <section className="px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
         <h2 className="text-xl font-mono mb-6" style={{ color: "var(--text-bright)" }}>./sources/</h2>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -389,6 +433,8 @@ export function HomePage() {
               <li><a href="https://arxiv.org/html/2601.13342v1" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Privacy Starts with UI (USEC 2026)</a> — Privacy patterns in UI/UX</li>
               <li><a href="https://www.deceptive.design/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Deceptive Design</a> — Dark patterns by Harry Brignull</li>
               <li><a href="https://datatracker.ietf.org/doc/html/rfc6238" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>RFC 6238</a> — TOTP Algorithm</li>
+              <li><a href="https://sharkstriker.com/blog/march-data-breaches-today-2026/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Data Breaches March 2026</a> — Current breach tracker</li>
+              <li><a href="https://www.deceptive.design/enforcement" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Dark Patterns Enforcement</a> — Global enforcement database</li>
             </ul>
           </div>
         </div>
