@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings } from "lucide-react";
 
 const AUTH_PATTERNS = [
   {
@@ -257,6 +257,39 @@ export function HomePage() {
                 }}
               >
                 <Icon className="w-6 h-6 mb-3" style={{ color: "var(--cyan)" }} />
+                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* OWASP Top 10 */}
+        <div className="mt-16">
+          <h2 className="text-xl font-mono mb-2" style={{ color: "var(--amber)" }}>./owasp/</h2>
+          <p className="mb-8" style={{ color: "var(--text)" }}>OWASP Top 10 patterns — the most critical web application security risks.</p>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { path: "/patterns/owasp/broken-access-control", label: "A01_access_control", icon: Shield, description: "Role-based UI, IDOR prevention, privilege escalation blocking" },
+              { path: "/patterns/owasp/security-misconfiguration", label: "A05_misconfiguration", icon: Settings, description: "Security header dashboard, debug mode detection, default credential forcing" },
+              { path: "/patterns/owasp/logging-monitoring", label: "A09_logging", icon: Activity, description: "Live event log, anomaly detection, per-user audit trails" },
+            ].map(({ path, label, icon: Icon, description }) => (
+              <Link
+                key={path}
+                to={path}
+                className="group border rounded-lg p-6 no-underline transition-all"
+                style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,170,0,0.3)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(255,170,0,0.1)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <Icon className="w-6 h-6 mb-3" style={{ color: "var(--amber)" }} />
                 <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
               </Link>

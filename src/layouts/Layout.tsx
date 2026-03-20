@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, HardDrive } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings } from "lucide-react";
 
 const AUTH_PATTERNS = [
   { path: "/patterns/auth/login", label: "login_flow", icon: LogIn },
@@ -133,6 +133,31 @@ export function Layout() {
                     color: location.pathname === path ? "var(--cyan)" : "var(--text)",
                     background: location.pathname === path ? "rgba(0,229,255,0.1)" : "transparent",
                     borderLeft: location.pathname === path ? "2px solid var(--cyan)" : "2px solid transparent",
+                  }}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {label}
+                </Link>
+              ))}
+            </nav>
+
+            <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#444" }}>
+              $ ls owasp/
+            </h3>
+            <nav className="space-y-0.5">
+              {[
+                { path: "/patterns/owasp/broken-access-control", label: "A01_access_control", icon: Shield },
+                { path: "/patterns/owasp/security-misconfiguration", label: "A05_misconfiguration", icon: Settings },
+                { path: "/patterns/owasp/logging-monitoring", label: "A09_logging", icon: Activity },
+              ].map(({ path, label, icon: Icon }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className="flex items-center gap-3 px-3 py-2 rounded text-sm no-underline font-mono transition-colors"
+                  style={{
+                    color: location.pathname === path ? "var(--amber)" : "var(--text)",
+                    background: location.pathname === path ? "rgba(255,170,0,0.1)" : "transparent",
+                    borderLeft: location.pathname === path ? "2px solid var(--amber)" : "2px solid transparent",
                   }}
                 >
                   <Icon className="w-3.5 h-3.5" />
