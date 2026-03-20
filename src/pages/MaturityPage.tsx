@@ -98,6 +98,28 @@ const QUESTIONS: MaturityQuestion[] = [
       "Security UX embedded in design system, continuous testing, user research on security flows",
     ],
   },
+  {
+    id: "ai",
+    question: "How does your product handle AI transparency?",
+    area: "AI Transparency",
+    levels: [
+      "No AI disclosure — chatbots presented as human or no labeling",
+      "Basic 'powered by AI' label, no content marking",
+      "AI interactions labeled, content marked, decision explanations available",
+      "Full EU AI Act compliance — disclosure, C2PA watermarks, human appeal for all AI decisions",
+    ],
+  },
+  {
+    id: "industrial",
+    question: "How mature is your industrial/OT security UX? (Skip if not applicable)",
+    area: "Industrial OT",
+    levels: [
+      "Standard IT auth on operator workstations, no alarm management",
+      "Badge-based auth, basic alarm prioritization",
+      "Glove-friendly auth, safety overrides with approval, ISA-18.2 alarm management",
+      "Adaptive biometrics, graduated safety authorization, AI-powered alarm grouping with root cause",
+    ],
+  },
 ];
 
 const LEVELS = [
@@ -142,7 +164,10 @@ export function MaturityPage() {
     if ((answers.response ?? 0) < 3) recs.push({ path: "/patterns/threat/breach-notification", label: "Breach Notification", reason: "Create breach communication plan" });
     if ((answers.access ?? 0) < 3) recs.push({ path: "/patterns/owasp/broken-access-control", label: "Access Control", reason: "Implement visible RBAC in the UI" });
     if ((answers.ux ?? 0) < 3) recs.push({ path: "/score", label: "Security UX Score", reason: "Audit your current security UX" });
-    return recs.slice(0, 5);
+    if ((answers.ai ?? 0) < 3) recs.push({ path: "/patterns/ai/disclosure", label: "AI Disclosure", reason: "Label AI interactions — EU AI Act deadline Aug 2026" });
+    if ((answers.industrial ?? 0) < 3 && (answers.industrial ?? 0) > 0) recs.push({ path: "/patterns/industrial/operator-auth", label: "Operator Auth", reason: "Implement glove-friendly authentication for operators" });
+    if ((answers.industrial ?? 0) < 3 && (answers.industrial ?? 0) > 0) recs.push({ path: "/patterns/industrial/alarm-fatigue", label: "Alarm Management", reason: "Implement ISA-18.2 alarm grouping and shelving" });
+    return recs.slice(0, 6);
   }, [answers]);
 
   const reset = () => {
@@ -241,7 +266,7 @@ export function MaturityPage() {
             <p className="text-xs mt-2" style={{ color: "var(--text)" }}>Average score: {avgLevel.toFixed(1)} / 4.0</p>
 
             {/* Per-area breakdown */}
-            <div className="grid grid-cols-4 gap-2 mt-6">
+            <div className="grid grid-cols-5 gap-2 mt-6">
               {QUESTIONS.map(q => {
                 const level = answers[q.id] ?? 1;
                 const lvl = LEVELS[level - 1];

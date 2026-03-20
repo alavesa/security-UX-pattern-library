@@ -40,6 +40,16 @@ const CHECKS: CheckItem[] = [
   { id: "ethical-cancel-easy", question: "Cancellation is as easy as signup", category: "Ethical Design", weight: 4, tip: "FTC Negative Option Rule requires equal ease" },
   { id: "ethical-privacy-defaults", question: "Privacy settings default to most protective", category: "Ethical Design", weight: 4, tip: "GDPR data minimization principle" },
   { id: "ethical-permissions", question: "App permissions are opt-in, not opt-out", category: "Ethical Design", weight: 4, tip: "Pre-enabled permissions violate informed consent" },
+
+  // AI Transparency (15 points)
+  { id: "ai-disclosure", question: "AI chatbots/assistants are labeled as AI, not presented as human", category: "AI Transparency", weight: 5, tip: "EU AI Act Article 50 — effective August 2026" },
+  { id: "ai-content", question: "AI-generated content is labeled with visible indicators", category: "AI Transparency", weight: 5, tip: "EU AI Act Art. 50(2) requires machine-readable marking" },
+  { id: "ai-decisions", question: "AI decisions about users include explanation and human appeal", category: "AI Transparency", weight: 5, tip: "GDPR Art. 22 — right to meaningful explanation" },
+
+  // Industrial (15 points — only if applicable)
+  { id: "ind-auth", question: "Operator authentication works with PPE/gloves (badge, biometric)", category: "Industrial", weight: 5, tip: "IEC 62443 — password auth fails in industrial environments" },
+  { id: "ind-safety", question: "Safety-critical actions use graduated confirmation (hold-to-confirm)", category: "Industrial", weight: 5, tip: "IEC 61511 — safety actions must never be blocked by auth" },
+  { id: "ind-alarms", question: "Alarm management follows ISA-18.2 (max 6/hour, grouped by root cause)", category: "Industrial", weight: 5, tip: "Alarm fatigue contributed to Deepwater Horizon, Texas City disasters" },
 ];
 
 const MAX_SCORE = CHECKS.reduce((sum, c) => sum + c.weight, 0);
