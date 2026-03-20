@@ -440,31 +440,24 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Built with */}
-      <section className="px-6 py-12 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
-        <div className="text-center">
-          <h3 className="font-mono text-sm font-semibold mb-4" style={{ color: "var(--text-bright)" }}>built with</h3>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono" style={{ color: "var(--text)" }}>
-            <span>React + TypeScript + Vite</span>
-            <span style={{ color: "#333" }}>|</span>
-            <span>Tailwind CSS</span>
-            <span style={{ color: "#333" }}>|</span>
-            <span>Lucide Icons</span>
-            <span style={{ color: "#333" }}>|</span>
-            <span className="flex items-center gap-1.5">
-              <span style={{ color: "var(--cyan)" }}>Claude</span> by Anthropic
-            </span>
-          </div>
-          <p className="text-xs mt-3" style={{ color: "#444" }}>
-            Patterns designed and developed with <a href="https://claude.ai" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--cyan)" }}>Claude Code</a> — Anthropic's AI coding assistant
-          </p>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="border-t px-6 py-8 text-center font-mono text-xs" style={{ borderColor: "var(--border)", color: "#444" }}>
-        <p>built by <a href="https://www.neversay.no" className="hover:underline" style={{ color: "var(--green-dim)" }}>piia.alavesa</a> — senior ux design leader</p>
-        <p className="mt-1">m.sc. cyber security + m.sc. information systems</p>
+      <footer className="border-t px-6 py-12 max-w-5xl mx-auto" style={{ borderColor: "var(--border)" }}>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2">
+            <Shield className="w-4 h-4" style={{ color: "var(--green)" }} />
+            <span className="font-mono font-bold text-sm" style={{ color: "var(--green)" }}>uxsec<span style={{ color: "var(--text)" }}>.dev</span></span>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono" style={{ color: "#555" }}>
+            <a href="https://www.neversay.no" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--text)" }}>piia alavesa</a>
+            <span style={{ color: "#333" }}>·</span>
+            <a href="https://www.linkedin.com/in/piia-alavesa/" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--text)" }}>linkedin</a>
+            <span style={{ color: "#333" }}>·</span>
+            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--text)" }}>github</a>
+            <span style={{ color: "#333" }}>·</span>
+            <span className="flex items-center gap-1">built with <a href="https://claude.ai" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--cyan)" }}>claude</a></span>
+          </div>
+        </div>
       </footer>
     </div>
   );
