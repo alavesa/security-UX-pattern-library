@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
@@ -31,25 +31,27 @@ function LoggingMonitoringDemo() {
   const [scenario, setScenario] = useState<"log" | "anomaly" | "audit">("log");
   const [filter, setFilter] = useState<"all" | "warning" | "critical">("all");
   const [visibleLogs, setVisibleLogs] = useState<LogEntry[]>([]);
-  const [streamIndex, setStreamIndex] = useState(0);
+  const [done, setDone] = useState(false);
+  const idxRef = useRef(0);
 
   // Streaming log effect
   useEffect(() => {
     if (scenario !== "log") return;
     setVisibleLogs([]);
-    setStreamIndex(0);
+    setDone(false);
+    idxRef.current = 0;
 
-    const filteredLogs = filter === "all" ? MOCK_LOGS :
+    const filteredLogs = filter === "all" ? [...MOCK_LOGS] :
       MOCK_LOGS.filter(l => filter === "critical" ? l.type === "critical" : l.type !== "info");
 
-    let idx = 0;
     const timer = setInterval(() => {
-      if (idx < filteredLogs.length) {
-        setVisibleLogs(prev => [...prev, filteredLogs[idx]]);
-        idx++;
-        setStreamIndex(idx);
+      const i = idxRef.current;
+      if (i < filteredLogs.length) {
+        setVisibleLogs(prev => [...prev, { ...filteredLogs[i] }]);
+        idxRef.current = i + 1;
       } else {
         clearInterval(timer);
+        setDone(true);
       }
     }, 600);
 
@@ -99,7 +101,7 @@ function LoggingMonitoringDemo() {
                 <span className="text-gray-400 truncate">{log.user} — {log.detail}</span>
               </div>
             ))}
-            {streamIndex < (filter === "all" ? MOCK_LOGS.length : MOCK_LOGS.filter(l => filter === "critical" ? l.type === "critical" : l.type !== "info").length) && (
+            {!done && (
               <div className="text-gray-500 animate-pulse">▊</div>
             )}
           </div>
