@@ -70,6 +70,7 @@ const TOOLS = [
   { path: "/score", label: "score", icon: Target, color: "var(--green)" },
   { path: "/compliance", label: "compliance", icon: ClipboardCheck, color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", icon: BarChart3, color: "var(--amber)" },
+  { path: "/report", label: "report", icon: ClipboardCheck, color: "#c084fc" },
 ];
 
 export function Layout() {

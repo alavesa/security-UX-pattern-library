@@ -90,7 +90,7 @@ export function HomePage() {
               { value: "23", label: "patterns", color: "var(--green)" },
               { value: "6", label: "categories", color: "var(--cyan)" },
               { value: "8", label: "regulations", color: "var(--amber)" },
-              { value: "3", label: "tools", color: "#c084fc" },
+              { value: "4", label: "tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
                 <div className="text-3xl font-bold" style={{ color }}>{value}</div>
