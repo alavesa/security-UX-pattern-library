@@ -317,6 +317,58 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Sources & References */}
+      <section className="px-6 py-16 max-w-5xl mx-auto">
+        <h2 className="text-xl font-mono mb-6" style={{ color: "var(--text-bright)" }}>./sources/</h2>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--green)" }}>Standards & Frameworks</h3>
+            <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
+              <li><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>OWASP Top 10 (2021)</a> — Web application security risks</li>
+              <li><a href="https://cwe.mitre.org/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>MITRE CWE</a> — Common Weakness Enumeration</li>
+              <li><a href="https://pages.nist.gov/800-63-3/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>NIST SP 800-63B</a> — Digital Identity Guidelines</li>
+              <li><a href="https://gdpr-info.eu/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>GDPR</a> — General Data Protection Regulation (Articles 5, 7, 17, 20, 33, 34)</li>
+              <li><a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>WCAG 2.1</a> — Web Content Accessibility Guidelines</li>
+              <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> — Consumer protection for subscriptions</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--green)" }}>Research & Data</h3>
+            <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
+              <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Verizon DBIR 2024</a> — Data Breach Investigations Report</li>
+              <li><a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>IBM Cost of a Data Breach 2023</a> — 204-day average detection time</li>
+              <li><a href="https://www.microsoft.com/en-us/security/blog/2019/08/20/one-simple-action-you-can-take-to-prevent-99-9-percent-of-account-attacks/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Microsoft MFA Study</a> — MFA prevents 99.9% of attacks</li>
+              <li><a href="https://arxiv.org/html/2601.13342v1" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Privacy Starts with UI (USEC 2026)</a> — Privacy patterns in UI/UX practice</li>
+              <li><a href="https://www.deceptive.design/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Deceptive Design</a> — Dark pattern documentation by Harry Brignull</li>
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc6238" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>RFC 6238</a> — TOTP: Time-Based One-Time Password Algorithm</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Built with */}
+      <section className="px-6 py-12 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="text-center">
+          <h3 className="font-mono text-sm font-semibold mb-4" style={{ color: "var(--text-bright)" }}>built with</h3>
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono" style={{ color: "var(--text)" }}>
+            <span>React + TypeScript + Vite</span>
+            <span style={{ color: "#333" }}>|</span>
+            <span>Tailwind CSS</span>
+            <span style={{ color: "#333" }}>|</span>
+            <span>Lucide Icons</span>
+            <span style={{ color: "#333" }}>|</span>
+            <span className="flex items-center gap-1.5">
+              <span style={{ color: "var(--cyan)" }}>Claude</span> by Anthropic
+            </span>
+          </div>
+          <p className="text-xs mt-3" style={{ color: "#444" }}>
+            Patterns designed and developed with <a href="https://claude.ai" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--cyan)" }}>Claude Code</a> — Anthropic's AI coding assistant
+          </p>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t px-6 py-8 text-center font-mono text-xs" style={{ borderColor: "var(--border)", color: "#444" }}>
         <p>built by <a href="https://www.neversay.no" className="hover:underline" style={{ color: "var(--green-dim)" }}>piia.alavesa</a> — senior ux design leader</p>
