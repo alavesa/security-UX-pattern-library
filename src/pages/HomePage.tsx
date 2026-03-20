@@ -488,7 +488,7 @@ export function HomePage() {
       <section className="px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
         <h2 className="text-xl font-mono mb-6" style={{ color: "var(--text-bright)" }}>./sources/</h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div>
             <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--green)" }}>Standards & Frameworks</h3>
             <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
@@ -498,6 +498,9 @@ export function HomePage() {
               <li><a href="https://gdpr-info.eu/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>GDPR</a> — Articles 5, 7, 17, 20, 22, 33, 34</li>
               <li><a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>WCAG 2.1</a> — Web Content Accessibility Guidelines</li>
               <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> — Consumer protection for subscriptions</li>
+              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>EU Digital Services Act</a> — Platform transparency + dark patterns</li>
+              <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>ISO 27001</a> — Information Security Management</li>
+              <li><a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>PCI DSS</a> — Payment Card Industry Data Security</li>
             </ul>
           </div>
 
@@ -534,6 +537,7 @@ export function HomePage() {
               <li><a href="https://datatracker.ietf.org/doc/html/rfc6238" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>RFC 6238</a> — TOTP Algorithm</li>
               <li><a href="https://sharkstriker.com/blog/march-data-breaches-today-2026/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Data Breaches March 2026</a> — Current breach tracker</li>
               <li><a href="https://www.deceptive.design/enforcement" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Dark Patterns Enforcement</a> — Global enforcement database</li>
+              <li><a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>CCPA</a> — California Consumer Privacy Act</li>
             </ul>
           </div>
         </div>
