@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink } from "lucide-react";
 import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
@@ -19,6 +19,8 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/auth/password-strength", label: "password_strength", icon: KeyRound },
       { path: "/patterns/auth/session-timeout", label: "session_timeout", icon: Timer },
       { path: "/patterns/auth/account-recovery", label: "account_recovery", icon: UserCheck },
+      { path: "/patterns/auth/passkeys", label: "passkeys", icon: Key },
+      { path: "/patterns/auth/oauth-consent", label: "oauth_consent", icon: ExternalLink },
     ],
   },
   {

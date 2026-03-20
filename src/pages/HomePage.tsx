@@ -87,7 +87,7 @@ export function HomePage() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
-              { value: "26", label: "patterns", color: "var(--green)" },
+              { value: "28", label: "patterns", color: "var(--green)" },
               { value: "7", label: "categories", color: "var(--cyan)" },
               { value: "8", label: "regulations", color: "var(--amber)" },
               { value: "4", label: "tools", color: "#c084fc" },
@@ -102,13 +102,15 @@ export function HomePage() {
           {/* Terminal prompt — all links clickable */}
           <div className="mt-12 font-mono text-xs text-left max-w-lg mx-auto p-4 rounded" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <div style={{ color: "#444" }}>$ ls ./patterns</div>
-            <div className="mt-1" style={{ color: "var(--green)" }}>🔒 auth/ (5)</div>
+            <div className="mt-1" style={{ color: "var(--green)" }}>🔒 auth/ (7)</div>
             {[
               { path: "/patterns/auth/login", name: "login_flow", ref: "OWASP A07, CWE-307" },
               { path: "/patterns/auth/mfa", name: "multi_factor_auth", ref: "OWASP A07, CWE-308" },
               { path: "/patterns/auth/password-strength", name: "password_strength", ref: "OWASP A07, CWE-521" },
               { path: "/patterns/auth/session-timeout", name: "session_timeout", ref: "OWASP A07, CWE-613" },
               { path: "/patterns/auth/account-recovery", name: "account_recovery", ref: "OWASP A07, CWE-640" },
+              { path: "/patterns/auth/passkeys", name: "passkeys", ref: "WebAuthn, FIDO2" },
+              { path: "/patterns/auth/oauth-consent", name: "oauth_consent", ref: "OAuth 2.0, CWE-250" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
                 {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>

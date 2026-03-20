@@ -13,6 +13,8 @@ export const ALL_PATTERNS: PatternInfo[] = [
   { path: "/patterns/auth/password-strength", label: "Password Strength", category: "auth", categoryColor: "var(--green)", tags: ["authentication", "OWASP A07", "CWE-521", "breach detection", "NIST"] },
   { path: "/patterns/auth/session-timeout", label: "Session Timeout", category: "auth", categoryColor: "var(--green)", tags: ["authentication", "OWASP A07", "CWE-613", "session management"] },
   { path: "/patterns/auth/account-recovery", label: "Account Recovery", category: "auth", categoryColor: "var(--green)", tags: ["authentication", "OWASP A07", "CWE-640", "password reset"] },
+  { path: "/patterns/auth/passkeys", label: "Passkeys / WebAuthn", category: "auth", categoryColor: "var(--green)", tags: ["authentication", "WebAuthn", "FIDO2", "passkey", "biometric", "phishing-resistant"] },
+  { path: "/patterns/auth/oauth-consent", label: "OAuth Consent", category: "auth", categoryColor: "var(--green)", tags: ["authentication", "OAuth", "consent", "permissions", "least privilege", "CWE-250"] },
   // Threat
   { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "threat", categoryColor: "var(--green)", tags: ["incident response", "GDPR Art. 33", "CWE-200", "breach"] },
   { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "threat", categoryColor: "var(--green)", tags: ["threat response", "OWASP A07", "CWE-601", "phishing"] },
