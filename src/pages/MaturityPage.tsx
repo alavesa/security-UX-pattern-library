@@ -7,6 +7,7 @@ interface MaturityQuestion {
   question: string;
   area: string;
   levels: [string, string, string, string]; // what each level looks like
+  skippable?: boolean;
 }
 
 const QUESTIONS: MaturityQuestion[] = [
@@ -113,6 +114,7 @@ const QUESTIONS: MaturityQuestion[] = [
     id: "industrial",
     question: "How mature is your industrial/OT security UX? (Skip if not applicable)",
     area: "Industrial OT",
+    skippable: true,
     levels: [
       "Standard IT auth on operator workstations, no alarm management",
       "Badge-based auth, basic alarm prioritization",
@@ -133,13 +135,16 @@ export function MaturityPage() {
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResults, setShowResults] = useState(false);
 
-  const allAnswered = Object.keys(answers).length === QUESTIONS.length;
+  const requiredQuestions = QUESTIONS.filter(q => !q.skippable);
+  const allAnswered = requiredQuestions.every(q => answers[q.id] !== undefined);
 
   const avgLevel = useMemo(() => {
-    if (!allAnswered) return 0;
-    const sum = Object.values(answers).reduce((a, b) => a + b, 0);
-    return sum / QUESTIONS.length;
-  }, [answers, allAnswered]);
+    const required = QUESTIONS.filter(q => !q.skippable);
+    if (!required.every(q => answers[q.id] !== undefined)) return 0;
+    const answeredValues = Object.values(answers);
+    const sum = answeredValues.reduce((a, b) => a + b, 0);
+    return sum / answeredValues.length;
+  }, [answers]);
 
   const currentLevel = Math.round(avgLevel) || 1;
   const levelData = LEVELS[currentLevel - 1];
@@ -148,14 +153,15 @@ export function MaturityPage() {
   const weakestAreas = useMemo(() => {
     return QUESTIONS
       .filter(q => answers[q.id] !== undefined)
+      .slice()
       .sort((a, b) => (answers[a.id] ?? 0) - (answers[b.id] ?? 0))
       .slice(0, 3);
   }, [answers]);
 
   const patternRecommendations = useMemo((): { path: string; label: string; reason: string }[] => {
     const recs: { path: string; label: string; reason: string }[] = [];
-    if ((answers.auth ?? 0) < 3) recs.push({ path: "/patterns/auth/mfa", label: "Multi-Factor Auth", reason: "Upgrade from password-only to MFA" });
     if ((answers.auth ?? 0) < 2) recs.push({ path: "/patterns/auth/password-strength", label: "Password Strength", reason: "Add real-time strength feedback" });
+    if ((answers.auth ?? 0) < 3) recs.push({ path: "/patterns/auth/mfa", label: "Multi-Factor Auth", reason: "Upgrade from password-only to MFA" });
     if ((answers.errors ?? 0) < 2) recs.push({ path: "/patterns/auth/login", label: "Login Flow", reason: "Implement generic error messages" });
     if ((answers.data ?? 0) < 3) recs.push({ path: "/patterns/data/encryption", label: "Encryption Indicators", reason: "Show users what's encrypted" });
     if ((answers.data ?? 0) < 3) recs.push({ path: "/patterns/data/deletion", label: "Data Deletion", reason: "Add GDPR-compliant deletion flow" });
@@ -186,7 +192,7 @@ export function MaturityPage() {
       </div>
 
       {/* Maturity levels overview */}
-      <div className="grid grid-cols-4 gap-3 mb-12">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
         {LEVELS.map(({ level, name, description, color, icon }) => (
           <div
             key={level}
@@ -217,12 +223,14 @@ export function MaturityPage() {
                   <span className="text-xs font-mono" style={{ color: "var(--text)" }}>{qi + 1}/{QUESTIONS.length}</span>
                   <span className="text-xs font-mono px-2 py-0.5 rounded" style={{ background: "var(--bg-elevated)", color: "var(--text)" }}>{q.area}</span>
                 </div>
-                <h3 className="font-mono text-sm font-semibold mb-4" style={{ color: "var(--text-bright)" }}>{q.question}</h3>
+                <h3 id={`question-${q.id}`} className="font-mono text-sm font-semibold mb-4" style={{ color: "var(--text-bright)" }}>{q.question}</h3>
 
-                <div className="space-y-2">
+                <div className="space-y-2" role="radiogroup" aria-labelledby={`question-${q.id}`}>
                   {q.levels.map((desc, li) => (
                     <button
                       key={li}
+                      role="radio"
+                      aria-checked={answers[q.id] === li + 1}
                       onClick={() => setAnswers(prev => ({ ...prev, [q.id]: li + 1 }))}
                       className="w-full flex items-start gap-3 p-3 rounded-lg text-left transition-all border-none cursor-pointer"
                       style={{
@@ -253,7 +261,7 @@ export function MaturityPage() {
             className="w-full py-4 rounded-xl font-mono font-bold text-sm border-none cursor-pointer transition-all disabled:opacity-30 disabled:cursor-not-allowed"
             style={{ background: allAnswered ? "var(--green)" : "#333", color: allAnswered ? "var(--bg)" : "#666" }}
           >
-            {allAnswered ? "$ generate --maturity-report" : `Answer all questions (${Object.keys(answers).length}/${QUESTIONS.length})`}
+            {allAnswered ? "$ generate --maturity-report" : `Answer required questions (${requiredQuestions.filter(q => answers[q.id] !== undefined).length}/${requiredQuestions.length})`}
           </button>
         </>
       ) : (
@@ -266,7 +274,7 @@ export function MaturityPage() {
             <p className="text-xs mt-2" style={{ color: "var(--text)" }}>Average score: {avgLevel.toFixed(1)} / 4.0</p>
 
             {/* Per-area breakdown */}
-            <div className="grid grid-cols-5 gap-2 mt-6">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-6">
               {QUESTIONS.map(q => {
                 const level = answers[q.id] ?? 1;
                 const lvl = LEVELS[level - 1];
