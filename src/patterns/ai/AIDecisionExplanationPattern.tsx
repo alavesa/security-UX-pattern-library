@@ -8,10 +8,12 @@ function AIDecisionExplanationDemo() {
   const [scenario, setScenario] = useState<"loan" | "content" | "hiring">("loan");
   const [expanded, setExpanded] = useState(false);
   const [appealStarted, setAppealStarted] = useState(false);
+  const [contentAction, setContentAction] = useState<"none" | "appealed" | "accepted">("none");
 
   const reset = () => {
     setExpanded(false);
     setAppealStarted(false);
+    setContentAction("none");
   };
 
   return (
@@ -154,16 +156,35 @@ function AIDecisionExplanationDemo() {
             </div>
           </div>
 
-          <div className="flex gap-2">
-            <button className="flex-1 bg-blue-600 text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer">
-              Appeal — request human review
-            </button>
-            <button className="flex-1 border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer">
-              I understand
-            </button>
-          </div>
+          {contentAction === "none" && (
+            <>
+              <div className="flex gap-2">
+                <button onClick={() => setContentAction("appealed")} className="flex-1 bg-blue-600 text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer hover:bg-blue-700">
+                  Appeal — request human review
+                </button>
+                <button onClick={() => setContentAction("accepted")} className="flex-1 border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-gray-50">
+                  I understand
+                </button>
+              </div>
+              <p className="text-xs text-gray-400 mt-3">This decision was made by AI. You have the right to appeal to a human moderator. Average review time: 24 hours.</p>
+            </>
+          )}
 
-          <p className="text-xs text-gray-400 mt-3">This decision was made by AI. You have the right to appeal to a human moderator. Average review time: 24 hours.</p>
+          {contentAction === "appealed" && (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+              <CheckCircle2 className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+              <p className="text-sm font-medium text-blue-800">Appeal submitted</p>
+              <p className="text-xs text-blue-700 mt-1">A human moderator will review your post within 24 hours. Reference: MOD-2026-0320-4291</p>
+              <p className="text-xs text-gray-500 mt-2">Your post remains hidden during review. If the appeal succeeds, it will be restored.</p>
+            </div>
+          )}
+
+          {contentAction === "accepted" && (
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+              <p className="text-sm font-medium text-gray-700">Acknowledged</p>
+              <p className="text-xs text-gray-500 mt-1">The post has been removed. You can review our content guidelines to avoid future removals.</p>
+            </div>
+          )}
         </div>
       )}
 
