@@ -1,24 +1,103 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck } from "lucide-react";
 
-const AUTH_PATTERNS = [
-  { path: "/patterns/auth/login", label: "login_flow", icon: LogIn },
-  { path: "/patterns/auth/mfa", label: "multi_factor_auth", icon: Shield },
-  { path: "/patterns/auth/password-strength", label: "password_strength", icon: KeyRound },
-  { path: "/patterns/auth/session-timeout", label: "session_timeout", icon: Timer },
-  { path: "/patterns/auth/account-recovery", label: "account_recovery", icon: UserCheck },
+interface NavCategory {
+  id: string;
+  label: string;
+  color: string;
+  items: { path: string; label: string; icon: React.ComponentType<{ className?: string }> }[];
+}
+
+const CATEGORIES: NavCategory[] = [
+  {
+    id: "auth", label: "auth", color: "var(--green)",
+    items: [
+      { path: "/patterns/auth/login", label: "login_flow", icon: LogIn },
+      { path: "/patterns/auth/mfa", label: "multi_factor_auth", icon: Shield },
+      { path: "/patterns/auth/password-strength", label: "password_strength", icon: KeyRound },
+      { path: "/patterns/auth/session-timeout", label: "session_timeout", icon: Timer },
+      { path: "/patterns/auth/account-recovery", label: "account_recovery", icon: UserCheck },
+    ],
+  },
+  {
+    id: "threat", label: "threat", color: "var(--green)",
+    items: [
+      { path: "/patterns/threat/breach-notification", label: "breach_notification", icon: ShieldAlert },
+      { path: "/patterns/threat/phishing-warning", label: "phishing_warning", icon: AlertTriangle },
+      { path: "/patterns/threat/suspicious-activity", label: "suspicious_activity", icon: Activity },
+    ],
+  },
+  {
+    id: "dark", label: "dark_patterns", color: "var(--red)",
+    items: [
+      { path: "/patterns/dark/confirmshaming", label: "confirmshaming", icon: ShieldOff },
+      { path: "/patterns/dark/cookie-consent", label: "cookie_consent", icon: Cookie },
+      { path: "/patterns/dark/hidden-unsubscribe", label: "hidden_unsubscribe", icon: Trash2 },
+      { path: "/patterns/dark/privacy-zuckering", label: "privacy_zuckering", icon: Eye },
+      { path: "/patterns/dark/bait-switch", label: "bait_and_switch", icon: MousePointerClick },
+      { path: "/patterns/dark/forced-continuity", label: "forced_continuity", icon: CreditCard },
+    ],
+  },
+  {
+    id: "data", label: "data", color: "var(--cyan)",
+    items: [
+      { path: "/patterns/data/encryption", label: "encryption", icon: Lock },
+      { path: "/patterns/data/file-upload", label: "file_upload", icon: Upload },
+      { path: "/patterns/data/deletion", label: "deletion", icon: Trash2 },
+    ],
+  },
+  {
+    id: "owasp", label: "owasp", color: "var(--amber)",
+    items: [
+      { path: "/patterns/owasp/broken-access-control", label: "A01_access", icon: Shield },
+      { path: "/patterns/owasp/security-misconfiguration", label: "A05_misconfig", icon: Settings },
+      { path: "/patterns/owasp/logging-monitoring", label: "A09_logging", icon: Activity },
+    ],
+  },
+  {
+    id: "ai", label: "ai", color: "#c084fc",
+    items: [
+      { path: "/patterns/ai/disclosure", label: "disclosure", icon: Bot },
+      { path: "/patterns/ai/content-labeling", label: "labeling", icon: Sparkles },
+      { path: "/patterns/ai/decision-explanation", label: "decisions", icon: Brain },
+    ],
+  },
+];
+
+const TOOLS = [
+  { path: "/score", label: "score", icon: Target, color: "var(--green)" },
+  { path: "/compliance", label: "compliance", icon: ClipboardCheck, color: "var(--cyan)" },
+  { path: "/maturity", label: "maturity", icon: BarChart3, color: "var(--amber)" },
 ];
 
 export function Layout() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openCategories, setOpenCategories] = useState<Set<string>>(new Set());
 
-  // Close mobile menu on navigation
+  // Auto-open the category that contains the current page
   useEffect(() => {
     setMobileMenuOpen(false);
+    for (const cat of CATEGORIES) {
+      if (cat.items.some(item => location.pathname === item.path)) {
+        setOpenCategories(prev => new Set([...prev, cat.id]));
+        return;
+      }
+    }
   }, [location.pathname]);
+
+  const toggleCategory = (id: string) => {
+    setOpenCategories(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
+
+  // Which header link is active
+  const headerActive = (path: string) => location.pathname === path;
 
   return (
     <div className="min-h-screen" style={{ background: "var(--bg)" }}>
@@ -32,14 +111,25 @@ export function Layout() {
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-mono">
-            <Link to="/" className="no-underline hover:underline" style={{ color: "var(--text)" }}>~/home</Link>
-            <Link to="/score" className="no-underline hover:underline" style={{ color: "var(--green)" }}>score</Link>
-            <Link to="/compliance" className="no-underline hover:underline" style={{ color: "var(--cyan)" }}>compliance</Link>
-            <Link to="/maturity" className="no-underline hover:underline" style={{ color: "var(--amber)" }}>maturity</Link>
-            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="no-underline hover:underline" style={{ color: "var(--text)" }}>github</a>
-            <span className="text-xs" style={{ color: "#444" }}>by piia.alavesa</span>
+          {/* Desktop nav — simplified */}
+          <nav className="hidden md:flex items-center gap-1 text-xs font-mono">
+            {[{ path: "/", label: "patterns", color: "var(--text)" }, ...TOOLS].map(({ path, label, color }) => (
+              <Link
+                key={path}
+                to={path}
+                className="no-underline px-3 py-1.5 rounded-md transition-colors"
+                style={{
+                  color: headerActive(path) ? color : "var(--text)",
+                  background: headerActive(path) ? `${color}15` : "transparent",
+                }}
+              >
+                {label}
+              </Link>
+            ))}
+            <span className="mx-2" style={{ color: "#222" }}>|</span>
+            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="no-underline px-3 py-1.5 rounded-md" style={{ color: "#555" }}>
+              github
+            </a>
           </nav>
 
           {/* Mobile hamburger */}
@@ -56,200 +146,104 @@ export function Layout() {
           </button>
         </div>
 
-        {/* Mobile menu dropdown */}
+        {/* Mobile menu */}
         {mobileMenuOpen && (
-          <nav className="md:hidden border-t px-6 py-4 space-y-3 font-mono text-sm" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
-            <Link to="/" className="block no-underline py-1" style={{ color: "var(--text)" }}>~/home</Link>
-            <Link to="/score" className="block no-underline py-1" style={{ color: "var(--green)" }}>score</Link>
-            <Link to="/compliance" className="block no-underline py-1" style={{ color: "var(--cyan)" }}>compliance</Link>
-            <Link to="/maturity" className="block no-underline py-1" style={{ color: "var(--amber)" }}>maturity</Link>
-
-            <div className="border-t pt-3" style={{ borderColor: "var(--border)" }}>
-              <p className="text-xs mb-2" style={{ color: "#444" }}>patterns</p>
-              <Link to="/patterns/auth/login" className="block no-underline py-1 text-xs" style={{ color: "var(--text)" }}>auth/</Link>
-              <Link to="/patterns/threat/breach-notification" className="block no-underline py-1 text-xs" style={{ color: "var(--text)" }}>threat/</Link>
-              <Link to="/patterns/dark/confirmshaming" className="block no-underline py-1 text-xs" style={{ color: "var(--red)" }}>dark_patterns/</Link>
-              <Link to="/patterns/data/encryption" className="block no-underline py-1 text-xs" style={{ color: "var(--cyan)" }}>data/</Link>
-              <Link to="/patterns/owasp/broken-access-control" className="block no-underline py-1 text-xs" style={{ color: "var(--amber)" }}>owasp/</Link>
-              <Link to="/patterns/ai/disclosure" className="block no-underline py-1 text-xs" style={{ color: "#c084fc" }}>ai/</Link>
-            </div>
-
-            <div className="border-t pt-3" style={{ borderColor: "var(--border)" }}>
-              <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="block no-underline py-1 text-xs" style={{ color: "var(--text)" }}>github</a>
-              <span className="block text-xs py-1" style={{ color: "#444" }}>by piia.alavesa</span>
-            </div>
+          <nav className="md:hidden border-t px-6 py-4 space-y-1 font-mono text-sm max-h-[70vh] overflow-y-auto" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
+            {TOOLS.map(({ path, label, icon: Icon, color }) => (
+              <Link key={path} to={path} className="flex items-center gap-2 no-underline px-3 py-2 rounded" style={{ color, background: headerActive(path) ? `${color}15` : "transparent" }}>
+                <Icon className="w-3.5 h-3.5" /> {label}
+              </Link>
+            ))}
+            <div className="border-t my-2" style={{ borderColor: "var(--border)" }} />
+            {CATEGORIES.map(cat => (
+              <div key={cat.id}>
+                <button onClick={() => toggleCategory(cat.id)} className="w-full flex items-center justify-between px-3 py-2 text-xs bg-transparent border-none cursor-pointer font-mono" style={{ color: cat.color }}>
+                  {cat.label}/ <span style={{ color: "#555" }}>{cat.items.length}</span>
+                </button>
+                {openCategories.has(cat.id) && cat.items.map(item => (
+                  <Link key={item.path} to={item.path} className="flex items-center gap-2 no-underline px-6 py-1.5 text-xs rounded" style={{ color: location.pathname === item.path ? cat.color : "var(--text)" }}>
+                    <item.icon className="w-3 h-3" /> {item.label}
+                  </Link>
+                ))}
+              </div>
+            ))}
+            <div className="border-t my-2" style={{ borderColor: "var(--border)" }} />
+            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="block no-underline px-3 py-2 text-xs" style={{ color: "#555" }}>github</a>
           </nav>
         )}
       </header>
 
       <div className="max-w-7xl mx-auto flex">
-        {/* Sidebar */}
+        {/* Sidebar — collapsible categories */}
         {!isHome && (
-          <aside className="w-64 shrink-0 border-r min-h-[calc(100vh-3.5rem)] p-5 hidden lg:block" style={{ borderColor: "var(--border)" }}>
-            <h3 className="text-xs font-mono uppercase tracking-widest mb-4" style={{ color: "#444" }}>
-              $ ls auth/
-            </h3>
-            <nav className="space-y-0.5">
-              {AUTH_PATTERNS.map(({ path, label, icon: Icon }) => (
+          <aside className="w-56 shrink-0 border-r min-h-[calc(100vh-3.5rem)] py-4 px-3 hidden lg:block overflow-y-auto" style={{ borderColor: "var(--border)" }}>
+            {/* Tools */}
+            <div className="mb-4">
+              <p className="text-xs font-mono px-2 mb-2" style={{ color: "#444" }}>tools</p>
+              {TOOLS.map(({ path, label, icon: Icon, color }) => (
                 <Link
                   key={path}
                   to={path}
-                  className={`flex items-center gap-3 px-3 py-2 rounded text-sm no-underline font-mono transition-colors ${
-                    location.pathname === path
-                      ? ""
-                      : ""
-                  }`}
+                  className="flex items-center gap-2 px-2 py-1.5 rounded text-xs no-underline font-mono transition-colors"
                   style={{
-                    color: location.pathname === path ? "var(--green)" : "var(--text)",
-                    background: location.pathname === path ? "var(--green-glow)" : "transparent",
-                    borderLeft: location.pathname === path ? "2px solid var(--green)" : "2px solid transparent",
+                    color: headerActive(path) ? color : "var(--text)",
+                    background: headerActive(path) ? `${color}15` : "transparent",
                   }}
                 >
-                  <Icon className="w-3.5 h-3.5" />
-                  {label}
+                  <Icon className="w-3.5 h-3.5" /> {label}
                 </Link>
               ))}
-            </nav>
+            </div>
 
-            <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#444" }}>
-              $ ls threat/
-            </h3>
-            <nav className="space-y-0.5">
-              {[
-                { path: "/patterns/threat/breach-notification", label: "breach_notification", icon: ShieldAlert },
-                { path: "/patterns/threat/phishing-warning", label: "phishing_warning", icon: AlertTriangle },
-                { path: "/patterns/threat/suspicious-activity", label: "suspicious_activity", icon: Activity },
-              ].map(({ path, label, icon: Icon }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className="flex items-center gap-3 px-3 py-2 rounded text-sm no-underline font-mono transition-colors"
-                  style={{
-                    color: location.pathname === path ? "var(--green)" : "var(--text)",
-                    background: location.pathname === path ? "var(--green-glow)" : "transparent",
-                    borderLeft: location.pathname === path ? "2px solid var(--green)" : "2px solid transparent",
-                  }}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {label}
-                </Link>
-              ))}
-            </nav>
+            <div className="border-t my-3" style={{ borderColor: "var(--border)" }} />
 
-            <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#444" }}>
-              $ ls dark_patterns/
-            </h3>
-            <nav className="space-y-0.5">
-              {[
-                { path: "/patterns/dark/confirmshaming", label: "confirmshaming", icon: ShieldOff },
-                { path: "/patterns/dark/cookie-consent", label: "cookie_consent", icon: Cookie },
-                { path: "/patterns/dark/hidden-unsubscribe", label: "hidden_unsubscribe", icon: Trash2 },
-                { path: "/patterns/dark/privacy-zuckering", label: "privacy_zuckering", icon: Eye },
-                { path: "/patterns/dark/bait-switch", label: "bait_and_switch", icon: MousePointerClick },
-                { path: "/patterns/dark/forced-continuity", label: "forced_continuity", icon: CreditCard },
-              ].map(({ path, label, icon: Icon }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className="flex items-center gap-3 px-3 py-2 rounded text-sm no-underline font-mono transition-colors"
-                  style={{
-                    color: location.pathname === path ? "var(--red)" : "var(--text)",
-                    background: location.pathname === path ? "rgba(255,51,51,0.1)" : "transparent",
-                    borderLeft: location.pathname === path ? "2px solid var(--red)" : "2px solid transparent",
-                  }}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {label}
-                </Link>
-              ))}
-            </nav>
+            {/* Pattern categories — collapsible */}
+            {CATEGORIES.map(cat => {
+              const isOpen = openCategories.has(cat.id);
+              const hasActive = cat.items.some(item => location.pathname === item.path);
 
-            <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#444" }}>
-              $ ls data/
-            </h3>
-            <nav className="space-y-0.5">
-              {[
-                { path: "/patterns/data/encryption", label: "encryption_indicators", icon: Lock },
-                { path: "/patterns/data/file-upload", label: "secure_file_upload", icon: Upload },
-                { path: "/patterns/data/deletion", label: "data_deletion", icon: Trash2 },
-              ].map(({ path, label, icon: Icon }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className="flex items-center gap-3 px-3 py-2 rounded text-sm no-underline font-mono transition-colors"
-                  style={{
-                    color: location.pathname === path ? "var(--cyan)" : "var(--text)",
-                    background: location.pathname === path ? "rgba(0,229,255,0.1)" : "transparent",
-                    borderLeft: location.pathname === path ? "2px solid var(--cyan)" : "2px solid transparent",
-                  }}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {label}
-                </Link>
-              ))}
-            </nav>
+              return (
+                <div key={cat.id} className="mb-1">
+                  <button
+                    onClick={() => toggleCategory(cat.id)}
+                    className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs font-mono bg-transparent border-none cursor-pointer transition-colors"
+                    style={{
+                      color: hasActive ? cat.color : "var(--text)",
+                      background: hasActive && !isOpen ? `${cat.color}10` : "transparent",
+                    }}
+                  >
+                    <span className="flex items-center gap-1">
+                      {cat.label}/
+                      <span style={{ color: "#444" }}>{cat.items.length}</span>
+                    </span>
+                    <ChevronDown
+                      className="w-3 h-3 transition-transform"
+                      style={{ color: "#444", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                    />
+                  </button>
 
-            <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#444" }}>
-              $ ls owasp/
-            </h3>
-            <nav className="space-y-0.5">
-              {[
-                { path: "/patterns/owasp/broken-access-control", label: "A01_access_control", icon: Shield },
-                { path: "/patterns/owasp/security-misconfiguration", label: "A05_misconfiguration", icon: Settings },
-                { path: "/patterns/owasp/logging-monitoring", label: "A09_logging", icon: Activity },
-              ].map(({ path, label, icon: Icon }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className="flex items-center gap-3 px-3 py-2 rounded text-sm no-underline font-mono transition-colors"
-                  style={{
-                    color: location.pathname === path ? "var(--amber)" : "var(--text)",
-                    background: location.pathname === path ? "rgba(255,170,0,0.1)" : "transparent",
-                    borderLeft: location.pathname === path ? "2px solid var(--amber)" : "2px solid transparent",
-                  }}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {label}
-                </Link>
-              ))}
-            </nav>
-
-            <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#444" }}>
-              $ ls ai/
-            </h3>
-            <nav className="space-y-0.5">
-              {[
-                { path: "/patterns/ai/disclosure", label: "ai_disclosure", icon: Bot },
-                { path: "/patterns/ai/content-labeling", label: "content_labeling", icon: Sparkles },
-                { path: "/patterns/ai/decision-explanation", label: "decision_explanation", icon: Brain },
-              ].map(({ path, label, icon: Icon }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className="flex items-center gap-3 px-3 py-2 rounded text-sm no-underline font-mono transition-colors"
-                  style={{
-                    color: location.pathname === path ? "#c084fc" : "var(--text)",
-                    background: location.pathname === path ? "rgba(192,132,252,0.1)" : "transparent",
-                    borderLeft: location.pathname === path ? "2px solid #c084fc" : "2px solid transparent",
-                  }}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {label}
-                </Link>
-              ))}
-            </nav>
-
-            <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#333" }}>
-              $ ls --coming-soon
-            </h3>
-            <nav className="space-y-0.5">
-              {["permissions/", "privacy/"].map(label => (
-                <span key={label} className="flex items-center gap-3 px-3 py-2 text-sm font-mono" style={{ color: "#333" }}>
-                  <Lock className="w-3.5 h-3.5" />
-                  {label}
-                </span>
-              ))}
-            </nav>
+                  {isOpen && (
+                    <nav className="ml-2 space-y-0.5 mt-0.5">
+                      {cat.items.map(({ path, label, icon: Icon }) => (
+                        <Link
+                          key={path}
+                          to={path}
+                          className="flex items-center gap-2 px-2 py-1 rounded text-xs no-underline font-mono transition-colors"
+                          style={{
+                            color: location.pathname === path ? cat.color : "var(--text)",
+                            background: location.pathname === path ? `${cat.color}15` : "transparent",
+                            borderLeft: location.pathname === path ? `2px solid ${cat.color}` : "2px solid transparent",
+                          }}
+                        >
+                          <Icon className="w-3 h-3" />
+                          {label}
+                        </Link>
+                      ))}
+                    </nav>
+                  )}
+                </div>
+              );
+            })}
           </aside>
         )}
 
