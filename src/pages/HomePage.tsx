@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2 } from "lucide-react";
 
 const AUTH_PATTERNS = [
   {
@@ -79,9 +79,9 @@ export function HomePage() {
 
           {/* Terminal prompt */}
           <div className="mt-12 font-mono text-sm text-left max-w-md mx-auto p-4 rounded" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-            <div style={{ color: "#444" }}>$ patchpilots security ./auth-patterns</div>
+            <div style={{ color: "#444" }}>$ ls ./patterns</div>
             <div style={{ color: "var(--green)" }}>
-              <span>🔒 5 patterns loaded</span>
+              <span>🔒 5 auth patterns loaded</span>
             </div>
             <div style={{ color: "var(--text)" }}>
               <span>   login_flow ............ OWASP A07, CWE-307</span>
@@ -99,7 +99,7 @@ export function HomePage() {
               <span>   account_recovery ...... OWASP A07, CWE-640</span>
             </div>
             <div style={{ color: "var(--green)" }}>
-              <span>🔒 3 threat patterns loaded</span>
+              <span>🔒 3 threat response patterns loaded</span>
             </div>
             <div style={{ color: "var(--text)" }}>
               <span>   breach_notification ... GDPR Art. 33, CWE-200</span>
@@ -109,6 +109,18 @@ export function HomePage() {
             </div>
             <div style={{ color: "var(--text)" }}>
               <span>   suspicious_activity ... OWASP A07, CWE-778</span>
+            </div>
+            <div style={{ color: "var(--red)" }}>
+              <span>⚠ 3 dark patterns documented</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   confirmshaming ........ EU DSA, Deceptive Design</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   cookie_consent ........ GDPR Art. 7, ePrivacy</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   hidden_unsubscribe .... GDPR Art. 17, Right to Erasure</span>
             </div>
             <div className="cursor-blink" style={{ color: "#444" }}>$</div>
           </div>
@@ -169,6 +181,39 @@ export function HomePage() {
                 }}
               >
                 <Icon className="w-6 h-6 mb-3" style={{ color: "var(--red, #ff3333)" }} />
+                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Dark Patterns */}
+        <div className="mt-16">
+          <h2 className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>./dark_patterns/</h2>
+          <p className="mb-8" style={{ color: "var(--text)" }}>Anti-patterns — what NOT to do, and why. Each includes the ethical alternative.</p>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { path: "/patterns/dark/confirmshaming", label: "confirmshaming", icon: ShieldOff, description: "Guilt-trip dismiss buttons vs neutral, respectful alternatives" },
+              { path: "/patterns/dark/cookie-consent", label: "cookie_consent", icon: Cookie, description: "The 'Accept All' manipulation vs GDPR-compliant consent" },
+              { path: "/patterns/dark/hidden-unsubscribe", label: "hidden_unsubscribe", icon: Trash2, description: "4-step deletion maze vs 2-step ethical account deletion" },
+            ].map(({ path, label, icon: Icon, description }) => (
+              <Link
+                key={path}
+                to={path}
+                className="group border rounded-lg p-6 no-underline transition-all"
+                style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,51,51,0.3)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(255,51,51,0.1)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <Icon className="w-6 h-6 mb-3" style={{ color: "var(--red)" }} />
                 <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
               </Link>

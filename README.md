@@ -3,14 +3,24 @@
 Interactive patterns for designing secure user experiences.
 
 ```
-$ patchpilots security ./auth-patterns
+$ ls ./patterns
 
-🔒 5 patterns loaded
+🔒 5 auth patterns
    login_flow ............ OWASP A07, CWE-307
    multi_factor_auth ..... OWASP A07, CWE-308
    password_strength ..... OWASP A07, CWE-521
    session_timeout ....... OWASP A07, CWE-613
    account_recovery ...... OWASP A07, CWE-640
+
+🔒 3 threat response patterns
+   breach_notification ... GDPR Art. 33, CWE-200
+   phishing_warning ...... OWASP A07, CWE-601
+   suspicious_activity ... OWASP A07, CWE-778
+
+⚠ 3 dark patterns documented
+   confirmshaming ........ EU DSA, Deceptive Design
+   cookie_consent ........ GDPR Art. 7, ePrivacy
+   hidden_unsubscribe .... GDPR Art. 17, Right to Erasure
 $█
 ```
 
@@ -26,11 +36,27 @@ The problem: security and usability are often at odds. Strong security measures 
 
 | Pattern | Security Impact | What it covers |
 |---------|----------------|----------------|
-| [Login Flow](src/patterns/auth/LoginPattern.tsx) | CRITICAL | Rate limiting, generic errors, anti-enumeration |
-| [Multi-Factor Auth](src/patterns/auth/MfaPattern.tsx) | CRITICAL | TOTP/SMS code entry, auto-advance, method switching |
-| [Password Strength](src/patterns/auth/PasswordStrengthPattern.tsx) | HIGH | Real-time meter, checklist, breach detection |
-| [Session Timeout](src/patterns/auth/SessionTimeoutPattern.tsx) | MEDIUM | Countdown warning, auto-save, graceful expiry |
-| [Account Recovery](src/patterns/auth/AccountRecoveryPattern.tsx) | CRITICAL | Secure reset flow, one-time tokens, anti-enumeration |
+| Login Flow | CRITICAL | Rate limiting, social login, MFA challenge, success flow |
+| Multi-Factor Auth | CRITICAL | TOTP/SMS/backup codes, paste support, progressive cooldown |
+| Password Strength | HIGH | Real-time meter, breach detection, confirm field |
+| Session Timeout | MEDIUM | Countdown warning, auto-save, graceful expiry |
+| Account Recovery | CRITICAL | Secure reset flow, one-time tokens, anti-enumeration |
+
+## Threat Response Patterns
+
+| Pattern | Security Impact | What it covers |
+|---------|----------------|----------------|
+| Breach Notification | CRITICAL | In-app banner, full-page disclosure, email (GDPR Art. 33/34) |
+| Phishing Warning | CRITICAL | Blocked page interstitial, email annotations, link safety preview |
+| Suspicious Activity | HIGH | Sign-in alerts, session management, new device approval |
+
+## Dark Patterns (Anti-Patterns)
+
+| Pattern | What's wrong | Ethical alternative |
+|---------|-------------|-------------------|
+| Confirmshaming | Guilt-trip dismiss buttons | Neutral, respectful language with 3 options |
+| Cookie Consent | "Accept All" manipulation | Equally prominent Accept/Reject |
+| Hidden Unsubscribe | 4-step deletion maze | 2-step find-and-confirm with data export |
 
 ## Each pattern includes
 
@@ -38,6 +64,7 @@ The problem: security and usability are often at odds. Strong security measures 
 - **Do / Don't** — clear guidelines with rationale
 - **Security rationale** — why this matters, with OWASP and CWE references
 - **Accessibility notes** — ARIA patterns, keyboard support, screen reader guidance
+- **Dark patterns include** — side-by-side comparison of dark vs ethical alternative
 
 ## Run locally
 
@@ -47,8 +74,6 @@ cd security-UX-pattern-library
 npm install
 npm run dev
 ```
-
-Opens at http://localhost:5173
 
 ## Tech stack
 
@@ -64,8 +89,8 @@ Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scan
 ## Coming soon
 
 - **Permissions & Access Control** — role-based access, consent flows, admin controls
-- **Threat Response** — breach notifications, phishing warnings, incident response UIs
 - **Data Protection** — encryption indicators, secure sharing, privacy controls
+- **Privacy** — cookie consent flows, data export, account deletion patterns
 
 ## Author
 

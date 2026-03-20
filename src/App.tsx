@@ -10,6 +10,9 @@ import { AccountRecoveryPattern } from "./patterns/auth/AccountRecoveryPattern";
 import { BreachNotificationPattern } from "./patterns/threat/BreachNotificationPattern";
 import { PhishingWarningPattern } from "./patterns/threat/PhishingWarningPattern";
 import { SuspiciousActivityPattern } from "./patterns/threat/SuspiciousActivityPattern";
+import { ConfirmshamingPattern } from "./patterns/darkpatterns/ConfirmshamingPattern";
+import { CookieConsentPattern } from "./patterns/darkpatterns/CookieConsentPattern";
+import { HiddenUnsubscribePattern } from "./patterns/darkpatterns/HiddenUnsubscribePattern";
 
 export default function App() {
   return (
@@ -25,6 +28,9 @@ export default function App() {
           <Route path="patterns/threat/breach-notification" element={<PatternPage><BreachNotificationPattern /></PatternPage>} />
           <Route path="patterns/threat/phishing-warning" element={<PatternPage><PhishingWarningPattern /></PatternPage>} />
           <Route path="patterns/threat/suspicious-activity" element={<PatternPage><SuspiciousActivityPattern /></PatternPage>} />
+          <Route path="patterns/dark/confirmshaming" element={<PatternPage><ConfirmshamingPattern /></PatternPage>} />
+          <Route path="patterns/dark/cookie-consent" element={<PatternPage><CookieConsentPattern /></PatternPage>} />
+          <Route path="patterns/dark/hidden-unsubscribe" element={<PatternPage><HiddenUnsubscribePattern /></PatternPage>} />
         </Route>
       </Routes>
     </BrowserRouter>
