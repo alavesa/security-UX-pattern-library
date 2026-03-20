@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink } from "lucide-react";
 import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
@@ -36,7 +36,7 @@ const CATEGORIES: NavCategory[] = [
     items: [
       { path: "/patterns/dark/confirmshaming", label: "confirmshaming", icon: ShieldOff },
       { path: "/patterns/dark/cookie-consent", label: "cookie_consent", icon: Cookie },
-      { path: "/patterns/dark/hidden-unsubscribe", label: "hidden_unsubscribe", icon: Trash2 },
+      { path: "/patterns/dark/hidden-unsubscribe", label: "hidden_unsubscribe", icon: EyeOff },
       { path: "/patterns/dark/privacy-zuckering", label: "privacy_zuckering", icon: Eye },
       { path: "/patterns/dark/bait-switch", label: "bait_and_switch", icon: MousePointerClick },
       { path: "/patterns/dark/forced-continuity", label: "forced_continuity", icon: CreditCard },
@@ -83,6 +83,17 @@ const TOOLS = [
   { path: "/report", label: "report", icon: FileText, color: "#c084fc" },
 ];
 
+const HEADER_NAV: { path: string; label: string; color: string; matchPrefix?: string }[] = [
+  { path: "/patterns/auth/login", label: "patterns", color: "var(--text)", matchPrefix: "/patterns" },
+  ...TOOLS,
+];
+
+const bgTint = (color: string, hex: string) => {
+  if (!color.startsWith("var(")) return `${color}${hex}`;
+  const pct = Math.round((parseInt(hex, 16) / 255) * 100);
+  return `color-mix(in srgb, ${color} ${pct}%, transparent)`;
+};
+
 export function Layout() {
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -102,9 +113,13 @@ export function Layout() {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
-  // Auto-open the category that contains the current page
+  // Close mobile menu on navigation
   useEffect(() => {
     setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Auto-open the category that contains the current page
+  useEffect(() => {
     for (const cat of CATEGORIES) {
       if (cat.items.some(item => location.pathname === item.path)) {
         setOpenCategories(prev => new Set([...prev, cat.id]));
@@ -122,8 +137,8 @@ export function Layout() {
   };
 
   // Which header link is active
-  const headerActive = (path: string) => {
-    if (path === "/patterns/auth/login") return location.pathname.startsWith("/patterns");
+  const headerActive = (path: string, matchPrefix?: string) => {
+    if (matchPrefix) return location.pathname.startsWith(matchPrefix);
     return location.pathname === path;
   };
 
@@ -137,7 +152,7 @@ export function Layout() {
             className="flex items-center gap-2.5 no-underline"
             onClick={() => { if (location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" }); }}
           >
-            <Shield className="w-4.5 h-4.5" style={{ color: "var(--green)" }} />
+            <Shield className="w-[18px] h-[18px]" style={{ color: "var(--green)" }} />
             <span className="font-mono font-bold text-sm tracking-tight" style={{ color: "var(--green)" }}>
               uxsec<span style={{ color: "var(--text)" }}>.dev</span>
             </span>
@@ -145,14 +160,14 @@ export function Layout() {
 
           {/* Desktop nav — simplified */}
           <nav className="hidden md:flex items-center gap-1 text-xs font-mono">
-            {[{ path: "/patterns/auth/login", label: "patterns", color: "var(--text)" }, ...TOOLS].map(({ path, label, color }) => (
+            {HEADER_NAV.map(({ path, label, color, matchPrefix }) => (
               <Link
                 key={path}
                 to={path}
                 className="no-underline px-3 py-1.5 rounded-md transition-colors"
                 style={{
-                  color: headerActive(path) ? color : "var(--text)",
-                  background: headerActive(path) ? `${color}15` : "transparent",
+                  color: headerActive(path, matchPrefix) ? color : "var(--text)",
+                  background: headerActive(path, matchPrefix) ? bgTint(color, "15") : "transparent",
                 }}
               >
                 {label}
@@ -166,7 +181,7 @@ export function Layout() {
             >
               <Search className="w-3.5 h-3.5" /> <span className="text-xs px-1 py-0.5 rounded" style={{ background: "#1a1a1a", color: "#444" }}>⌘K</span>
             </button>
-            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="no-underline px-3 py-1.5 rounded-md" style={{ color: "#555" }}>
+            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener noreferrer" className="no-underline px-3 py-1.5 rounded-md" style={{ color: "#555" }}>
               github
             </a>
           </nav>
@@ -189,14 +204,14 @@ export function Layout() {
         {mobileMenuOpen && (
           <nav className="md:hidden border-t px-6 py-4 space-y-1 font-mono text-sm max-h-[70vh] overflow-y-auto" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
             {TOOLS.map(({ path, label, icon: Icon, color }) => (
-              <Link key={path} to={path} className="flex items-center gap-2 no-underline px-3 py-2 rounded" style={{ color, background: headerActive(path) ? `${color}15` : "transparent" }}>
+              <Link key={path} to={path} className="flex items-center gap-2 no-underline px-3 py-2 rounded" style={{ color, background: headerActive(path) ? bgTint(color, "15") : "transparent" }}>
                 <Icon className="w-3.5 h-3.5" /> {label}
               </Link>
             ))}
             <div className="border-t my-2" style={{ borderColor: "var(--border)" }} />
             {CATEGORIES.map(cat => (
               <div key={cat.id}>
-                <button onClick={() => toggleCategory(cat.id)} className="w-full flex items-center justify-between px-3 py-2 text-xs bg-transparent border-none cursor-pointer font-mono" style={{ color: cat.color }}>
+                <button onClick={() => toggleCategory(cat.id)} className="w-full flex items-center justify-between px-3 py-2 text-xs bg-transparent border-none cursor-pointer font-mono" aria-expanded={openCategories.has(cat.id)} style={{ color: cat.color }}>
                   {cat.label}/ <span style={{ color: "#555" }}>{cat.items.length}</span>
                 </button>
                 {openCategories.has(cat.id) && cat.items.map(item => (
@@ -207,7 +222,7 @@ export function Layout() {
               </div>
             ))}
             <div className="border-t my-2" style={{ borderColor: "var(--border)" }} />
-            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="block no-underline px-3 py-2 text-xs" style={{ color: "#555" }}>github</a>
+            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener noreferrer" className="block no-underline px-3 py-2 text-xs" style={{ color: "#555" }}>github</a>
           </nav>
         )}
       </header>
@@ -226,7 +241,7 @@ export function Layout() {
                   className="flex items-center gap-2 px-2 py-1.5 rounded text-xs no-underline font-mono transition-colors"
                   style={{
                     color: headerActive(path) ? color : "var(--text)",
-                    background: headerActive(path) ? `${color}15` : "transparent",
+                    background: headerActive(path) ? bgTint(color, "15") : "transparent",
                   }}
                 >
                   <Icon className="w-3.5 h-3.5" /> {label}
@@ -246,9 +261,10 @@ export function Layout() {
                   <button
                     onClick={() => toggleCategory(cat.id)}
                     className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs font-mono bg-transparent border-none cursor-pointer transition-colors"
+                    aria-expanded={isOpen}
                     style={{
                       color: hasActive ? cat.color : "var(--text)",
-                      background: hasActive && !isOpen ? `${cat.color}10` : "transparent",
+                      background: hasActive && !isOpen ? bgTint(cat.color, "10") : "transparent",
                     }}
                   >
                     <span className="flex items-center gap-1">
@@ -270,7 +286,7 @@ export function Layout() {
                           className="flex items-center gap-2 px-2 py-1 rounded text-xs no-underline font-mono transition-colors"
                           style={{
                             color: location.pathname === path ? cat.color : "var(--text)",
-                            background: location.pathname === path ? `${cat.color}15` : "transparent",
+                            background: location.pathname === path ? bgTint(cat.color, "15") : "transparent",
                             borderLeft: location.pathname === path ? `2px solid ${cat.color}` : "2px solid transparent",
                           }}
                         >
