@@ -5,19 +5,21 @@ Interactive patterns for designing secure user experiences.
 ```
 $ ls ./patterns
 
-🔒 5 auth patterns
+🔒 auth/ (7)
    login_flow ............ OWASP A07, CWE-307
    multi_factor_auth ..... OWASP A07, CWE-308
    password_strength ..... OWASP A07, CWE-521
    session_timeout ....... OWASP A07, CWE-613
    account_recovery ...... OWASP A07, CWE-640
+   passkeys .............. WebAuthn, FIDO2
+   oauth_consent ......... OAuth 2.0, CWE-250
 
-🔒 3 threat response patterns
+🔒 threat/ (3)
    breach_notification ... GDPR Art. 33, CWE-200
    phishing_warning ...... OWASP A07, CWE-601
    suspicious_activity ... OWASP A07, CWE-778
 
-⚠ 6 dark patterns documented
+⚠ dark_patterns/ (6)
    confirmshaming ........ EU DSA, Deceptive Design
    cookie_consent ........ GDPR Art. 7, ePrivacy
    hidden_unsubscribe .... GDPR Art. 17, Right to Erasure
@@ -25,61 +27,71 @@ $ ls ./patterns
    bait_and_switch ....... FTC Act Section 5
    forced_continuity ..... FTC Negative Option Rule
 
-🔐 3 data protection patterns
+🔐 data/ (3)
    encryption_indicators . OWASP A02, CWE-311
    secure_file_upload .... OWASP A03, CWE-434
    data_deletion ......... GDPR Art. 17, CWE-212
 
-🛡 3 OWASP Top 10 patterns
+🛡 owasp/ (3)
    A01_access_control .... CWE-284, CWE-639
    A05_misconfiguration .. CWE-16, CWE-209
    A09_logging ........... CWE-778, CWE-223
 
-🤖 3 AI transparency patterns
+🤖 ai/ (3)
    ai_disclosure ......... EU AI Act Art. 50
    content_labeling ...... EU AI Act Art. 50, C2PA
-   decision_explanation .. EU AI Act, GDPR Art. 22
+   decision_explanation .. GDPR Art. 22
+
+🏭 industrial/ (3)
+   operator_auth ......... IEC 62443
+   safety_critical ....... IEC 61511
+   alarm_fatigue ......... ISA-18.2, EEMUA 191
 
 $ get --score
 🛡 Security UX Score: rate your app → A+ through F
 $ get --compliance
-📋 Compliance Mapper: GDPR, CCPA, SOC 2, ISO 27001, PCI DSS, FTC, EU AI Act
+📋 Compliance Mapper: 11 regulations including EU AI Act + IEC 62443
 $ get --maturity
 📊 Maturity Model: assess your security UX → Level 1-4
+$ get --report
+📄 Report Generator: 6 questions → exportable .md report
 $█
 ```
 
 Built from 20 years of UX design leadership and a double M.Sc. in Cyber Security and Information Systems.
 
-## 23 Interactive Patterns + 3 Strategic Tools
+## 28 Interactive Patterns + 4 Strategic Tools
 
-The most comprehensive interactive security UX pattern library that exists. Each pattern has a live demo, do/don't guidelines, security rationale with OWASP/CWE/GDPR references, and accessibility notes.
+The most comprehensive interactive security UX pattern library. Each pattern has a live demo, do/don't guidelines, security rationale with OWASP/CWE/GDPR references, and accessibility notes.
 
 ## Strategic Tools
 
 | Tool | What it does |
 |------|-------------|
-| **Security UX Score** | 22-item checklist across 4 categories → A+ through F grade with shareable badge |
-| **Compliance Mapper** | Select GDPR, CCPA, SOC 2, ISO 27001, PCI DSS, FTC, EU AI Act, US AI Laws → see which patterns you need |
-| **Maturity Model** | 8-question assessment → current level, priority areas, roadmap to next level |
+| **Security UX Score** | 28-item checklist across 6 categories → A+ through F grade with shareable badge |
+| **Compliance Mapper** | Select from 11 regulations (GDPR, SOC 2, EU AI Act, IEC 62443...) → see which patterns you need |
+| **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
+| **Report Generator** | Answer 6 questions → downloadable .md report with prioritized patterns |
 
-## Authentication Patterns (5)
+## Authentication (7)
 
-| Pattern | Security Impact | What it covers |
-|---------|----------------|----------------|
-| Login Flow | CRITICAL | Rate limiting, social login, MFA challenge, remember me, success flow |
-| Multi-Factor Auth | CRITICAL | TOTP/SMS/backup codes, paste support, progressive cooldown |
-| Password Strength | HIGH | Real-time meter, breach detection, confirm field, show/hide |
-| Session Timeout | MEDIUM | Countdown warning, auto-save, graceful expiry |
-| Account Recovery | CRITICAL | Secure reset flow, one-time tokens, anti-enumeration |
+| Pattern | What it covers |
+|---------|----------------|
+| Login Flow | Rate limiting, social login, MFA challenge, remember me, success flow |
+| Multi-Factor Auth | TOTP/SMS/backup codes, paste support, progressive cooldown |
+| Password Strength | Real-time meter, breach detection, confirm field, show/hide |
+| Session Timeout | Countdown warning, auto-save, graceful expiry |
+| Account Recovery | Secure reset flow, one-time tokens, anti-enumeration |
+| **Passkeys / WebAuthn** | Create passkey, sign in (0.8s, phishing-proof), manage across devices |
+| **OAuth Consent** | Over-permissioned vs least privilege, granular control, explained permissions |
 
-## Threat Response Patterns (3)
+## Threat Response (3)
 
-| Pattern | Security Impact | What it covers |
-|---------|----------------|----------------|
-| Breach Notification | CRITICAL | In-app banner, full-page with timeline, email with GDPR refs (3 variants) |
-| Phishing Warning | CRITICAL | Blocked page, email annotations, link safety preview (3 variants) |
-| Suspicious Activity | HIGH | Sign-in alerts, session management, new device approval (3 variants) |
+| Pattern | What it covers |
+|---------|----------------|
+| Breach Notification | In-app banner, full-page with timeline, email with GDPR refs (3 variants) |
+| Phishing Warning | Blocked page, email annotations, link safety preview (3 variants) |
+| Suspicious Activity | Sign-in alerts, session management, new device approval (3 variants) |
 
 ## Dark Patterns — Anti-Patterns (6)
 
@@ -94,47 +106,46 @@ Each shows the manipulative version side-by-side with the ethical alternative.
 | Bait & Switch | X button enables features | X means close, always |
 | Forced Continuity | Free trial auto-charge trap | No-card trial, pre-expiry reminder |
 
-## Data Protection Patterns (3)
+## Data Protection (3)
 
-| Pattern | Security Impact | What it covers |
-|---------|----------------|----------------|
-| Encryption Indicators | HIGH | E2E messaging, connection security, at-rest dashboard (3 variants) |
-| Secure File Upload | HIGH | File type blocking, malware scanning, encryption status |
-| Data Deletion | CRITICAL | GDPR-compliant deletion with export, confirmation, grace period |
+| Pattern | What it covers |
+|---------|----------------|
+| Encryption Indicators | E2E messaging, connection security, at-rest dashboard (3 variants) |
+| Secure File Upload | File type blocking, malware scanning, encryption status |
+| Data Deletion | GDPR-compliant deletion with export, confirmation, grace period |
 
-## OWASP Top 10 Patterns (3)
+## OWASP Top 10 (3)
 
-| Pattern | OWASP | What it covers |
-|---------|-------|----------------|
-| Broken Access Control | A01 | Role-based UI, IDOR prevention, privilege escalation blocking (3 variants) |
-| Security Misconfiguration | A05 | Security headers dashboard, debug mode, default credentials (3 variants) |
-| Logging & Monitoring | A09 | Live event log, anomaly detection, per-user audit trails (3 variants) |
+| Pattern | What it covers |
+|---------|----------------|
+| A01 Broken Access Control | Role-based UI, IDOR prevention, privilege escalation blocking |
+| A05 Security Misconfiguration | Security headers dashboard, debug mode, default credentials |
+| A09 Logging & Monitoring | Live event log, anomaly detection, per-user audit trails |
 
-## AI Transparency Patterns (3) — EU AI Act (August 2026)
+## AI Transparency (3) — EU AI Act (August 2026)
 
-| Pattern | Regulation | What it covers |
-|---------|-----------|----------------|
-| AI Interaction Disclosure | Art. 50(1) | Chatbot as human (non-compliant) vs labeled AI assistant (compliant) |
-| AI Content Labeling | Art. 50(2-4) | Social feed labels, article transparency, image authenticity (C2PA) |
-| AI Decision Explanation | Art. 50 + GDPR Art. 22 | Loan decisions, content moderation, hiring AI with human appeal |
+| Pattern | What it covers |
+|---------|----------------|
+| AI Interaction Disclosure | Chatbot as human (non-compliant) vs labeled AI assistant |
+| AI Content Labeling | Social feed labels, article transparency, image authenticity (C2PA) |
+| AI Decision Explanation | Loan decisions, content moderation, hiring AI with human appeal |
+
+## Industrial Security UX (3)
+
+| Pattern | What it covers |
+|---------|----------------|
+| Operator Authentication | Badge + PIN for gloves, adaptive biometrics, emergency override |
+| Safety-Critical Confirmation | Hold-to-confirm shutdown, graduated overrides, parameter ranges |
+| Alarm Fatigue Management | Alarm flood vs smart grouping, root cause, shelving (ISA-18.2) |
 
 ## Recent Enforcement
 
-| Company | Fine | Authority | Reason |
-|---------|------|-----------|--------|
-| Amazon | $30M | FTC | Manipulative subscription design |
-| Epic Games | $245M | FTC | Deceptive in-game purchases |
-| TikTok | €345M | Irish DPC | Public-by-default dark pattern |
-| Meta | €1.2B | Irish DPC | GDPR data transfer violations |
-
-## Each pattern includes
-
-- **Interactive demo** — working UI you can click through
-- **Do / Don't** — clear guidelines with rationale
-- **Security rationale** — OWASP, CWE, GDPR, FTC, EU AI Act references
-- **Accessibility notes** — ARIA, keyboard, screen reader guidance
-- **Dark patterns** — side-by-side dark vs ethical comparison
-- **AI patterns** — compliant vs non-compliant comparison
+| Company | Fine | Reason |
+|---------|------|--------|
+| Amazon | $30M | Manipulative subscription design |
+| Epic Games | $245M | Deceptive in-game purchases |
+| TikTok | €345M | Public-by-default dark pattern |
+| Meta | €1.2B | GDPR data transfer violations |
 
 ## Run locally
 
@@ -153,15 +164,17 @@ npm run dev
 
 ## Design
 
-Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scanlines, blinking cursor. Each category has its own color: green (auth/threat), red (dark patterns), cyan (data), amber (OWASP), purple (AI).
+Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scanlines, blinking cursor. Each category has its own color: green (auth/threat), red (dark patterns), cyan (data), amber (OWASP), purple (AI), orange (industrial).
 
-## Sources
+## Sources (31)
 
-**Standards:** OWASP Top 10, MITRE CWE, NIST SP 800-63B, GDPR, WCAG 2.1, FTC Negative Option Rule
+**Standards:** OWASP, CWE, NIST, GDPR, WCAG, FTC, EU DSA, ISO 27001, PCI DSS, ePrivacy, EU Consumer Rights
 
-**AI Regulation:** EU AI Act Article 50, Transparency Code of Practice, US State AI Laws, IAB Framework, C2PA Standard
+**AI Regulation:** EU AI Act Art. 50, Transparency Code, US State AI Laws, IAB Framework, C2PA, Illinois AI Act
 
-**Research:** Verizon DBIR, IBM Cost of a Data Breach, Microsoft MFA Study, USEC 2026, Deceptive Design, RFC 6238
+**Industrial:** IEC 62443, IEC 61511, ISA-18.2, EEMUA 191
+
+**Research:** Verizon DBIR, IBM Breach Report, Microsoft MFA Study, USEC 2026, Deceptive Design, RFC 6238, CCPA
 
 ## Author
 
