@@ -25,6 +25,9 @@ import { DataDeletionPattern } from "./patterns/data/DataDeletionPattern";
 import { BrokenAccessControlPattern } from "./patterns/owasp/BrokenAccessControlPattern";
 import { SecurityMisconfigPattern } from "./patterns/owasp/SecurityMisconfigPattern";
 import { LoggingMonitoringPattern } from "./patterns/owasp/LoggingMonitoringPattern";
+import { AIDisclosurePattern } from "./patterns/ai/AIDisclosurePattern";
+import { AIContentLabelingPattern } from "./patterns/ai/AIContentLabelingPattern";
+import { AIDecisionExplanationPattern } from "./patterns/ai/AIDecisionExplanationPattern";
 
 export default function App() {
   return (
@@ -55,6 +58,9 @@ export default function App() {
           <Route path="patterns/owasp/broken-access-control" element={<PatternPage><BrokenAccessControlPattern /></PatternPage>} />
           <Route path="patterns/owasp/security-misconfiguration" element={<PatternPage><SecurityMisconfigPattern /></PatternPage>} />
           <Route path="patterns/owasp/logging-monitoring" element={<PatternPage><LoggingMonitoringPattern /></PatternPage>} />
+          <Route path="patterns/ai/disclosure" element={<PatternPage><AIDisclosurePattern /></PatternPage>} />
+          <Route path="patterns/ai/content-labeling" element={<PatternPage><AIContentLabelingPattern /></PatternPage>} />
+          <Route path="patterns/ai/decision-explanation" element={<PatternPage><AIDecisionExplanationPattern /></PatternPage>} />
         </Route>
       </Routes>
     </BrowserRouter>

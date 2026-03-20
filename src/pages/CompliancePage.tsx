@@ -115,6 +115,30 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/dark/privacy-zuckering", label: "Privacy Zuckering", category: "Dark Patterns" },
     ],
   },
+  {
+    id: "euaiact",
+    name: "EU AI Act",
+    fullName: "EU Artificial Intelligence Act — Article 50 Transparency (Aug 2026)",
+    color: "#c084fc",
+    patterns: [
+      { path: "/patterns/ai/disclosure", label: "AI Disclosure", category: "AI" },
+      { path: "/patterns/ai/content-labeling", label: "Content Labeling", category: "AI" },
+      { path: "/patterns/ai/decision-explanation", label: "Decision Explanation", category: "AI" },
+      { path: "/patterns/dark/confirmshaming", label: "Confirmshaming", category: "Dark Patterns" },
+      { path: "/patterns/dark/privacy-zuckering", label: "Privacy Zuckering", category: "Dark Patterns" },
+    ],
+  },
+  {
+    id: "usai",
+    name: "US AI Laws",
+    fullName: "Colorado AI Act + California AI Transparency Act (2026)",
+    color: "#06b6d4",
+    patterns: [
+      { path: "/patterns/ai/disclosure", label: "AI Disclosure", category: "AI" },
+      { path: "/patterns/ai/content-labeling", label: "Content Labeling", category: "AI" },
+      { path: "/patterns/ai/decision-explanation", label: "Decision Explanation", category: "AI" },
+    ],
+  },
 ];
 
 export function CompliancePage() {

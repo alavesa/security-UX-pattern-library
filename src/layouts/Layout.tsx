@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain } from "lucide-react";
 
 const AUTH_PATTERNS = [
   { path: "/patterns/auth/login", label: "login_flow", icon: LogIn },
@@ -160,6 +160,31 @@ export function Layout() {
                     color: location.pathname === path ? "var(--amber)" : "var(--text)",
                     background: location.pathname === path ? "rgba(255,170,0,0.1)" : "transparent",
                     borderLeft: location.pathname === path ? "2px solid var(--amber)" : "2px solid transparent",
+                  }}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {label}
+                </Link>
+              ))}
+            </nav>
+
+            <h3 className="text-xs font-mono uppercase tracking-widest mt-8 mb-4" style={{ color: "#444" }}>
+              $ ls ai/
+            </h3>
+            <nav className="space-y-0.5">
+              {[
+                { path: "/patterns/ai/disclosure", label: "ai_disclosure", icon: Bot },
+                { path: "/patterns/ai/content-labeling", label: "content_labeling", icon: Sparkles },
+                { path: "/patterns/ai/decision-explanation", label: "decision_explanation", icon: Brain },
+              ].map(({ path, label, icon: Icon }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className="flex items-center gap-3 px-3 py-2 rounded text-sm no-underline font-mono transition-colors"
+                  style={{
+                    color: location.pathname === path ? "#c084fc" : "var(--text)",
+                    background: location.pathname === path ? "rgba(192,132,252,0.1)" : "transparent",
+                    borderLeft: location.pathname === path ? "2px solid #c084fc" : "2px solid transparent",
                   }}
                 >
                   <Icon className="w-3.5 h-3.5" />

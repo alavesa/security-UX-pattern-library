@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain } from "lucide-react";
 
 const AUTH_PATTERNS = [
   {
@@ -290,6 +290,40 @@ export function HomePage() {
                 }}
               >
                 <Icon className="w-6 h-6 mb-3" style={{ color: "var(--amber)" }} />
+                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* AI Transparency */}
+        <div className="mt-16">
+          <h2 className="text-xl font-mono mb-2" style={{ color: "#c084fc" }}>./ai/</h2>
+          <p className="mb-2" style={{ color: "var(--text)" }}>AI transparency patterns — EU AI Act compliance, effective August 2026.</p>
+          <p className="text-xs mb-8" style={{ color: "var(--red)" }}>Deadline: August 2026 — 5 months away</p>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { path: "/patterns/ai/disclosure", label: "ai_disclosure", icon: Bot, description: "Chatbot transparency — compliant vs non-compliant AI interaction disclosure" },
+              { path: "/patterns/ai/content-labeling", label: "content_labeling", icon: Sparkles, description: "AI-generated content labels for social feeds, articles, and images (C2PA)" },
+              { path: "/patterns/ai/decision-explanation", label: "decision_explanation", icon: Brain, description: "When AI decides about people — loans, moderation, hiring — explain why" },
+            ].map(({ path, label, icon: Icon, description }) => (
+              <Link
+                key={path}
+                to={path}
+                className="group border rounded-lg p-6 no-underline transition-all"
+                style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(192,132,252,0.3)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(192,132,252,0.1)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <Icon className="w-6 h-6 mb-3" style={{ color: "#c084fc" }} />
                 <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
               </Link>
