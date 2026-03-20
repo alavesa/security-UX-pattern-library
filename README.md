@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# Security UX Pattern Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interactive patterns for designing secure user experiences.
 
-Currently, two official plugins are available:
+```
+$ patchpilots security ./auth-patterns
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+🔒 5 patterns loaded
+   login_flow ............ OWASP A07, CWE-307
+   multi_factor_auth ..... OWASP A07, CWE-308
+   password_strength ..... OWASP A07, CWE-521
+   session_timeout ....... OWASP A07, CWE-613
+   account_recovery ...... OWASP A07, CWE-640
+$█
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Built from 20 years of UX design leadership and a double M.Sc. in Cyber Security and Information Systems.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## What is this?
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+A collection of interactive security UX patterns with live demos, do/don't guidelines, OWASP/CWE references, and accessibility notes. Each pattern shows how to design secure interfaces that users actually want to use.
+
+The problem: security and usability are often at odds. Strong security measures frustrate users. Easy-to-use flows leave security gaps. These patterns solve both.
+
+## Authentication Patterns
+
+| Pattern | Security Impact | What it covers |
+|---------|----------------|----------------|
+| [Login Flow](src/patterns/auth/LoginPattern.tsx) | CRITICAL | Rate limiting, generic errors, anti-enumeration |
+| [Multi-Factor Auth](src/patterns/auth/MfaPattern.tsx) | CRITICAL | TOTP/SMS code entry, auto-advance, method switching |
+| [Password Strength](src/patterns/auth/PasswordStrengthPattern.tsx) | HIGH | Real-time meter, checklist, breach detection |
+| [Session Timeout](src/patterns/auth/SessionTimeoutPattern.tsx) | MEDIUM | Countdown warning, auto-save, graceful expiry |
+| [Account Recovery](src/patterns/auth/AccountRecoveryPattern.tsx) | CRITICAL | Secure reset flow, one-time tokens, anti-enumeration |
+
+## Each pattern includes
+
+- **Interactive demo** — working UI you can click through
+- **Do / Don't** — clear guidelines with rationale
+- **Security rationale** — why this matters, with OWASP and CWE references
+- **Accessibility notes** — ARIA patterns, keyboard support, screen reader guidance
+
+## Run locally
+
+```bash
+git clone https://github.com/alavesa/security-UX-pattern-library.git
+cd security-UX-pattern-library
+npm install
+npm run dev
 ```
+
+Opens at http://localhost:5173
+
+## Tech stack
+
+- React + TypeScript + Vite
+- Tailwind CSS
+- Lucide icons
+- React Router
+
+## Design
+
+Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scanlines, blinking cursor. Because security UX should look like it means business.
+
+## Coming soon
+
+- **Permissions & Access Control** — role-based access, consent flows, admin controls
+- **Threat Response** — breach notifications, phishing warnings, incident response UIs
+- **Data Protection** — encryption indicators, secure sharing, privacy controls
+
+## Author
+
+**Piia Alavesa** — Senior UX Design Leader
+- M.Sc. Cyber Security (University of Jyväskylä)
+- M.Sc. Information Systems (University of Oulu)
+- 20 years building design organisations for complex industrial systems
+- [neversay.no](https://www.neversay.no) | [LinkedIn](https://www.linkedin.com/in/piia-alavesa/)
+
+## License
+
+MIT
