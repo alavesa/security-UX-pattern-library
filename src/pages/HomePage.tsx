@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity } from "lucide-react";
 
 const AUTH_PATTERNS = [
   {
@@ -98,6 +98,18 @@ export function HomePage() {
             <div style={{ color: "var(--text)" }}>
               <span>   account_recovery ...... OWASP A07, CWE-640</span>
             </div>
+            <div style={{ color: "var(--green)" }}>
+              <span>🔒 3 threat patterns loaded</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   breach_notification ... GDPR Art. 33, CWE-200</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   phishing_warning ...... OWASP A07, CWE-601</span>
+            </div>
+            <div style={{ color: "var(--text)" }}>
+              <span>   suspicious_activity ... OWASP A07, CWE-778</span>
+            </div>
             <div className="cursor-blink" style={{ color: "#444" }}>$</div>
           </div>
         </div>
@@ -131,6 +143,39 @@ export function HomePage() {
           ))}
         </div>
 
+        {/* Threat Response */}
+        <div className="mt-16">
+          <h2 className="text-xl font-mono mb-2 glow-text">./threat/</h2>
+          <p className="mb-8" style={{ color: "var(--text)" }}>Threat response patterns — when things go wrong.</p>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { path: "/patterns/threat/breach-notification", label: "breach_notification", icon: ShieldAlert, description: "Multi-channel breach disclosure with GDPR compliance and user action checklists" },
+              { path: "/patterns/threat/phishing-warning", label: "phishing_warning", icon: AlertTriangle, description: "Interstitial warnings, email phishing indicators, and link safety previews" },
+              { path: "/patterns/threat/suspicious-activity", label: "suspicious_activity", icon: Activity, description: "Sign-in alerts, active session management, and new device approval" },
+            ].map(({ path, label, icon: Icon, description }) => (
+              <Link
+                key={path}
+                to={path}
+                className="group border rounded-lg p-6 no-underline transition-all"
+                style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--green-border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px var(--green-glow)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <Icon className="w-6 h-6 mb-3" style={{ color: "var(--red, #ff3333)" }} />
+                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
         {/* Coming Soon */}
         <div className="mt-16">
           <h2 className="text-xl font-mono mb-2" style={{ color: "#444" }}>./coming-soon/</h2>
@@ -138,8 +183,8 @@ export function HomePage() {
           <div className="grid md:grid-cols-3 gap-4">
             {[
               { label: "permissions/", desc: "Role-based access, consent flows, admin controls" },
-              { label: "threat_response/", desc: "Breach notifications, phishing warnings, incident response" },
               { label: "data_protection/", desc: "Encryption indicators, secure sharing, privacy controls" },
+              { label: "privacy/", desc: "Cookie consent, data export, account deletion" },
             ].map(({ label, desc }) => (
               <div key={label} className="border border-dashed rounded-lg p-6" style={{ borderColor: "#222" }}>
                 <Lock className="w-6 h-6 mb-3" style={{ color: "#333" }} />

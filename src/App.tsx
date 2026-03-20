@@ -7,6 +7,9 @@ import { MfaPattern } from "./patterns/auth/MfaPattern";
 import { PasswordStrengthPattern } from "./patterns/auth/PasswordStrengthPattern";
 import { SessionTimeoutPattern } from "./patterns/auth/SessionTimeoutPattern";
 import { AccountRecoveryPattern } from "./patterns/auth/AccountRecoveryPattern";
+import { BreachNotificationPattern } from "./patterns/threat/BreachNotificationPattern";
+import { PhishingWarningPattern } from "./patterns/threat/PhishingWarningPattern";
+import { SuspiciousActivityPattern } from "./patterns/threat/SuspiciousActivityPattern";
 
 export default function App() {
   return (
@@ -19,6 +22,9 @@ export default function App() {
           <Route path="patterns/auth/password-strength" element={<PatternPage><PasswordStrengthPattern /></PatternPage>} />
           <Route path="patterns/auth/session-timeout" element={<PatternPage><SessionTimeoutPattern /></PatternPage>} />
           <Route path="patterns/auth/account-recovery" element={<PatternPage><AccountRecoveryPattern /></PatternPage>} />
+          <Route path="patterns/threat/breach-notification" element={<PatternPage><BreachNotificationPattern /></PatternPage>} />
+          <Route path="patterns/threat/phishing-warning" element={<PatternPage><PhishingWarningPattern /></PatternPage>} />
+          <Route path="patterns/threat/suspicious-activity" element={<PatternPage><SuspiciousActivityPattern /></PatternPage>} />
         </Route>
       </Routes>
     </BrowserRouter>
