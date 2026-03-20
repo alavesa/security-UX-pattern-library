@@ -113,7 +113,7 @@ export function Layout() {
 
   // Which header link is active
   const headerActive = (path: string) => {
-    if (path === "/") return location.pathname === "/" || location.pathname.startsWith("/patterns");
+    if (path === "/patterns/auth/login") return location.pathname.startsWith("/patterns");
     return location.pathname === path;
   };
 
@@ -131,7 +131,7 @@ export function Layout() {
 
           {/* Desktop nav — simplified */}
           <nav className="hidden md:flex items-center gap-1 text-xs font-mono">
-            {[{ path: "/", label: "patterns", color: "var(--text)" }, ...TOOLS].map(({ path, label, color }) => (
+            {[{ path: "/patterns/auth/login", label: "patterns", color: "var(--text)" }, ...TOOLS].map(({ path, label, color }) => (
               <Link
                 key={path}
                 to={path}
