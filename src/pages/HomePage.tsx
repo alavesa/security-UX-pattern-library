@@ -503,6 +503,16 @@ export function HomePage() {
           </div>
 
           <div>
+            <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "#f97316" }}>Industrial Standards</h3>
+            <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
+              <li><a href="https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>IEC 62443</a> — Industrial automation security</li>
+              <li><a href="https://www.iec.ch/functionalsafety" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>IEC 61511</a> — Safety instrumented systems</li>
+              <li><a href="https://www.isa.org/products/ansi-isa-18-2-2016-management-of-alarm-systems-fo" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>ISA-18.2 / IEC 62682</a> — Alarm management</li>
+              <li><a href="https://www.eemua.org/Products/Publications/Print/EEMUA-Publication-191.aspx" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>EEMUA 191</a> — Alarm systems guide</li>
+            </ul>
+          </div>
+
+          <div>
             <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--green)" }}>Research & Data</h3>
             <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
               <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener" className="hover:underline" style={{ color: "var(--text-bright)" }}>Verizon DBIR 2024</a> — Data Breach Investigations Report</li>

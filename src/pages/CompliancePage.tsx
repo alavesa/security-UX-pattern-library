@@ -139,6 +139,43 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/ai/decision-explanation", label: "Decision Explanation", category: "AI" },
     ],
   },
+  {
+    id: "iec62443",
+    name: "IEC 62443",
+    fullName: "Industrial Automation & Control System Security",
+    color: "#f97316",
+    patterns: [
+      { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "Industrial" },
+      { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "Industrial" },
+      { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "Industrial" },
+      { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
+      { path: "/patterns/auth/session-timeout", label: "Session Timeout", category: "Auth" },
+      { path: "/patterns/owasp/broken-access-control", label: "Access Control", category: "OWASP" },
+      { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
+    ],
+  },
+  {
+    id: "iec61511",
+    name: "IEC 61511",
+    fullName: "Safety Instrumented Systems for Process Industries",
+    color: "#ef4444",
+    patterns: [
+      { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "Industrial" },
+      { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "Industrial" },
+      { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "Industrial" },
+    ],
+  },
+  {
+    id: "isa182",
+    name: "ISA-18.2",
+    fullName: "Management of Alarm Systems for Process Industries (EEMUA 191)",
+    color: "#eab308",
+    patterns: [
+      { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "Industrial" },
+      { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
+      { path: "/patterns/owasp/security-misconfiguration", label: "Security Config", category: "OWASP" },
+    ],
+  },
 ];
 
 export function CompliancePage() {
