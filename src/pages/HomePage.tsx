@@ -422,22 +422,45 @@ export function HomePage() {
           </div>
         </div>
 
-        {/* Coming Soon */}
+        {/* Contribute */}
         <div className="mt-16">
-          <h2 className="text-xl font-mono mb-2" style={{ color: "#444" }}>./coming-soon/</h2>
-          <p className="mb-8" style={{ color: "#444" }}>More patterns in development.</p>
-          <div className="grid md:grid-cols-3 gap-4">
+          <h2 className="text-xl font-mono mb-2 glow-text">./contribute/</h2>
+          <p className="mb-8" style={{ color: "var(--text)" }}>This is open source. Help make security UX better for everyone.</p>
+
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
             {[
-              { label: "permissions/", desc: "Role-based access, consent flows, admin controls" },
-              { label: "privacy/", desc: "Privacy dashboards, tracking controls, data portability" },
-              { label: "compliance/", desc: "GDPR notices, age verification, data processing agreements" },
-            ].map(({ label, desc }) => (
-              <div key={label} className="border border-dashed rounded-lg p-6" style={{ borderColor: "#222" }}>
-                <Lock className="w-6 h-6 mb-3" style={{ color: "#333" }} />
-                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "#444" }}>{label}</h3>
-                <p className="text-xs" style={{ color: "#333" }}>{desc}</p>
+              { label: "Add a pattern", desc: "Create a new interactive demo with guidelines. Each pattern = one React component following the existing structure.", color: "var(--green)" },
+              { label: "Suggest a topic", desc: "Open an issue with a security UX problem you've seen. Describe the dark pattern or missing best practice.", color: "var(--cyan)" },
+              { label: "Fix & improve", desc: "Found a bug, accessibility issue, or inaccurate guideline? PRs welcome. Run PatchPilots on the codebase to find issues.", color: "var(--amber)" },
+            ].map(({ label, desc, color }) => (
+              <div key={label} className="border rounded-lg p-6" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
+                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color }}>{label}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="border rounded-xl p-6 text-center" style={{ borderColor: "var(--green-border)", background: "var(--green-glow)" }}>
+            <p className="font-mono text-sm mb-3" style={{ color: "var(--green)" }}>$ git clone https://github.com/alavesa/security-UX-pattern-library.git</p>
+            <p className="text-xs mb-4" style={{ color: "var(--text)" }}>
+              Every pattern follows the same structure: interactive demo + PatternHeader + DemoContainer + GuidelineSection.
+              <br />Adding a new pattern is one file — check CLAUDE.md for the guide.
+            </p>
+            <a
+              href="https://github.com/alavesa/security-UX-pattern-library"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-mono text-sm no-underline"
+              style={{ background: "var(--green)", color: "var(--bg)" }}
+            >
+              View on GitHub
+            </a>
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="font-mono text-xs" style={{ color: "#444" }}>
+              Ideas for future categories: permissions & access control · mobile security UX · accessibility & security · developer experience · compliance dashboards
+            </p>
           </div>
         </div>
       </section>
