@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText } from "lucide-react";
 import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
@@ -70,7 +70,7 @@ const TOOLS = [
   { path: "/score", label: "score", icon: Target, color: "var(--green)" },
   { path: "/compliance", label: "compliance", icon: ClipboardCheck, color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", icon: BarChart3, color: "var(--amber)" },
-  { path: "/report", label: "report", icon: ClipboardCheck, color: "#c084fc" },
+  { path: "/report", label: "report", icon: FileText, color: "#c084fc" },
 ];
 
 export function Layout() {
@@ -112,7 +112,10 @@ export function Layout() {
   };
 
   // Which header link is active
-  const headerActive = (path: string) => location.pathname === path;
+  const headerActive = (path: string) => {
+    if (path === "/") return location.pathname === "/" || location.pathname.startsWith("/patterns");
+    return location.pathname === path;
+  };
 
   return (
     <div className="min-h-screen" style={{ background: "var(--bg)" }}>
