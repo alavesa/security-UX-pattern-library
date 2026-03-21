@@ -57,9 +57,6 @@ body {
   background: var(--bg);
 }
 
-[role="region"] .rounded-full {
-  background: var(--bg-elevated);
-}
 
 [role="region"] input,
 [role="region"] select {
