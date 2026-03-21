@@ -257,7 +257,7 @@ function AccessibleAuthDemo() {
           </div>
 
           {/* Progress bar */}
-          <div className="h-2 rounded-full overflow-hidden" style={{ background: "var(--bg-elevated)" }}>
+          <div className="h-2 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
             <div
               className="h-full rounded-full transition-all duration-1000"
               style={{
