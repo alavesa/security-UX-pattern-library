@@ -178,12 +178,26 @@ npm run dev
 ## Tech stack
 
 - React + TypeScript + Vite
-- Tailwind CSS + Lucide Icons + React Router
+- Tailwind CSS (layout only) + CSS custom properties (colors) + Lucide Icons + React Router
 - Built with [Claude Code](https://claude.ai) by Anthropic
 
 ## Design
 
-Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scanlines, Matrix rain with katakana. Each category has its own color: green (auth/threat), red (dark patterns), cyan (data), amber (OWASP), purple (AI), orange (industrial).
+Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scanlines, Matrix rain with katakana. Every interactive demo uses CSS custom properties for consistent dark theming — no Tailwind color classes in demo components.
+
+**Category color system:**
+
+| Category | Color | CSS Variable | Hex |
+|----------|-------|-------------|-----|
+| Auth & Threat | Green | `--green` | `#00ff41` |
+| Dark Patterns | Red | `--red` | `#ff3333` |
+| Data Protection | Cyan | `--cyan` | `#00e5ff` |
+| OWASP Top 10 | Amber | `--amber` | `#ffaa00` |
+| AI Transparency | Purple | `--ai-color` | `#c084fc` |
+| Industrial | Orange | `--industrial-color` | `#f97316` |
+| Governance | Gray | `--governance-color` | `#cccccc` |
+
+Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity border) variants for consistent tinted containers. Semantic colors (red for errors, green for success, amber for warnings) are used across all categories regardless of accent color.
 
 ## Sources (38)
 
