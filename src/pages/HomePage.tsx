@@ -63,7 +63,7 @@ function MatrixRain() {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       for (const drop of drops) {
-        ctx.fillStyle = drop.bright ? "rgba(0, 255, 65, 0.6)" : "rgba(0, 255, 65, 0.12)";
+        ctx.fillStyle = drop.bright ? "rgba(0, 255, 65, 0.8)" : "rgba(0, 255, 65, 0.25)";
         ctx.font = `${fontSize}px monospace`;
         ctx.fillText(drop.word, drop.x, drop.y);
 
@@ -96,7 +96,7 @@ function MatrixRain() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.4 }}
+      style={{ opacity: 0.7 }}
     />
   );
 }
