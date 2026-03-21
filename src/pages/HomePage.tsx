@@ -17,40 +17,65 @@ function MatrixRain() {
     };
     resize();
 
-    const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン{}[]<>/\\|=+-*&^%$#@!?.,:;";
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = Array.from({ length: columns }, () => Math.random() * -50);
+    const words = [
+      "encrypt", "shield", "auth", "trust", "guard", "secure", "access",
+      "token", "cipher", "verify", "protect", "defend", "audit", "comply",
+      "OWASP", "GDPR", "NIS2", "DORA", "CRA", "MFA", "FIDO2", "OAuth",
+      "firewall", "breach", "alert", "monitor", "detect", "respond",
+      "passkey", "hash", "salt", "TLS", "HTTPS", "zero-trust", "IAM",
+      "RBAC", "SSO", "SAML", "JWT", "HMAC", "AES-256", "RSA",
+      "phishing", "XSS", "CSRF", "inject", "sanitize", "escape",
+      "consent", "privacy", "delete", "export", "notify", "log",
+      "ISA-101", "IEC-62443", "ISA-18.2", "SOC2", "ISO-27001",
+      "alarm", "safety", "override", "confirm", "revoke", "session",
+    ];
+    const fontSize = 12;
+    const columnWidth = 80;
+    const columns = Math.floor(canvas.width / columnWidth);
+
+    interface Drop {
+      word: string;
+      x: number;
+      y: number;
+      speed: number;
+      bright: boolean;
+    }
+
+    const drops: Drop[] = Array.from({ length: columns }, (_, i) => ({
+      word: words[Math.floor(Math.random() * words.length)],
+      x: i * columnWidth + Math.random() * 20,
+      y: Math.random() * -canvas.height,
+      speed: 0.3 + Math.random() * 0.7,
+      bright: Math.random() > 0.85,
+    }));
 
     let animationId: number;
     let frame = 0;
 
     const draw = () => {
       frame++;
-      // Only draw every 3rd frame for performance + slower rain
-      if (frame % 3 !== 0) {
+      if (frame % 2 !== 0) {
         animationId = requestAnimationFrame(draw);
         return;
       }
 
-      ctx.fillStyle = "rgba(10, 10, 10, 0.08)";
+      ctx.fillStyle = "rgba(10, 10, 10, 0.06)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-
-        // Head of the drop is brighter
-        const isHead = Math.random() > 0.95;
-        ctx.fillStyle = isHead ? "#00ff41" : "rgba(0, 255, 65, 0.15)";
+      for (const drop of drops) {
+        ctx.fillStyle = drop.bright ? "rgba(0, 255, 65, 0.6)" : "rgba(0, 255, 65, 0.12)";
         ctx.font = `${fontSize}px monospace`;
-        ctx.fillText(char, x, y);
+        ctx.fillText(drop.word, drop.x, drop.y);
 
-        if (y > canvas.height && Math.random() > 0.98) {
-          drops[i] = 0;
+        drop.y += drop.speed;
+
+        if (drop.y > canvas.height + 20) {
+          drop.word = words[Math.floor(Math.random() * words.length)];
+          drop.y = Math.random() * -100;
+          drop.x = Math.floor(Math.random() * columns) * columnWidth + Math.random() * 20;
+          drop.speed = 0.3 + Math.random() * 0.7;
+          drop.bright = Math.random() > 0.85;
         }
-        drops[i] += 0.5;
       }
 
       animationId = requestAnimationFrame(draw);
