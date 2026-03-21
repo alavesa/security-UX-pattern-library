@@ -7,8 +7,6 @@ import { CompliancePage } from "./pages/CompliancePage";
 import { MaturityPage } from "./pages/MaturityPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ReportPage } from "./pages/ReportPage";
-import { TokensPage } from "./pages/TokensPage";
-import { ComponentsPage } from "./pages/ComponentsPage";
 import { SecurityDesignReviewPattern } from "./patterns/governance/SecurityDesignReviewPattern";
 import { LoginPattern } from "./patterns/auth/LoginPattern";
 import { MfaPattern } from "./patterns/auth/MfaPattern";
@@ -49,8 +47,6 @@ export default function App() {
           <Route path="compliance" element={<CompliancePage />} />
           <Route path="maturity" element={<MaturityPage />} />
           <Route path="report" element={<ReportPage />} />
-          <Route path="tokens" element={<TokensPage />} />
-          <Route path="components" element={<ComponentsPage />} />
           <Route path="patterns/governance/design-review" element={<PatternPage><SecurityDesignReviewPattern /></PatternPage>} />
           <Route path="patterns/auth/login" element={<PatternPage><LoginPattern /></PatternPage>} />
           <Route path="patterns/auth/mfa" element={<PatternPage><MfaPattern /></PatternPage>} />

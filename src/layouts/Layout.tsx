@@ -89,19 +89,14 @@ const ASSESS_TOOLS = [
   { path: "/report", label: "report", icon: FileText, color: "#c084fc" },
 ];
 
-const SYSTEM_TOOLS = [
-  { path: "/tokens", label: "tokens", icon: Eye, color: "var(--green)" },
-  { path: "/components", label: "API", icon: Settings, color: "var(--cyan)" },
-];
-
-const ALL_TOOLS = [...ASSESS_TOOLS, ...SYSTEM_TOOLS];
+const ALL_TOOLS = [...ASSESS_TOOLS];
 
 const HEADER_NAV: { path: string; label: string; color: string; matchPrefix?: string }[] = [
   { path: "/patterns/auth/login", label: "patterns", color: "var(--text)", matchPrefix: "/patterns" },
   { path: "/score", label: "score", color: "var(--green)" },
   { path: "/compliance", label: "compliance", color: "var(--cyan)" },
-  { path: "/tokens", label: "tokens", color: "var(--amber)" },
-  { path: "/components", label: "API", color: "#c084fc" },
+  { path: "/maturity", label: "maturity", color: "var(--amber)" },
+  { path: "/report", label: "report", color: "#c084fc" },
 ];
 
 const bgTint = (color: string, hex: string) => {
@@ -251,24 +246,6 @@ export function Layout() {
             <div className="mb-3">
               <p className="text-xs font-mono px-2 mb-2" style={{ color: "#444" }}>assess</p>
               {ASSESS_TOOLS.map(({ path, label, icon: Icon, color }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className="flex items-center gap-2 px-2 py-1.5 rounded text-xs no-underline font-mono transition-colors"
-                  style={{
-                    color: headerActive(path) ? color : "var(--text)",
-                    background: headerActive(path) ? bgTint(color, "15") : "transparent",
-                  }}
-                >
-                  <Icon className="w-3.5 h-3.5" /> {label}
-                </Link>
-              ))}
-            </div>
-
-            {/* Design system */}
-            <div className="mb-4">
-              <p className="text-xs font-mono px-2 mb-2" style={{ color: "#444" }}>design system</p>
-              {SYSTEM_TOOLS.map(({ path, label, icon: Icon, color }) => (
                 <Link
                   key={path}
                   to={path}
