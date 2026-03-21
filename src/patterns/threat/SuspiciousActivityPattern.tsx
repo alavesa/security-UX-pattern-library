@@ -44,54 +44,58 @@ function SuspiciousActivityDemo() {
 
       {/* Security alert */}
       {scenario === "alert" && !secured && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div className="rounded-2xl p-4 sm:p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <div className="flex items-start gap-3 mb-4">
-            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center shrink-0">
-              <AlertTriangle className="w-5 h-5 text-red-600" />
+            <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(255,51,51,0.15)" }}>
+              <AlertTriangle className="w-5 h-5" style={{ color: "var(--red)" }} />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-gray-900">Suspicious sign-in attempt</h2>
-              <p className="text-sm text-gray-500">Someone tried to access your account from an unusual location.</p>
+              <h2 className="text-lg font-bold font-mono" style={{ color: "var(--text-bright)" }}>Suspicious sign-in attempt</h2>
+              <p className="text-sm font-mono" style={{ color: "var(--text)" }}>Someone tried to access your account from an unusual location.</p>
             </div>
           </div>
 
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-            <div className="grid grid-cols-2 gap-3 text-xs">
+          <div className="rounded-lg p-4 mb-4" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.2)" }}>
+            <div className="grid grid-cols-2 gap-3 text-xs font-mono">
               <div>
-                <span className="text-red-400">Location</span>
-                <p className="text-red-800 font-medium flex items-center gap-1"><MapPin className="w-3 h-3" /> Moscow, Russia</p>
+                <span style={{ color: "var(--text-dim)" }}>Location</span>
+                <p className="font-medium flex items-center gap-1" style={{ color: "var(--red)" }}><MapPin className="w-3 h-3" /> Moscow, Russia</p>
               </div>
               <div>
-                <span className="text-red-400">Device</span>
-                <p className="text-red-800 font-medium flex items-center gap-1"><Monitor className="w-3 h-3" /> Unknown browser</p>
+                <span style={{ color: "var(--text-dim)" }}>Device</span>
+                <p className="font-medium flex items-center gap-1" style={{ color: "var(--red)" }}><Monitor className="w-3 h-3" /> Unknown browser</p>
               </div>
               <div>
-                <span className="text-red-400">Time</span>
-                <p className="text-red-800 font-medium">5 hours ago</p>
+                <span style={{ color: "var(--text-dim)" }}>Time</span>
+                <p className="font-medium" style={{ color: "var(--red)" }}>5 hours ago</p>
               </div>
               <div>
-                <span className="text-red-400">IP Address</span>
-                <p className="text-red-800 font-mono font-medium">95.173.xxx.xxx</p>
+                <span style={{ color: "var(--text-dim)" }}>IP Address</span>
+                <p className="font-mono font-medium" style={{ color: "var(--red)" }}>95.173.xxx.xxx</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4">
-            <p className="text-xs text-amber-800">
+          <div className="rounded-lg p-3 mb-4" style={{ background: "rgba(255,170,0,0.08)", border: "1px solid rgba(255,170,0,0.2)" }}>
+            <p className="text-xs font-mono" style={{ color: "var(--amber)" }}>
               <strong>Why this looks suspicious:</strong> This location is 2,400 km from your usual sign-in location (Helsinki, FI). The device and browser don't match any of your known devices.
             </p>
           </div>
 
           <div className="space-y-2">
             <button
+              type="button"
               onClick={() => setSecured(true)}
-              className="w-full bg-red-600 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-red-700 transition-colors border-none cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer flex items-center justify-center gap-2"
+              style={{ background: "var(--red)", color: "white" }}
             >
-              <Shield className="w-4 h-4" /> This wasn't me — secure my account
+              <Shield className="w-4 h-4 shrink-0" /> <span>This wasn't me — secure account</span>
             </button>
             <button
+              type="button"
               onClick={() => setSecured(true)}
-              className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg font-medium text-sm hover:bg-gray-50 transition-colors bg-white cursor-pointer"
+              className="w-full py-2.5 rounded-lg font-medium font-mono text-sm cursor-pointer"
+              style={{ background: "transparent", color: "var(--text)", border: "1px solid var(--border)" }}
             >
               Yes, this was me
             </button>
@@ -100,73 +104,74 @@ function SuspiciousActivityDemo() {
       )}
 
       {scenario === "alert" && secured && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 text-center">
-          <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle2 className="w-7 h-7 text-green-600" />
+        <div className="rounded-2xl p-4 sm:p-6 text-center" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(0,255,65,0.15)" }}>
+            <CheckCircle2 className="w-7 h-7" style={{ color: "var(--green)" }} />
           </div>
-          <h2 className="text-lg font-bold text-gray-900 mb-2">Account secured</h2>
-          <div className="text-sm text-gray-600 space-y-1 text-left bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
-            <p className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Suspicious session terminated</p>
-            <p className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> All other sessions signed out</p>
-            <p className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Password reset required on next login</p>
-            <p className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Security team notified</p>
+          <h2 className="text-lg font-bold font-mono mb-2" style={{ color: "var(--green)" }}>Account secured</h2>
+          <div className="text-sm font-mono space-y-1 text-left rounded-lg p-4 mb-4" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)", color: "var(--text)" }}>
+            <p className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" style={{ color: "var(--green)" }} /> Suspicious session terminated</p>
+            <p className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" style={{ color: "var(--green)" }} /> All other sessions signed out</p>
+            <p className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" style={{ color: "var(--green)" }} /> Password reset required on next login</p>
+            <p className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" style={{ color: "var(--green)" }} /> Security team notified</p>
           </div>
-          <p className="text-xs text-gray-400">You'll receive an email confirming these actions.</p>
+          <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>You'll receive an email confirming these actions.</p>
         </div>
       )}
 
       {/* Active sessions */}
       {scenario === "sessions" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-1">Active sessions</h2>
-          <p className="text-sm text-gray-500 mb-4">Devices currently signed into your account.</p>
+        <div className="rounded-2xl p-4 sm:p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h2 className="text-lg font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Active sessions</h2>
+          <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Devices currently signed into your account.</p>
 
           <div className="space-y-3">
             {ACTIVITIES.filter(a => a.type === "login").map(activity => (
               <div
                 key={activity.id}
-                className={`border rounded-lg p-4 ${
-                  revokedSessions.has(activity.id)
-                    ? "border-gray-200 opacity-50"
-                    : activity.suspicious
-                    ? "border-red-200 bg-red-50"
-                    : "border-gray-200"
-                }`}
+                className="rounded-lg p-3 sm:p-4"
+                style={{
+                  opacity: revokedSessions.has(activity.id) ? 0.5 : 1,
+                  background: activity.suspicious && !revokedSessions.has(activity.id) ? "rgba(255,51,51,0.08)" : "var(--bg)",
+                  border: `1px solid ${activity.suspicious && !revokedSessions.has(activity.id) ? "rgba(255,51,51,0.2)" : "var(--border)"}`,
+                }}
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-3">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${activity.suspicious ? "bg-red-100" : "bg-gray-100"}`}>
-                      {activity.device.includes("iPhone") ? <Smartphone className="w-4 h-4 text-gray-600" /> : <Monitor className="w-4 h-4 text-gray-600" />}
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-start gap-3 min-w-0">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ background: activity.suspicious ? "rgba(255,51,51,0.15)" : "var(--bg-elevated)" }}>
+                      {activity.device.includes("iPhone") ? <Smartphone className="w-4 h-4" style={{ color: "var(--text)" }} /> : <Monitor className="w-4 h-4" style={{ color: "var(--text)" }} />}
                     </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-900 flex items-center gap-2">
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium font-mono flex flex-wrap items-center gap-2" style={{ color: "var(--text-bright)" }}>
                         {activity.device}
-                        {activity.current && <span className="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">Current</span>}
-                        {activity.suspicious && <span className="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded">Suspicious</span>}
+                        {activity.current && <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(0,255,65,0.15)", color: "var(--green)" }}>Current</span>}
+                        {activity.suspicious && <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>Suspicious</span>}
                       </p>
-                      <p className="text-xs text-gray-500 flex items-center gap-1">
-                        <MapPin className="w-3 h-3" /> {activity.location} • {activity.time}
+                      <p className="text-xs font-mono flex items-center gap-1" style={{ color: "var(--text)" }}>
+                        <MapPin className="w-3 h-3 shrink-0" /> {activity.location} · {activity.time}
                       </p>
-                      <p className="text-xs text-gray-400 font-mono">{activity.ip}</p>
+                      <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{activity.ip}</p>
                     </div>
                   </div>
                   {!activity.current && !revokedSessions.has(activity.id) && (
                     <button
+                      type="button"
                       onClick={() => setRevokedSessions(s => new Set([...s, activity.id]))}
-                      className="text-xs text-red-600 hover:text-red-800 bg-transparent border-none cursor-pointer"
+                      className="text-xs font-mono bg-transparent border-none cursor-pointer shrink-0"
+                      style={{ color: "var(--red)" }}
                     >
                       Revoke
                     </button>
                   )}
                   {revokedSessions.has(activity.id) && (
-                    <span className="text-xs text-gray-400">Revoked</span>
+                    <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>Revoked</span>
                   )}
                 </div>
               </div>
             ))}
           </div>
 
-          <button className="w-full mt-4 border border-red-200 text-red-600 py-2 rounded-lg text-sm font-medium hover:bg-red-50 transition-colors bg-white cursor-pointer">
+          <button type="button" className="w-full mt-4 py-2 rounded-lg text-sm font-medium font-mono cursor-pointer border-none" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)", border: "1px solid rgba(255,51,51,0.3)" }}>
             Sign out all other sessions
           </button>
         </div>
@@ -174,48 +179,52 @@ function SuspiciousActivityDemo() {
 
       {/* New device approval */}
       {scenario === "newdevice" && deviceApproved === null && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div className="rounded-2xl p-4 sm:p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <div className="flex items-start gap-3 mb-4">
-            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-              <Smartphone className="w-5 h-5 text-blue-600" />
+            <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(0,229,255,0.15)" }}>
+              <Smartphone className="w-5 h-5" style={{ color: "var(--cyan)" }} />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-gray-900">New device sign-in</h2>
-              <p className="text-sm text-gray-500">Confirm this sign-in from a new device.</p>
+              <h2 className="text-lg font-bold font-mono" style={{ color: "var(--text-bright)" }}>New device sign-in</h2>
+              <p className="text-sm font-mono" style={{ color: "var(--text)" }}>Confirm this sign-in from a new device.</p>
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-            <div className="grid grid-cols-2 gap-3 text-xs">
+          <div className="rounded-lg p-4 mb-4" style={{ background: "rgba(0,229,255,0.05)", border: "1px solid rgba(0,229,255,0.2)" }}>
+            <div className="grid grid-cols-2 gap-3 text-xs font-mono">
               <div>
-                <span className="text-blue-400">Device</span>
-                <p className="text-blue-800 font-medium">Safari on iPad</p>
+                <span style={{ color: "var(--text-dim)" }}>Device</span>
+                <p className="font-medium" style={{ color: "var(--cyan)" }}>Safari on iPad</p>
               </div>
               <div>
-                <span className="text-blue-400">Location</span>
-                <p className="text-blue-800 font-medium">Helsinki, Finland</p>
+                <span style={{ color: "var(--text-dim)" }}>Location</span>
+                <p className="font-medium" style={{ color: "var(--cyan)" }}>Helsinki, Finland</p>
               </div>
               <div>
-                <span className="text-blue-400">Time</span>
-                <p className="text-blue-800 font-medium">Just now</p>
+                <span style={{ color: "var(--text-dim)" }}>Time</span>
+                <p className="font-medium" style={{ color: "var(--cyan)" }}>Just now</p>
               </div>
               <div>
-                <span className="text-blue-400">Near</span>
-                <p className="text-blue-800 font-medium">Your usual location</p>
+                <span style={{ color: "var(--text-dim)" }}>Near</span>
+                <p className="font-medium" style={{ color: "var(--green)" }}>Your usual location</p>
               </div>
             </div>
           </div>
 
           <div className="space-y-2">
             <button
+              type="button"
               onClick={() => setDeviceApproved(true)}
-              className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors border-none cursor-pointer"
+              className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer"
+              style={{ background: "var(--green)", color: "var(--bg)" }}
             >
               Yes, approve this device
             </button>
             <button
+              type="button"
               onClick={() => setDeviceApproved(false)}
-              className="w-full border border-red-200 text-red-600 py-2.5 rounded-lg font-medium text-sm hover:bg-red-50 transition-colors bg-white cursor-pointer"
+              className="w-full py-2.5 rounded-lg font-medium font-mono text-sm cursor-pointer"
+              style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)", border: "1px solid rgba(255,51,51,0.3)" }}
             >
               No, block this device
             </button>
@@ -224,12 +233,12 @@ function SuspiciousActivityDemo() {
       )}
 
       {scenario === "newdevice" && deviceApproved !== null && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 text-center">
-          <div className={`w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 ${deviceApproved ? "bg-green-100" : "bg-red-100"}`}>
-            {deviceApproved ? <CheckCircle2 className="w-7 h-7 text-green-600" /> : <XCircle className="w-7 h-7 text-red-600" />}
+        <div className="rounded-2xl p-4 sm:p-6 text-center" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: deviceApproved ? "rgba(0,255,65,0.15)" : "rgba(255,51,51,0.15)" }}>
+            {deviceApproved ? <CheckCircle2 className="w-7 h-7" style={{ color: "var(--green)" }} /> : <XCircle className="w-7 h-7" style={{ color: "var(--red)" }} />}
           </div>
-          <h2 className="text-lg font-bold text-gray-900 mb-1">{deviceApproved ? "Device approved" : "Device blocked"}</h2>
-          <p className="text-sm text-gray-500">
+          <h2 className="text-lg font-bold font-mono mb-1" style={{ color: deviceApproved ? "var(--green)" : "var(--red)" }}>{deviceApproved ? "Device approved" : "Device blocked"}</h2>
+          <p className="text-sm font-mono" style={{ color: "var(--text)" }}>
             {deviceApproved
               ? "Safari on iPad is now a trusted device."
               : "The sign-in attempt was blocked and the session was terminated."}
