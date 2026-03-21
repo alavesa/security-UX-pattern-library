@@ -58,7 +58,7 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "industrial", tags: ["industrial", "ISA-18.2", "EEMUA 191", "alarm management", "HMI"] },
   { path: "/patterns/industrial/navigation-levels", label: "Navigation & Levels of Detail", category: "industrial", tags: ["industrial", "ISA-101", "HMI", "navigation", "drill-down", "levels of detail"] },
   // Governance
-  { path: "/patterns/governance/design-review", label: "Security Design Review", category: "governance", tags: ["governance", "design system", "review", "checklist", "process"] },
+  { path: "/patterns/governance/design-review", label: "Security Design Review", category: "governance", tags: ["governance", "review process", "compliance", "checklist", "audit"] },
 ];
 
 export const ALL_PATTERNS: PatternInfo[] = RAW_PATTERNS.map(p => ({

@@ -16,7 +16,7 @@ function SecurityDesignReviewDemo() {
     { id: "a11y", label: "Security flows keyboard accessible", category: "Accessibility", critical: true },
     { id: "aria", label: "ARIA roles on all interactive elements", category: "Accessibility", critical: false },
     { id: "industrial", label: "Touch targets meet IEC 62443 (if applicable)", category: "Industrial", critical: false },
-    { id: "tokens", label: "Design tokens used consistently", category: "Design System", critical: false },
+    { id: "tokens", label: "Security patterns applied consistently", category: "Consistency", critical: false },
   ];
 
   const criticalComplete = REVIEW_ITEMS.filter(i => i.critical).every(i => checks[i.id]);
@@ -108,8 +108,8 @@ function SecurityDesignReviewDemo() {
       </div>
 
       <div className="mt-4 p-3 rounded-lg text-xs" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <p style={{ color: "var(--green)" }}><strong>Design system governance pattern:</strong></p>
-        <p style={{ color: "var(--text)" }}>This is the process for how security UX patterns are reviewed before they ship. Critical items (auth, consent, accessibility) must pass before a design can move to development. This ensures consistency across all teams using the design system.</p>
+        <p style={{ color: "var(--green)" }}><strong>Security UX governance pattern:</strong></p>
+        <p style={{ color: "var(--text)" }}>This is the process for how security UX patterns are reviewed before they ship. Critical items (auth, consent, accessibility) must pass before a design can move to development. This ensures consistency across all teams and products.</p>
       </div>
 
       <button onClick={reset} className="mt-2 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>Reset demo</button>
@@ -122,9 +122,9 @@ export function SecurityDesignReviewPattern() {
     <div>
       <PatternHeader
         title="Security Design Review"
-        description="A governance process for reviewing security UX before it ships. Ensures design system patterns are used consistently, critical items are verified, and there's a clear approval workflow."
+        description="A governance process for reviewing security UX before it ships. Ensures patterns are applied consistently, critical items are verified, and there's a clear approval workflow."
         severity="high"
-        tags={["Governance", "Design System", "Process"]}
+        tags={["Governance", "Review Process", "Compliance"]}
       />
 
       <DemoContainer label="security design review process">
@@ -150,7 +150,7 @@ export function SecurityDesignReviewPattern() {
           "Don't assume one review covers everything — re-review after significant changes",
           "Don't make governance about policing — frame it as quality assurance and support",
         ]}
-        securityRationale="Design system governance prevents security regressions. Without a review process, each team reinvents security UX — some well, some poorly. The review checklist ensures: consistent patterns across products, critical items (auth, consent, accessibility) always verified, and design token usage prevents drift. The key insight from 20 years of industrial design leadership: governance works when it's lightweight and supportive, not when it's heavy and punitive."
+        securityRationale="Security UX governance prevents regressions. Without a review process, each team reinvents security UX — some well, some poorly. The review checklist ensures: consistent patterns across products, critical items (auth, consent, accessibility) always verified, and security standards enforced. The key insight from 20 years of industrial design leadership: governance works when it's lightweight and supportive, not when it's heavy and punitive."
         accessibilityNotes={[
           "The review checklist itself must be accessible — keyboard-navigable checkboxes",
           "Accessibility checks are critical items, not optional",

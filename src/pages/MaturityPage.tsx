@@ -96,7 +96,7 @@ const QUESTIONS: MaturityQuestion[] = [
       "Security is an afterthought, bolted on at the end",
       "Security considered during design, basic guidelines exist",
       "Security UX patterns adopted, regular audits, designer-security collaboration",
-      "Security UX embedded in design system, continuous testing, user research on security flows",
+      "Security UX patterns embedded across all products, continuous testing, user research on security flows",
     ],
   },
   {
