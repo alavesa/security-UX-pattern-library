@@ -28,6 +28,7 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/auth/account-recovery", label: "Account Recovery", category: "auth", tags: ["authentication", "OWASP A07", "CWE-640", "password reset"] },
   { path: "/patterns/auth/passkeys", label: "Passkeys / WebAuthn", category: "auth", tags: ["authentication", "WebAuthn", "FIDO2", "passkey", "biometric", "phishing-resistant"] },
   { path: "/patterns/auth/oauth-consent", label: "OAuth Consent", category: "auth", tags: ["authentication", "OAuth", "consent", "permissions", "least privilege", "CWE-250"] },
+  { path: "/patterns/auth/accessible-auth", label: "Accessible Authentication", category: "auth", tags: ["authentication", "WCAG 2.2", "SC 3.3.8", "ARIA", "accessibility", "screen reader", "CAPTCHA alternative"] },
   // Threat
   { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "threat", tags: ["incident response", "GDPR Art. 33", "CWE-200", "breach"] },
   { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "threat", tags: ["threat response", "OWASP A07", "CWE-601", "phishing"] },

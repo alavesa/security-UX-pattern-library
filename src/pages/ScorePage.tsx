@@ -20,6 +20,7 @@ const CHECKS: CheckItem[] = [
   { id: "auth-recovery", question: "Account recovery doesn't reveal if email exists", category: "Authentication", weight: 4, tip: "Same response for existing and non-existing accounts" },
   { id: "auth-passkeys", question: "Passkeys / WebAuthn supported as a login option", category: "Authentication", weight: 3, tip: "Phishing-resistant, no passwords to steal — FIDO2 standard" },
   { id: "auth-oauth", question: "OAuth consent screens clearly show requested permissions", category: "Authentication", weight: 3, tip: "Users must understand what data they're sharing (CWE-250)" },
+  { id: "auth-accessible", question: "Authentication works without CAPTCHA or cognitive function tests", category: "Authentication", weight: 4, tip: "WCAG 2.2 SC 3.3.8 — passkeys, magic links, hardware keys as alternatives" },
 
   // Data Protection (25 points)
   { id: "data-encryption-indicator", question: "Users can see what data is encrypted", category: "Data Protection", weight: 4, tip: "Transparency about encryption builds trust" },

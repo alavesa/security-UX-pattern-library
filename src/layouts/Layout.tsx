@@ -21,6 +21,7 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/auth/account-recovery", label: "account_recovery", icon: UserCheck },
       { path: "/patterns/auth/passkeys", label: "passkeys", icon: Key },
       { path: "/patterns/auth/oauth-consent", label: "oauth_consent", icon: ExternalLink },
+      { path: "/patterns/auth/accessible-auth", label: "accessible_auth", icon: Eye },
     ],
   },
   {

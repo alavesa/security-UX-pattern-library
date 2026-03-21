@@ -24,6 +24,7 @@ import { SessionTimeoutPattern } from "./patterns/auth/SessionTimeoutPattern";
 import { AccountRecoveryPattern } from "./patterns/auth/AccountRecoveryPattern";
 import { PasskeysPattern } from "./patterns/auth/PasskeysPattern";
 import { OAuthConsentPattern } from "./patterns/auth/OAuthConsentPattern";
+import { AccessibleAuthPattern } from "./patterns/auth/AccessibleAuthPattern";
 import { BreachNotificationPattern } from "./patterns/threat/BreachNotificationPattern";
 import { PhishingWarningPattern } from "./patterns/threat/PhishingWarningPattern";
 import { SuspiciousActivityPattern } from "./patterns/threat/SuspiciousActivityPattern";
@@ -69,6 +70,7 @@ export default function App() {
           <Route path="patterns/auth/account-recovery" element={<PatternPage><AccountRecoveryPattern /></PatternPage>} />
           <Route path="patterns/auth/passkeys" element={<PatternPage><PasskeysPattern /></PatternPage>} />
           <Route path="patterns/auth/oauth-consent" element={<PatternPage><OAuthConsentPattern /></PatternPage>} />
+          <Route path="patterns/auth/accessible-auth" element={<PatternPage><AccessibleAuthPattern /></PatternPage>} />
           <Route path="patterns/threat/breach-notification" element={<PatternPage><BreachNotificationPattern /></PatternPage>} />
           <Route path="patterns/threat/phishing-warning" element={<PatternPage><PhishingWarningPattern /></PatternPage>} />
           <Route path="patterns/threat/suspicious-activity" element={<PatternPage><SuspiciousActivityPattern /></PatternPage>} />
