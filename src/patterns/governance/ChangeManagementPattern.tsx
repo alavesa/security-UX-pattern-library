@@ -78,9 +78,9 @@ function ChangeManagementDemo() {
               }}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono border-none cursor-pointer whitespace-nowrap"
               style={{
-                background: isActive ? "var(--green-glow)" : isPast ? "rgba(0,255,65,0.05)" : "transparent",
-                color: isActive ? "var(--green)" : isPast ? "var(--green-dim)" : "var(--text-dim)",
-                border: isActive ? "1px solid var(--green-border)" : "1px solid var(--border)",
+                background: isActive ? "var(--governance-glow)" : isPast ? "rgba(204,204,204,0.05)" : "transparent",
+                color: isActive ? "var(--governance-color)" : isPast ? "var(--text)" : "var(--text-dim)",
+                border: isActive ? "1px solid var(--governance-border)" : "1px solid var(--border)",
               }}
             >
               <Icon className="w-3 h-3" /> {p.label}

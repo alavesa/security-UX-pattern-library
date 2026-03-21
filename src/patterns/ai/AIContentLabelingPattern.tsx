@@ -11,7 +11,7 @@ function AIContentLabelingDemo() {
     <div className="w-full max-w-lg">
       <div role="tablist" className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["social", "article", "image"] as const).map(s => (
-          <button type="button" role="tab" aria-selected={scenario === s} aria-controls={`tabpanel-${s}`} id={`tab-${s}`} key={s} onClick={() => setScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button type="button" role="tab" aria-selected={scenario === s} aria-controls={`tabpanel-${s}`} id={`tab-${s}`} key={s} onClick={() => setScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--ai-glow)" : "transparent", color: scenario === s ? "var(--ai-color)" : "var(--text)" }}>
             {s === "social" ? "Social Feed" : s === "article" ? "Article" : "Image/Media"}
           </button>
         ))}
@@ -19,22 +19,22 @@ function AIContentLabelingDemo() {
 
       {/* Social media feed with AI labels */}
       {scenario === "social" && (
-        <div role="tabpanel" id="tabpanel-social" aria-labelledby="tab-social" className="rounded-2xl border overflow-hidden">
-          <div className="border-b px-4 py-3">
-            <h3 className="text-sm font-semibold">Your Feed</h3>
+        <div role="tabpanel" id="tabpanel-social" aria-labelledby="tab-social" className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <div className="px-4 py-3" style={{ borderBottom: "1px solid var(--border)" }}>
+            <h3 className="text-sm font-semibold font-mono" style={{ color: "var(--text-bright)" }}>Your Feed</h3>
           </div>
 
           {/* Human post */}
-          <div className="p-4 border-b">
+          <div className="p-4" style={{ borderBottom: "1px solid var(--border)" }}>
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs">JD</div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs" style={{ background: "var(--bg-elevated)", color: "var(--text-bright)" }}>JD</div>
               <div>
-                <p className="text-sm font-medium">Jane Doe</p>
-                <p className="text-xs">2 hours ago</p>
+                <p className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>Jane Doe</p>
+                <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>2 hours ago</p>
               </div>
             </div>
-            <p className="text-sm">Just finished hiking Mt. Rainier! The view from the summit was incredible.</p>
-            <div className="mt-2 rounded-lg h-32 flex items-center justify-center text-xs">
+            <p className="text-sm font-mono" style={{ color: "var(--text-bright)" }}>Just finished hiking Mt. Rainier! The view from the summit was incredible.</p>
+            <div className="mt-2 rounded-lg h-32 flex items-center justify-center text-xs font-mono" style={{ background: "var(--bg-elevated)", color: "var(--text-dim)" }}>
               [Photo]
             </div>
           </div>
@@ -71,20 +71,20 @@ function AIContentLabelingDemo() {
           {/* AI-assisted post */}
           <div className="p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs">MK</div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs" style={{ background: "var(--bg-elevated)", color: "var(--text-bright)" }}>MK</div>
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-medium">Mark Kim</p>
-                  <span className="text-xs px-1.5 py-0.5 rounded flex items-center gap-1">
+                  <p className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>Mark Kim</p>
+                  <span className="text-xs px-1.5 py-0.5 rounded flex items-center gap-1 font-mono" style={{ background: "rgba(192,132,252,0.1)", color: "var(--ai-color)" }}>
                     <Sparkles className="w-3 h-3" /> AI Assisted
                   </span>
                 </div>
-                <p className="text-xs">30 min ago</p>
+                <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>30 min ago</p>
               </div>
             </div>
-            <p className="text-sm">Here's my summary of the Q4 earnings call...</p>
-            <div className="mt-2 border rounded-lg p-3 text-xs">
-              <strong>AI-assisted content:</strong> This post was written by a human with AI writing assistance. The ideas are the author's; the wording was refined by AI.
+            <p className="text-sm font-mono" style={{ color: "var(--text-bright)" }}>Here's my summary of the Q4 earnings call...</p>
+            <div className="mt-2 rounded-lg p-3 text-xs font-mono" style={{ background: "rgba(192,132,252,0.05)", border: "1px solid rgba(192,132,252,0.15)", color: "var(--text)" }}>
+              <strong style={{ color: "var(--ai-color)" }}>AI-assisted content:</strong> This post was written by a human with AI writing assistance. The ideas are the author's; the wording was refined by AI.
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@ function AIContentLabelingDemo() {
 
       {/* Article with AI labeling */}
       {scenario === "article" && (
-        <div role="tabpanel" id="tabpanel-article" aria-labelledby="tab-article" className="rounded-2xl border p-6">
+        <div role="tabpanel" id="tabpanel-article" aria-labelledby="tab-article" className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           {/* AI-generated article */}
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
@@ -113,38 +113,38 @@ function AIContentLabelingDemo() {
                   <Info className="w-3.5 h-3.5" /> Transparency notice
                 </h4>
                 <ul className="text-xs font-mono space-y-1" style={{ color: "var(--text)" }}>
-                  <li><strong>Generated by:</strong> Large language model (AI)</li>
-                  <li><strong>Reviewed by:</strong> Human editor (fact-checked key claims)</li>
-                  <li><strong>Training data:</strong> Web content up to January 2026</li>
-                  <li><strong>Limitations:</strong> May contain inaccuracies or outdated information</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Generated by:</strong> Large language model (AI)</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Reviewed by:</strong> Human editor (fact-checked key claims)</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Training data:</strong> Web content up to January 2026</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Limitations:</strong> May contain inaccuracies or outdated information</li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div className="border rounded-lg p-3 text-xs">
-            <strong>EU AI Act Art. 50(4):</strong> AI-generated text published to inform the public on matters of public interest must be labeled as AI-generated, unless the content has been subjected to human review and a natural person holds editorial responsibility.
+          <div className="rounded-lg p-3 text-xs font-mono" style={{ background: "var(--ai-glow)", border: "1px solid var(--ai-border)", color: "var(--ai-color)" }}>
+            <strong>EU AI Act Art. 50(4):</strong> <span style={{ color: "var(--text)" }}>AI-generated text published to inform the public on matters of public interest must be labeled as AI-generated, unless the content has been subjected to human review and a natural person holds editorial responsibility.</span>
           </div>
         </div>
       )}
 
       {/* AI-generated image labeling */}
       {scenario === "image" && (
-        <div role="tabpanel" id="tabpanel-image" aria-labelledby="tab-image" className="rounded-2xl border p-6">
-          <h3 className="font-bold text-sm mb-4">Content authenticity signals</h3>
+        <div role="tabpanel" id="tabpanel-image" aria-labelledby="tab-image" className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h3 className="font-bold font-mono text-sm mb-4" style={{ color: "var(--text-bright)" }}>Content authenticity signals</h3>
 
           <div className="space-y-4">
             {/* Real photo */}
-            <div className="border rounded-lg overflow-hidden">
-              <div className="h-32 flex items-center justify-center text-xs relative">
+            <div className="rounded-lg overflow-hidden" style={{ border: "1px solid var(--green-border)" }}>
+              <div className="h-32 flex items-center justify-center text-xs font-mono relative" style={{ background: "rgba(0,255,65,0.05)", color: "var(--text-dim)" }}>
                 [Real photograph]
-                <span className="absolute bottom-2 left-2 text-xs text-white px-2 py-0.5 rounded flex items-center gap-1">
+                <span className="absolute bottom-2 left-2 text-xs px-2 py-0.5 rounded flex items-center gap-1 font-mono" style={{ background: "rgba(0,255,65,0.8)", color: "var(--bg)" }}>
                   <CheckCircle2 className="w-3 h-3" /> Authentic
                 </span>
               </div>
               <div className="p-3">
-                <p className="text-xs flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Original photograph — camera metadata verified</p>
-                <p className="text-xs mt-1">Canon EOS R5 · ISO 200 · f/8 · 1/250s · No AI modifications detected</p>
+                <p className="text-xs font-mono flex items-center gap-1" style={{ color: "var(--green)" }}><CheckCircle2 className="w-3.5 h-3.5" /> Original photograph — camera metadata verified</p>
+                <p className="text-xs font-mono mt-1" style={{ color: "var(--text-dim)" }}>Canon EOS R5 · ISO 200 · f/8 · 1/250s · No AI modifications detected</p>
               </div>
             </div>
 
@@ -177,8 +177,8 @@ function AIContentLabelingDemo() {
             </div>
           </div>
 
-          <div className="border rounded-lg p-3 mt-4 text-xs">
-            <strong>C2PA Standard:</strong> The Coalition for Content Provenance and Authenticity provides machine-readable metadata for content authenticity. EU AI Act Art. 50(2) requires AI-generated content to be marked in machine-readable format.
+          <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "var(--ai-glow)", border: "1px solid var(--ai-border)", color: "var(--ai-color)" }}>
+            <strong>C2PA Standard:</strong> <span style={{ color: "var(--text)" }}>The Coalition for Content Provenance and Authenticity provides machine-readable metadata for content authenticity. EU AI Act Art. 50(2) requires AI-generated content to be marked in machine-readable format.</span>
           </div>
         </div>
       )}

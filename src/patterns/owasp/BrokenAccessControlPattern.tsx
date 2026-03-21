@@ -33,7 +33,7 @@ function BrokenAccessControlDemo() {
       {/* Scenario toggle */}
       <div role="tablist" className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["rbac", "idor", "elevation"] as const).map(s => (
-          <button key={s} role="tab" aria-selected={scenario === s} aria-controls={`panel-${s}`} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button key={s} role="tab" aria-selected={scenario === s} aria-controls={`panel-${s}`} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--amber-glow)" : "transparent", color: scenario === s ? "var(--amber)" : "var(--text)" }}>
             {s === "rbac" ? "Role-Based UI" : s === "idor" ? "IDOR Prevention" : "Privilege Escalation"}
           </button>
         ))}
@@ -41,15 +41,16 @@ function BrokenAccessControlDemo() {
 
       {/* RBAC demo */}
       {scenario === "rbac" && (
-        <div role="tabpanel" id="panel-rbac" className="rounded-2xl border p-6">
+        <div role="tabpanel" id="panel-rbac" className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-sm">Document: Q4 Report</h3>
+            <h3 className="font-bold font-mono text-sm" style={{ color: "var(--text-bright)" }}>Document: Q4 Report</h3>
             <div className="flex items-center gap-2">
-              <Users className="w-4 h-4" />
+              <Users className="w-4 h-4" style={{ color: "var(--text)" }} />
               <select
                 value={currentRole}
                 onChange={e => setCurrentRole(e.target.value as Role)}
-                className="text-xs border rounded px-2 py-1"
+                className="text-xs font-mono rounded px-2 py-1"
+                style={{ background: "var(--bg)", color: "var(--text-bright)", border: "1px solid var(--border)" }}
               >
                 <option value="viewer">Viewer</option>
                 <option value="editor">Editor</option>
@@ -59,8 +60,8 @@ function BrokenAccessControlDemo() {
           </div>
 
           {/* Permission indicators */}
-          <div className="rounded-lg p-4 mb-4">
-            <p className="text-xs font-medium mb-3">Your permissions as <strong >{currentRole}</strong>:</p>
+          <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+            <p className="text-xs font-medium font-mono mb-3" style={{ color: "var(--text)" }}>Your permissions as <strong style={{ color: "var(--amber)" }}>{currentRole}</strong>:</p>
             <div className="grid grid-cols-2 gap-2">
               {[
                 { label: "View document", allowed: perms.canView },
@@ -68,12 +69,12 @@ function BrokenAccessControlDemo() {
                 { label: "Delete document", allowed: perms.canDelete },
                 { label: "Manage users", allowed: perms.canManageUsers },
               ].map(({ label, allowed }) => (
-                <div key={label} className="flex items-center gap-2 text-xs">
+                <div key={label} className="flex items-center gap-2 text-xs font-mono">
                   {allowed
-                    ? <CheckCircle2 className="w-3.5 h-3.5" />
-                    : <Lock className="w-3.5 h-3.5" />
+                    ? <CheckCircle2 className="w-3.5 h-3.5" style={{ color: "var(--green)" }} />
+                    : <Lock className="w-3.5 h-3.5" style={{ color: "var(--text-dim)" }} />
                   }
-                  <span className={allowed ? "" : ""}>{label}</span>
+                  <span style={{ color: allowed ? "var(--green)" : "var(--text-dim)" }}>{label}</span>
                 </div>
               ))}
             </div>
@@ -81,14 +82,15 @@ function BrokenAccessControlDemo() {
 
           {/* Action buttons */}
           <div className="space-y-2">
-            <button className="w-full flex items-center justify-center gap-2 text-white py-2 rounded-lg text-sm font-medium border-none cursor-pointer">
+            <button className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium font-mono border-none cursor-pointer" style={{ background: "var(--amber)", color: "var(--bg)" }}>
               <Eye className="w-4 h-4" /> View Document
             </button>
             <button
               aria-disabled={!perms.canEdit}
               aria-label={!perms.canEdit ? 'Edit Document — requires Editor role or above' : undefined}
               onClick={e => { if (!perms.canEdit) { e.preventDefault(); return; } }}
-              className="w-full flex items-center justify-center gap-2 border py-2 rounded-lg text-sm font-medium cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium font-mono cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
+              style={{ background: "transparent", color: perms.canEdit ? "var(--text-bright)" : "var(--text-dim)", border: "1px solid var(--border)" }}
             >
               Edit Document {!perms.canEdit && <Lock className="w-3 h-3" />}
             </button>
@@ -96,35 +98,38 @@ function BrokenAccessControlDemo() {
               aria-disabled={!perms.canDelete}
               aria-label={!perms.canDelete ? 'Delete Document — requires Admin role' : undefined}
               onClick={e => { if (!perms.canDelete) { e.preventDefault(); return; } }}
-              className="w-full flex items-center justify-center gap-2 border py-2 rounded-lg text-sm font-medium cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium font-mono cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
+              style={{ background: "transparent", color: perms.canDelete ? "var(--red)" : "var(--text-dim)", border: "1px solid var(--border)" }}
             >
               Delete Document {!perms.canDelete && <Lock className="w-3 h-3" />}
             </button>
           </div>
 
-          <div className="border rounded-lg p-3 mt-4 text-xs">
-            <strong>Pattern:</strong> Disabled buttons with lock icons show what exists but isn't allowed. Users understand the system's capabilities without being able to misuse them. Switch roles to see how the UI adapts.
+          <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "var(--amber-glow)", border: "1px solid var(--amber-border)", color: "var(--amber)" }}>
+            <strong>Pattern:</strong> <span style={{ color: "var(--text)" }}>Disabled buttons with lock icons show what exists but isn't allowed. Users understand the system's capabilities without being able to misuse them. Switch roles to see how the UI adapts.</span>
           </div>
         </div>
       )}
 
       {/* IDOR prevention */}
       {scenario === "idor" && (
-        <div role="tabpanel" id="panel-idor" className="rounded-2xl border p-6">
-          <h3 className="font-bold text-sm mb-4">Access user profile</h3>
+        <div role="tabpanel" id="panel-idor" className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h3 className="font-bold font-mono text-sm mb-4" style={{ color: "var(--text-bright)" }}>Access user profile</h3>
 
           <div className="mb-4">
-            <label className="block text-xs font-medium mb-1">User ID</label>
+            <label className="block text-xs font-medium font-mono mb-1" style={{ color: "var(--text-bright)" }}>User ID</label>
             <div className="flex gap-2">
               <input
                 value={idorId}
                 onChange={e => { setIdorId(e.target.value); setIdorSubmitted(false); }}
-                className="flex-1 px-3 py-2 border rounded-lg text-sm font-mono"
+                className="flex-1 px-3 py-2 rounded-lg text-sm font-mono"
                 placeholder="Enter user ID"
+                style={{ background: "var(--bg)", color: "var(--text-bright)", border: "1px solid var(--border)" }}
               />
               <button
                 onClick={() => setIdorSubmitted(true)}
-                className="px-4 py-2 text-white rounded-lg text-sm font-medium border-none cursor-pointer"
+                className="px-4 py-2 rounded-lg text-sm font-medium font-mono border-none cursor-pointer"
+                style={{ background: "var(--amber)", color: "var(--bg)" }}
               >
                 View
               </button>
@@ -132,87 +137,86 @@ function BrokenAccessControlDemo() {
           </div>
 
           {idorSubmitted && idorId === "12345" && (
-            <div className="border rounded-lg p-4">
+            <div className="rounded-lg p-4" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
               <div className="flex items-center gap-2 mb-2">
-                <CheckCircle2 className="w-4 h-4" />
-                <span className="text-sm font-medium">Access granted</span>
+                <CheckCircle2 className="w-4 h-4" style={{ color: "var(--green)" }} />
+                <span className="text-sm font-medium font-mono" style={{ color: "var(--green)" }}>Access granted</span>
               </div>
-              <p className="text-xs">User ID 12345 — this is your profile.</p>
+              <p className="text-xs font-mono" style={{ color: "var(--text)" }}>User ID 12345 — this is your profile.</p>
             </div>
           )}
 
           {idorSubmitted && idorId !== "12345" && idorId.length > 0 && (
-            <div role="alert" className="border rounded-lg p-4">
+            <div role="alert" className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.25)" }}>
               <div className="flex items-center gap-2 mb-2">
-                <ShieldAlert className="w-4 h-4" />
-                <span className="text-sm font-medium">Access denied</span>
+                <ShieldAlert className="w-4 h-4" style={{ color: "var(--red)" }} />
+                <span className="text-sm font-medium font-mono" style={{ color: "var(--red)" }}>Access denied</span>
               </div>
-              <p className="text-xs mb-2">You don't have permission to view user {idorId}'s profile.</p>
-              <p className="text-xs">This attempt has been logged.</p>
+              <p className="text-xs font-mono mb-2" style={{ color: "var(--text)" }}>You don't have permission to view user {idorId}'s profile.</p>
+              <p className="text-xs font-mono" style={{ color: "var(--amber)" }}>This attempt has been logged.</p>
             </div>
           )}
 
-          <div className="border rounded-lg p-3 mt-4 text-xs">
-            <strong>IDOR (Insecure Direct Object Reference):</strong> Changing the user ID in the URL shouldn't give access to other users' data. The server must verify authorization on every request — the UI should show a clear "Access denied" with a logged warning, not just return empty data.
+          <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "var(--amber-glow)", border: "1px solid var(--amber-border)", color: "var(--amber)" }}>
+            <strong>IDOR (Insecure Direct Object Reference):</strong> <span style={{ color: "var(--text)" }}>Changing the user ID in the URL shouldn't give access to other users' data. The server must verify authorization on every request — the UI should show a clear "Access denied" with a logged warning, not just return empty data.</span>
           </div>
 
-          <p className="text-xs mt-3">Try changing the ID to any other number to see the IDOR prevention.</p>
+          <p className="text-xs font-mono mt-3" style={{ color: "var(--text-dim)" }}>Try changing the ID to any other number to see the IDOR prevention.</p>
         </div>
       )}
 
       {/* Privilege escalation */}
       {scenario === "elevation" && (
-        <div role="tabpanel" id="panel-elevation" className="rounded-2xl border p-6">
-          <h3 className="font-bold text-sm mb-2">Account settings</h3>
-          <p className="text-xs mb-4">Current role: <strong>Editor</strong></p>
+        <div role="tabpanel" id="panel-elevation" className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h3 className="font-bold font-mono text-sm mb-2" style={{ color: "var(--text-bright)" }}>Account settings</h3>
+          <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>Current role: <strong style={{ color: "var(--amber)" }}>Editor</strong></p>
 
           <div className="space-y-3 mb-4">
-            <div className="flex items-center justify-between py-2 border-b">
-              <span className="text-sm">Change display name</span>
-              <span className="text-xs">Allowed</span>
-            </div>
-            <div className="flex items-center justify-between py-2 border-b">
-              <span className="text-sm">Change email</span>
-              <span className="text-xs">Allowed</span>
-            </div>
-            <div className="flex items-center justify-between py-2 border-b">
-              <span className="text-sm">Change password</span>
-              <span className="text-xs">Allowed</span>
-            </div>
-            <div className="flex items-center justify-between py-2 border-b">
-              <span className="text-sm">Change role to Admin</span>
-              <span className="text-xs flex items-center gap-1"><Lock className="w-3 h-3" /> Admin only</span>
+            {[
+              { label: "Change display name", status: "Allowed", allowed: true },
+              { label: "Change email", status: "Allowed", allowed: true },
+              { label: "Change password", status: "Allowed", allowed: true },
+            ].map(({ label, status }) => (
+              <div key={label} className="flex items-center justify-between py-2" style={{ borderBottom: "1px solid var(--border)" }}>
+                <span className="text-sm font-mono" style={{ color: "var(--text-bright)" }}>{label}</span>
+                <span className="text-xs font-mono" style={{ color: "var(--green)" }}>{status}</span>
+              </div>
+            ))}
+            <div className="flex items-center justify-between py-2" style={{ borderBottom: "1px solid var(--border)" }}>
+              <span className="text-sm font-mono" style={{ color: "var(--text-bright)" }}>Change role to Admin</span>
+              <span className="text-xs font-mono flex items-center gap-1" style={{ color: "var(--text-dim)" }}><Lock className="w-3 h-3" /> Admin only</span>
             </div>
           </div>
 
           {!elevationAttempted ? (
             <button
               onClick={() => setElevationAttempted(true)}
-              className="w-full border py-2.5 rounded-lg text-sm font-medium cursor-pointer"
+              className="w-full py-2.5 rounded-lg text-sm font-medium font-mono cursor-pointer"
+              style={{ background: "transparent", color: "var(--amber)", border: "1px solid var(--amber-border)" }}
             >
               Simulate: try to change role via API manipulation
             </button>
           ) : (
-            <div role="alert" className="border-2 rounded-lg p-4">
+            <div role="alert" className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.08)", border: "2px solid rgba(255,51,51,0.3)" }}>
               <div className="flex items-start gap-2 mb-3">
-                <ShieldAlert className="w-5 h-5 mt-0.5 shrink-0" />
+                <ShieldAlert className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} />
                 <div>
-                  <p className="text-sm font-bold">Privilege escalation blocked</p>
-                  <p className="text-xs mt-1">
+                  <p className="text-sm font-bold font-mono" style={{ color: "var(--red)" }}>Privilege escalation blocked</p>
+                  <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>
                     Attempted role change from "editor" to "admin" was blocked by server-side authorization.
                   </p>
                 </div>
               </div>
 
-              <div className="border rounded p-3 font-mono text-xs space-y-1">
-                <div><span >POST</span> /api/users/12345/role</div>
-                <div><span >Body:</span> {"{"} "role": "admin" {"}"}</div>
-                <div><span >Response:</span> 403 Forbidden</div>
-                <div><span >Log:</span> PRIVILEGE_ESCALATION_ATTEMPT user=12345</div>
+              <div className="rounded p-3 font-mono text-xs space-y-1" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                <div><span style={{ color: "var(--red)" }}>POST</span> <span style={{ color: "var(--text)" }}>/api/users/12345/role</span></div>
+                <div><span style={{ color: "var(--amber)" }}>Body:</span> <span style={{ color: "var(--text)" }}>{"{"} "role": "admin" {"}"}</span></div>
+                <div><span style={{ color: "var(--red)" }}>Response:</span> <span style={{ color: "var(--red)" }}>403 Forbidden</span></div>
+                <div><span style={{ color: "var(--amber)" }}>Log:</span> <span style={{ color: "var(--text)" }}>PRIVILEGE_ESCALATION_ATTEMPT user=12345</span></div>
               </div>
 
-              <div className="border rounded-lg p-3 mt-3 text-xs">
-                <strong>Pattern:</strong> Even if a user manipulates the API request, the server blocks it AND logs the attempt. The UI shows what happened transparently — security through visibility.
+              <div className="rounded-lg p-3 mt-3 text-xs font-mono" style={{ background: "var(--amber-glow)", border: "1px solid var(--amber-border)", color: "var(--amber)" }}>
+                <strong>Pattern:</strong> <span style={{ color: "var(--text)" }}>Even if a user manipulates the API request, the server blocks it AND logs the attempt. The UI shows what happened transparently — security through visibility.</span>
               </div>
             </div>
           )}

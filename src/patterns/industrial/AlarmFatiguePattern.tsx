@@ -100,19 +100,19 @@ function AlarmFatigueDemo() {
     <div className="w-full max-w-lg">
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["flood", "managed", "shelving"] as const).map(s => (
-          <button key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--industrial-glow)" : "transparent", color: scenario === s ? "var(--industrial-color)" : "var(--text)" }}>
             {s === "flood" ? "Alarm Flood" : s === "managed" ? "Smart Grouping" : "Shelving"}
           </button>
         ))}
       </div>
 
-      <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
-        <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-          <span className="font-mono text-xs flex items-center gap-2" style={{ color: scenario === "flood" ? "#fca5a5" : "#86efac" }}>
+      <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+        <div className="px-4 py-2 flex items-center justify-between" style={{ background: "var(--bg-elevated)", borderBottom: "1px solid var(--border)" }}>
+          <span className="font-mono text-xs flex items-center gap-2" style={{ color: scenario === "flood" ? "var(--red)" : scenario === "shelving" ? "var(--amber)" : "var(--green)" }}>
             {scenario === "flood" ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
-            {scenario === "flood" ? "ALARM FLOOD — 10 alarms in 5 seconds" : "SMART ALARM MANAGEMENT"}
+            {scenario === "flood" ? "ALARM FLOOD — 10 alarms in 5 seconds" : scenario === "shelving" ? "ALARM SHELVING — suppress nuisance alarms" : "SMART ALARM MANAGEMENT"}
           </span>
-          <span className="font-mono text-xs">
+          <span className="font-mono text-xs" style={{ color: "var(--text)" }}>
             {stats.active} active
           </span>
         </div>
@@ -120,8 +120,8 @@ function AlarmFatigueDemo() {
         <div className="max-h-[350px] overflow-y-auto">
           {!running && alarms.length === 0 && (
             <div className="p-8 text-center">
-              <Bell className="w-10 h-10 mx-auto mb-3" />
-              <p className="font-mono text-xs mb-4">
+              <Bell className="w-10 h-10 mx-auto mb-3" style={{ color: "var(--text)" }} />
+              <p className="font-mono text-xs mb-4" style={{ color: "var(--text)" }}>
                 {scenario === "flood"
                   ? "Simulates 10 alarms arriving in 5 seconds — a typical alarm flood scenario"
                   : scenario === "managed"
@@ -129,7 +129,7 @@ function AlarmFatigueDemo() {
                   : "Demonstrates alarm shelving — suppress known nuisance alarms temporarily"
                 }
               </p>
-              <button onClick={() => { hasResetRef.current = false; setRunning(true); }} className="font-mono text-sm bg-amber-600 text-white px-6 py-3 rounded border-none cursor-pointer hover:bg-amber-700">
+              <button onClick={() => { hasResetRef.current = false; setRunning(true); }} className="font-mono text-sm px-6 py-3 rounded border-none cursor-pointer" style={{ background: "var(--industrial-color)", color: "var(--bg)" }}>
                 Start alarm simulation
               </button>
             </div>
@@ -140,10 +140,10 @@ function AlarmFatigueDemo() {
             return (
               <div
                 key={alarm.id}
-                className="flex items-start gap-3 px-4 py-3 border-b font-mono text-xs transition-all"
+                className="flex items-start gap-3 px-4 py-3 font-mono text-xs transition-all"
                 style={{
-                  borderColor: "#1f2937",
-                  background: alarm.acknowledged ? "#111827" : style.bg,
+                  borderBottom: "1px solid var(--border)",
+                  background: alarm.acknowledged ? "var(--bg)" : style.bg,
                   opacity: alarm.acknowledged ? 0.5 : 1,
                 }}
               >
@@ -153,22 +153,22 @@ function AlarmFatigueDemo() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="font-bold uppercase" style={{ color: style.text }}>{alarm.priority}</span>
-                    <span style={{ color: "#6b7280" }}>{alarm.tag}</span>
-                    <span style={{ color: "#374151" }}>{alarm.time}</span>
+                    <span style={{ color: "var(--text-dim)" }}>{alarm.tag}</span>
+                    <span style={{ color: "var(--border)" }}>{alarm.time}</span>
                   </div>
-                  <p className="mt-0.5" style={{ color: alarm.acknowledged ? "#6b7280" : "#e5e7eb" }}>{alarm.message}</p>
+                  <p className="mt-0.5" style={{ color: alarm.acknowledged ? "var(--text-dim)" : "var(--text-bright)" }}>{alarm.message}</p>
                 </div>
                 {!alarm.acknowledged && (
                   <div className="flex gap-1 shrink-0">
-                    <button onClick={() => acknowledge(alarm.id)} className="text-xs px-2 py-1 rounded bg-gray-700 border-none cursor-pointer hover:bg-gray-600">ACK</button>
+                    <button onClick={() => acknowledge(alarm.id)} className="text-xs px-2 py-1 rounded border-none cursor-pointer" style={{ background: "var(--bg-elevated)", color: "var(--text-bright)" }}>ACK</button>
                     {scenario === "shelving" && (
-                      <button onClick={() => shelve(alarm.id)} className="text-xs px-2 py-1 rounded bg-gray-700 border-none cursor-pointer hover:bg-gray-600">
+                      <button onClick={() => shelve(alarm.id)} className="text-xs px-2 py-1 rounded border-none cursor-pointer" style={{ background: "var(--bg-elevated)", color: "var(--text-bright)" }}>
                         <BellOff className="w-3 h-3" />
                       </button>
                     )}
                   </div>
                 )}
-                {alarm.acknowledged && <CheckCircle2 className="w-4 h-4 shrink-0" />}
+                {alarm.acknowledged && <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: "var(--text-dim)" }} />}
               </div>
             );
           })}
@@ -176,7 +176,7 @@ function AlarmFatigueDemo() {
 
         {/* Summary bar */}
         {alarms.length > 0 && (
-          <div className="bg-gray-800 px-4 py-2 border-t border-gray-700 flex items-center justify-between font-mono text-xs">
+          <div className="px-4 py-2 flex items-center justify-between font-mono text-xs" style={{ background: "var(--bg-elevated)", borderTop: "1px solid var(--border)" }}>
             <div className="flex gap-3">
               <span style={{ color: "#fca5a5" }}>{stats.critical} crit</span>
               <span style={{ color: "#fde68a" }}>{stats.high} high</span>
@@ -184,7 +184,7 @@ function AlarmFatigueDemo() {
               <span style={{ color: "#9ca3af" }}>{stats.low} low</span>
             </div>
             {stats.shelvedCount > 0 && (
-              <span >{stats.shelvedCount} shelved</span>
+              <span style={{ color: "var(--text-dim)" }}>{stats.shelvedCount} shelved</span>
             )}
           </div>
         )}

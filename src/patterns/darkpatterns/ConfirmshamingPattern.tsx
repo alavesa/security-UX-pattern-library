@@ -40,26 +40,26 @@ function ConfirmshamingDemo() {
 
       {/* Dark pattern version */}
       {view === "dark" && (
-        <div className="relative rounded-2xl border-2 overflow-hidden">
-          <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono text-right">
+        <div className="relative rounded-2xl overflow-hidden" style={{ background: "var(--bg-card)", border: "2px solid rgba(255,51,51,0.3)" }}>
+          <div className="absolute top-2 right-2 text-xs px-2 py-0.5 rounded font-mono" style={{ background: "var(--red)", color: "white" }}>
             DARK PATTERN
           </div>
 
           {!darkDismissed ? (
             <div className="p-8 text-center">
-              <Shield className="w-12 h-12 mx-auto mb-4" />
-              <h2 className="text-xl font-bold mb-2">Enable two-factor authentication</h2>
-              <p className="text-sm mb-6">Protect your account with an extra layer of security.</p>
+              <Shield className="w-12 h-12 mx-auto mb-4" style={{ color: "var(--text-bright)" }} />
+              <h2 className="text-xl font-bold font-mono mb-2" style={{ color: "var(--text-bright)" }}>Enable two-factor authentication</h2>
+              <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>Protect your account with an extra layer of security.</p>
 
               <div className="space-y-3">
-                <button type="button" className="w-full text-white py-3 rounded-lg font-semibold text-sm transition-colors border-none cursor-pointer">
+                <button type="button" className="w-full py-3 rounded-lg font-semibold font-mono text-sm transition-colors border-none cursor-pointer" style={{ background: "var(--green)", color: "var(--bg)" }}>
                   Yes, protect my account
                 </button>
                 <button
                   type="button"
                   onClick={() => setDarkDismissed(true)}
-                  className="w-full text-sm py-2 bg-transparent border-none cursor-pointer"
-                  style={{ color: "#999" }}
+                  className="w-full text-sm font-mono py-2 bg-transparent border-none cursor-pointer"
+                  style={{ color: "var(--text-dim)" }}
                 >
                   No thanks, I don't care about my security
                 </button>
@@ -67,11 +67,11 @@ function ConfirmshamingDemo() {
             </div>
           ) : (
             <div className="p-8 text-center">
-              <p className="text-sm mb-4">You dismissed the prompt.</p>
-              <div className="border rounded-lg p-4 text-left">
-                <h3 className="text-sm font-semibold mb-2">What's wrong here:</h3>
-                <ul className="text-xs space-y-1.5">
-                  <li><strong>"I don't care about my security"</strong> — guilts the user for making a valid choice</li>
+              <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>You dismissed the prompt.</p>
+              <div className="rounded-lg p-4 text-left" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.2)" }}>
+                <h3 className="text-sm font-semibold font-mono mb-2" style={{ color: "var(--red)" }}>What's wrong here:</h3>
+                <ul className="text-xs font-mono space-y-1.5" style={{ color: "var(--text)" }}>
+                  <li><strong style={{ color: "var(--text-bright)" }}>"I don't care about my security"</strong> — guilts the user for making a valid choice</li>
                   <li>Implies the user is irresponsible or foolish for declining</li>
                   <li>Only two options: comply or be shamed</li>
                   <li>No "Remind me later" — forcing an immediate decision</li>
@@ -85,37 +85,40 @@ function ConfirmshamingDemo() {
 
       {/* Ethical version */}
       {view === "ethical" && (
-        <div className="relative rounded-2xl border-2 overflow-hidden">
-          <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono text-right">
+        <div className="relative rounded-2xl overflow-hidden" style={{ background: "var(--bg-card)", border: "2px solid var(--green-border)" }}>
+          <div className="absolute top-2 right-2 text-xs px-2 py-0.5 rounded font-mono" style={{ background: "var(--green)", color: "var(--bg)" }}>
             ETHICAL
           </div>
 
           {ethicalChoice === null ? (
             <div className="p-8 text-center">
-              <Shield className="w-12 h-12 mx-auto mb-4" />
-              <h2 className="text-xl font-bold mb-2">Add two-factor authentication?</h2>
-              <p className="text-sm mb-2">This adds an extra verification step when you sign in.</p>
-              <p className="text-xs mb-6">You can always enable this later in Settings → Security.</p>
+              <Shield className="w-12 h-12 mx-auto mb-4" style={{ color: "var(--green)" }} />
+              <h2 className="text-xl font-bold font-mono mb-2" style={{ color: "var(--text-bright)" }}>Add two-factor authentication?</h2>
+              <p className="text-sm font-mono mb-2" style={{ color: "var(--text)" }}>This adds an extra verification step when you sign in.</p>
+              <p className="text-xs font-mono mb-6" style={{ color: "var(--text-dim)" }}>You can always enable this later in Settings → Security.</p>
 
               <div className="space-y-2">
                 <button
                   type="button"
                   onClick={() => setEthicalChoice("enabled")}
-                  className="w-full text-white py-3 rounded-lg font-medium text-sm transition-colors border-none cursor-pointer"
+                  className="w-full py-3 rounded-lg font-medium font-mono text-sm transition-colors border-none cursor-pointer"
+                  style={{ background: "var(--green)", color: "var(--bg)" }}
                 >
                   Set up now
                 </button>
                 <button
                   type="button"
                   onClick={() => setEthicalChoice("later")}
-                  className="w-full border py-2.5 rounded-lg text-sm font-medium hover: transition-colors cursor-pointer"
+                  className="w-full py-2.5 rounded-lg text-sm font-medium font-mono transition-colors cursor-pointer"
+                  style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}
                 >
                   Remind me later
                 </button>
                 <button
                   type="button"
                   onClick={() => setEthicalChoice("skip")}
-                  className="w-full text-sm py-2 bg-transparent border-none cursor-pointer hover:"
+                  className="w-full text-sm font-mono py-2 bg-transparent border-none cursor-pointer"
+                  style={{ color: "var(--text)" }}
                 >
                   Skip for now
                 </button>
@@ -123,17 +126,17 @@ function ConfirmshamingDemo() {
             </div>
           ) : (
             <div className="p-8 text-center">
-              <p className="text-sm mb-4">
-                You chose: <strong>{choiceLabels[ethicalChoice] ?? ethicalChoice}</strong>
+              <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>
+                You chose: <strong style={{ color: "var(--green)" }}>{choiceLabels[ethicalChoice] ?? ethicalChoice}</strong>
               </p>
-              <div className="border rounded-lg p-4 text-left">
-                <h3 className="text-sm font-semibold mb-2">What's right here:</h3>
-                <ul className="text-xs space-y-1.5">
-                  <li><strong>Neutral language</strong> — no guilt, no shaming, no manipulation</li>
-                  <li><strong>Three choices</strong> — set up, remind later, or skip — all equally valid</li>
-                  <li><strong>Clear path back</strong> — tells users where to find this later (Settings → Security)</li>
-                  <li><strong>Respects autonomy</strong> — users make informed choices, not coerced ones</li>
-                  <li><strong>Builds trust</strong> — transparent communication earns long-term engagement</li>
+              <div className="rounded-lg p-4 text-left" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+                <h3 className="text-sm font-semibold font-mono mb-2" style={{ color: "var(--green)" }}>What's right here:</h3>
+                <ul className="text-xs font-mono space-y-1.5" style={{ color: "var(--text)" }}>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Neutral language</strong> — no guilt, no shaming, no manipulation</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Three choices</strong> — set up, remind later, or skip — all equally valid</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Clear path back</strong> — tells users where to find this later (Settings → Security)</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Respects autonomy</strong> — users make informed choices, not coerced ones</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Builds trust</strong> — transparent communication earns long-term engagement</li>
                 </ul>
               </div>
             </div>

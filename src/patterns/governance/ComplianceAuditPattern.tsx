@@ -81,7 +81,7 @@ function ComplianceAuditDemo() {
           { key: "evidence" as const, label: "3. Evidence" },
           { key: "report" as const, label: "4. Report" },
         ]).map(p => (
-          <button key={p.key} onClick={() => setPhase(p.key)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer whitespace-nowrap" style={{ background: phase === p.key ? "var(--green-glow)" : "transparent", color: phase === p.key ? "var(--green)" : "var(--text)" }}>
+          <button key={p.key} onClick={() => setPhase(p.key)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer whitespace-nowrap" style={{ background: phase === p.key ? "var(--governance-glow)" : "transparent", color: phase === p.key ? "var(--governance-color)" : "var(--text)" }}>
             {p.label}
           </button>
         ))}
@@ -102,9 +102,9 @@ function ComplianceAuditDemo() {
                   onClick={() => toggleReg(reg)}
                   className="px-3 py-1.5 rounded text-xs font-mono border-none cursor-pointer"
                   style={{
-                    background: selectedRegs.has(reg) ? "var(--green-glow)" : "var(--bg)",
-                    color: selectedRegs.has(reg) ? "var(--green)" : "var(--text)",
-                    border: selectedRegs.has(reg) ? "1px solid var(--green-border)" : "1px solid var(--border)",
+                    background: selectedRegs.has(reg) ? "var(--governance-glow)" : "var(--bg)",
+                    color: selectedRegs.has(reg) ? "var(--governance-color)" : "var(--text)",
+                    border: selectedRegs.has(reg) ? "1px solid var(--governance-border)" : "1px solid var(--border)",
                   }}
                 >
                   {reg}

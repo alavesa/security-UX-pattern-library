@@ -40,18 +40,18 @@ function CookieConsentDemo() {
 
       {/* Dark pattern cookie banner */}
       {view === "dark" && darkChoice === null && !showDarkSettings && (
-        <div className="rounded-2xl border-2 overflow-hidden">
+        <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-card)", border: "2px solid rgba(255,51,51,0.3)" }}>
           <div style={{ position: "relative", textAlign: "right" }}>
-            <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono inline-block mt-2 mr-2">DARK PATTERN</span>
+            <span className="text-xs px-2 py-0.5 rounded font-mono inline-block mt-2 mr-2" style={{ background: "var(--red)", color: "white" }}>DARK PATTERN</span>
           </div>
           <div className="p-6">
             <div className="flex items-start gap-3 mb-4">
-              <Cookie aria-hidden="true" className="w-8 h-8 shrink-0" />
+              <Cookie aria-hidden="true" className="w-8 h-8 shrink-0" style={{ color: "var(--text-bright)" }} />
               <div>
-                <h3 className="font-bold mb-1">We value your privacy</h3>
-                <p className="text-xs leading-relaxed">
+                <h3 className="font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>We value your privacy</h3>
+                <p className="text-xs font-mono leading-relaxed" style={{ color: "var(--text)" }}>
                   We and our 847 partners use cookies and similar technologies to provide, protect, and improve our services. By clicking "Accept All", you consent to our use of cookies.
-                  <button onClick={e => e.preventDefault()} className="bg-transparent border-none p-0 underline cursor-pointer inline"> Read our Cookie Policy</button>
+                  <button onClick={e => e.preventDefault()} className="bg-transparent border-none p-0 underline cursor-pointer inline font-mono" style={{ color: "var(--text-dim)" }}> Read our Cookie Policy</button>
                 </p>
               </div>
             </div>
@@ -59,14 +59,15 @@ function CookieConsentDemo() {
             <div className="space-y-2">
               <button
                 onClick={() => setDarkChoice("accept")}
-                className="w-full text-white py-3 rounded-lg font-bold text-sm transition-colors border-none cursor-pointer"
+                className="w-full py-3 rounded-lg font-bold font-mono text-sm transition-colors border-none cursor-pointer"
+                style={{ background: "#2563eb", color: "white" }}
               >
                 Accept All Cookies
               </button>
               <button
                 onClick={() => setShowDarkSettings(true)}
-                className="w-full text-xs py-1.5 bg-transparent border-none cursor-pointer"
-                style={{ color: "#bbb" }}
+                className="w-full text-xs font-mono py-1.5 bg-transparent border-none cursor-pointer"
+                style={{ color: "var(--text-dim)" }}
               >
                 Manage preferences
               </button>
@@ -77,10 +78,10 @@ function CookieConsentDemo() {
 
       {/* Dark pattern settings maze */}
       {view === "dark" && darkChoice === null && showDarkSettings && (
-        <div className="rounded-2xl border-2 p-6">
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "2px solid rgba(255,51,51,0.3)" }}>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-sm">Cookie Preferences</h3>
-            <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono">DARK PATTERN</span>
+            <h3 className="font-bold font-mono text-sm" style={{ color: "var(--text-bright)" }}>Cookie Preferences</h3>
+            <span className="text-xs px-2 py-0.5 rounded font-mono" style={{ background: "var(--red)", color: "white" }}>DARK PATTERN</span>
           </div>
 
           <div className="space-y-3 mb-6" aria-hidden="true">
@@ -90,31 +91,32 @@ function CookieConsentDemo() {
               { name: "Advertising & Targeting", on: true, locked: false },
               { name: "Social Media", on: true, locked: false },
               { name: "Personalization", on: true, locked: false },
-            ].map(({ name, on, locked }) => (
-              <div key={name} className="flex items-center justify-between py-2 border-b">
-                <span className="text-sm">{name}</span>
-                <div className={`w-10 h-5 rounded-full relative ${on ? "" : "bg-gray-300"}`}>
-                  <div className={`w-4 h-4  rounded-full absolute top-0.5 transition-all ${on ? "right-0.5" : "left-0.5"}`} />
+            ].map(({ name, on }) => (
+              <div key={name} className="flex items-center justify-between py-2" style={{ borderBottom: "1px solid var(--border)" }}>
+                <span className="text-sm font-mono" style={{ color: "var(--text-bright)" }}>{name}</span>
+                <div className="w-10 h-5 rounded-full relative" style={{ background: on ? "var(--green)" : "var(--bg-elevated)" }}>
+                  <div className="w-4 h-4 rounded-full absolute top-0.5 transition-all" style={{ background: "white", right: on ? "2px" : undefined, left: on ? undefined : "2px" }} />
                 </div>
               </div>
             ))}
           </div>
 
-          <p className="text-xs mb-4">
+          <p className="text-xs font-mono mb-4" style={{ color: "var(--text-dim)" }}>
             Note: Disabling non-essential cookies may affect your experience. Changes require 24-48 hours to take effect.
           </p>
 
           <div className="space-y-2">
             <button
               onClick={() => setDarkChoice("accept")}
-              className="w-full text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer"
+              className="w-full py-3 rounded-lg font-bold font-mono text-sm border-none cursor-pointer"
+              style={{ background: "#2563eb", color: "white" }}
             >
               Accept All & Continue
             </button>
             <button
               onClick={() => setDarkChoice("custom")}
-              className="w-full text-xs py-1.5 bg-transparent border-none cursor-pointer"
-              style={{ color: "#ccc" }}
+              className="w-full text-xs font-mono py-1.5 bg-transparent border-none cursor-pointer"
+              style={{ color: "var(--text-dim)" }}
             >
               Save my preferences
             </button>
@@ -123,16 +125,16 @@ function CookieConsentDemo() {
       )}
 
       {view === "dark" && darkChoice !== null && (
-        <div className="rounded-2xl border-2 p-6">
-          <div className="border rounded-lg p-4">
-            <h3 className="text-sm font-semibold mb-2">What's wrong here:</h3>
-            <ul className="text-xs space-y-1.5">
-              <li><strong>No "Reject All" button</strong> — forces users through a settings maze to decline</li>
-              <li><strong>"Accept All" is prominent</strong> — big, blue, bold. "Manage preferences" is tiny and gray</li>
-              <li><strong>All toggles default to ON</strong> — user has to manually turn each one off</li>
-              <li><strong>"847 partners"</strong> — intentionally overwhelming number to discourage reading</li>
-              <li><strong>"24-48 hours to take effect"</strong> — false urgency and friction to discourage changes</li>
-              <li><strong>Settings page ALSO has "Accept All" as primary</strong> — dark pattern within a dark pattern</li>
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "2px solid rgba(255,51,51,0.3)" }}>
+          <div className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.2)" }}>
+            <h3 className="text-sm font-semibold font-mono mb-2" style={{ color: "var(--red)" }}>What's wrong here:</h3>
+            <ul className="text-xs font-mono space-y-1.5" style={{ color: "var(--text)" }}>
+              <li><strong style={{ color: "var(--text-bright)" }}>No "Reject All" button</strong> — forces users through a settings maze to decline</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>"Accept All" is prominent</strong> — big, blue, bold. "Manage preferences" is tiny and gray</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>All toggles default to ON</strong> — user has to manually turn each one off</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>"847 partners"</strong> — intentionally overwhelming number to discourage reading</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>"24-48 hours to take effect"</strong> — false urgency and friction to discourage changes</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>Settings page ALSO has "Accept All" as primary</strong> — dark pattern within a dark pattern</li>
               <li>Violates GDPR Article 7: consent must be as easy to withdraw as to give</li>
             </ul>
           </div>
@@ -141,16 +143,16 @@ function CookieConsentDemo() {
 
       {/* Ethical cookie banner */}
       {view === "ethical" && ethicalChoice === null && (
-        <div className="rounded-2xl border-2 overflow-hidden">
+        <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-card)", border: "2px solid var(--green-border)" }}>
           <div style={{ position: "relative", textAlign: "right" }}>
-            <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono inline-block mt-2 mr-2">ETHICAL</span>
+            <span className="text-xs px-2 py-0.5 rounded font-mono inline-block mt-2 mr-2" style={{ background: "var(--green)", color: "var(--bg)" }}>ETHICAL</span>
           </div>
           <div className="p-6">
             <div className="flex items-start gap-3 mb-4">
-              <Cookie aria-hidden="true" className="w-8 h-8 shrink-0" />
+              <Cookie aria-hidden="true" className="w-8 h-8 shrink-0" style={{ color: "var(--green)" }} />
               <div>
-                <h3 className="font-bold mb-1">Cookie preferences</h3>
-                <p className="text-xs leading-relaxed">
+                <h3 className="font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Cookie preferences</h3>
+                <p className="text-xs font-mono leading-relaxed" style={{ color: "var(--text)" }}>
                   We use essential cookies to make the site work. We'd also like to use analytics cookies to understand how you use our site so we can improve it.
                 </p>
               </div>
@@ -159,20 +161,23 @@ function CookieConsentDemo() {
             <div className="flex gap-2">
               <button
                 onClick={() => setEthicalChoice("accept")}
-                className="flex-1 text-white py-2.5 rounded-lg font-medium text-sm transition-colors border-none cursor-pointer"
+                className="flex-1 py-2.5 rounded-lg font-medium font-mono text-sm transition-colors border-none cursor-pointer"
+                style={{ background: "var(--green)", color: "var(--bg)" }}
               >
                 Accept all
               </button>
               <button
                 onClick={() => setEthicalChoice("reject")}
-                className="flex-1 border py-2.5 rounded-lg font-medium text-sm hover: transition-colors cursor-pointer"
+                className="flex-1 py-2.5 rounded-lg font-medium font-mono text-sm transition-colors cursor-pointer"
+                style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}
               >
                 Reject non-essential
               </button>
               <button
                 onClick={() => setEthicalChoice("custom")}
                 aria-label="Customize cookie settings"
-                className="flex items-center justify-center gap-1 border py-2.5 px-3 rounded-lg text-sm hover: transition-colors cursor-pointer"
+                className="flex items-center justify-center gap-1 py-2.5 px-3 rounded-lg text-sm transition-colors cursor-pointer"
+                style={{ background: "transparent", color: "var(--text)", border: "1px solid var(--border)" }}
               >
                 <Settings aria-hidden="true" className="w-4 h-4" />
               </button>
@@ -182,19 +187,19 @@ function CookieConsentDemo() {
       )}
 
       {view === "ethical" && ethicalChoice !== null && (
-        <div className="rounded-2xl border-2 p-6">
-          <p className="text-sm mb-4">
-            You chose: <strong>{ethicalChoice === "accept" ? "Accept all" : ethicalChoice === "reject" ? "Reject non-essential" : "Customize"}</strong>
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "2px solid var(--green-border)" }}>
+          <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>
+            You chose: <strong style={{ color: "var(--green)" }}>{ethicalChoice === "accept" ? "Accept all" : ethicalChoice === "reject" ? "Reject non-essential" : "Customize"}</strong>
           </p>
-          <div className="border rounded-lg p-4">
-            <h3 className="text-sm font-semibold mb-2">What's right here:</h3>
-            <ul className="text-xs space-y-1.5">
-              <li><strong>"Reject non-essential" is equally prominent</strong> — same size, same style as Accept</li>
-              <li><strong>Plain language</strong> — explains what cookies do, not legal jargon</li>
-              <li><strong>Three clear options</strong> — accept, reject, or customize</li>
-              <li><strong>No defaults</strong> — doesn't pre-select anything the user didn't choose</li>
-              <li><strong>One click to reject</strong> — GDPR compliant: as easy to decline as to accept</li>
-              <li><strong>Customize option available</strong> — but not required to reject</li>
+          <div className="rounded-lg p-4" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+            <h3 className="text-sm font-semibold font-mono mb-2" style={{ color: "var(--green)" }}>What's right here:</h3>
+            <ul className="text-xs font-mono space-y-1.5" style={{ color: "var(--text)" }}>
+              <li><strong style={{ color: "var(--text-bright)" }}>"Reject non-essential" is equally prominent</strong> — same size, same style as Accept</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>Plain language</strong> — explains what cookies do, not legal jargon</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>Three clear options</strong> — accept, reject, or customize</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>No defaults</strong> — doesn't pre-select anything the user didn't choose</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>One click to reject</strong> — GDPR compliant: as easy to decline as to accept</li>
+              <li><strong style={{ color: "var(--text-bright)" }}>Customize option available</strong> — but not required to reject</li>
             </ul>
           </div>
         </div>

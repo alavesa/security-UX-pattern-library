@@ -8,16 +8,15 @@ function EthicalOutcome({ choice }: { choice: string }) {
   if (choice === "enabled") {
     return (
       <>
-        <Bell className="w-8 h-8 mx-auto mb-2" />
-        <p className="text-sm font-semibold">Notifications enabled</p>
+        <Bell className="w-8 h-8 mx-auto mb-2" style={{ color: "var(--green)" }} />
+        <p className="text-sm font-semibold font-mono" style={{ color: "var(--green)" }}>Notifications enabled</p>
       </>
     );
   }
   return (
     <>
-      <BellOff className="w-8 h-8 mx-auto mb-2" />
-      <p className="text-sm font-semibold">Popup dismissed 
-not taken</p>
+      <BellOff className="w-8 h-8 mx-auto mb-2" style={{ color: "var(--text)" }} />
+      <p className="text-sm font-semibold font-mono" style={{ color: "var(--text-bright)" }}>Popup dismissed — no action taken</p>
     </>
   );
 }
@@ -28,7 +27,6 @@ function BaitSwitchDemo() {
   const [ethicalChoice, setEthicalChoice] = useState<string | null>(null);
 
   const reset = () => {
-    setView("dark");
     setDarkStep(0);
     setEthicalChoice(null);
   };
@@ -47,56 +45,57 @@ function BaitSwitchDemo() {
 
       {/* Dark: Close button that does something else */}
       {view === "dark" && (
-        <div className="rounded-2xl border-2 p-6">
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "2px solid rgba(255,51,51,0.3)" }}>
           <div className="text-right mb-2">
-            <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono">DARK PATTERN</span>
+            <span className="text-xs px-2 py-0.5 rounded font-mono" style={{ background: "var(--red)", color: "white" }}>DARK PATTERN</span>
           </div>
 
           {darkStep === 0 && (
             <div>
               {/* Fake app content */}
-              <div className="rounded-lg p-4 mb-4">
-                <div className="h-4 rounded w-3/4 mb-2" />
-                <div className="h-3 rounded w-full mb-1" />
-                <div className="h-3 rounded w-5/6" />
+              <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg)" }}>
+                <div className="h-4 rounded w-3/4 mb-2" style={{ background: "var(--bg-elevated)" }} />
+                <div className="h-3 rounded w-full mb-1" style={{ background: "var(--bg-elevated)" }} />
+                <div className="h-3 rounded w-5/6" style={{ background: "var(--bg-elevated)" }} />
               </div>
 
               {/* Popup with misleading X */}
-              <div className="border-2 rounded-xl p-5 relative">
+              <div className="rounded-xl p-5 relative" style={{ background: "var(--bg-elevated)", border: "2px solid var(--border)" }}>
                 <button
                   type="button"
                   onClick={() => setDarkStep(1)}
-                  className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full hover: bg-transparent border-none cursor-pointer"
+                  className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full bg-transparent border-none cursor-pointer"
                   aria-label="Enable notifications (dark pattern demo)"
+                  style={{ color: "var(--text-dim)" }}
                 >
                   <X className="w-4 h-4" />
                 </button>
 
-                <Bell className="w-10 h-10 mb-3" />
-                <h3 className="font-bold mb-1">Stay in the loop!</h3>
-                <p className="text-sm mb-4">Get notified about important updates and offers.</p>
+                <Bell className="w-10 h-10 mb-3" style={{ color: "var(--text-bright)" }} />
+                <h3 className="font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Stay in the loop!</h3>
+                <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Get notified about important updates and offers.</p>
 
-                <button type="button" onClick={() => setDarkStep(2)} className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer">
+                <button type="button" onClick={() => setDarkStep(2)} className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer" style={{ background: "#2563eb", color: "white" }}>
                   Enable notifications
                 </button>
               </div>
 
-              <p className="text-xs mt-3 text-center">Try clicking the X button to close this popup</p>
+              <p className="text-xs font-mono mt-3 text-center" style={{ color: "var(--text-dim)" }}>Try clicking the X button to close this popup</p>
             </div>
           )}
 
           {darkStep === 1 && (
             <div>
-              <div className="border rounded-lg p-4 text-center mb-4">
-                <Bell className="w-8 h-8 mx-auto mb-2" />
-                <p className="text-sm font-semibold">Notifications enabled!</p>
-                <p className="text-xs">You'll receive push notifications from us.</p>
+              <div className="rounded-lg p-4 text-center mb-4" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.2)" }}>
+                <Bell className="w-8 h-8 mx-auto mb-2" style={{ color: "var(--red)" }} />
+                <p className="text-sm font-semibold font-mono" style={{ color: "var(--red)" }}>Notifications enabled!</p>
+                <p className="text-xs font-mono" style={{ color: "var(--text)" }}>You'll receive push notifications from us.</p>
               </div>
 
-              <div className="border rounded-lg p-4">
-                <h3 className="text-sm font-semibold mb-2">What just happened:</h3>
-                <ul className="text-xs space-y-1.5">
-                  <li><strong>The X button didn't close the popup</strong> — it enabled notifications</li>
+              <div className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.2)" }}>
+                <h3 className="text-sm font-semibold font-mono mb-2" style={{ color: "var(--red)" }}>What just happened:</h3>
+                <ul className="text-xs font-mono space-y-1.5" style={{ color: "var(--text)" }}>
+                  <li><strong style={{ color: "var(--text-bright)" }}>The X button didn't close the popup</strong> — it enabled notifications</li>
                   <li>Users expect X to mean "dismiss" — hijacking this is a trust violation</li>
                   <li>This is "Bait and Switch" — the UI promises one action but performs another</li>
                   <li>Similar tricks: "Skip" buttons that actually mean "Accept defaults"</li>
@@ -107,9 +106,9 @@ function BaitSwitchDemo() {
           )}
 
           {darkStep === 2 && (
-            <div className="border rounded-lg p-4">
-              <p className="text-xs">You clicked "Enable notifications" — that was the expected action. But try the X button too to see the bait and switch.</p>
-              <button type="button" onClick={() => setDarkStep(0)} className="text-xs underline mt-2 bg-transparent border-none cursor-pointer">Try again</button>
+            <div className="rounded-lg p-4" style={{ background: "rgba(255,170,0,0.08)", border: "1px solid rgba(255,170,0,0.2)" }}>
+              <p className="text-xs font-mono" style={{ color: "var(--text)" }}>You clicked "Enable notifications" — that was the expected action. But try the X button too to see the bait and switch.</p>
+              <button type="button" onClick={() => setDarkStep(0)} className="text-xs font-mono underline mt-2 bg-transparent border-none cursor-pointer" style={{ color: "var(--amber)" }}>Try again</button>
             </div>
           )}
         </div>
@@ -117,38 +116,39 @@ function BaitSwitchDemo() {
 
       {/* Ethical version */}
       {view === "ethical" && (
-        <div className="rounded-2xl border-2 p-6">
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "2px solid var(--green-border)" }}>
           <div className="text-right mb-2">
-            <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono">ETHICAL</span>
+            <span className="text-xs px-2 py-0.5 rounded font-mono" style={{ background: "var(--green)", color: "var(--bg)" }}>ETHICAL</span>
           </div>
 
           {ethicalChoice === null ? (
             <div>
-              <div className="rounded-lg p-4 mb-4">
-                <div className="h-4 rounded w-3/4 mb-2" />
-                <div className="h-3 rounded w-full mb-1" />
-                <div className="h-3 rounded w-5/6" />
+              <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg)" }}>
+                <div className="h-4 rounded w-3/4 mb-2" style={{ background: "var(--bg-elevated)" }} />
+                <div className="h-3 rounded w-full mb-1" style={{ background: "var(--bg-elevated)" }} />
+                <div className="h-3 rounded w-5/6" style={{ background: "var(--bg-elevated)" }} />
               </div>
 
-              <div className="border rounded-xl p-5 relative">
+              <div className="rounded-xl p-5 relative" style={{ background: "var(--bg-elevated)", border: "1px solid var(--border)" }}>
                 <button
                   type="button"
                   onClick={() => setEthicalChoice("dismissed")}
-                  className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full hover: bg-transparent border-none cursor-pointer"
+                  className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full bg-transparent border-none cursor-pointer"
                   aria-label="Dismiss"
+                  style={{ color: "var(--text-dim)" }}
                 >
                   <X className="w-4 h-4" />
                 </button>
 
-                <Bell className="w-10 h-10 mb-3" />
-                <h3 className="font-bold mb-1">Turn on notifications?</h3>
-                <p className="text-sm mb-4">Get notified when someone replies to your posts. You can manage this in Settings anytime.</p>
+                <Bell className="w-10 h-10 mb-3" style={{ color: "var(--text-bright)" }} />
+                <h3 className="font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Turn on notifications?</h3>
+                <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Get notified when someone replies to your posts. You can manage this in Settings anytime.</p>
 
                 <div className="space-y-2">
-                  <button type="button" onClick={() => setEthicalChoice("enabled")} className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer">
+                  <button type="button" onClick={() => setEthicalChoice("enabled")} className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer" style={{ background: "var(--green)", color: "var(--bg)" }}>
                     Enable notifications
                   </button>
-                  <button type="button" onClick={() => setEthicalChoice("dismissed")} className="w-full border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
+                  <button type="button" onClick={() => setEthicalChoice("dismissed")} className="w-full py-2.5 rounded-lg text-sm font-medium font-mono cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>
                     Not now
                   </button>
                 </div>
@@ -156,18 +156,18 @@ function BaitSwitchDemo() {
             </div>
           ) : (
             <div>
-              <div className={`${ethicalChoice === "enabled" ? " " : " "} border rounded-lg p-4 text-center mb-4`}>
+              <div className="rounded-lg p-4 text-center mb-4" style={{ background: ethicalChoice === "enabled" ? "rgba(0,255,65,0.05)" : "var(--bg)", border: `1px solid ${ethicalChoice === "enabled" ? "var(--green-border)" : "var(--border)"}` }}>
                 <EthicalOutcome choice={ethicalChoice} />
               </div>
 
-              <div className="border rounded-lg p-4">
-                <h4 className="text-sm font-semibold mb-2">What's right here:</h4>
-                <ul className="text-xs space-y-1.5">
-                  <li><strong>X button dismisses</strong> — does exactly what users expect</li>
-                  <li><strong>"Not now" button</strong> — explicit decline option with neutral language</li>
-                  <li><strong>Clear description</strong> — says what notifications you'll get</li>
-                  <li><strong>"Manage in Settings"</strong> — reduces pressure, can change later</li>
-                  <li><strong>No action on dismiss</strong> — closing the popup doesn't do anything sneaky</li>
+              <div className="rounded-lg p-4" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+                <h4 className="text-sm font-semibold font-mono mb-2" style={{ color: "var(--green)" }}>What's right here:</h4>
+                <ul className="text-xs font-mono space-y-1.5" style={{ color: "var(--text)" }}>
+                  <li><strong style={{ color: "var(--text-bright)" }}>X button dismisses</strong> — does exactly what users expect</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>"Not now" button</strong> — explicit decline option with neutral language</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Clear description</strong> — says what notifications you'll get</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>"Manage in Settings"</strong> — reduces pressure, can change later</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>No action on dismiss</strong> — closing the popup doesn't do anything sneaky</li>
                 </ul>
               </div>
             </div>

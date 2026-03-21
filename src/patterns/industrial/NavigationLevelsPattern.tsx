@@ -129,44 +129,51 @@ function NavigationDemo() {
 
   return (
     <div className="w-full max-w-lg">
-      {/* Level indicator */}
-      <div className="flex items-center gap-2 mb-3 px-3 py-2 rounded text-xs font-mono" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <Layers className="w-3.5 h-3.5" style={{ color: "var(--green)" }} />
-        <span style={{ color: "var(--text-dim)" }}>ISA-101 Level</span>
-        {([1, 2, 3, 4] as Level[]).map(l => (
-          <span key={l} className="px-1.5 py-0.5 rounded text-xs" style={{
-            background: level === l ? "var(--green-glow)" : "transparent",
-            color: level === l ? "var(--green)" : "var(--text-dim)",
-            border: level === l ? "1px solid var(--green-border)" : "1px solid transparent",
-          }}>
-            L{l}
-          </span>
-        ))}
-      </div>
+      <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+        {/* HMI header */}
+        <div className="px-4 py-2 flex items-center justify-between" style={{ background: "var(--bg-elevated)", borderBottom: "1px solid var(--border)" }}>
+          <span className="font-mono text-xs" style={{ color: "var(--industrial-color)" }}>PLANT HMI — ISA-101</span>
+          <span className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>NAVIGATION HIERARCHY</span>
+        </div>
 
-      {/* Breadcrumb */}
-      <div className="flex items-center gap-1 mb-3 px-3 py-2 rounded text-xs font-mono overflow-x-auto" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
-        {level > 1 && (
-          <button onClick={goBack} className="mr-1 p-1 rounded border-none cursor-pointer bg-transparent" style={{ color: "var(--green)" }}>
-            <ArrowLeft className="w-3 h-3" />
-          </button>
-        )}
-        {breadcrumb.map((b, i) => (
-          <span key={i} className="flex items-center gap-1 whitespace-nowrap">
-            {i > 0 && <ChevronRight className="w-3 h-3" style={{ color: "var(--text-dim)" }} />}
-            <button
-              onClick={b.action}
-              className="border-none bg-transparent cursor-pointer font-mono text-xs px-1 py-0.5 rounded hover:underline"
-              style={{ color: i === breadcrumb.length - 1 ? "var(--green)" : "var(--text)" }}
-            >
-              {b.label}
+        {/* Level indicator */}
+        <div className="flex items-center gap-2 px-4 py-2 text-xs font-mono" style={{ borderBottom: "1px solid var(--border)" }}>
+          <Layers className="w-3.5 h-3.5" style={{ color: "var(--industrial-color)" }} />
+          <span style={{ color: "var(--text-dim)" }}>Level</span>
+          {([1, 2, 3, 4] as Level[]).map(l => (
+            <span key={l} className="px-1.5 py-0.5 rounded text-xs" style={{
+              background: level === l ? "var(--industrial-glow)" : "transparent",
+              color: level === l ? "var(--industrial-color)" : "var(--text-dim)",
+              border: level === l ? "1px solid var(--industrial-border)" : "1px solid transparent",
+            }}>
+              L{l}
+            </span>
+          ))}
+        </div>
+
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-1 px-4 py-2 text-xs font-mono overflow-x-auto" style={{ borderBottom: "1px solid var(--border)" }}>
+          {level > 1 && (
+            <button onClick={goBack} className="mr-1 p-1 rounded border-none cursor-pointer bg-transparent" style={{ color: "var(--industrial-color)" }}>
+              <ArrowLeft className="w-3 h-3" />
             </button>
-          </span>
-        ))}
-      </div>
+          )}
+          {breadcrumb.map((b, i) => (
+            <span key={i} className="flex items-center gap-1 whitespace-nowrap">
+              {i > 0 && <ChevronRight className="w-3 h-3" style={{ color: "var(--text-dim)" }} />}
+              <button
+                onClick={b.action}
+                className="border-none bg-transparent cursor-pointer font-mono text-xs px-1 py-0.5 rounded hover:underline"
+                style={{ color: i === breadcrumb.length - 1 ? "var(--industrial-color)" : "var(--text)" }}
+              >
+                {b.label}
+              </button>
+            </span>
+          ))}
+        </div>
 
-      {/* Content area */}
-      <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)", minHeight: 200 }}>
+        {/* Content area */}
+        <div className="p-4" style={{ minHeight: 200 }}>
         {/* Level 1: Plant Overview */}
         {level === 1 && (
           <div className="space-y-2">
@@ -256,7 +263,7 @@ function NavigationDemo() {
             <button
               onClick={goToDetail}
               className="w-full py-2 rounded text-xs font-mono border-none cursor-pointer"
-              style={{ background: "var(--green-glow)", color: "var(--green)", border: "1px solid var(--green-border)" }}
+              style={{ background: "var(--industrial-glow)", color: "var(--industrial-color)", border: "1px solid var(--industrial-border)" }}
             >
               View Detail (L4) →
             </button>
@@ -335,6 +342,7 @@ function NavigationDemo() {
             </div>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

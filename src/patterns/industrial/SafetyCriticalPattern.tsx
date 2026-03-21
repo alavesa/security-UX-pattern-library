@@ -57,7 +57,7 @@ function SafetyCriticalDemo() {
     <div className="w-full max-w-lg">
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["shutdown", "override", "parameter"] as const).map(s => (
-          <button key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--industrial-glow)" : "transparent", color: scenario === s ? "var(--industrial-color)" : "var(--text)" }}>
             {s === "shutdown" ? "Emergency Stop" : s === "override" ? "Safety Override" : "Parameter Change"}
           </button>
         ))}
@@ -65,32 +65,32 @@ function SafetyCriticalDemo() {
 
       {/* Emergency shutdown */}
       {scenario === "shutdown" && (
-        <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
-          <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-            <span className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>POWER PLANT CONTROL</span>
+        <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+          <div className="px-4 py-2 flex items-center justify-between" style={{ background: "var(--bg-elevated)", borderBottom: "1px solid var(--border)" }}>
+            <span className="font-mono text-xs" style={{ color: "var(--industrial-color)" }}>POWER PLANT CONTROL</span>
             <span className="font-mono text-xs" style={{ color: "var(--green)" }}>● NORMAL OPERATIONS</span>
           </div>
 
           <div className="p-8">
             {step === 'idle' && (
               <div className="text-center">
-                <h3 className="font-mono text-sm text-white mb-6">TURBINE #3 — EMERGENCY SHUTDOWN</h3>
+                <h3 className="font-mono text-sm mb-6" style={{ color: "var(--text-bright)" }}>TURBINE #3 — EMERGENCY SHUTDOWN</h3>
 
-                <div className="bg-gray-800 rounded-lg p-4 mb-6 text-left">
+                <div className="rounded-lg p-4 mb-6 text-left" style={{ background: "var(--bg-elevated)", border: "1px solid var(--border)" }}>
                   <div className="grid grid-cols-2 gap-3 font-mono text-xs">
                     <div><span style={{ color: "var(--text-dim)" }}>Status:</span> <span style={{ color: "var(--green)" }}>Running</span></div>
-                    <div><span style={{ color: "var(--text-dim)" }}>Output:</span> <span className="text-white">340 MW</span></div>
-                    <div><span style={{ color: "var(--text-dim)" }}>Temp:</span> <span className="text-white">1,104°C</span></div>
-                    <div><span style={{ color: "var(--text-dim)" }}>RPM:</span> <span className="text-white">3,600</span></div>
+                    <div><span style={{ color: "var(--text-dim)" }}>Output:</span> <span style={{ color: "var(--text-bright)" }}>340 MW</span></div>
+                    <div><span style={{ color: "var(--text-dim)" }}>Temp:</span> <span style={{ color: "var(--text-bright)" }}>1,104°C</span></div>
+                    <div><span style={{ color: "var(--text-dim)" }}>RPM:</span> <span style={{ color: "var(--text-bright)" }}>3,600</span></div>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setStep('confirm')}
-                  className="font-mono text-lg text-white px-8 py-5 rounded-xl border-4 cursor-pointer font-bold w-full"
-                  style={{ background: "#991b1b", borderColor: "var(--red)" }}
+                  className="font-mono text-lg px-8 py-5 rounded-xl cursor-pointer font-bold w-full"
+                  style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)", border: "4px solid var(--red)" }}
                 >
-                  ⚠ EMERGENCY STOP
+                  <AlertTriangle className="w-6 h-6 inline mr-2" /> EMERGENCY STOP
                 </button>
                 <p className="font-mono text-xs mt-3" style={{ color: "var(--text-dim)" }}>Large button, high contrast, no confirmation needed for first press</p>
               </div>
@@ -102,9 +102,9 @@ function SafetyCriticalDemo() {
                 <h3 className="font-mono text-lg mb-2" style={{ color: "var(--red)" }}>CONFIRM EMERGENCY STOP</h3>
                 <p className="font-mono text-xs mb-4" style={{ color: "var(--text)" }}>Turbine #3 — 340 MW output will be lost</p>
 
-                <div className="bg-red-950 border border-red-700 rounded-lg p-4 mb-6 text-left">
-                  <h4 className="font-mono text-xs mb-2">IMPACT:</h4>
-                  <ul className="font-mono text-xs text-red-300 space-y-1">
+                <div className="rounded-lg p-4 mb-6 text-left" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.3)" }}>
+                  <h4 className="font-mono text-xs mb-2" style={{ color: "var(--red)" }}>IMPACT:</h4>
+                  <ul className="font-mono text-xs space-y-1" style={{ color: "var(--text)" }}>
                     <li>• Grid output reduced by 340 MW (23% of capacity)</li>
                     <li>• Cooldown sequence: ~45 minutes</li>
                     <li>• Restart time: ~4 hours minimum</li>
@@ -112,7 +112,7 @@ function SafetyCriticalDemo() {
                   </ul>
                 </div>
 
-                <p className="font-mono text-xs mb-4">HOLD the button for 3 seconds to confirm</p>
+                <p className="font-mono text-xs mb-4" style={{ color: "var(--text-bright)" }}>HOLD the button for 3 seconds to confirm</p>
 
                 <button
                   onMouseDown={startHold}
@@ -121,8 +121,8 @@ function SafetyCriticalDemo() {
                   onTouchStart={(e) => { e.preventDefault(); startHold(); }}
                   onTouchEnd={stopHold}
                   onTouchCancel={stopHold}
-                  className="font-mono text-lg text-white px-8 py-5 rounded-xl border-4 border-red-400 cursor-pointer font-bold w-full relative overflow-hidden"
-                  style={{ background: "#991b1b" }}
+                  className="font-mono text-lg px-8 py-5 rounded-xl cursor-pointer font-bold w-full relative overflow-hidden"
+                  style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)", border: "4px solid var(--red)" }}
                 >
                   <div className="absolute inset-0 transition-all" style={{ width: `${holdProgress}%`, background: "rgba(255,51,51,0.5)" }} />
                   <span className="relative">HOLD TO CONFIRM STOP</span>
@@ -138,7 +138,7 @@ function SafetyCriticalDemo() {
               <div className="text-center">
                 <XCircle className="w-12 h-12 mx-auto mb-3" style={{ color: "var(--red)" }} />
                 <h3 className="font-mono text-lg mb-2" style={{ color: "var(--red)" }}>TURBINE #3 — STOPPING</h3>
-                <div className="bg-gray-800 rounded-lg p-4 font-mono text-xs text-left space-y-2 mb-4">
+                <div className="rounded-lg p-4 font-mono text-xs text-left space-y-2 mb-4" style={{ background: "var(--bg-elevated)", border: "1px solid var(--border)" }}>
                   <div style={{ color: "var(--green)" }}>▶ Fuel supply cut off</div>
                   <div style={{ color: "var(--green)" }}>▶ Generator disconnected from grid</div>
                   <div style={{ color: "var(--green)" }}>▶ Load transferred to Turbine #1, #2</div>
@@ -147,8 +147,8 @@ function SafetyCriticalDemo() {
                   <div style={{ color: "var(--text-dim)" }}>○ Incident logged: ESD-2026-0320-001</div>
                 </div>
 
-                <div className="bg-blue-900/50 border border-blue-700 rounded-lg p-3 text-left">
-                  <p className="font-mono text-xs text-blue-300"><strong>Design principle:</strong> The "hold to confirm" pattern replaces double-click or typed confirmation. In an emergency with shaking hands and high stress, holding a button for 3 seconds is more reliable than typing "SHUTDOWN" or clicking a small checkbox. The progress bar provides visual feedback that the action is being registered.</p>
+                <div className="rounded-lg p-3 text-left" style={{ background: "var(--industrial-glow)", border: "1px solid var(--industrial-border)" }}>
+                  <p className="font-mono text-xs" style={{ color: "var(--industrial-color)" }}><strong>Design principle:</strong> <span style={{ color: "var(--text)" }}>The "hold to confirm" pattern replaces double-click or typed confirmation. In an emergency with shaking hands and high stress, holding a button for 3 seconds is more reliable than typing "SHUTDOWN" or clicking a small checkbox. The progress bar provides visual feedback that the action is being registered.</span></p>
                 </div>
               </div>
             )}
@@ -158,24 +158,24 @@ function SafetyCriticalDemo() {
 
       {/* Safety override */}
       {scenario === "override" && (
-        <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
-          <div className="bg-amber-900 px-4 py-2 flex items-center justify-between border-b border-amber-700">
-            <span className="font-mono text-xs text-amber-200">SAFETY SYSTEM OVERRIDE</span>
-            <span className="font-mono text-xs text-amber-300">REQUIRES SUPERVISOR</span>
+        <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+          <div className="px-4 py-2 flex items-center justify-between" style={{ background: "rgba(255,170,0,0.15)", borderBottom: "1px solid var(--amber-border)" }}>
+            <span className="font-mono text-xs" style={{ color: "var(--amber)" }}>SAFETY SYSTEM OVERRIDE</span>
+            <span className="font-mono text-xs" style={{ color: "var(--amber)" }}>REQUIRES SUPERVISOR</span>
           </div>
 
           <div className="p-8">
             <div className="flex items-start gap-3 mb-4">
               <Shield className="w-8 h-8 shrink-0" style={{ color: "var(--amber)" }} />
               <div>
-                <h3 className="font-mono text-sm text-white">Override: High Pressure Alarm — Vessel P-301</h3>
+                <h3 className="font-mono text-sm" style={{ color: "var(--text-bright)" }}>Override: High Pressure Alarm — Vessel P-301</h3>
                 <p className="font-mono text-xs mt-1" style={{ color: "var(--amber)" }}>Current pressure: <strong>42 bar</strong> (limit: 40 bar)</p>
               </div>
             </div>
 
-            <div className="rounded-lg p-4 mb-4" style={{ background: "rgba(255,51,51,0.1)", border: "1px solid rgba(255,51,51,0.3)" }}>
+            <div className="rounded-lg p-4 mb-4" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.3)" }}>
               <h4 className="font-mono text-xs mb-2" style={{ color: "var(--red)" }}>⚠ SAFETY IMPLICATIONS:</h4>
-              <ul className="font-mono text-xs space-y-1" style={{ color: "#ff8888" }}>
+              <ul className="font-mono text-xs space-y-1" style={{ color: "var(--text)" }}>
                 <li>• This override disables the automatic pressure relief on P-301</li>
                 <li>• Vessel rated for max 50 bar — current: 42 bar (84% of max)</li>
                 <li>• Manual monitoring required while override is active</li>
@@ -183,7 +183,7 @@ function SafetyCriticalDemo() {
               </ul>
             </div>
 
-            <div className="bg-gray-800 rounded-lg p-4 mb-4">
+            <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg-elevated)", border: "1px solid var(--border)" }}>
               <h4 className="font-mono text-xs mb-3" style={{ color: "var(--text-bright)" }}>REQUIRED APPROVALS:</h4>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -201,8 +201,8 @@ function SafetyCriticalDemo() {
               </div>
             </div>
 
-            <div className="bg-blue-900/50 border border-blue-700 rounded-lg p-3 text-left">
-              <p className="font-mono text-xs text-blue-300"><strong>Key pattern:</strong> Safety overrides require multi-person authorization. The number of approvals scales with the risk level. Below 45 bar: operator + supervisor. Above 45 bar: add safety engineer. Above 48 bar: override denied — automatic shutdown only. This graduated approval prevents both single-point failures AND unnecessary bureaucracy.</p>
+            <div className="rounded-lg p-3 text-left" style={{ background: "var(--industrial-glow)", border: "1px solid var(--industrial-border)" }}>
+              <p className="font-mono text-xs" style={{ color: "var(--industrial-color)" }}><strong>Key pattern:</strong> <span style={{ color: "var(--text)" }}>Safety overrides require multi-person authorization. The number of approvals scales with the risk level. Below 45 bar: operator + supervisor. Above 45 bar: add safety engineer. Above 48 bar: override denied — automatic shutdown only. This graduated approval prevents both single-point failures AND unnecessary bureaucracy.</span></p>
             </div>
           </div>
         </div>
@@ -210,16 +210,16 @@ function SafetyCriticalDemo() {
 
       {/* Parameter change */}
       {scenario === "parameter" && (
-        <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
-          <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-            <span className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>PARAMETER ADJUSTMENT</span>
-            <span className="font-mono text-xs" style={{ color: "var(--cyan)" }}>DRILLING OPERATIONS</span>
+        <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+          <div className="px-4 py-2 flex items-center justify-between" style={{ background: "var(--bg-elevated)", borderBottom: "1px solid var(--border)" }}>
+            <span className="font-mono text-xs" style={{ color: "var(--industrial-color)" }}>PARAMETER ADJUSTMENT</span>
+            <span className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>DRILLING OPERATIONS</span>
           </div>
 
           <div className="p-8">
-            <h3 className="font-mono text-sm text-white mb-4">Adjust: Drilling RPM</h3>
+            <h3 className="font-mono text-sm mb-4" style={{ color: "var(--text-bright)" }}>Adjust: Drilling RPM</h3>
 
-            <div className="bg-gray-800 rounded-lg p-4 mb-4">
+            <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg-elevated)", border: "1px solid var(--border)" }}>
               <div className="flex items-center justify-between mb-3">
                 <span className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>Current value</span>
                 <span className="font-mono text-lg" style={{ color: "var(--green)" }}>120 RPM</span>
@@ -240,19 +240,19 @@ function SafetyCriticalDemo() {
 
             {/* Visual context */}
             <div className="mb-4">
-              <div className="flex justify-between font-mono text-xs mb-1">
+              <div className="flex justify-between font-mono text-xs mb-1" style={{ color: "var(--text-dim)" }}>
                 <span>60</span>
                 <span>200</span>
               </div>
-              <div className="h-4 bg-gray-800 rounded-full overflow-hidden relative">
+              <div className="h-4 rounded-full overflow-hidden relative" style={{ background: "var(--bg-elevated)" }}>
                 {/* Safe range */}
-                <div className="absolute inset-0 bg-green-900/30 rounded-full" />
+                <div className="absolute inset-0 rounded-full" style={{ background: "rgba(0,255,65,0.1)" }} />
                 {/* Warning zones */}
-                <div className="absolute top-0 bottom-0 right-0 w-[15%] bg-amber-900/30 rounded-r-full" />
-                <div className="absolute top-0 bottom-0 left-0 w-[10%] bg-amber-900/30 rounded-l-full" />
+                <div className="absolute top-0 bottom-0 right-0 w-[15%] rounded-r-full" style={{ background: "rgba(255,170,0,0.15)" }} />
+                <div className="absolute top-0 bottom-0 left-0 w-[10%] rounded-l-full" style={{ background: "rgba(255,170,0,0.15)" }} />
                 {/* Current */}
                 <div className="absolute top-0 bottom-0 w-1" style={{ left: "43%", background: "var(--green)" }}>
-                  <div className="absolute -top-4 -translate-x-1/2 text-xs font-mono text-white whitespace-nowrap">120</div>
+                  <div className="absolute -top-4 -translate-x-1/2 text-xs font-mono whitespace-nowrap" style={{ color: "var(--text-bright)" }}>120</div>
                 </div>
                 {/* Target */}
                 <div className="absolute top-0 bottom-0 w-1" style={{ left: "86%", background: "var(--amber)" }}>
@@ -266,15 +266,15 @@ function SafetyCriticalDemo() {
               </div>
             </div>
 
-            <div className="bg-amber-900/50 border border-amber-700 rounded-lg p-3 mb-4">
-              <p className="font-mono text-xs text-amber-300 flex items-center gap-2">
+            <div className="rounded-lg p-3 mb-4" style={{ background: "rgba(255,170,0,0.08)", border: "1px solid var(--amber-border)" }}>
+              <p className="font-mono text-xs flex items-center gap-2" style={{ color: "var(--amber)" }}>
                 <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
                 <span>180 RPM is within safe range but approaching the caution zone. Monitor vibration levels.</span>
               </p>
             </div>
 
-            <div className="bg-blue-900/50 border border-blue-700 rounded-lg p-3 text-left">
-              <p className="font-mono text-xs text-blue-300"><strong>Industrial UX pattern:</strong> Parameter changes show current → new value, the percentage change, AND a visual range indicator showing where the new value falls relative to safe/caution/danger zones. This spatial context lets operators intuitively understand risk — a number alone (180 RPM) means nothing without knowing how close it is to the limit.</p>
+            <div className="rounded-lg p-3 text-left" style={{ background: "var(--industrial-glow)", border: "1px solid var(--industrial-border)" }}>
+              <p className="font-mono text-xs" style={{ color: "var(--industrial-color)" }}><strong>Industrial UX pattern:</strong> <span style={{ color: "var(--text)" }}>Parameter changes show current → new value, the percentage change, AND a visual range indicator showing where the new value falls relative to safe/caution/danger zones. This spatial context lets operators intuitively understand risk — a number alone (180 RPM) means nothing without knowing how close it is to the limit.</span></p>
             </div>
           </div>
         </div>

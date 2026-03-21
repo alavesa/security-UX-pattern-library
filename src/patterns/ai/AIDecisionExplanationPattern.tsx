@@ -25,7 +25,7 @@ function AIDecisionExplanationDemo() {
     <div className="w-full max-w-lg">
       <div role="tablist" aria-label="Decision scenario" className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["loan", "content", "hiring"] as const).map(s => (
-          <button key={s} type="button" role="tab" aria-selected={scenario === s} onClick={() => selectScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button key={s} type="button" role="tab" aria-selected={scenario === s} onClick={() => selectScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--ai-glow)" : "transparent", color: scenario === s ? "var(--ai-color)" : "var(--text)" }}>
             {s === "loan" ? "Loan Decision" : s === "content" ? "Content Moderation" : "Hiring AI"}
           </button>
         ))}
@@ -33,91 +33,94 @@ function AIDecisionExplanationDemo() {
 
       {/* Loan application decision */}
       {scenario === "loan" && (
-        <div className="rounded-2xl border p-6">
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <div className="flex items-start gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0">
-              <Brain className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--ai-glow)" }}>
+              <Brain className="w-5 h-5" style={{ color: "var(--ai-color)" }} />
             </div>
             <div>
-              <h3 className="font-bold">Loan Application Result</h3>
-              <p className="text-xs flex items-center gap-1">
+              <h3 className="font-bold font-mono" style={{ color: "var(--text-bright)" }}>Loan Application Result</h3>
+              <p className="text-xs font-mono flex items-center gap-1" style={{ color: "var(--ai-color)" }}>
                 <Brain className="w-3 h-3" /> Decision assisted by AI
               </p>
             </div>
           </div>
 
-          <div className="border rounded-lg p-4 mb-4">
+          <div className="rounded-lg p-4 mb-4" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.2)" }}>
             <div className="flex items-center gap-2 mb-2">
-              <XCircle className="w-5 h-5" />
-              <span className="font-semibold">Application declined</span>
+              <XCircle className="w-5 h-5" style={{ color: "var(--red)" }} />
+              <span className="font-semibold font-mono" style={{ color: "var(--red)" }}>Application declined</span>
             </div>
-            <p className="text-sm">Your loan application for €25,000 has been declined.</p>
+            <p className="text-sm font-mono" style={{ color: "var(--text)" }}>Your loan application for €25,000 has been declined.</p>
           </div>
 
           {/* Explanation */}
-          <div className="border rounded-lg mb-4">
+          <div className="rounded-lg mb-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
             <button type="button" aria-expanded={expanded} aria-controls="loan-explanation-panel" onClick={() => setExpanded(!expanded)} className="w-full flex items-center justify-between p-4 text-left bg-transparent border-none cursor-pointer">
-              <span className="text-sm font-medium flex items-center gap-2">
-                <HelpCircle className="w-4 h-4" /> Why was my application declined?
+              <span className="text-sm font-medium font-mono flex items-center gap-2" style={{ color: "var(--text-bright)" }}>
+                <HelpCircle className="w-4 h-4" style={{ color: "var(--ai-color)" }} /> Why was my application declined?
               </span>
-              {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {expanded ? <ChevronUp className="w-4 h-4" style={{ color: "var(--text-dim)" }} /> : <ChevronDown className="w-4 h-4" style={{ color: "var(--text-dim)" }} />}
             </button>
 
             {expanded && (
-              <div id="loan-explanation-panel" className="px-4 pb-4 border-t pt-4">
-                <div className="border rounded-lg p-3 mb-3 text-xs">
-                  <strong>How this decision was made:</strong> An AI model assessed your application based on the following factors. A human reviewer confirmed the decision.
+              <div id="loan-explanation-panel" className="px-4 pb-4 pt-4" style={{ borderTop: "1px solid var(--border)" }}>
+                <div className="rounded-lg p-3 mb-3 text-xs font-mono" style={{ background: "var(--ai-glow)", border: "1px solid var(--ai-border)", color: "var(--text)" }}>
+                  <strong style={{ color: "var(--ai-color)" }}>How this decision was made:</strong> An AI model assessed your application based on the following factors. A human reviewer confirmed the decision.
                 </div>
 
-                <h4 className="text-xs font-semibold mb-2">Key factors:</h4>
+                <h4 className="text-xs font-semibold font-mono mb-2" style={{ color: "var(--text-bright)" }}>Key factors:</h4>
                 <div className="space-y-2 mb-4">
                   {[
                     { factor: "Debt-to-income ratio", impact: "negative", detail: "42% (threshold: 35%)", weight: "High" },
                     { factor: "Employment duration", impact: "negative", detail: "6 months (preferred: 24+ months)", weight: "High" },
                     { factor: "Credit score", impact: "positive", detail: "720 (good)", weight: "Medium" },
                     { factor: "Savings balance", impact: "neutral", detail: "€3,200", weight: "Low" },
-                  ].map(({ factor, impact, detail, weight }) => (
-                    <div key={factor} className="flex items-center justify-between p-2 rounded">
-                      <div className="flex items-center gap-2">
-                        {impact === "negative" ? <XCircle className="w-3.5 h-3.5" /> :
-                         impact === "positive" ? <CheckCircle2 className="w-3.5 h-3.5" /> :
-                         <div className="w-3.5 h-3.5 bg-gray-300 rounded-full" />}
-                        <div>
-                          <p className="text-xs font-medium">{factor}</p>
-                          <p className="text-xs">{detail}</p>
+                  ].map(({ factor, impact, detail, weight }) => {
+                    const color = impact === "negative" ? "var(--red)" : impact === "positive" ? "var(--green)" : "var(--text-dim)";
+                    return (
+                      <div key={factor} className="flex items-center justify-between p-2 rounded" style={{ background: "var(--bg-elevated)" }}>
+                        <div className="flex items-center gap-2">
+                          {impact === "negative" ? <XCircle className="w-3.5 h-3.5" style={{ color }} /> :
+                           impact === "positive" ? <CheckCircle2 className="w-3.5 h-3.5" style={{ color }} /> :
+                           <div className="w-3.5 h-3.5 rounded-full" style={{ background: "var(--text-dim)" }} />}
+                          <div>
+                            <p className="text-xs font-medium font-mono" style={{ color: "var(--text-bright)" }}>{factor}</p>
+                            <p className="text-xs font-mono" style={{ color }}>{detail}</p>
+                          </div>
                         </div>
+                        <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{weight} weight</span>
                       </div>
-                      <span className="text-xs">{weight} weight</span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
-                <div className="border rounded-lg p-3 text-xs">
-                  <strong>What this means:</strong> Your debt-to-income ratio and short employment history were the primary factors. Your credit score was positive but not sufficient to offset the other factors.
+                <div className="rounded-lg p-3 text-xs font-mono" style={{ background: "var(--bg-elevated)", border: "1px solid var(--border)", color: "var(--text)" }}>
+                  <strong style={{ color: "var(--text-bright)" }}>What this means:</strong> Your debt-to-income ratio and short employment history were the primary factors. Your credit score was positive but not sufficient to offset the other factors.
                 </div>
               </div>
             )}
           </div>
 
           {/* Right to appeal */}
-          <div className="border rounded-lg p-4">
-            <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
-              <Scale className="w-4 h-4" /> Your rights
+          <div className="rounded-lg p-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+            <h4 className="text-sm font-semibold font-mono mb-2 flex items-center gap-2" style={{ color: "var(--text-bright)" }}>
+              <Scale className="w-4 h-4" style={{ color: "var(--ai-color)" }} /> Your rights
             </h4>
-            <ul className="text-xs space-y-1 mb-3">
+            <ul className="text-xs font-mono space-y-1 mb-3" style={{ color: "var(--text)" }}>
               <li>You have the right to a human review of this decision (GDPR Art. 22)</li>
               <li>You can request more details about how the decision was made</li>
               <li>You can provide additional information and request reconsideration</li>
             </ul>
             {!appealStarted ? (
-              <button type="button" onClick={() => setAppealStarted(true)} className="text-xs text-white px-4 py-2 rounded border-none cursor-pointer">
+              <button type="button" onClick={() => setAppealStarted(true)} className="text-xs font-mono px-4 py-2 rounded border-none cursor-pointer" style={{ background: "var(--ai-color)", color: "var(--bg)" }}>
                 Request human review
               </button>
             ) : (
-              <div className="border rounded p-3">
-                <CheckCircle2 className="w-5 h-5 mb-2" />
-                <p className="text-xs font-medium">Human review requested</p>
-                <p className="text-xs">A human reviewer will assess your application within 5 business days. Reference: {appealRef}</p>
+              <div className="rounded p-3" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+                <CheckCircle2 className="w-5 h-5 mb-2" style={{ color: "var(--green)" }} />
+                <p className="text-xs font-medium font-mono" style={{ color: "var(--green)" }}>Human review requested</p>
+                <p className="text-xs font-mono" style={{ color: "var(--text)" }}>A human reviewer will assess your application within 5 business days. Reference: <span style={{ color: "var(--text-bright)" }}>{appealRef}</span></p>
               </div>
             )}
           </div>
@@ -126,37 +129,37 @@ function AIDecisionExplanationDemo() {
 
       {/* Content moderation */}
       {scenario === "content" && (
-        <div className="rounded-2xl border p-6">
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <div className="flex items-start gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0">
-              <AlertTriangle className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(255,170,0,0.15)" }}>
+              <AlertTriangle className="w-5 h-5" style={{ color: "var(--amber)" }} />
             </div>
             <div>
-              <h3 className="font-bold">Content removed</h3>
-              <p className="text-xs">Your post was flagged by our automated system</p>
+              <h3 className="font-bold font-mono" style={{ color: "var(--text-bright)" }}>Content removed</h3>
+              <p className="text-xs font-mono" style={{ color: "var(--text)" }}>Your post was flagged by our automated system</p>
             </div>
           </div>
 
-          <div className="border rounded-lg p-4 mb-4">
-            <p className="text-sm italic">"Check out this amazing deal on supplements that doctors don't want you to know about! [link]"</p>
+          <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+            <p className="text-sm font-mono italic" style={{ color: "var(--text-bright)" }}>"Check out this amazing deal on supplements that doctors don't want you to know about! [link]"</p>
           </div>
 
-          <div className="border rounded-lg p-4 mb-4">
-            <h4 className="text-xs font-semibold mb-2 flex items-center gap-1">
+          <div className="rounded-lg p-4 mb-4" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.2)" }}>
+            <h4 className="text-xs font-semibold font-mono mb-2 flex items-center gap-1" style={{ color: "var(--ai-color)" }}>
               <Brain className="w-3.5 h-3.5" /> AI moderation explanation
             </h4>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
-                <XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                <p className="text-xs"><strong>Misleading health claims</strong> — AI detected unsubstantiated health claims ("doctors don't want you to know")</p>
+                <XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} />
+                <p className="text-xs font-mono" style={{ color: "var(--text)" }}><strong style={{ color: "var(--text-bright)" }}>Misleading health claims</strong> — AI detected unsubstantiated health claims ("doctors don't want you to know")</p>
               </div>
               <div className="flex items-start gap-2">
-                <XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                <p className="text-xs"><strong>Potential spam</strong> — Pattern matches known supplement spam campaigns</p>
+                <XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} />
+                <p className="text-xs font-mono" style={{ color: "var(--text)" }}><strong style={{ color: "var(--text-bright)" }}>Potential spam</strong> — Pattern matches known supplement spam campaigns</p>
               </div>
               <div className="flex items-start gap-2">
-                <AlertTriangle className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                <p className="text-xs"><strong>Confidence: 87%</strong> — Above our 80% threshold for automatic removal</p>
+                <AlertTriangle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--amber)" }} />
+                <p className="text-xs font-mono" style={{ color: "var(--text)" }}><strong style={{ color: "var(--amber)" }}>Confidence: 87%</strong> — Above our 80% threshold for automatic removal</p>
               </div>
             </div>
           </div>
@@ -164,30 +167,30 @@ function AIDecisionExplanationDemo() {
           {contentAction === "none" && (
             <>
               <div className="flex gap-2">
-                <button type="button" onClick={() => setContentAction("appealed")} className="flex-1 text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer">
+                <button type="button" onClick={() => setContentAction("appealed")} className="flex-1 py-2.5 rounded-lg text-sm font-medium font-mono border-none cursor-pointer" style={{ background: "var(--ai-color)", color: "var(--bg)" }}>
                   Appeal — request human review
                 </button>
-                <button type="button" onClick={() => setContentAction("accepted")} className="flex-1 border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
+                <button type="button" onClick={() => setContentAction("accepted")} className="flex-1 py-2.5 rounded-lg text-sm font-medium font-mono cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>
                   I understand
                 </button>
               </div>
-              <p className="text-xs mt-3">This decision was made by AI. You have the right to appeal to a human moderator. Average review time: 24 hours.</p>
+              <p className="text-xs font-mono mt-3" style={{ color: "var(--text-dim)" }}>This decision was made by AI. You have the right to appeal to a human moderator. Average review time: 24 hours.</p>
             </>
           )}
 
           {contentAction === "appealed" && (
-            <div className="border rounded-lg p-4 text-center">
-              <CheckCircle2 className="w-6 h-6 mx-auto mb-2" />
-              <p className="text-sm font-medium">Appeal submitted</p>
-              <p className="text-xs mt-1">A human moderator will review your post within 24 hours. Reference: {modRef}</p>
-              <p className="text-xs mt-2">Your post remains hidden during review. If the appeal succeeds, it will be restored.</p>
+            <div className="rounded-lg p-4 text-center" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+              <CheckCircle2 className="w-6 h-6 mx-auto mb-2" style={{ color: "var(--green)" }} />
+              <p className="text-sm font-medium font-mono" style={{ color: "var(--green)" }}>Appeal submitted</p>
+              <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>A human moderator will review your post within 24 hours. Reference: <span style={{ color: "var(--text-bright)" }}>{modRef}</span></p>
+              <p className="text-xs font-mono mt-2" style={{ color: "var(--text-dim)" }}>Your post remains hidden during review. If the appeal succeeds, it will be restored.</p>
             </div>
           )}
 
           {contentAction === "accepted" && (
-            <div className="border rounded-lg p-4 text-center">
-              <p className="text-sm font-medium">Acknowledged</p>
-              <p className="text-xs mt-1">The post has been removed. You can review our content guidelines to avoid future removals.</p>
+            <div className="rounded-lg p-4 text-center" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+              <p className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>Acknowledged</p>
+              <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>The post has been removed. You can review our content guidelines to avoid future removals.</p>
             </div>
           )}
         </div>
@@ -195,15 +198,15 @@ function AIDecisionExplanationDemo() {
 
       {/* Hiring AI */}
       {scenario === "hiring" && (
-        <div className="rounded-2xl border p-6">
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 mb-4 flex items-start gap-2">
-            <Brain className="w-4 h-4 text-purple-600 mt-0.5 shrink-0" />
-            <div className="text-xs text-purple-800">
-              <strong>AI Notice (required by law):</strong> This application was assessed with the assistance of AI tools. Under the EU AI Act, AI systems used in employment decisions are classified as <strong>high-risk</strong> and subject to additional transparency requirements.
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <div className="rounded-lg p-3 mb-4 flex items-start gap-2" style={{ background: "var(--ai-glow)", border: "1px solid var(--ai-border)" }}>
+            <Brain className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "var(--ai-color)" }} />
+            <div className="text-xs font-mono" style={{ color: "var(--text)" }}>
+              <strong style={{ color: "var(--ai-color)" }}>AI Notice (required by law):</strong> This application was assessed with the assistance of AI tools. Under the EU AI Act, AI systems used in employment decisions are classified as <strong style={{ color: "var(--text-bright)" }}>high-risk</strong> and subject to additional transparency requirements.
             </div>
           </div>
 
-          <h3 className="font-bold mb-4">Application Assessment Summary</h3>
+          <h3 className="font-bold font-mono mb-4" style={{ color: "var(--text-bright)" }}>Application Assessment Summary</h3>
 
           <div className="space-y-3 mb-4">
             {[
@@ -224,17 +227,17 @@ function AIDecisionExplanationDemo() {
             ))}
           </div>
 
-          <div className="border rounded-lg p-4 mb-4">
-            <h4 className="text-xs font-semibold mb-2">What the AI did NOT assess:</h4>
-            <ul className="text-xs space-y-1">
-              <li className="flex items-center gap-2"><XCircle className="w-3 h-3" /> Age, gender, ethnicity, or other protected characteristics</li>
-              <li className="flex items-center gap-2"><XCircle className="w-3 h-3" /> Social media profiles or personal photos</li>
-              <li className="flex items-center gap-2"><XCircle className="w-3 h-3" /> Inferred personality traits or emotional analysis</li>
+          <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+            <h4 className="text-xs font-semibold font-mono mb-2" style={{ color: "var(--green)" }}>What the AI did NOT assess:</h4>
+            <ul className="text-xs font-mono space-y-1" style={{ color: "var(--text)" }}>
+              <li className="flex items-center gap-2"><XCircle className="w-3 h-3" style={{ color: "var(--green)" }} /> Age, gender, ethnicity, or other protected characteristics</li>
+              <li className="flex items-center gap-2"><XCircle className="w-3 h-3" style={{ color: "var(--green)" }} /> Social media profiles or personal photos</li>
+              <li className="flex items-center gap-2"><XCircle className="w-3 h-3" style={{ color: "var(--green)" }} /> Inferred personality traits or emotional analysis</li>
             </ul>
           </div>
 
-          <div className="border rounded-lg p-3 text-xs">
-            <strong>EU AI Act — High-Risk AI:</strong> Employment AI is classified as high-risk (Annex III). This requires: human oversight of all decisions, right to explanation, bias testing, and the option for human-only assessment on request.
+          <div className="rounded-lg p-3 text-xs font-mono" style={{ background: "var(--ai-glow)", border: "1px solid var(--ai-border)", color: "var(--ai-color)" }}>
+            <strong>EU AI Act — High-Risk AI:</strong> <span style={{ color: "var(--text)" }}>Employment AI is classified as high-risk (Annex III). This requires: human oversight of all decisions, right to explanation, bias testing, and the option for human-only assessment on request.</span>
           </div>
         </div>
       )}

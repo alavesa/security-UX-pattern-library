@@ -62,7 +62,7 @@ function LoggingMonitoringDemo() {
     <div className="w-full max-w-lg">
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["log", "anomaly", "audit"] as const).map(s => (
-          <button key={s} onClick={() => setScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button key={s} onClick={() => setScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--amber-glow)" : "transparent", color: scenario === s ? "var(--amber)" : "var(--text)" }}>
             {s === "log" ? "Live Log Stream" : s === "anomaly" ? "Anomaly Detection" : "Audit Trail"}
           </button>
         ))}
@@ -70,14 +70,14 @@ function LoggingMonitoringDemo() {
 
       {/* Live log stream */}
       {scenario === "log" && (
-        <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
-          <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-            <span className="text-xs font-mono flex items-center gap-2">
-              <Activity className="w-3.5 h-3.5" /> Security Event Log
+        <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+          <div className="px-4 py-2 flex items-center justify-between" style={{ background: "var(--bg-elevated)", borderBottom: "1px solid var(--border)" }}>
+            <span className="text-xs font-mono flex items-center gap-2" style={{ color: "var(--text-bright)" }}>
+              <Activity className="w-3.5 h-3.5" style={{ color: "var(--amber)" }} /> Security Event Log
             </span>
             <div className="flex gap-1">
               {(["all", "warning", "critical"] as const).map(f => (
-                <button key={f} onClick={() => setFilter(f)} className="text-xs px-2 py-0.5 rounded font-mono border-none cursor-pointer" style={{ background: filter === f ? "rgba(0,255,65,0.2)" : "transparent", color: filter === f ? "#00ff41" : "#666" }}>
+                <button key={f} onClick={() => setFilter(f)} className="text-xs px-2 py-0.5 rounded font-mono border-none cursor-pointer" style={{ background: filter === f ? "var(--amber-glow)" : "transparent", color: filter === f ? "var(--amber)" : "var(--text-dim)" }}>
                   {f === "warning" ? "≥ warning" : f}
                 </button>
               ))}
@@ -85,24 +85,22 @@ function LoggingMonitoringDemo() {
           </div>
 
           <div className="p-3 font-mono text-xs space-y-1 max-h-[350px] overflow-y-auto">
-            {visibleLogs.map(log => (
-              <div key={log.id} className={`flex items-start gap-2 py-1 px-2 rounded ${
-                log.type === "critical" ? "bg-red-900/30" : log.type === "warning" ? "bg-amber-900/20" : ""
-              }`}>
-                <span className="shrink-0">{log.time}</span>
-                <span className={`shrink-0 w-2 h-2 rounded-full mt-1 ${
-                  log.type === "critical" ? "bg-red-500" : log.type === "warning" ? "bg-amber-500" : "bg-green-500"
-                }`} />
-                <span className={`shrink-0 ${
-                  log.type === "critical" ? "" : log.type === "warning" ? "" : ""
-                }`}>
-                  {log.event}
-                </span>
-                <span className="truncate">{log.user} — {log.detail}</span>
-              </div>
-            ))}
+            {visibleLogs.map(log => {
+              const color = log.type === "critical" ? "var(--red)" : log.type === "warning" ? "var(--amber)" : "var(--green)";
+              const bg = log.type === "critical" ? "rgba(255,51,51,0.1)" : log.type === "warning" ? "rgba(255,170,0,0.08)" : "transparent";
+              return (
+                <div key={log.id} className="flex items-start gap-2 py-1 px-2 rounded" style={{ background: bg }}>
+                  <span className="shrink-0" style={{ color: "var(--text-dim)" }}>{log.time}</span>
+                  <span className="shrink-0 w-2 h-2 rounded-full mt-1" style={{ background: color }} />
+                  <span className="shrink-0" style={{ color }}>
+                    {log.event}
+                  </span>
+                  <span className="truncate" style={{ color: "var(--text)" }}>{log.user} — {log.detail}</span>
+                </div>
+              );
+            })}
             {!done && (
-              <div className="animate-pulse">▊</div>
+              <div className="animate-pulse" style={{ color: "var(--amber)" }}>▊</div>
             )}
           </div>
         </div>
@@ -110,102 +108,103 @@ function LoggingMonitoringDemo() {
 
       {/* Anomaly detection */}
       {scenario === "anomaly" && (
-        <div className="rounded-2xl border p-6">
-          <h3 className="font-bold text-sm mb-4 flex items-center gap-2">
-            <ShieldAlert className="w-4 h-4" /> Anomalies detected
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h3 className="font-bold font-mono text-sm mb-4 flex items-center gap-2" style={{ color: "var(--text-bright)" }}>
+            <ShieldAlert className="w-4 h-4" style={{ color: "var(--red)" }} /> Anomalies detected
           </h3>
 
           <div className="space-y-3">
-            <div role="alert" className="border-2 rounded-lg p-4">
+            <div role="alert" className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.08)", border: "2px solid rgba(255,51,51,0.3)" }}>
               <div className="flex items-start gap-2 mb-2">
-                <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" />
+                <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} />
                 <div>
-                  <p className="text-sm font-bold">Bulk data export</p>
-                  <p className="text-xs">user42 exported 15,000 records in 2 minutes — normal is &lt;100/day</p>
+                  <p className="text-sm font-bold font-mono" style={{ color: "var(--red)" }}>Bulk data export</p>
+                  <p className="text-xs font-mono" style={{ color: "var(--text)" }}>user42 exported 15,000 records in 2 minutes — normal is &lt;100/day</p>
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => { /* dispatch(securityAction('block-user')) */ }} className="text-xs text-white px-3 py-1 rounded border-none cursor-pointer">Block user</button>
-                <button onClick={() => { /* dispatch(securityAction('investigate')) */ }} className="text-xs border px-3 py-1 rounded cursor-pointer">Investigate</button>
+                <button className="text-xs font-mono px-3 py-1 rounded border-none cursor-pointer" style={{ background: "var(--red)", color: "white" }}>Block user</button>
+                <button className="text-xs font-mono px-3 py-1 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>Investigate</button>
               </div>
             </div>
 
-            <div role="alert" className="border-2 rounded-lg p-4">
+            <div role="alert" className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.08)", border: "2px solid rgba(255,51,51,0.3)" }}>
               <div className="flex items-start gap-2 mb-2">
-                <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" />
+                <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} />
                 <div>
-                  <p className="text-sm font-bold">Brute force attack</p>
-                  <p className="text-xs">3 failed login attempts for admin@example.com from Lagos, NG in 4 seconds</p>
+                  <p className="text-sm font-bold font-mono" style={{ color: "var(--red)" }}>Brute force attack</p>
+                  <p className="text-xs font-mono" style={{ color: "var(--text)" }}>3 failed login attempts for admin@example.com from Lagos, NG in 4 seconds</p>
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => { /* dispatch(securityAction('block-ip')) */ }} className="text-xs text-white px-3 py-1 rounded border-none cursor-pointer">Block IP</button>
-                <button onClick={() => { /* dispatch(securityAction('view-logs')) */ }} className="text-xs border px-3 py-1 rounded cursor-pointer">View logs</button>
+                <button className="text-xs font-mono px-3 py-1 rounded border-none cursor-pointer" style={{ background: "var(--red)", color: "white" }}>Block IP</button>
+                <button className="text-xs font-mono px-3 py-1 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>View logs</button>
               </div>
             </div>
 
-            <div role="status" aria-live="polite" className="border rounded-lg p-4">
+            <div role="status" aria-live="polite" className="rounded-lg p-4" style={{ background: "rgba(255,170,0,0.05)", border: "1px solid var(--amber-border)" }}>
               <div className="flex items-start gap-2 mb-2">
-                <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" />
+                <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--amber)" }} />
                 <div>
-                  <p className="text-sm font-bold">Unusual login location</p>
-                  <p className="text-xs">alex@example.com signed in from Brazil — usually signs in from Germany</p>
+                  <p className="text-sm font-bold font-mono" style={{ color: "var(--amber)" }}>Unusual login location</p>
+                  <p className="text-xs font-mono" style={{ color: "var(--text)" }}>alex@example.com signed in from Brazil — usually signs in from Germany</p>
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => { /* dispatch(securityAction('notify-user')) */ }} className="text-xs border px-3 py-1 rounded cursor-pointer">Notify user</button>
-                <button onClick={() => { /* dispatch(securityAction('mark-safe')) */ }} className="text-xs border px-3 py-1 rounded cursor-pointer">Mark as safe</button>
+                <button className="text-xs font-mono px-3 py-1 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>Notify user</button>
+                <button className="text-xs font-mono px-3 py-1 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>Mark as safe</button>
               </div>
             </div>
           </div>
 
-          <div className="border rounded-lg p-3 mt-4 text-xs">
-            <strong>Pattern:</strong> Anomalies are ranked by severity with immediate action buttons. Each shows: what happened, why it's unusual (compared to baseline), and what to do about it. Admins can act without leaving the alert.
+          <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "var(--amber-glow)", border: "1px solid var(--amber-border)", color: "var(--amber)" }}>
+            <strong>Pattern:</strong> <span style={{ color: "var(--text)" }}>Anomalies are ranked by severity with immediate action buttons. Each shows: what happened, why it's unusual (compared to baseline), and what to do about it. Admins can act without leaving the alert.</span>
           </div>
         </div>
       )}
 
       {/* Audit trail */}
       {scenario === "audit" && (
-        <div className="rounded-2xl border p-6">
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-sm flex items-center gap-2">
-              <Eye className="w-4 h-4" /> Audit Trail
+            <h3 className="font-bold font-mono text-sm flex items-center gap-2" style={{ color: "var(--text-bright)" }}>
+              <Eye className="w-4 h-4" style={{ color: "var(--amber)" }} /> Audit Trail
             </h3>
             <div className="flex items-center gap-2">
-              <Filter className="w-3.5 h-3.5" />
-              <span className="text-xs">user42@example.com</span>
+              <Filter className="w-3.5 h-3.5" style={{ color: "var(--text-dim)" }} />
+              <span className="text-xs font-mono" style={{ color: "var(--text)" }}>user42@example.com</span>
             </div>
           </div>
 
-          <div className="border-l-2 ml-3 space-y-4">
+          <div className="ml-3 space-y-4" style={{ borderLeft: "2px solid var(--border)" }}>
             {[
               { id: 1, time: "14:37:22", event: "Exported 15,000 user records", severity: "critical", icon: ShieldAlert },
               { id: 2, time: "14:34:02", event: "Attempted role change to admin (BLOCKED)", severity: "critical", icon: ShieldAlert },
               { id: 3, time: "14:30:15", event: "Accessed admin panel", severity: "warning", icon: AlertTriangle },
               { id: 4, time: "14:28:00", event: "Logged in from 95.173.xxx.xxx (Moscow, RU)", severity: "warning", icon: AlertTriangle },
               { id: 5, time: "14:00:00", event: "Account created via API", severity: "info", icon: Shield },
-            ].map(({ id, time, event, severity, icon: Icon }) => (
-              <div key={id} className="flex items-start gap-3 pl-4 relative">
-                <div className={`absolute -left-[9px] w-4 h-4 rounded-full border-2 border-white ${
-                  severity === "critical" ? "bg-red-500" : severity === "warning" ? "bg-amber-500" : "bg-gray-300"
-                }`} />
-                <div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-3 h-3" />
-                    <span className="text-xs font-mono">{time}</span>
+            ].map(({ id, time, event, severity, icon: Icon }) => {
+              const color = severity === "critical" ? "var(--red)" : severity === "warning" ? "var(--amber)" : "var(--text)";
+              return (
+                <div key={id} className="flex items-start gap-3 pl-4 relative">
+                  <div className="absolute -left-[9px] w-4 h-4 rounded-full" style={{ background: color, border: "2px solid var(--bg-card)" }} />
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-3 h-3" style={{ color: "var(--text-dim)" }} />
+                      <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{time}</span>
+                    </div>
+                    <p className="text-sm font-mono flex items-center gap-1" style={{ color, fontWeight: severity === "critical" ? 600 : 400 }}>
+                      <Icon className="w-4 h-4 shrink-0" />
+                      {event}
+                    </p>
                   </div>
-                  <p className={`text-sm flex items-center gap-1 ${severity === "critical" ? " font-medium" : severity === "warning" ? "" : ""}`}>
-                    <Icon className="w-4 h-4 shrink-0" />
-                    {event}
-                  </p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          <div className="border rounded-lg p-3 mt-4 text-xs">
-            <strong>Analysis:</strong> This user created an account via API, immediately accessed the admin panel, attempted privilege escalation, and then bulk-exported user data. This is a textbook data exfiltration pattern.
+          <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.2)", color: "var(--red)" }}>
+            <strong>Analysis:</strong> <span style={{ color: "var(--text)" }}>This user created an account via API, immediately accessed the admin panel, attempted privilege escalation, and then bulk-exported user data. This is a textbook data exfiltration pattern.</span>
           </div>
         </div>
       )}

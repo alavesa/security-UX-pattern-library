@@ -46,12 +46,12 @@ function DataDeletionDemo() {
 
   return (
     <div className="w-full max-w-lg">
-      <div className="rounded-2xl border p-6" aria-live="polite">
+      <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }} aria-live="polite">
 
         {step === "overview" && (
           <div>
-            <h3 className="font-bold mb-1">Your data</h3>
-            <p className="text-sm mb-6">Review, export, or delete your personal data.</p>
+            <h3 className="font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Your data</h3>
+            <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>Review, export, or delete your personal data.</p>
 
             {/* Data summary */}
             <div className="space-y-3 mb-6">
@@ -61,26 +61,26 @@ function DataDeletionDemo() {
                 { category: "Activity", items: "Login history, preferences, analytics", size: "12 KB" },
                 { category: "Messages", items: "3 conversations, 89 messages", size: "45 KB" },
               ].map(({ category, items, size }) => (
-                <div key={category} className="flex items-center justify-between py-2 border-b">
+                <div key={category} className="flex items-center justify-between py-2" style={{ borderBottom: "1px solid var(--border)" }}>
                   <div>
-                    <p className="text-sm font-medium">{category}</p>
-                    <p className="text-xs">{items}</p>
+                    <p className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>{category}</p>
+                    <p className="text-xs font-mono" style={{ color: "var(--text)" }}>{items}</p>
                   </div>
-                  <span className="text-xs">{size}</span>
+                  <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{size}</span>
                 </div>
               ))}
             </div>
 
             <div className="space-y-2">
-              <button onClick={handleExport} className="w-full flex items-center justify-center gap-2 border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
+              <button onClick={handleExport} className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium font-mono cursor-pointer" style={{ background: "transparent", color: "var(--cyan)", border: "1px solid var(--cyan-border)" }}>
                 <Download className="w-4 h-4" /> Export all my data
               </button>
-              <button onClick={() => setStep("confirm")} className="w-full flex items-center justify-center gap-2 border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
+              <button onClick={() => setStep("confirm")} className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium font-mono cursor-pointer" style={{ background: "transparent", color: "var(--red)", border: "1px solid rgba(255,51,51,0.25)" }}>
                 <Trash2 className="w-4 h-4" /> Delete all my data
               </button>
             </div>
 
-            <p className="text-xs mt-3 text-center">
+            <p className="text-xs font-mono mt-3 text-center" style={{ color: "var(--text-dim)" }}>
               Data export complies with GDPR Article 20 (Right to Data Portability)
             </p>
           </div>
@@ -90,22 +90,22 @@ function DataDeletionDemo() {
           <div className="text-center">
             {!exportDone ? (
               <>
-                <Loader2 className="w-10 h-10 mx-auto mb-4 animate-spin" />
-                <h3 className="font-bold mb-1">Preparing your data export</h3>
-                <p className="text-sm">This may take a moment...</p>
+                <Loader2 className="w-10 h-10 mx-auto mb-4 animate-spin" style={{ color: "var(--cyan)" }} />
+                <h3 className="font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Preparing your data export</h3>
+                <p className="text-sm font-mono" style={{ color: "var(--text)" }}>This may take a moment...</p>
               </>
             ) : (
               <>
-                <CheckCircle2 className="w-10 h-10 mx-auto mb-4" />
-                <h3 className="font-bold mb-1">Export ready</h3>
-                <p className="text-sm mb-4">Your data has been packaged as a ZIP file.</p>
+                <CheckCircle2 className="w-10 h-10 mx-auto mb-4" style={{ color: "var(--cyan)" }} />
+                <h3 className="font-bold font-mono mb-1" style={{ color: "var(--cyan)" }}>Export ready</h3>
+                <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Your data has been packaged as a ZIP file.</p>
 
-                <div className="border rounded-lg p-4 mb-4 text-left">
+                <div className="rounded-lg p-4 mb-4 text-left" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
                   <div className="flex items-center gap-2 mb-2">
-                    <Shield className="w-4 h-4" />
-                    <span className="text-xs font-medium">Export details</span>
+                    <Shield className="w-4 h-4" style={{ color: "var(--cyan)" }} />
+                    <span className="text-xs font-medium font-mono" style={{ color: "var(--text-bright)" }}>Export details</span>
                   </div>
-                  <ul className="text-xs space-y-1">
+                  <ul className="text-xs font-mono space-y-1" style={{ color: "var(--text)" }}>
                     <li>Format: JSON + media files in ZIP</li>
                     <li>Size: 156 MB</li>
                     <li>Download link expires in 48 hours</li>
@@ -113,15 +113,15 @@ function DataDeletionDemo() {
                   </ul>
                 </div>
 
-                <button className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer flex items-center justify-center gap-2">
+                <button className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer flex items-center justify-center gap-2" style={{ background: "var(--cyan)", color: "var(--bg)" }}>
                   <Download className="w-4 h-4" /> Download export (156 MB)
                 </button>
                 {returnToConfirm && (
-                  <button onClick={() => { setReturnToConfirm(false); setStep("confirm"); }} className="mt-3 w-full border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
+                  <button onClick={() => { setReturnToConfirm(false); setStep("confirm"); }} className="mt-3 w-full py-2.5 rounded-lg text-sm font-medium font-mono cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>
                     Continue to deletion
                   </button>
                 )}
-                <button onClick={() => { setReturnToConfirm(false); setStep("overview"); }} className="mt-3 text-xs bg-transparent border-none cursor-pointer hover:">
+                <button onClick={() => { setReturnToConfirm(false); setStep("overview"); }} className="mt-3 text-xs font-mono bg-transparent border-none cursor-pointer" style={{ color: "var(--text-dim)" }}>
                   Back to data overview
                 </button>
               </>
@@ -132,18 +132,18 @@ function DataDeletionDemo() {
         {step === "confirm" && (
           <div>
             <div className="flex items-start gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0">
-                <AlertTriangle className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(255,51,51,0.15)" }}>
+                <AlertTriangle className="w-5 h-5" style={{ color: "var(--red)" }} />
               </div>
               <div>
-                <h3 className="font-bold">Delete all data permanently?</h3>
-                <p className="text-sm">This action cannot be undone.</p>
+                <h3 className="font-bold font-mono" style={{ color: "var(--text-bright)" }}>Delete all data permanently?</h3>
+                <p className="text-sm font-mono" style={{ color: "var(--text)" }}>This action cannot be undone.</p>
               </div>
             </div>
 
-            <div className="border rounded-lg p-4 mb-4">
-              <h4 className="text-xs font-semibold mb-2">What will be permanently deleted:</h4>
-              <ul className="text-xs space-y-1">
+            <div className="rounded-lg p-4 mb-4" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.2)" }}>
+              <h4 className="text-xs font-semibold font-mono mb-2" style={{ color: "var(--red)" }}>What will be permanently deleted:</h4>
+              <ul className="text-xs font-mono space-y-1" style={{ color: "var(--text)" }}>
                 <li>Your profile and account credentials</li>
                 <li>42 posts and 128 comments</li>
                 <li>15 uploaded files (156 MB)</li>
@@ -153,39 +153,40 @@ function DataDeletionDemo() {
             </div>
 
             {!exportDone && (
-              <div className="border rounded-lg p-3 mb-4 flex items-start gap-2">
-                <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" />
-                <div className="text-xs">
-                  <strong>Recommended:</strong> Export your data before deleting.
-                  <button onClick={handleExportFromConfirm} className="underline ml-1 bg-transparent border-none cursor-pointer">Download my data first</button>
+              <div className="rounded-lg p-3 mb-4 flex items-start gap-2" style={{ background: "rgba(255,170,0,0.08)", border: "1px solid rgba(255,170,0,0.2)" }}>
+                <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "var(--amber)" }} />
+                <div className="text-xs font-mono" style={{ color: "var(--text)" }}>
+                  <strong style={{ color: "var(--amber)" }}>Recommended:</strong> Export your data before deleting.
+                  <button onClick={handleExportFromConfirm} className="underline ml-1 bg-transparent border-none cursor-pointer font-mono" style={{ color: "var(--cyan)" }}>Download my data first</button>
                 </div>
               </div>
             )}
 
             {exportDone && (
-              <div className="border rounded-lg p-3 mb-4 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 shrink-0" />
-                <span className="text-xs">Data export downloaded</span>
+              <div className="rounded-lg p-3 mb-4 flex items-center gap-2" style={{ background: "rgba(0,229,255,0.05)", border: "1px solid var(--cyan-border)" }}>
+                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: "var(--cyan)" }} />
+                <span className="text-xs font-mono" style={{ color: "var(--cyan)" }}>Data export downloaded</span>
               </div>
             )}
 
             <div className="mb-4">
-              <label className="block text-xs font-medium mb-1">
-                Type <strong>DELETE MY ACCOUNT</strong> to confirm
+              <label className="block text-xs font-medium font-mono mb-1" style={{ color: "var(--text-bright)" }}>
+                Type <strong style={{ color: "var(--red)" }}>DELETE MY ACCOUNT</strong> to confirm
               </label>
               <input
                 value={confirmText}
                 onChange={e => setConfirmText(e.target.value)}
                 placeholder="DELETE MY ACCOUNT"
                 autoComplete="off"
-                className="w-full px-3 py-2 border rounded-lg text-sm font-mono focus:outline-none focus:ring-2"
+                className="w-full px-3 py-2 rounded-lg text-sm font-mono focus:outline-none"
+                style={{ background: "var(--bg)", color: "var(--text-bright)", border: "1px solid var(--border)" }}
               />
             </div>
 
-            <div className="border rounded-lg p-3 mb-4 flex items-start gap-2">
-              <Clock className="w-4 h-4 mt-0.5 shrink-0" />
-              <div className="text-xs">
-                <strong>30-day grace period:</strong> After confirming, your account will be deactivated immediately but data is retained for 30 days. You can recover your account during this period by signing in.
+            <div className="rounded-lg p-3 mb-4 flex items-start gap-2" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+              <Clock className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "var(--amber)" }} />
+              <div className="text-xs font-mono" style={{ color: "var(--text)" }}>
+                <strong style={{ color: "var(--text-bright)" }}>30-day grace period:</strong> After confirming, your account will be deactivated immediately but data is retained for 30 days. You can recover your account during this period by signing in.
               </div>
             </div>
 
@@ -193,11 +194,12 @@ function DataDeletionDemo() {
               <button
                 onClick={handleDelete}
                 disabled={confirmText.trim() !== "DELETE MY ACCOUNT"}
-                className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                style={{ background: confirmText.trim() === "DELETE MY ACCOUNT" ? "var(--red)" : "var(--bg-elevated)", color: confirmText.trim() === "DELETE MY ACCOUNT" ? "white" : "var(--text-dim)" }}
               >
                 Permanently delete my account
               </button>
-              <button onClick={() => setStep("overview")} className="w-full border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
+              <button onClick={() => setStep("overview")} className="w-full py-2.5 rounded-lg text-sm font-medium font-mono cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>
                 Cancel
               </button>
             </div>
@@ -206,34 +208,34 @@ function DataDeletionDemo() {
 
         {step === "processing" && (
           <div className="text-center py-8">
-            <Loader2 className="w-10 h-10 mx-auto mb-4 animate-spin" />
-            <h3 className="font-bold mb-1">Deleting your data</h3>
-            <p className="text-sm">This is being processed securely...</p>
+            <Loader2 className="w-10 h-10 mx-auto mb-4 animate-spin" style={{ color: "var(--red)" }} />
+            <h3 className="font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Deleting your data</h3>
+            <p className="text-sm font-mono" style={{ color: "var(--text)" }}>This is being processed securely...</p>
           </div>
         )}
 
         {step === "done" && (
           <div className="text-center">
-            <CheckCircle2 className="w-12 h-12 mx-auto mb-4" />
-            <h3 className="font-bold mb-2">Account deletion initiated</h3>
-            <p className="text-sm mb-4">Your account has been deactivated and data deletion has been scheduled.</p>
+            <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color: "var(--cyan)" }} />
+            <h3 className="font-bold font-mono mb-2" style={{ color: "var(--text-bright)" }}>Account deletion initiated</h3>
+            <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Your account has been deactivated and data deletion has been scheduled.</p>
 
-            <div className="border rounded-lg p-4 text-left space-y-2">
-              <div className="flex items-center gap-2 text-xs">
+            <div className="rounded-lg p-4 text-left space-y-2" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+              <div className="flex items-center gap-2 text-xs font-mono" style={{ color: "var(--amber)" }}>
                 <Clock className="w-3.5 h-3.5" />
                 30-day grace period started — sign in to cancel
               </div>
-              <div className="flex items-center gap-2 text-xs">
+              <div className="flex items-center gap-2 text-xs font-mono" style={{ color: "var(--green)" }}>
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Confirmation email sent to your address
               </div>
-              <div className="flex items-center gap-2 text-xs">
-                <Shield className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-2 text-xs font-mono" style={{ color: "var(--text)" }}>
+                <Shield className="w-3.5 h-3.5" style={{ color: "var(--cyan)" }} />
                 Data will be permanently erased after grace period
               </div>
-              <div className="flex items-center gap-2 text-xs">
-                <Shield className="w-3.5 h-3.5" />
-                GDPR deletion reference: {deletionRef}
+              <div className="flex items-center gap-2 text-xs font-mono" style={{ color: "var(--text)" }}>
+                <Shield className="w-3.5 h-3.5" style={{ color: "var(--cyan)" }} />
+                GDPR deletion reference: <span style={{ color: "var(--text-bright)" }}>{deletionRef}</span>
               </div>
             </div>
           </div>

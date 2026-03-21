@@ -93,7 +93,7 @@ function ActivityLogDemo() {
           { key: "devices" as const, label: "Active Devices" },
           { key: "access" as const, label: "Data Access" },
         ]).map(s => (
-          <button key={s.key} onClick={() => setScenario(s.key)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s.key ? "var(--green-glow)" : "transparent", color: scenario === s.key ? "var(--green)" : "var(--text)" }}>
+          <button key={s.key} onClick={() => setScenario(s.key)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s.key ? "var(--cyan-glow)" : "transparent", color: scenario === s.key ? "var(--cyan)" : "var(--text)" }}>
             {s.label}
           </button>
         ))}
@@ -111,9 +111,9 @@ function ActivityLogDemo() {
                 onClick={() => setFilter(f)}
                 className="px-2 py-1 rounded border-none cursor-pointer font-mono text-xs"
                 style={{
-                  background: filter === f ? "var(--green-glow)" : "transparent",
-                  color: filter === f ? "var(--green)" : "var(--text-dim)",
-                  border: filter === f ? "1px solid var(--green-border)" : "1px solid var(--border)",
+                  background: filter === f ? "var(--cyan-glow)" : "transparent",
+                  color: filter === f ? "var(--cyan)" : "var(--text-dim)",
+                  border: filter === f ? "1px solid var(--cyan-border)" : "1px solid var(--border)",
                 }}
               >
                 {f}
@@ -152,7 +152,7 @@ function ActivityLogDemo() {
             className="w-full py-2 rounded text-xs font-mono border-none cursor-pointer flex items-center justify-center gap-2"
             style={{ background: "var(--bg)", color: "var(--text)", border: "1px solid var(--border)" }}
           >
-            {exportStarted ? <><CheckCircle2 className="w-3 h-3" style={{ color: "var(--green)" }} /> Export sent to email</> : <><Download className="w-3 h-3" /> Export full activity log</>}
+            {exportStarted ? <><CheckCircle2 className="w-3 h-3" style={{ color: "var(--cyan)" }} /> Export sent to email</> : <><Download className="w-3 h-3" /> Export full activity log</>}
           </button>
         </div>
       )}
@@ -177,11 +177,11 @@ function ActivityLogDemo() {
                   opacity: revoked ? 0.5 : 1,
                 }}
               >
-                <Icon className="w-5 h-5 shrink-0" style={{ color: device.current ? "var(--green)" : isUnknown ? "var(--amber)" : "var(--text)" }} />
+                <Icon className="w-5 h-5 shrink-0" style={{ color: device.current ? "var(--cyan)" : isUnknown ? "var(--amber)" : "var(--text)" }} />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <span style={{ color: "var(--text-bright)" }}>{device.name}</span>
-                    {device.current && <span className="px-1.5 py-0.5 rounded text-xs" style={{ background: "var(--green-glow)", color: "var(--green)", border: "1px solid var(--green-border)" }}>current</span>}
+                    {device.current && <span className="px-1.5 py-0.5 rounded text-xs" style={{ background: "var(--cyan-glow)", color: "var(--cyan)", border: "1px solid var(--cyan-border)" }}>current</span>}
                     {isUnknown && !revoked && <span className="px-1.5 py-0.5 rounded text-xs" style={{ background: "rgba(255,170,0,0.15)", color: "var(--amber)" }}>⚠ review</span>}
                   </div>
                   <p style={{ color: "var(--text-dim)" }}>{device.browser} · {device.location}</p>

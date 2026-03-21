@@ -49,12 +49,11 @@ function SecureFileUploadDemo() {
 
   return (
     <div className="w-full max-w-lg">
-      <div className="rounded-2xl border p-6">
+      <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {/* Drop zone */}
         <div
-          className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors ${
-            dragOver ? "border-blue-400 " : ""
-          }`}
+          className="border-2 border-dashed rounded-xl p-8 text-center transition-colors cursor-pointer"
+          style={{ borderColor: dragOver ? "var(--cyan)" : "var(--border)", background: dragOver ? "var(--cyan-glow)" : "transparent" }}
           onDragOver={e => { e.preventDefault(); setDragOver(true); }}
           onDragLeave={e => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setDragOver(false); }}
           onDrop={e => { e.preventDefault(); setDragOver(false); Array.from(e.dataTransfer.files).forEach(f => simulateUpload(f.name)); }}
@@ -64,63 +63,59 @@ function SecureFileUploadDemo() {
           onKeyDown={e => { if (e.key === "Enter" || e.key === " ") inputRef.current?.click(); }}
         >
           <input ref={inputRef} type="file" multiple className="sr-only" onChange={e => { Array.from(e.target.files ?? []).forEach(f => simulateUpload(f.name)); e.target.value = ""; }} />
-          <Upload className="w-10 h-10 mx-auto mb-3" />
-          <p className="text-sm font-medium mb-1">Drop files here or click to browse</p>
-          <p className="text-xs mb-3">PDF, DOCX, XLSX, PNG, JPG up to 10 MB</p>
-          <div className="flex items-center justify-center gap-2 text-xs">
+          <Upload className="w-10 h-10 mx-auto mb-3" style={{ color: "var(--cyan)" }} />
+          <p className="text-sm font-medium font-mono mb-1" style={{ color: "var(--text-bright)" }}>Drop files here or click to browse</p>
+          <p className="text-xs font-mono mb-3" style={{ color: "var(--text-dim)" }}>PDF, DOCX, XLSX, PNG, JPG up to 10 MB</p>
+          <div className="flex items-center justify-center gap-2 text-xs font-mono" style={{ color: "var(--cyan)" }}>
             <ShieldCheck className="w-3.5 h-3.5" />
             All uploads are scanned for malware and encrypted in transit
           </div>
         </div>
 
         {/* Blocked types notice */}
-        <div className="mt-3 flex items-start gap-2 text-xs rounded-lg p-2.5">
-          <AlertTriangle className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-          <span>Executable files (.exe, .bat, .cmd, .scr, .ps1, .vbs) are blocked for security.</span>
+        <div className="mt-3 flex items-start gap-2 text-xs font-mono rounded-lg p-2.5" style={{ background: "rgba(255,170,0,0.08)", border: "1px solid rgba(255,170,0,0.2)" }}>
+          <AlertTriangle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--amber)" }} />
+          <span style={{ color: "var(--text)" }}>Executable files (.exe, .bat, .cmd, .scr, .ps1, .vbs) are blocked for security.</span>
         </div>
 
-        <button onClick={handleDemoFiles} disabled={files.some(f => f.status === "scanning")} className="w-full mt-4 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+        <button onClick={handleDemoFiles} disabled={files.some(f => f.status === "scanning")} className="w-full mt-4 py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" style={{ background: "var(--cyan)", color: "var(--bg)" }}>
           Simulate uploading 4 files
         </button>
 
         {/* File list */}
         {files.length > 0 && (
           <div className="mt-4 space-y-2" aria-live="polite" aria-atomic="false">
-            {files.map((file) => (
-              <div key={file.id} className={`flex items-center gap-3 p-3 rounded-lg border ${
-                file.status === "safe" ? " " :
-                file.status === "infected" ? " " :
-                file.status === "rejected" ? " " :
-                " "
-              }`}>
-                <FileText className={`w-5 h-5 shrink-0 ${
-                  file.status === "safe" ? "" :
-                  file.status === "infected" || file.status === "rejected" ? "" :
-                  ""
-                }`} />
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">{file.name}</p>
-                  <p className="text-xs">{file.size} • .{file.type}</p>
+            {files.map((file) => {
+              const statusColor = file.status === "safe" ? "var(--green)" : file.status === "infected" || file.status === "rejected" ? "var(--red)" : "var(--text)";
+              const statusBg = file.status === "safe" ? "rgba(0,255,65,0.05)" : file.status === "infected" ? "rgba(255,51,51,0.08)" : file.status === "rejected" ? "rgba(255,51,51,0.08)" : "var(--bg)";
+              const statusBorder = file.status === "safe" ? "var(--green-border)" : file.status === "infected" || file.status === "rejected" ? "rgba(255,51,51,0.25)" : "var(--border)";
+              return (
+                <div key={file.id} className="flex items-center gap-3 p-3 rounded-lg" style={{ background: statusBg, border: `1px solid ${statusBorder}` }}>
+                  <FileText className="w-5 h-5 shrink-0" style={{ color: statusColor }} />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium font-mono truncate" style={{ color: "var(--text-bright)" }}>{file.name}</p>
+                    <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{file.size} • .{file.type}</p>
+                  </div>
+                  <div className="shrink-0">
+                    {file.status === "scanning" && (
+                      <span className="flex items-center gap-1 text-xs font-mono" style={{ color: "var(--text)" }}><Loader2 aria-hidden="true" className="w-3.5 h-3.5 animate-spin" /> Scanning</span>
+                    )}
+                    {file.status === "safe" && (
+                      <span className="flex items-center gap-1 text-xs font-mono" style={{ color: "var(--green)" }}><CheckCircle2 aria-hidden="true" className="w-3.5 h-3.5" /> Safe</span>
+                    )}
+                    {file.status === "infected" && (
+                      <span className="flex items-center gap-1 text-xs font-mono" style={{ color: "var(--red)" }}><XCircle aria-hidden="true" className="w-3.5 h-3.5" /> Malware detected</span>
+                    )}
+                    {file.status === "rejected" && (
+                      <span className="flex items-center gap-1 text-xs font-mono" style={{ color: "var(--red)" }}><XCircle aria-hidden="true" className="w-3.5 h-3.5" /> Blocked filetype</span>
+                    )}
+                  </div>
                 </div>
-                <div className="shrink-0">
-                  {file.status === "scanning" && (
-                    <span className="flex items-center gap-1 text-xs"><Loader2 aria-hidden="true" className="w-3.5 h-3.5 animate-spin" /> Scanning</span>
-                  )}
-                  {file.status === "safe" && (
-                    <span className="flex items-center gap-1 text-xs"><CheckCircle2 aria-hidden="true" className="w-3.5 h-3.5" /> Safe</span>
-                  )}
-                  {file.status === "infected" && (
-                    <span className="flex items-center gap-1 text-xs"><XCircle aria-hidden="true" className="w-3.5 h-3.5" /> Malware detected</span>
-                  )}
-                  {file.status === "rejected" && (
-                    <span className="flex items-center gap-1 text-xs"><XCircle aria-hidden="true" className="w-3.5 h-3.5" /> Blocked filetype</span>
-                  )}
-                </div>
-              </div>
-            ))}
+              );
+            })}
 
             {files.some(f => f.status === "safe") && (
-              <div className="flex items-center gap-2 text-xs pt-2">
+              <div className="flex items-center gap-2 text-xs font-mono pt-2" style={{ color: "var(--cyan)" }}>
                 <Lock className="w-3.5 h-3.5" />
                 Safe files encrypted with AES-256 and uploaded successfully
               </div>

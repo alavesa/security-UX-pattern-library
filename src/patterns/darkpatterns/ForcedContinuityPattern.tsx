@@ -28,38 +28,38 @@ function ForcedContinuityDemo() {
 
       {/* Dark: Free trial → auto-charge */}
       {view === "dark" && (
-        <div className="rounded-2xl border-2 p-6">
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "2px solid rgba(255,51,51,0.3)" }}>
           <div className="text-right mb-2">
-            <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono">DARK PATTERN</span>
+            <span className="text-xs px-2 py-0.5 rounded font-mono" style={{ background: "var(--red)", color: "white" }}>DARK PATTERN</span>
           </div>
 
           {darkStep === 0 && (
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-2">Start your free trial</h3>
-              <p className="text-4xl font-bold mb-1">$0</p>
-              <p className="text-sm mb-6">7-day free trial</p>
+              <h3 className="text-2xl font-bold font-mono mb-2" style={{ color: "var(--text-bright)" }}>Start your free trial</h3>
+              <p className="text-4xl font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>$0</p>
+              <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>7-day free trial</p>
 
               <div className="text-left space-y-2 mb-6">
                 {["Unlimited access to all features", "Priority support", "Cancel anytime"].map(f => (
-                  <div key={f} className="flex items-center gap-2 text-sm">
-                    <CheckCircle2 aria-hidden="true" className="w-4 h-4" /> {f}
+                  <div key={f} className="flex items-center gap-2 text-sm font-mono" style={{ color: "var(--text-bright)" }}>
+                    <CheckCircle2 aria-hidden="true" className="w-4 h-4" style={{ color: "var(--green)" }} /> {f}
                   </div>
                 ))}
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-1 text-left">Payment method</label>
-                <div className="flex items-center gap-2 p-3 border rounded-lg">
-                  <CreditCard aria-hidden="true" className="w-5 h-5" />
-                  <span className="text-sm">•••• •••• •••• 4242</span>
+                <label className="block text-sm font-medium font-mono mb-1 text-left" style={{ color: "var(--text-bright)" }}>Payment method</label>
+                <div className="flex items-center gap-2 p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                  <CreditCard aria-hidden="true" className="w-5 h-5" style={{ color: "var(--text)" }} />
+                  <span className="text-sm font-mono" style={{ color: "var(--text-bright)" }}>•••• •••• •••• 4242</span>
                 </div>
               </div>
 
-              <button type="button" onClick={() => setDarkStep(1)} className="w-full text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer">
+              <button type="button" onClick={() => setDarkStep(1)} className="w-full py-3 rounded-lg font-bold font-mono text-sm border-none cursor-pointer" style={{ background: "#2563eb", color: "white" }}>
                 Start Free Trial
               </button>
 
-              <p role="note" aria-label="Example of deceptive fine print" className="text-xs mt-3 leading-relaxed">
+              <p role="note" aria-label="Example of deceptive fine print" className="text-xs font-mono mt-3 leading-relaxed" style={{ color: "var(--text-dim)" }}>
                 <span className="sr-only">Intentionally hard to read — example of deceptive fine print: </span>
                 After your free trial ends, you will be automatically charged $29.99/month. By clicking "Start Free Trial" you agree to our Terms of Service and authorize recurring charges.
               </p>
@@ -69,20 +69,20 @@ function ForcedContinuityDemo() {
           {darkStep === 1 && (
             <div>
               <div className="text-center mb-4">
-                <CheckCircle2 aria-hidden="true" className="w-12 h-12 mx-auto mb-2" />
-                <h3 className="font-bold">Trial started!</h3>
-                <p className="text-sm">Your free trial is active.</p>
+                <CheckCircle2 aria-hidden="true" className="w-12 h-12 mx-auto mb-2" style={{ color: "var(--green)" }} />
+                <h3 className="font-bold font-mono" style={{ color: "var(--text-bright)" }}>Trial started!</h3>
+                <p className="text-sm font-mono" style={{ color: "var(--text)" }}>Your free trial is active.</p>
               </div>
 
-              <div className="border rounded-lg p-4">
-                <h3 className="text-sm font-semibold mb-2">What's wrong here:</h3>
-                <ul className="text-xs space-y-1.5">
-                  <li><strong>$29.99/month hidden in micro-text</strong> — the price after trial is barely visible</li>
-                  <li><strong>Credit card required upfront</strong> — for a "free" trial</li>
-                  <li><strong>"Cancel anytime" is misleading</strong> — cancellation is typically buried and complex</li>
-                  <li><strong>Auto-charge is the default</strong> — no reminder email before the trial ends</li>
-                  <li><strong>"Recurring charges" in fine print</strong> — user may not realize it's a subscription</li>
-                  <li><strong>No cancellation reminder</strong> — relies on users forgetting to cancel</li>
+              <div className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.08)", border: "1px solid rgba(255,51,51,0.2)" }}>
+                <h3 className="text-sm font-semibold font-mono mb-2" style={{ color: "var(--red)" }}>What's wrong here:</h3>
+                <ul className="text-xs font-mono space-y-1.5" style={{ color: "var(--text)" }}>
+                  <li><strong style={{ color: "var(--text-bright)" }}>$29.99/month hidden in micro-text</strong> — the price after trial is barely visible</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Credit card required upfront</strong> — for a "free" trial</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>"Cancel anytime" is misleading</strong> — cancellation is typically buried and complex</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Auto-charge is the default</strong> — no reminder email before the trial ends</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>"Recurring charges" in fine print</strong> — user may not realize it's a subscription</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>No cancellation reminder</strong> — relies on users forgetting to cancel</li>
                   <li>The FTC's "Negative Option Rule" (2024) makes this illegal in many jurisdictions</li>
                 </ul>
               </div>
@@ -93,42 +93,42 @@ function ForcedContinuityDemo() {
 
       {/* Ethical version */}
       {view === "ethical" && (
-        <div className="rounded-2xl border-2 p-6">
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "2px solid var(--green-border)" }}>
           <div className="text-right mb-2">
-            <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono">ETHICAL</span>
+            <span className="text-xs px-2 py-0.5 rounded font-mono" style={{ background: "var(--green)", color: "var(--bg)" }}>ETHICAL</span>
           </div>
 
           {ethicalStep === 0 && (
             <div>
-              <h3 className="text-2xl font-bold mb-2 text-center">Try it free for 7 days</h3>
+              <h3 className="text-2xl font-bold font-mono mb-2 text-center" style={{ color: "var(--text-bright)" }}>Try it free for 7 days</h3>
 
-              <div className="border rounded-lg p-4 mb-4">
+              <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium">Free trial</span>
-                  <span className="text-sm font-bold">$0 for 7 days</span>
+                  <span className="text-sm font-medium font-mono" style={{ color: "var(--text)" }}>Free trial</span>
+                  <span className="text-sm font-bold font-mono" style={{ color: "var(--green)" }}>$0 for 7 days</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Then</span>
-                  <span className="text-sm font-bold">$29.99/month</span>
+                  <span className="text-sm font-medium font-mono" style={{ color: "var(--text)" }}>Then</span>
+                  <span className="text-sm font-bold font-mono" style={{ color: "var(--text-bright)" }}>$29.99/month</span>
                 </div>
               </div>
 
-              <div className="border rounded-lg p-3 mb-4 flex items-start gap-2">
-                <AlertTriangle aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0" />
-                <div className="text-xs">
-                  <strong>No credit card required.</strong> We'll ask for payment only if you choose to continue after the trial.
+              <div className="rounded-lg p-3 mb-4 flex items-start gap-2" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+                <CheckCircle2 aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "var(--green)" }} />
+                <div className="text-xs font-mono" style={{ color: "var(--text)" }}>
+                  <strong style={{ color: "var(--green)" }}>No credit card required.</strong> We'll ask for payment only if you choose to continue after the trial.
                 </div>
               </div>
 
               <div className="text-left space-y-2 mb-6">
                 {["Unlimited access during trial", "We'll email you 2 days before it ends", "No charge if you don't continue"].map(f => (
-                  <div key={f} className="flex items-center gap-2 text-sm">
-                    <CheckCircle2 aria-hidden="true" className="w-4 h-4" /> {f}
+                  <div key={f} className="flex items-center gap-2 text-sm font-mono" style={{ color: "var(--text-bright)" }}>
+                    <CheckCircle2 aria-hidden="true" className="w-4 h-4" style={{ color: "var(--green)" }} /> {f}
                   </div>
                 ))}
               </div>
 
-              <button type="button" onClick={() => setEthicalStep(1)} className="w-full text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer">
+              <button type="button" onClick={() => setEthicalStep(1)} className="w-full py-3 rounded-lg font-medium font-mono text-sm border-none cursor-pointer" style={{ background: "var(--green)", color: "var(--bg)" }}>
                 Start free trial — no credit card needed
               </button>
             </div>
@@ -137,38 +137,38 @@ function ForcedContinuityDemo() {
           {ethicalStep === 1 && (
             <div>
               <div className="text-center mb-4">
-                <CheckCircle2 aria-hidden="true" className="w-12 h-12 mx-auto mb-2" />
-                <h3 className="font-bold">Trial started!</h3>
-                <p className="text-sm mb-2">Your 7-day free trial is active.</p>
+                <CheckCircle2 aria-hidden="true" className="w-12 h-12 mx-auto mb-2" style={{ color: "var(--green)" }} />
+                <h3 className="font-bold font-mono" style={{ color: "var(--green)" }}>Trial started!</h3>
+                <p className="text-sm font-mono mb-2" style={{ color: "var(--text)" }}>Your 7-day free trial is active.</p>
               </div>
 
-              <div className="border rounded-lg p-4 mb-4">
-                <h4 className="text-sm font-semibold mb-3 flex items-center gap-2"><Clock aria-hidden="true" className="w-4 h-4" /> What happens next:</h4>
-                <div className="space-y-3 text-xs">
+              <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                <h4 className="text-sm font-semibold font-mono mb-3 flex items-center gap-2" style={{ color: "var(--text-bright)" }}><Clock aria-hidden="true" className="w-4 h-4" style={{ color: "var(--amber)" }} /> What happens next:</h4>
+                <div className="space-y-3 text-xs font-mono">
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold">1</div>
-                    <div><strong>Day 5:</strong> We'll email you a reminder that your trial ends in 2 days</div>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold" style={{ background: "var(--bg-elevated)", color: "var(--text-bright)" }}>1</div>
+                    <div style={{ color: "var(--text)" }}><strong style={{ color: "var(--text-bright)" }}>Day 5:</strong> We'll email you a reminder that your trial ends in 2 days</div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold">2</div>
-                    <div><strong>Day 7:</strong> Trial ends. We'll ask if you'd like to subscribe</div>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold" style={{ background: "var(--bg-elevated)", color: "var(--text-bright)" }}>2</div>
+                    <div style={{ color: "var(--text)" }}><strong style={{ color: "var(--text-bright)" }}>Day 7:</strong> Trial ends. We'll ask if you'd like to subscribe</div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold">3</div>
-                    <div><strong>No action needed to cancel</strong> — trial simply ends</div>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold" style={{ background: "var(--bg-elevated)", color: "var(--text-bright)" }}>3</div>
+                    <div style={{ color: "var(--text)" }}><strong style={{ color: "var(--green)" }}>No action needed to cancel</strong> — trial simply ends</div>
                   </div>
                 </div>
               </div>
 
-              <div className="border rounded-lg p-4">
-                <h4 className="text-sm font-semibold mb-2">What's right here:</h4>
-                <ul className="text-xs space-y-1.5">
-                  <li><strong>No credit card upfront</strong> — the trial is genuinely free</li>
-                  <li><strong>Price clearly shown</strong> — $29.99/month visible BEFORE signup, not in fine print</li>
-                  <li><strong>Reminder before expiry</strong> — email 2 days before trial ends</li>
-                  <li><strong>No auto-charge</strong> — trial simply expires, user chooses to subscribe</li>
-                  <li><strong>Clear timeline</strong> — user knows exactly what to expect and when</li>
-                  <li><strong>No action to cancel</strong> — doing nothing = cancellation (not the reverse)</li>
+              <div className="rounded-lg p-4" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+                <h4 className="text-sm font-semibold font-mono mb-2" style={{ color: "var(--green)" }}>What's right here:</h4>
+                <ul className="text-xs font-mono space-y-1.5" style={{ color: "var(--text)" }}>
+                  <li><strong style={{ color: "var(--text-bright)" }}>No credit card upfront</strong> — the trial is genuinely free</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Price clearly shown</strong> — $29.99/month visible BEFORE signup, not in fine print</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Reminder before expiry</strong> — email 2 days before trial ends</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>No auto-charge</strong> — trial simply expires, user chooses to subscribe</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>Clear timeline</strong> — user knows exactly what to expect and when</li>
+                  <li><strong style={{ color: "var(--text-bright)" }}>No action to cancel</strong> — doing nothing = cancellation (not the reverse)</li>
                 </ul>
               </div>
             </div>

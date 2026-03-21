@@ -21,7 +21,7 @@ function EncryptionIndicatorDemo() {
       {/* Scenario toggle */}
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["messaging", "connection", "storage"] as const).map(s => (
-          <button key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--cyan-glow)" : "transparent", color: scenario === s ? "var(--cyan)" : "var(--text)" }}>
             {s === "messaging" ? "E2E Messaging" : s === "connection" ? "Connection" : "At-Rest"}
           </button>
         ))}
@@ -29,33 +29,33 @@ function EncryptionIndicatorDemo() {
 
       {/* E2E Encrypted messaging */}
       {scenario === "messaging" && (
-        <div className="rounded-2xl border overflow-hidden">
+        <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           {/* Header */}
-          <div className="border-b px-4 py-3 flex items-center justify-between">
+          <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: "1px solid var(--border)" }}>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs">AJ</div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold font-mono text-xs" style={{ background: "var(--cyan-glow)", color: "var(--cyan)" }}>AJ</div>
               <div>
-                <p className="text-sm font-medium">Alice Johnson</p>
-                <p className="text-xs flex items-center gap-1"><Lock className="w-3 h-3" aria-hidden="true" /> End-to-end encrypted</p>
+                <p className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>Alice Johnson</p>
+                <p className="text-xs font-mono flex items-center gap-1" style={{ color: "var(--cyan)" }}><Lock className="w-3 h-3" aria-hidden="true" /> End-to-end encrypted</p>
               </div>
             </div>
-            <button onClick={() => setShowDetails(!showDetails)} className="text-xs bg-transparent border-none cursor-pointer hover:underline">
+            <button onClick={() => setShowDetails(!showDetails)} className="text-xs font-mono bg-transparent border-none cursor-pointer hover:underline" style={{ color: "var(--cyan)" }}>
               {showDetails ? "Hide" : "Verify"}
             </button>
           </div>
 
           {/* Encryption details */}
           {showDetails && (
-            <div className="border-b px-4 py-3">
+            <div className="px-4 py-3" style={{ borderBottom: "1px solid var(--border)", background: "var(--cyan-glow)" }}>
               <div className="flex items-start gap-2">
-                <ShieldCheck className="w-5 h-5 mt-0.5 shrink-0" />
+                <ShieldCheck className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--cyan)" }} />
                 <div>
-                  <p className="text-xs font-semibold">Encryption verified</p>
-                  <p className="text-xs mt-1">Messages are end-to-end encrypted using Signal Protocol. Only you and Alice can read them — not even we can.</p>
-                  <div className="mt-2 p-2 rounded border">
-                    <p className="text-xs mb-1">Safety number</p>
-                    <p className="font-mono text-xs tracking-wider">38472 91056 73829 10384 72910 56738</p>
-                    <p className="text-xs mt-1">Compare this number with Alice to verify encryption.</p>
+                  <p className="text-xs font-semibold font-mono" style={{ color: "var(--cyan)" }}>Encryption verified</p>
+                  <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>Messages are end-to-end encrypted using Signal Protocol. Only you and Alice can read them — not even we can.</p>
+                  <div className="mt-2 p-2 rounded" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                    <p className="text-xs font-mono mb-1" style={{ color: "var(--text-dim)" }}>Safety number</p>
+                    <p className="font-mono text-xs tracking-wider" style={{ color: "var(--text-bright)" }}>38472 91056 73829 10384 72910 56738</p>
+                    <p className="text-xs font-mono mt-1" style={{ color: "var(--text-dim)" }}>Compare this number with Alice to verify encryption.</p>
                   </div>
                 </div>
               </div>
@@ -65,40 +65,41 @@ function EncryptionIndicatorDemo() {
           {/* Messages */}
           <div className="p-4 space-y-3 min-h-[150px]">
             <div className="flex justify-start">
-              <div className="rounded-2xl rounded-bl-none px-4 py-2 max-w-[80%]">
-                <p className="text-sm">Hey, can you send me the quarterly report?</p>
-                <p className="text-xs mt-1 flex items-center gap-1"><Lock className="w-2.5 h-2.5" aria-hidden="true" /> 10:32 AM</p>
+              <div className="rounded-2xl rounded-bl-none px-4 py-2 max-w-[80%]" style={{ background: "var(--bg-elevated)" }}>
+                <p className="text-sm font-mono" style={{ color: "var(--text-bright)" }}>Hey, can you send me the quarterly report?</p>
+                <p className="text-xs font-mono mt-1 flex items-center gap-1" style={{ color: "var(--text-dim)" }}><Lock className="w-2.5 h-2.5" aria-hidden="true" /> 10:32 AM</p>
               </div>
             </div>
             <div className="flex justify-end">
-              <div className="rounded-2xl rounded-br-none px-4 py-2 max-w-[80%]">
-                <p className="text-sm text-white">Sure, sending it now. It has sensitive financial data so glad this is encrypted.</p>
-                <p className="text-xs text-blue-200 mt-1 flex items-center gap-1"><Lock className="w-2.5 h-2.5" aria-hidden="true" /> 10:33 AM</p>
+              <div className="rounded-2xl rounded-br-none px-4 py-2 max-w-[80%]" style={{ background: "var(--cyan)" }}>
+                <p className="text-sm font-mono" style={{ color: "var(--bg)" }}>Sure, sending it now. It has sensitive financial data so glad this is encrypted.</p>
+                <p className="text-xs font-mono mt-1 flex items-center gap-1" style={{ color: "rgba(0,0,0,0.5)" }}><Lock className="w-2.5 h-2.5" aria-hidden="true" /> 10:33 AM</p>
               </div>
             </div>
             {sentMessages.map((msg, i) => (
               <div key={i} className="flex justify-end">
-                <div className="rounded-2xl rounded-br-none px-4 py-2 max-w-[80%]">
-                  <p className="text-sm text-white">{msg}</p>
-                  <p className="text-xs text-blue-200 mt-1 flex items-center gap-1"><Lock className="w-2.5 h-2.5" aria-hidden="true" /> Just now</p>
+                <div className="rounded-2xl rounded-br-none px-4 py-2 max-w-[80%]" style={{ background: "var(--cyan)" }}>
+                  <p className="text-sm font-mono" style={{ color: "var(--bg)" }}>{msg}</p>
+                  <p className="text-xs font-mono mt-1 flex items-center gap-1" style={{ color: "rgba(0,0,0,0.5)" }}><Lock className="w-2.5 h-2.5" aria-hidden="true" /> Just now</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Input */}
-          <div className="border-t px-4 py-3 flex items-center gap-2">
-            <Lock className="w-4 h-4 shrink-0" aria-hidden="true" />
+          <div className="px-4 py-3 flex items-center gap-2" style={{ borderTop: "1px solid var(--border)" }}>
+            <Lock className="w-4 h-4 shrink-0" aria-hidden="true" style={{ color: "var(--cyan)" }} />
             <input
               aria-label="Encrypted message"
               value={message}
               onChange={e => setMessage(e.target.value)}
               placeholder="Encrypted message..."
-              className="flex-1 text-sm border-none outline-none bg-transparent"
+              className="flex-1 text-sm font-mono border-none outline-none bg-transparent"
+              style={{ color: "var(--text-bright)" }}
               onKeyDown={e => { if (e.key === "Enter" && message) { setSentMessages(prev => [...prev, message]); setMessage(""); } }}
             />
             <button aria-label="Send message" onClick={() => { if (message) { setSentMessages(prev => [...prev, message]); setMessage(""); } }} className="bg-transparent border-none cursor-pointer">
-              <Send className="w-4 h-4" />
+              <Send className="w-4 h-4" style={{ color: "var(--cyan)" }} />
             </button>
           </div>
         </div>
@@ -106,56 +107,56 @@ function EncryptionIndicatorDemo() {
 
       {/* Connection security */}
       {scenario === "connection" && (
-        <div className="rounded-2xl border p-6 space-y-4">
-          <h3 className="font-semibold text-sm">Connection security indicators</h3>
+        <div className="rounded-2xl p-6 space-y-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h3 className="font-semibold font-mono text-sm" style={{ color: "var(--text-bright)" }}>Connection security indicators</h3>
 
           {/* Secure */}
-          <div className="border rounded-lg p-4">
+          <div className="rounded-lg p-4" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
             <div className="flex items-center gap-3 mb-2">
-              <Lock className="w-5 h-5" />
+              <Lock className="w-5 h-5" style={{ color: "var(--green)" }} />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium">https://bank.example.com</span>
-                  <span className="text-xs px-1.5 py-0.5 rounded">EV Certificate</span>
+                  <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>https://bank.example.com</span>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(0,255,65,0.15)", color: "var(--green)" }}>EV Certificate</span>
                 </div>
-                <p className="text-xs">Connection is secure • TLS 1.3 • Bank Corp, Inc.</p>
+                <p className="text-xs font-mono" style={{ color: "var(--green)" }}>Connection is secure • TLS 1.3 • Bank Corp, Inc.</p>
               </div>
             </div>
-            <div className="rounded p-2 text-xs">
+            <div className="rounded p-2 text-xs font-mono" style={{ background: "var(--bg)", color: "var(--text)" }}>
               Information you send (passwords, credit cards) is encrypted and cannot be read by others.
             </div>
           </div>
 
           {/* Mixed content */}
-          <div className="border rounded-lg p-4">
+          <div className="rounded-lg p-4" style={{ background: "rgba(255,170,0,0.05)", border: "1px solid rgba(255,170,0,0.25)" }}>
             <div className="flex items-center gap-3 mb-2">
-              <ShieldAlert className="w-5 h-5" />
+              <ShieldAlert className="w-5 h-5" style={{ color: "var(--amber)" }} />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium">https://shop.example.com</span>
-                  <span className="text-xs px-1.5 py-0.5 rounded">Mixed Content</span>
+                  <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>https://shop.example.com</span>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(255,170,0,0.15)", color: "var(--amber)" }}>Mixed Content</span>
                 </div>
-                <p className="text-xs">Connection partially secure • Some resources loaded over HTTP</p>
+                <p className="text-xs font-mono" style={{ color: "var(--amber)" }}>Connection partially secure • Some resources loaded over HTTP</p>
               </div>
             </div>
-            <div className="rounded p-2 text-xs">
+            <div className="rounded p-2 text-xs font-mono" style={{ background: "var(--bg)", color: "var(--text)" }}>
               This page includes resources that aren't encrypted. Sensitive data may be visible to others.
             </div>
           </div>
 
           {/* Insecure */}
-          <div className="border rounded-lg p-4">
+          <div className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.25)" }}>
             <div className="flex items-center gap-3 mb-2">
-              <Unlock className="w-5 h-5" />
+              <Unlock className="w-5 h-5" style={{ color: "var(--red)" }} />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium">http://old.example.com</span>
-                  <span className="text-xs px-1.5 py-0.5 rounded">Not Secure</span>
+                  <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>http://old.example.com</span>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>Not Secure</span>
                 </div>
-                <p className="text-xs">Connection is not encrypted</p>
+                <p className="text-xs font-mono" style={{ color: "var(--red)" }}>Connection is not encrypted</p>
               </div>
             </div>
-            <div className="rounded p-2 text-xs">
+            <div className="rounded p-2 text-xs font-mono" style={{ background: "var(--bg)", color: "var(--text)" }}>
               Do not enter passwords or credit card numbers on this site. Anyone on the network can see what you send.
             </div>
           </div>
@@ -164,8 +165,8 @@ function EncryptionIndicatorDemo() {
 
       {/* At-rest encryption */}
       {scenario === "storage" && (
-        <div className="rounded-2xl border p-6">
-          <h3 className="font-semibold text-sm mb-4">Data encryption status</h3>
+        <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h3 className="font-semibold font-mono text-sm mb-4" style={{ color: "var(--text-bright)" }}>Data encryption status</h3>
 
           <div className="space-y-3">
             {[
@@ -173,28 +174,28 @@ function EncryptionIndicatorDemo() {
               { name: "Profile information", status: "encrypted", icon: Lock, detail: "AES-256 • Encrypted at rest • Visible to admins" },
               { name: "Chat history", status: "e2e", icon: ShieldCheck, detail: "Signal Protocol • End-to-end encrypted • No server access" },
               { name: "Usage analytics", status: "plain", icon: Eye, detail: "Not encrypted • Anonymized • Used for service improvement" },
-            ].map(({ name, status, icon: Icon, detail }) => (
-              <div key={name} className="flex items-start gap-3 p-3 border rounded-lg">
-                <Icon className={`w-5 h-5 mt-0.5 shrink-0 ${status === "e2e" ? "" : status === "encrypted" ? "" : ""}`} />
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">{name}</span>
-                    <span className={`text-xs px-1.5 py-0.5 rounded ${
-                      status === "e2e" ? " " :
-                      status === "encrypted" ? " " :
-                      " "
-                    }`}>
-                      {status === "e2e" ? "E2E Encrypted" : status === "encrypted" ? "Encrypted" : "Not encrypted"}
-                    </span>
+            ].map(({ name, status, icon: Icon, detail }) => {
+              const color = status === "e2e" ? "var(--cyan)" : status === "encrypted" ? "var(--green)" : "var(--amber)";
+              const bg = status === "e2e" ? "var(--cyan-glow)" : status === "encrypted" ? "rgba(0,255,65,0.1)" : "rgba(255,170,0,0.1)";
+              return (
+                <div key={name} className="flex items-start gap-3 p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                  <Icon className="w-5 h-5 mt-0.5 shrink-0" style={{ color }} />
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>{name}</span>
+                      <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: bg, color }}>
+                        {status === "e2e" ? "E2E Encrypted" : status === "encrypted" ? "Encrypted" : "Not encrypted"}
+                      </span>
+                    </div>
+                    <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>{detail}</p>
                   </div>
-                  <p className="text-xs mt-1">{detail}</p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          <div className="border rounded-lg p-3 mt-4 text-xs">
-            <strong>Pattern:</strong> Show users exactly what's encrypted, how, and who can access it. Different encryption levels (E2E vs at-rest vs none) need different visual indicators.
+          <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "var(--cyan-glow)", border: "1px solid var(--cyan-border)", color: "var(--cyan)" }}>
+            <strong>Pattern:</strong> <span style={{ color: "var(--text)" }}>Show users exactly what's encrypted, how, and who can access it. Different encryption levels (E2E vs at-rest vs none) need different visual indicators.</span>
           </div>
         </div>
       )}

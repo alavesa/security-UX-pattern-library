@@ -64,14 +64,14 @@ function AIDisclosureDemo() {
         <button onClick={() => { setView("dark"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}>
           <ShieldOff className="w-3.5 h-3.5 inline mr-1" /> Non-Compliant
         </button>
-        <button onClick={() => { setView("ethical"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}>
+        <button onClick={() => { setView("ethical"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "ethical" ? "var(--ai-glow)" : "transparent", color: view === "ethical" ? "var(--ai-color)" : "var(--text)" }}>
           <Shield className="w-3.5 h-3.5 inline mr-1" /> EU AI Act Compliant
         </button>
       </div>
 
-      <div className="rounded-2xl border-2 overflow-hidden" style={{ borderColor: view === "dark" ? "rgba(255,51,51,0.4)" : "var(--green-border)" }}>
+      <div className="rounded-2xl border-2 overflow-hidden" style={{ borderColor: view === "dark" ? "rgba(255,51,51,0.4)" : "var(--ai-border)" }}>
         {/* Header */}
-        <div className="px-4 py-3 flex items-center justify-between" style={{ background: view === "dark" ? "rgba(255,51,51,0.08)" : "rgba(0,255,65,0.05)", borderBottom: "1px solid var(--border)" }}>
+        <div className="px-4 py-3 flex items-center justify-between" style={{ background: view === "dark" ? "rgba(255,51,51,0.08)" : "var(--ai-glow)", borderBottom: "1px solid var(--border)" }}>
           <div className="flex items-center gap-2">
             {view === "dark" ? (
               <>
@@ -97,7 +97,7 @@ function AIDisclosureDemo() {
               </>
             )}
           </div>
-          <span className="text-xs px-2 py-0.5 rounded font-mono" style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "rgba(0,255,65,0.15)", color: view === "dark" ? "var(--red)" : "var(--green)" }}>
+          <span className="text-xs px-2 py-0.5 rounded font-mono" style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "var(--ai-glow)", color: view === "dark" ? "var(--red)" : "var(--ai-color)" }}>
             {view === "dark" ? "VIOLATES ART. 50" : "COMPLIANT"}
           </span>
         </div>
@@ -123,7 +123,7 @@ function AIDisclosureDemo() {
               <div
                 className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm font-mono ${msg.role === "user" ? "rounded-br-none" : "rounded-bl-none"}`}
                 style={{
-                  background: msg.role === "user" ? "var(--green)" : "var(--bg-elevated)",
+                  background: msg.role === "user" ? "var(--ai-color)" : "var(--bg-elevated)",
                   color: msg.role === "user" ? "var(--bg)" : "var(--text-bright)",
                   border: msg.role === "user" ? "none" : "1px solid var(--border)",
                 }}
@@ -162,7 +162,7 @@ function AIDisclosureDemo() {
             disabled={typing}
           />
           <button type="button" onClick={sendMessage} aria-label="Send message" className="bg-transparent border-none cursor-pointer" disabled={typing}>
-            <Send className="w-4 h-4" style={{ color: "var(--green)" }} />
+            <Send className="w-4 h-4" style={{ color: "var(--ai-color)" }} />
           </button>
         </div>
       </div>
@@ -178,7 +178,7 @@ function AIDisclosureDemo() {
           </>
         ) : (
           <>
-            <p style={{ color: "var(--green)" }}>What's right:</p>
+            <p style={{ color: "var(--ai-color)" }}>What's right:</p>
             <p style={{ color: "var(--text)" }}>Clearly labeled as "AI Assistant" with bot icon</p>
             <p style={{ color: "var(--text)" }}>Persistent banner explains it's AI, not human</p>
             <p style={{ color: "var(--text)" }}>Each message tagged with AI indicator</p>
