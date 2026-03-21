@@ -54,8 +54,7 @@ export function HomePage() {
             Interactive patterns for designing secure user experiences.
           </p>
           <p className="text-sm leading-relaxed mb-8 max-w-lg mx-auto" style={{ color: "var(--text)" }}>
-            Built from 20 years of UX design leadership and a double M.Sc. in
-            Cyber Security and Information Systems.
+            Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
           </p>
 
           <div className="flex gap-4 justify-center">
