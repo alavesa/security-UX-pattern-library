@@ -42,13 +42,13 @@ function LoggingMonitoringDemo() {
     idxRef.current = 0;
 
     const filteredLogs = filter === "all" ? [...MOCK_LOGS] :
-      MOCK_LOGS.filter(l => filter === "critical" ? l.type === "critical" : l.type === "warning");
+      MOCK_LOGS.filter(l => filter === "critical" ? l.type === "critical" : l.type === "warning" || l.type === "critical");
 
     const timer = setInterval(() => {
       const i = idxRef.current;
       if (i < filteredLogs.length) {
         idxRef.current++;
-        setVisibleLogs(filteredLogs.slice(0, idxRef.current));
+        setVisibleLogs(prev => [...prev, filteredLogs[i]]);
       } else {
         clearInterval(timer);
         setDone(true);
@@ -125,12 +125,12 @@ function LoggingMonitoringDemo() {
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => console.log("Action: Block user user42@example.com")} className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block user</button>
-                <button onClick={() => console.log("Action: Investigate user42@example.com")} className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">Investigate</button>
+                <button onClick={() => { /* dispatch(securityAction('block-user')) */ }} className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block user</button>
+                <button onClick={() => { /* dispatch(securityAction('investigate')) */ }} className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">Investigate</button>
               </div>
             </div>
 
-            <div role="alert" aria-live="assertive" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
+            <div role="alert" aria-live="polite" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
                 <div>
@@ -139,8 +139,8 @@ function LoggingMonitoringDemo() {
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => console.log("Action: Block IP 197.210.xxx.xxx")} className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block IP</button>
-                <button onClick={() => console.log("Action: View logs for admin@example.com")} className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">View logs</button>
+                <button onClick={() => { /* dispatch(securityAction('block-ip')) */ }} className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block IP</button>
+                <button onClick={() => { /* dispatch(securityAction('view-logs')) */ }} className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">View logs</button>
               </div>
             </div>
 
@@ -153,8 +153,8 @@ function LoggingMonitoringDemo() {
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => console.log("Action: Notify user alex@example.com")} className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Notify user</button>
-                <button onClick={() => console.log("Action: Mark as safe alex@example.com")} className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Mark as safe</button>
+                <button onClick={() => { /* dispatch(securityAction('notify-user')) */ }} className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Notify user</button>
+                <button onClick={() => { /* dispatch(securityAction('mark-safe')) */ }} className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Mark as safe</button>
               </div>
             </div>
           </div>
@@ -180,13 +180,13 @@ function LoggingMonitoringDemo() {
 
           <div className="border-l-2 border-gray-200 ml-3 space-y-4">
             {[
-              { time: "14:37:22", event: "Exported 15,000 user records", severity: "critical", icon: ShieldAlert },
-              { time: "14:34:02", event: "Attempted role change to admin (BLOCKED)", severity: "critical", icon: ShieldAlert },
-              { time: "14:30:15", event: "Accessed admin panel", severity: "warning", icon: AlertTriangle },
-              { time: "14:28:00", event: "Logged in from 95.173.xxx.xxx (Moscow, RU)", severity: "warning", icon: AlertTriangle },
-              { time: "14:00:00", event: "Account created via API", severity: "info", icon: Shield },
-            ].map(({ time, event, severity, icon: Icon }, index) => (
-              <div key={index} className="flex items-start gap-3 pl-4 relative">
+              { id: 1, time: "14:37:22", event: "Exported 15,000 user records", severity: "critical", icon: ShieldAlert },
+              { id: 2, time: "14:34:02", event: "Attempted role change to admin (BLOCKED)", severity: "critical", icon: ShieldAlert },
+              { id: 3, time: "14:30:15", event: "Accessed admin panel", severity: "warning", icon: AlertTriangle },
+              { id: 4, time: "14:28:00", event: "Logged in from 95.173.xxx.xxx (Moscow, RU)", severity: "warning", icon: AlertTriangle },
+              { id: 5, time: "14:00:00", event: "Account created via API", severity: "info", icon: Shield },
+            ].map(({ id, time, event, severity, icon: Icon }) => (
+              <div key={id} className="flex items-start gap-3 pl-4 relative">
                 <div className={`absolute -left-[9px] w-4 h-4 rounded-full border-2 border-white ${
                   severity === "critical" ? "bg-red-500" : severity === "warning" ? "bg-amber-500" : "bg-gray-300"
                 }`} />
@@ -195,7 +195,8 @@ function LoggingMonitoringDemo() {
                     <Clock className="w-3 h-3 text-gray-400" />
                     <span className="text-xs text-gray-400 font-mono">{time}</span>
                   </div>
-                  <p className={`text-sm ${severity === "critical" ? "text-red-700 font-medium" : severity === "warning" ? "text-amber-700" : "text-gray-600"}`}>
+                  <p className={`text-sm flex items-center gap-1 ${severity === "critical" ? "text-red-700 font-medium" : severity === "warning" ? "text-amber-700" : "text-gray-600"}`}>
+                    <Icon className="w-4 h-4 shrink-0" />
                     {event}
                   </p>
                 </div>

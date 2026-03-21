@@ -4,11 +4,13 @@ export function DemoContainer({ children, label = "Interactive Demo" }: { childr
   return (
     <div className="mb-8">
       <div className="text-xs font-mono uppercase tracking-widest mb-2" style={{ color: "#444" }}>
-        $ run {label.toLowerCase().replace(/ /g, "_")}
+        $ run {label.toLowerCase().replace(/\s+/g, "_")}
       </div>
       <div
         className="border rounded-xl p-8 flex items-center justify-center min-h-[300px]"
         style={{ background: "var(--bg-elevated)", borderColor: "var(--border)" }}
+        role="region"
+        aria-label={label}
       >
         {children}
       </div>

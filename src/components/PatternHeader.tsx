@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface PatternHeaderProps {
   title: string;
   description: string;
@@ -12,8 +14,6 @@ const SEVERITY_STYLES: Record<'critical' | 'high' | 'medium' | 'low', React.CSSP
   low: { background: 'rgba(0,255,65,0.15)', color: '#00ff41', border: '1px solid rgba(0,255,65,0.3)' },
 };
 
-import React from 'react';
-
 export function PatternHeader({ title, description, severity, tags }: PatternHeaderProps) {
   return (
     <div className="mb-8">
@@ -21,11 +21,12 @@ export function PatternHeader({ title, description, severity, tags }: PatternHea
         <span
           className="text-xs font-mono font-semibold px-2.5 py-1 rounded tracking-wide"
           style={SEVERITY_STYLES[severity]}
+          aria-label={`Severity: ${severity}`}
         >
           {severity.toUpperCase()}
         </span>
-        {tags.map((tag, i) => (
-          <span key={`${tag}-${i}`} className="text-xs font-mono px-2.5 py-1 rounded" style={{ background: "var(--bg-elevated)", color: "var(--text)" }}>
+        {tags.map((tag) => (
+          <span key={tag} className="text-xs font-mono px-2.5 py-1 rounded" style={{ background: "var(--bg-elevated)", color: "var(--text)" }}>
             {tag}
           </span>
         ))}

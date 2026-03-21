@@ -8,7 +8,9 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
-  const resultRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const resultRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const isKeyboardNav = useRef(false);
   const navigate = useNavigate();
 
   const results = useMemo(() => {
@@ -24,6 +26,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
 
   useEffect(() => {
     if (open) {
+      triggerRef.current = document.activeElement as HTMLElement;
       setQuery("");
       setSelectedIndex(0);
       const id = setTimeout(() => inputRef.current?.focus(), 50);
@@ -39,9 +42,14 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
     resultRefs.current[selectedIndex]?.scrollIntoView({ block: "nearest" });
   }, [selectedIndex]);
 
+  const handleClose = () => {
+    triggerRef.current?.focus();
+    onClose();
+  };
+
   const go = (pattern: PatternInfo) => {
     navigate(pattern.path);
-    onClose();
+    handleClose();
   };
 
   const handleDialogKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -69,21 +77,25 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") {
       e.preventDefault();
+      isKeyboardNav.current = true;
       setSelectedIndex(i => results.length === 0 ? 0 : Math.min(i + 1, results.length - 1));
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
+      isKeyboardNav.current = true;
       setSelectedIndex(i => Math.max(i - 1, 0));
     } else if (e.key === "Enter" && results[selectedIndex]) {
       go(results[selectedIndex]);
     } else if (e.key === "Escape") {
-      onClose();
+      handleClose();
     }
   };
 
   if (!open) return null;
 
+  resultRefs.current = resultRefs.current.slice(0, results.length);
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh]" onClick={onClose}>
+    <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh]" onClick={handleClose}>
       <div className="absolute inset-0 bg-black/60" />
       <div
         ref={dialogRef}
@@ -107,25 +119,28 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
             className="flex-1 bg-transparent border-none outline-none font-mono text-sm"
             style={{ color: "var(--text-bright)" }}
             role="combobox"
-            aria-expanded={results.length > 0}
+            aria-expanded={true}
             aria-haspopup="listbox"
             aria-autocomplete="list"
             aria-controls="search-results-list"
             aria-activedescendant={results[selectedIndex] ? `search-result-${selectedIndex}` : undefined}
             aria-label="Search patterns"
           />
-          <button onClick={onClose} aria-label="Close search" className="bg-transparent border-none cursor-pointer p-0.5" style={{ color: "#555" }}>
+          <button type="button" onClick={handleClose} aria-label="Close search" className="bg-transparent border-none cursor-pointer p-0.5" style={{ color: "#555" }}>
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Results */}
+        <div aria-live="polite" aria-atomic="true" className="sr-only">
+          {results.length} result{results.length !== 1 ? "s" : ""} found
+        </div>
         <div id="search-results-list" role="listbox" className="max-h-[50vh] overflow-y-auto py-2">
           {results.length === 0 && (
             <p className="text-center text-xs font-mono py-8" style={{ color: "#555" }}>No patterns found for "{query}"</p>
           )}
           {results.map((pattern, i) => (
-            <button
+            <div
               key={pattern.path}
               ref={el => { resultRefs.current[i] = el; }}
               id={`search-result-${i}`}
@@ -136,20 +151,20 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
               style={{
                 background: i === selectedIndex ? "var(--green-glow)" : "transparent",
               }}
-              onMouseEnter={() => setSelectedIndex(i)}
+              onMouseMove={() => { if (!isKeyboardNav.current) { setSelectedIndex(i); } isKeyboardNav.current = false; }}
             >
               <div>
-                <p className="font-mono text-sm" style={{ color: i === selectedIndex ? "var(--text-bright)" : "var(--text)" }}>
+                <span className="block font-mono text-sm" style={{ color: i === selectedIndex ? "var(--text-bright)" : "var(--text)" }}>
                   {pattern.label}
-                </p>
-                <p className="text-xs" style={{ color: "#555" }}>
+                </span>
+                <span className="block text-xs" style={{ color: "#555" }}>
                   {pattern.category}/
-                </p>
+                </span>
               </div>
               <span className="text-xs font-mono px-2 py-0.5 rounded" style={{ background: `${pattern.categoryColor}15`, color: pattern.categoryColor }}>
                 {pattern.category}
               </span>
-            </button>
+            </div>
           ))}
         </div>
 
