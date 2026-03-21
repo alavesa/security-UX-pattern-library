@@ -148,6 +148,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "Industrial" },
       { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "Industrial" },
       { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "Industrial" },
+      { path: "/patterns/industrial/navigation-levels", label: "Navigation & Levels of Detail", category: "Industrial" },
       { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
       { path: "/patterns/auth/session-timeout", label: "Session Timeout", category: "Auth" },
       { path: "/patterns/owasp/broken-access-control", label: "Access Control", category: "OWASP" },
@@ -174,6 +175,29 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "Industrial" },
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
       { path: "/patterns/owasp/security-misconfiguration", label: "Security Config", category: "OWASP" },
+    ],
+  },
+  {
+    id: "isa101",
+    name: "ISA-101",
+    fullName: "Human Machine Interfaces for Process Industries",
+    color: "#f97316",
+    patterns: [
+      { path: "/patterns/industrial/navigation-levels", label: "Navigation & Levels of Detail", category: "Industrial" },
+      { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "Industrial" },
+      { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "Industrial" },
+      { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "Industrial" },
+    ],
+  },
+  {
+    id: "fido2",
+    name: "WebAuthn / FIDO2",
+    fullName: "Web Authentication & Fast Identity Online",
+    color: "#00e5ff",
+    patterns: [
+      { path: "/patterns/auth/passkeys", label: "Passkeys", category: "Auth" },
+      { path: "/patterns/auth/login", label: "Login Flow", category: "Auth" },
+      { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
     ],
   },
 ];

@@ -18,6 +18,8 @@ const CHECKS: CheckItem[] = [
   { id: "auth-breach-check", question: "Passwords are checked against known breaches", category: "Authentication", weight: 4, tip: "Have I Been Pwned API catches compromised passwords" },
   { id: "auth-session-timeout", question: "Sessions timeout with a warning before expiry", category: "Authentication", weight: 4, tip: "Protects against session hijacking on shared devices" },
   { id: "auth-recovery", question: "Account recovery doesn't reveal if email exists", category: "Authentication", weight: 4, tip: "Same response for existing and non-existing accounts" },
+  { id: "auth-passkeys", question: "Passkeys / WebAuthn supported as a login option", category: "Authentication", weight: 3, tip: "Phishing-resistant, no passwords to steal — FIDO2 standard" },
+  { id: "auth-oauth", question: "OAuth consent screens clearly show requested permissions", category: "Authentication", weight: 3, tip: "Users must understand what data they're sharing (CWE-250)" },
 
   // Data Protection (25 points)
   { id: "data-encryption-indicator", question: "Users can see what data is encrypted", category: "Data Protection", weight: 4, tip: "Transparency about encryption builds trust" },
@@ -50,6 +52,7 @@ const CHECKS: CheckItem[] = [
   { id: "ind-auth", question: "Operator authentication works with PPE/gloves (badge, biometric)", category: "Industrial", weight: 5, tip: "IEC 62443 — password auth fails in industrial environments" },
   { id: "ind-safety", question: "Safety-critical actions use graduated confirmation (hold-to-confirm)", category: "Industrial", weight: 5, tip: "IEC 61511 — safety actions must never be blocked by auth" },
   { id: "ind-alarms", question: "Alarm management follows ISA-18.2 (max 6/hour, grouped by root cause)", category: "Industrial", weight: 5, tip: "Alarm fatigue contributed to Deepwater Horizon, Texas City disasters" },
+  { id: "ind-nav", question: "HMI follows ISA-101 navigation hierarchy (overview → area → unit → detail)", category: "Industrial", weight: 5, tip: "Operators must reach any detail within 3 clicks during abnormal situations" },
 ];
 
 const MAX_SCORE = CHECKS.reduce((sum, c) => sum + c.weight, 0);

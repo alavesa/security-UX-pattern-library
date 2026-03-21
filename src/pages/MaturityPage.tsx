@@ -118,8 +118,8 @@ const QUESTIONS: MaturityQuestion[] = [
     levels: [
       "Standard IT auth on operator workstations, no alarm management",
       "Badge-based auth, basic alarm prioritization",
-      "Glove-friendly auth, safety overrides with approval, ISA-18.2 alarm management",
-      "Adaptive biometrics, graduated safety authorization, AI-powered alarm grouping with root cause",
+      "Glove-friendly auth, safety overrides with approval, ISA-18.2 alarm management, ISA-101 navigation hierarchy",
+      "Adaptive biometrics, graduated safety authorization, AI-powered alarm grouping with root cause, predictive navigation",
     ],
   },
 ];
@@ -173,6 +173,7 @@ export function MaturityPage() {
     if ((answers.ai ?? 0) < 3) recs.push({ path: "/patterns/ai/disclosure", label: "AI Disclosure", reason: "Label AI interactions — EU AI Act deadline Aug 2026" });
     if ((answers.industrial ?? 0) < 3 && (answers.industrial ?? 0) > 0) recs.push({ path: "/patterns/industrial/operator-auth", label: "Operator Auth", reason: "Implement glove-friendly authentication for operators" });
     if ((answers.industrial ?? 0) < 3 && (answers.industrial ?? 0) > 0) recs.push({ path: "/patterns/industrial/alarm-fatigue", label: "Alarm Management", reason: "Implement ISA-18.2 alarm grouping and shelving" });
+    if ((answers.industrial ?? 0) < 3 && (answers.industrial ?? 0) > 0) recs.push({ path: "/patterns/industrial/navigation-levels", label: "Navigation Levels", reason: "Implement ISA-101 4-level navigation hierarchy" });
     return recs.slice(0, 6);
   }, [answers]);
 
