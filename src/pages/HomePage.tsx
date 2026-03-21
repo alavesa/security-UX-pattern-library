@@ -89,7 +89,7 @@ export function HomePage() {
             {[
               { value: "30", label: "patterns", color: "var(--green)" },
               { value: "8", label: "categories", color: "var(--cyan)" },
-              { value: "14", label: "regulations", color: "var(--amber)" },
+              { value: "16", label: "regulations", color: "var(--amber)" },
               { value: "4", label: "tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
@@ -566,6 +566,8 @@ export function HomePage() {
               <li><a href="https://datatracker.ietf.org/doc/html/rfc6749" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>RFC 6749 (OAuth 2.0)</a> — Authorization framework</li>
               <li><a href="https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>SOC 2</a> — Service organization security controls</li>
               <li><a href="https://digital-strategy.ec.europa.eu/en/policies/nis2-directive" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>NIS2 Directive</a> — EU cybersecurity for essential & important entities</li>
+              <li><a href="https://www.digital-operational-resilience-act.com/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>DORA</a> — Digital Operational Resilience Act (financial sector, Jan 2025)</li>
+              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>CRA</a> — Cyber Resilience Act (products with digital elements, 2027)</li>
             </ul>
           </div>
 

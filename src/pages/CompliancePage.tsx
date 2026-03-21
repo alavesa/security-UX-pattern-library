@@ -224,6 +224,43 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/industrial/navigation-levels", label: "Navigation Levels", category: "Industrial" },
     ],
   },
+  {
+    id: "dora",
+    name: "DORA",
+    fullName: "Digital Operational Resilience Act (EU — Financial Sector)",
+    color: "#f59e0b",
+    patterns: [
+      { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
+      { path: "/patterns/auth/session-timeout", label: "Session Timeout", category: "Auth" },
+      { path: "/patterns/auth/passkeys", label: "Passkeys", category: "Auth" },
+      { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
+      { path: "/patterns/threat/suspicious-activity", label: "Suspicious Activity", category: "Threat" },
+      { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "Data" },
+      { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
+      { path: "/patterns/owasp/broken-access-control", label: "Access Control", category: "OWASP" },
+      { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
+      { path: "/patterns/owasp/security-misconfiguration", label: "Security Config", category: "OWASP" },
+    ],
+  },
+  {
+    id: "cra",
+    name: "CRA",
+    fullName: "Cyber Resilience Act (EU — Products with Digital Elements)",
+    color: "#10b981",
+    patterns: [
+      { path: "/patterns/auth/login", label: "Login Flow", category: "Auth" },
+      { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
+      { path: "/patterns/auth/password-strength", label: "Password Strength", category: "Auth" },
+      { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "Data" },
+      { path: "/patterns/data/file-upload", label: "Secure File Upload", category: "Data" },
+      { path: "/patterns/data/deletion", label: "Data Deletion", category: "Data" },
+      { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
+      { path: "/patterns/owasp/security-misconfiguration", label: "Security Config", category: "OWASP" },
+      { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
+      { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "Industrial" },
+      { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "Industrial" },
+    ],
+  },
 ];
 
 const REG_BY_NAME = new Map(ALL_REGULATIONS.map(r => [r.name, r]));
