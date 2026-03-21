@@ -67,8 +67,8 @@ function SafetyCriticalDemo() {
       {scenario === "shutdown" && (
         <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
           <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-            <span className="font-mono text-xs">POWER PLANT CONTROL</span>
-            <span className="font-mono text-xs">● NORMAL OPERATIONS</span>
+            <span className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>POWER PLANT CONTROL</span>
+            <span className="font-mono text-xs" style={{ color: "var(--green)" }}>● NORMAL OPERATIONS</span>
           </div>
 
           <div className="p-8">
@@ -92,7 +92,7 @@ function SafetyCriticalDemo() {
                 >
                   ⚠ EMERGENCY STOP
                 </button>
-                <p className="font-mono text-xs mt-3">Large button, high contrast, no confirmation needed for first press</p>
+                <p className="font-mono text-xs mt-3" style={{ color: "var(--text-dim)" }}>Large button, high contrast, no confirmation needed for first press</p>
               </div>
             )}
 
@@ -128,7 +128,7 @@ function SafetyCriticalDemo() {
                   <span className="relative">HOLD TO CONFIRM STOP</span>
                 </button>
 
-                <button onClick={reset} className="font-mono text-xs mt-4 bg-transparent border-none cursor-pointer hover:">
+                <button onClick={reset} className="font-mono text-xs mt-4 bg-transparent border-none cursor-pointer" style={{ color: "var(--text-dim)" }}>
                   Cancel — return to normal operations
                 </button>
               </div>
@@ -169,13 +169,13 @@ function SafetyCriticalDemo() {
               <Shield className="w-8 h-8 shrink-0" style={{ color: "var(--amber)" }} />
               <div>
                 <h3 className="font-mono text-sm text-white">Override: High Pressure Alarm — Vessel P-301</h3>
-                <p className="font-mono text-xs mt-1">Current pressure: 42 bar (limit: 40 bar)</p>
+                <p className="font-mono text-xs mt-1" style={{ color: "var(--amber)" }}>Current pressure: <strong>42 bar</strong> (limit: 40 bar)</p>
               </div>
             </div>
 
-            <div className="bg-red-950 border border-red-700 rounded-lg p-4 mb-4">
-              <h4 className="font-mono text-xs mb-2">⚠ SAFETY IMPLICATIONS:</h4>
-              <ul className="font-mono text-xs text-red-300 space-y-1">
+            <div className="rounded-lg p-4 mb-4" style={{ background: "rgba(255,51,51,0.1)", border: "1px solid rgba(255,51,51,0.3)" }}>
+              <h4 className="font-mono text-xs mb-2" style={{ color: "var(--red)" }}>⚠ SAFETY IMPLICATIONS:</h4>
+              <ul className="font-mono text-xs space-y-1" style={{ color: "#ff8888" }}>
                 <li>• This override disables the automatic pressure relief on P-301</li>
                 <li>• Vessel rated for max 50 bar — current: 42 bar (84% of max)</li>
                 <li>• Manual monitoring required while override is active</li>
@@ -184,19 +184,19 @@ function SafetyCriticalDemo() {
             </div>
 
             <div className="bg-gray-800 rounded-lg p-4 mb-4">
-              <h4 className="font-mono text-xs mb-3">REQUIRED APPROVALS:</h4>
+              <h4 className="font-mono text-xs mb-3" style={{ color: "var(--text-bright)" }}>REQUIRED APPROVALS:</h4>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs">Operator (K. Virtanen)</span>
-                  <span className="font-mono text-xs flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Approved</span>
+                  <span className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>Operator (K. Virtanen)</span>
+                  <span className="font-mono text-xs flex items-center gap-1" style={{ color: "var(--green)" }}><CheckCircle2 className="w-3 h-3" /> Approved</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs">Shift Supervisor (M. Korhonen)</span>
-                  <span className="font-mono text-xs flex items-center gap-1"><Clock className="w-3 h-3" /> Pending</span>
+                  <span className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>Shift Supervisor (M. Korhonen)</span>
+                  <span className="font-mono text-xs flex items-center gap-1" style={{ color: "var(--amber)" }}><Clock className="w-3 h-3" /> Pending</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs">Safety Engineer</span>
-                  <span className="font-mono text-xs">Not required (&lt;45 bar)</span>
+                  <span className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>Safety Engineer</span>
+                  <span className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>Not required (&lt;45 bar)</span>
                 </div>
               </div>
             </div>
@@ -212,8 +212,8 @@ function SafetyCriticalDemo() {
       {scenario === "parameter" && (
         <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
           <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-            <span className="font-mono text-xs">PARAMETER ADJUSTMENT</span>
-            <span className="font-mono text-xs">DRILLING OPERATIONS</span>
+            <span className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>PARAMETER ADJUSTMENT</span>
+            <span className="font-mono text-xs" style={{ color: "var(--cyan)" }}>DRILLING OPERATIONS</span>
           </div>
 
           <div className="p-8">
@@ -221,11 +221,11 @@ function SafetyCriticalDemo() {
 
             <div className="bg-gray-800 rounded-lg p-4 mb-4">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs">Current value</span>
-                <span className="font-mono text-lg text-white">120 RPM</span>
+                <span className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>Current value</span>
+                <span className="font-mono text-lg" style={{ color: "var(--green)" }}>120 RPM</span>
               </div>
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs">Requested value</span>
+                <span className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>Requested value</span>
                 <span className="font-mono text-lg" style={{ color: "var(--amber)" }}>180 RPM</span>
               </div>
               <div className="flex items-center justify-between mb-3">
@@ -233,8 +233,8 @@ function SafetyCriticalDemo() {
                 <span className="font-mono text-sm" style={{ color: "var(--amber)" }}>+50% increase</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs">Safe range</span>
-                <span className="font-mono text-sm">60 — 200 RPM</span>
+                <span className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>Safe range</span>
+                <span className="font-mono text-sm" style={{ color: "var(--green)" }}>60 — 200 RPM</span>
               </div>
             </div>
 
