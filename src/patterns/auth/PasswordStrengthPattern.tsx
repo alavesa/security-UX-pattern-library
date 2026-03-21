@@ -23,7 +23,7 @@ function evaluatePassword(pw: string) {
   const passed = checks.filter(c => c.pass).length;
   const score = pw.length === 0 ? 0 : breached ? 0 : passed <= 2 ? 1 : passed <= 4 ? 2 : passed <= 5 ? 3 : 4;
   const labels = ["", "Weak", "Fair", "Strong", "Very Strong"];
-  const colors = ["", "var(--red)", "#ff6600", "var(--cyan)", "var(--green)"];
+  const colors = ["", "var(--red)", "var(--amber)", "var(--cyan)", "var(--green)"];
 
   return { checks, score, label: breached ? "Breached" : labels[score], color: breached ? "var(--red)" : colors[score], breached };
 }
