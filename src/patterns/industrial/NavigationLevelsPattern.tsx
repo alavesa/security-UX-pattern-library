@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Layers, ChevronRight, AlertTriangle, Activity, Thermometer, Gauge, ArrowLeft } from "lucide-react";
+import { Layers, ChevronRight, AlertTriangle, Activity, ArrowLeft } from "lucide-react";
 
 type Level = 1 | 2 | 3 | 4;
 
@@ -120,6 +120,13 @@ function NavigationDemo() {
     else if (level === 2) { setLevel(1); setSelectedArea(null); }
   };
 
+  const currentUnit = selectedArea !== null && selectedUnit !== null
+    ? PLANT_DATA[selectedArea].units[selectedUnit]
+    : null;
+
+  const deviation = currentUnit ? Math.abs(currentUnit.value - currentUnit.setpoint) : 0;
+  const deviationPct = currentUnit ? ((deviation / currentUnit.setpoint) * 100).toFixed(1) : "0";
+
   return (
     <div className="w-full max-w-lg">
       {/* Level indicator */}
@@ -215,127 +222,119 @@ function NavigationDemo() {
         )}
 
         {/* Level 3: Unit View */}
-        {level === 3 && selectedArea !== null && selectedUnit !== null && (() => {
-          const unit = PLANT_DATA[selectedArea].units[selectedUnit];
-          const deviation = Math.abs(unit.value - unit.setpoint);
-          const deviationPct = ((deviation / unit.setpoint) * 100).toFixed(1);
-          return (
-            <div className="space-y-3">
-              <p className="text-xs font-mono mb-1" style={{ color: "var(--text-dim)" }}>
-                L3 — {unit.name}
-              </p>
+        {level === 3 && currentUnit && (
+          <div className="space-y-3">
+            <p className="text-xs font-mono mb-1" style={{ color: "var(--text-dim)" }}>
+              L3 — {currentUnit.name}
+            </p>
 
-              {/* Main value */}
-              <div className="flex items-center justify-between p-3 rounded-lg" style={{ background: statusBg(unit.status), border: `1px solid ${statusColor(unit.status)}33` }}>
-                <div>
-                  <p className="text-2xl font-mono font-bold" style={{ color: statusColor(unit.status) }}>
-                    {unit.value} {unit.unit}
-                  </p>
-                  <p className="text-xs font-mono mt-1" style={{ color: "var(--text-dim)" }}>
-                    Setpoint: {unit.setpoint} {unit.unit} · Deviation: {deviationPct}%
-                  </p>
-                </div>
-                {unit.status !== "normal" && (
-                  <AlertTriangle className="w-6 h-6" style={{ color: statusColor(unit.status) }} />
-                )}
+            {/* Main value */}
+            <div className="flex items-center justify-between p-3 rounded-lg" style={{ background: statusBg(currentUnit.status), border: `1px solid ${statusColor(currentUnit.status)}33` }}>
+              <div>
+                <p className="text-2xl font-mono font-bold" style={{ color: statusColor(currentUnit.status) }}>
+                  {currentUnit.value} {currentUnit.unit}
+                </p>
+                <p className="text-xs font-mono mt-1" style={{ color: "var(--text-dim)" }}>
+                  Setpoint: {currentUnit.setpoint} {currentUnit.unit} · Deviation: {deviationPct}%
+                </p>
               </div>
-
-              {/* Key parameters */}
-              <div className="grid grid-cols-2 gap-2">
-                {unit.details.slice(0, 4).map((d, i) => (
-                  <div key={i} className="p-2 rounded text-xs font-mono" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
-                    <p style={{ color: "var(--text-dim)" }}>{d.label}</p>
-                    <p className="text-sm mt-0.5" style={{ color: "var(--text)" }}>{d.value}</p>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                onClick={goToDetail}
-                className="w-full py-2 rounded text-xs font-mono border-none cursor-pointer"
-                style={{ background: "var(--green-glow)", color: "var(--green)", border: "1px solid var(--green-border)" }}
-              >
-                View Detail (L4) →
-              </button>
+              {currentUnit.status !== "normal" && (
+                <AlertTriangle className="w-6 h-6" style={{ color: statusColor(currentUnit.status) }} />
+              )}
             </div>
-          );
-        })()}
+
+            {/* Key parameters */}
+            <div className="grid grid-cols-2 gap-2">
+              {currentUnit.details.slice(0, 4).map((d, i) => (
+                <div key={i} className="p-2 rounded text-xs font-mono" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                  <p style={{ color: "var(--text-dim)" }}>{d.label}</p>
+                  <p className="text-sm mt-0.5" style={{ color: "var(--text)" }}>{d.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={goToDetail}
+              className="w-full py-2 rounded text-xs font-mono border-none cursor-pointer"
+              style={{ background: "var(--green-glow)", color: "var(--green)", border: "1px solid var(--green-border)" }}
+            >
+              View Detail (L4) →
+            </button>
+          </div>
+        )}
 
         {/* Level 4: Detail View */}
-        {level === 4 && selectedArea !== null && selectedUnit !== null && (() => {
-          const unit = PLANT_DATA[selectedArea].units[selectedUnit];
-          return (
-            <div className="space-y-3">
-              <p className="text-xs font-mono mb-1" style={{ color: "var(--text-dim)" }}>
-                L4 — {unit.name} · Diagnostic Detail
+        {level === 4 && currentUnit && (
+          <div className="space-y-3">
+            <p className="text-xs font-mono mb-1" style={{ color: "var(--text-dim)" }}>
+              L4 — {currentUnit.name} · Diagnostic Detail
+            </p>
+
+            {/* Trend */}
+            <div className="p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+              <p className="text-xs font-mono mb-2" style={{ color: "var(--text-dim)" }}>
+                <Activity className="w-3 h-3 inline mr-1" /> 24h Trend
               </p>
-
-              {/* Trend placeholder */}
-              <div className="p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
-                <p className="text-xs font-mono mb-2" style={{ color: "var(--text-dim)" }}>
-                  <Activity className="w-3 h-3 inline mr-1" /> 24h Trend
-                </p>
-                <div className="flex items-end gap-1 h-16">
-                  {Array.from({ length: 24 }, (_, i) => {
-                    const base = unit.setpoint;
-                    const noise = Math.sin(i * 0.5) * (unit.value - unit.setpoint) * (i / 24);
-                    const val = base + noise;
-                    const height = Math.max(10, Math.min(100, ((val - base * 0.8) / (base * 0.4)) * 100));
-                    const isHigh = val > unit.setpoint * 1.05;
-                    return (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-t"
-                        style={{
-                          height: `${height}%`,
-                          background: isHigh ? "var(--red)" : "var(--green)",
-                          opacity: 0.6 + (i / 24) * 0.4,
-                        }}
-                      />
-                    );
-                  })}
-                </div>
-                <div className="flex justify-between text-xs font-mono mt-1" style={{ color: "var(--text-dim)" }}>
-                  <span>-24h</span>
-                  <span style={{ color: "var(--amber)" }}>— setpoint: {unit.setpoint} {unit.unit}</span>
-                  <span>now</span>
-                </div>
+              <div className="flex items-end gap-1 h-16">
+                {Array.from({ length: 24 }, (_, i) => {
+                  const base = currentUnit.setpoint;
+                  const noise = Math.sin(i * 0.5) * (currentUnit.value - currentUnit.setpoint) * (i / 24);
+                  const val = base + noise;
+                  const height = Math.max(10, Math.min(100, ((val - base * 0.8) / (base * 0.4)) * 100));
+                  const isHigh = val > currentUnit.setpoint * 1.05;
+                  return (
+                    <div
+                      key={i}
+                      className="flex-1 rounded-t"
+                      style={{
+                        height: `${height}%`,
+                        background: isHigh ? "var(--red)" : "var(--green)",
+                        opacity: 0.6 + (i / 24) * 0.4,
+                      }}
+                    />
+                  );
+                })}
               </div>
-
-              {/* All parameters */}
-              <div className="space-y-1">
-                <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>All Parameters</p>
-                {unit.details.map((d, i) => (
-                  <div key={i} className="flex items-center justify-between p-2 rounded text-xs font-mono" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
-                    <span style={{ color: "var(--text-dim)" }}>{d.label}</span>
-                    <span style={{ color: "var(--text)" }}>{d.value}</span>
-                  </div>
-                ))}
+              <div className="flex justify-between text-xs font-mono mt-1" style={{ color: "var(--text-dim)" }}>
+                <span>-24h</span>
+                <span style={{ color: "var(--amber)" }}>— setpoint: {currentUnit.setpoint} {currentUnit.unit}</span>
+                <span>now</span>
               </div>
+            </div>
 
-              {/* Alarm history */}
-              <div className="p-3 rounded-lg" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.15)" }}>
-                <p className="text-xs font-mono mb-2" style={{ color: "var(--red)" }}>
-                  <AlertTriangle className="w-3 h-3 inline mr-1" /> Recent Alarms
-                </p>
-                <div className="space-y-1 text-xs font-mono">
-                  <div className="flex justify-between" style={{ color: "var(--text)" }}>
-                    <span>High value exceeded</span>
-                    <span style={{ color: "var(--text-dim)" }}>14:23</span>
-                  </div>
-                  <div className="flex justify-between" style={{ color: "var(--text)" }}>
-                    <span>Rate of change alarm</span>
-                    <span style={{ color: "var(--text-dim)" }}>14:18</span>
-                  </div>
-                  <div className="flex justify-between" style={{ color: "var(--text)" }}>
-                    <span>Setpoint deviation &gt;5%</span>
-                    <span style={{ color: "var(--text-dim)" }}>14:02</span>
-                  </div>
+            {/* All parameters */}
+            <div className="space-y-1">
+              <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>All Parameters</p>
+              {currentUnit.details.map((d, i) => (
+                <div key={i} className="flex items-center justify-between p-2 rounded text-xs font-mono" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                  <span style={{ color: "var(--text-dim)" }}>{d.label}</span>
+                  <span style={{ color: "var(--text)" }}>{d.value}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Alarm history */}
+            <div className="p-3 rounded-lg" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.15)" }}>
+              <p className="text-xs font-mono mb-2" style={{ color: "var(--red)" }}>
+                <AlertTriangle className="w-3 h-3 inline mr-1" /> Recent Alarms
+              </p>
+              <div className="space-y-1 text-xs font-mono">
+                <div className="flex justify-between" style={{ color: "var(--text)" }}>
+                  <span>High value exceeded</span>
+                  <span style={{ color: "var(--text-dim)" }}>14:23</span>
+                </div>
+                <div className="flex justify-between" style={{ color: "var(--text)" }}>
+                  <span>Rate of change alarm</span>
+                  <span style={{ color: "var(--text-dim)" }}>14:18</span>
+                </div>
+                <div className="flex justify-between" style={{ color: "var(--text)" }}>
+                  <span>Setpoint deviation &gt;5%</span>
+                  <span style={{ color: "var(--text-dim)" }}>14:02</span>
                 </div>
               </div>
             </div>
-          );
-        })()}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -346,8 +345,8 @@ export function NavigationLevelsPattern() {
     <>
       <PatternHeader
         title="Navigation & Levels of Detail"
-        description="ISA-101 compliant HMI navigation hierarchy — from plant overview to diagnostic detail. Operators must navigate quickly to the right level during abnormal situations without losing context."
-        severity="warning"
+        description="ISA-101 compliant HMI navigation hierarchy — from plant overview to diagnostic detail."
+        severity="high"
         tags={["ISA-101", "IEC 62443", "HMI", "industrial"]}
       />
 
@@ -356,7 +355,7 @@ export function NavigationLevelsPattern() {
       </DemoContainer>
 
       <GuidelineSection
-        doList={[
+        dos={[
           "Follow ISA-101 4-level hierarchy: Overview → Area → Unit → Detail",
           "Persistent breadcrumb showing current location at all times",
           "Color-code status consistently across all levels (green/amber/red)",
@@ -366,7 +365,7 @@ export function NavigationLevelsPattern() {
           "Maintain scroll position when returning to a parent level",
           "Show aggregate status at higher levels (worst-case propagation)",
         ]}
-        dontList={[
+        donts={[
           "Don't require more than 3 clicks to reach any detail from overview",
           "Don't change color meanings between levels",
           "Don't hide the back button or breadcrumb during alarms",
@@ -374,8 +373,13 @@ export function NavigationLevelsPattern() {
           "Don't use deep menu trees — flatten the hierarchy",
           "Don't show raw data at overview level — use meaningful aggregations",
         ]}
-        securityNotes="Navigation context must be preserved during authentication events (session timeout, role switch). ISA-101.01 §6.3 requires that operators can return to their pre-authentication view. IEC 62443-3-3 SR 2.8 requires audit logging of navigation to safety-critical views."
-        accessibilityNotes="All levels must be keyboard-navigable. Breadcrumb uses nav landmark with aria-label='Breadcrumb'. Status colors are paired with text labels (never color-only). Level transitions announce the new context to screen readers via aria-live region."
+        securityRationale="Navigation context must be preserved during authentication events (session timeout, role switch). ISA-101.01 §6.3 requires that operators can return to their pre-authentication view. IEC 62443-3-3 SR 2.8 requires audit logging of navigation to safety-critical views."
+        accessibilityNotes={[
+          "All levels must be keyboard-navigable",
+          "Breadcrumb uses nav landmark with aria-label='Breadcrumb'",
+          "Status colors are paired with text labels (never color-only)",
+          "Level transitions announce the new context to screen readers via aria-live region",
+        ]}
       />
     </>
   );
