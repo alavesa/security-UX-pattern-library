@@ -68,8 +68,9 @@ const CHECKS: CheckItem[] = [
 
 const MAX_SCORE = CHECKS.reduce((sum, c) => sum + c.weight, 0);
 
-function getGrade(score: number): { grade: string; label: string; color: string; bg: string } {
-  const pct = (score / MAX_SCORE) * 100;
+function getGrade(score: number, max: number = MAX_SCORE): { grade: string; label: string; color: string; bg: string } {
+  if (max === 0) return { grade: "—", label: "No items", color: "#555", bg: "transparent" };
+  const pct = (score / max) * 100;
   if (pct >= 90) return { grade: "A+", label: "Excellent", color: "#00ff41", bg: "rgba(0,255,65,0.15)" };
   if (pct >= 80) return { grade: "A", label: "Very Good", color: "#00ff41", bg: "rgba(0,255,65,0.1)" };
   if (pct >= 70) return { grade: "B", label: "Good", color: "#00e5ff", bg: "rgba(0,229,255,0.1)" };
@@ -78,29 +79,56 @@ function getGrade(score: number): { grade: string; label: string; color: string;
   return { grade: "F", label: "Critical", color: "#ff3333", bg: "rgba(255,51,51,0.1)" };
 }
 
+const OPTIONAL_CATEGORIES = new Set(["Industrial", "Governance"]);
+
 export function ScorePage() {
   const [checked, setChecked] = useState<Set<string>>(new Set());
+  const [skippedCategories, setSkippedCategories] = useState<Set<string>>(new Set());
   const [copied, setCopied] = useState(false);
 
-  const score = useMemo(() =>
-    CHECKS.filter(c => checked.has(c.id)).reduce((sum, c) => sum + c.weight, 0),
-    [checked]
+  const activeChecks = useMemo(() =>
+    CHECKS.filter(c => !skippedCategories.has(c.category)),
+    [skippedCategories]
   );
 
-  const { grade, label, color, bg } = getGrade(score);
-  const pct = Math.round((score / MAX_SCORE) * 100);
+  const activeMaxScore = useMemo(() =>
+    activeChecks.reduce((sum, c) => sum + c.weight, 0),
+    [activeChecks]
+  );
+
+  const score = useMemo(() =>
+    activeChecks.filter(c => checked.has(c.id)).reduce((sum, c) => sum + c.weight, 0),
+    [checked, activeChecks]
+  );
+
+  const { grade, label, color, bg } = getGrade(score, activeMaxScore);
+  const pct = activeMaxScore > 0 ? Math.round((score / activeMaxScore) * 100) : 0;
 
   const categories = useMemo(() => {
-    const cats = new Map<string, { total: number; earned: number; items: CheckItem[] }>();
+    const cats = new Map<string, { total: number; earned: number; items: CheckItem[]; skipped: boolean }>();
     for (const check of CHECKS) {
-      if (!cats.has(check.category)) cats.set(check.category, { total: 0, earned: 0, items: [] });
+      if (!cats.has(check.category)) cats.set(check.category, { total: 0, earned: 0, items: [], skipped: skippedCategories.has(check.category) });
       const cat = cats.get(check.category)!;
       cat.total += check.weight;
       if (checked.has(check.id)) cat.earned += check.weight;
       cat.items.push(check);
     }
     return cats;
-  }, [checked]);
+  }, [checked, skippedCategories]);
+
+  const toggleSkip = (category: string) => {
+    setSkippedCategories(prev => {
+      const next = new Set(prev);
+      if (next.has(category)) next.delete(category); else next.add(category);
+      return next;
+    });
+    // Also uncheck items in skipped category
+    setChecked(prev => {
+      const next = new Set(prev);
+      CHECKS.filter(c => c.category === category).forEach(c => next.delete(c.id));
+      return next;
+    });
+  };
 
   const toggle = (id: string) => {
     setChecked(prev => {
@@ -112,7 +140,7 @@ export function ScorePage() {
 
   const handleCopy = async () => {
     if (!navigator.clipboard) return;
-    const text = `Security UX Score: ${grade} (${pct}%) — ${score}/${MAX_SCORE} points\n\nChecked: ${checked.size}/${CHECKS.length} items\n\nGenerated at uxsec.dev`;
+    const text = `Security UX Score: ${grade} (${pct}%) — ${score}/${activeMaxScore} points\n\nChecked: ${checked.size}/${activeChecks.length} items${skippedCategories.size > 0 ? `\nSkipped: ${[...skippedCategories].join(", ")}` : ""}\n\nGenerated at uxsec.dev`;
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -136,7 +164,7 @@ export function ScorePage() {
       <div className="border rounded-2xl p-8 mb-8 text-center" style={{ borderColor: color, background: bg }}>
         <div className="text-7xl font-mono font-bold mb-2" style={{ color }}>{grade}</div>
         <div className="text-lg font-mono" style={{ color }}>{label}</div>
-        <div className="text-sm mt-2" style={{ color: "var(--text)" }}>{score} / {MAX_SCORE} points ({pct}%)</div>
+        <div className="text-sm mt-2" style={{ color: "var(--text)" }}>{score} / {activeMaxScore} points ({pct}%){skippedCategories.size > 0 && <span style={{ color: "var(--text-dim)" }}> · {skippedCategories.size} skipped</span>}</div>
 
         {/* Progress bar */}
         <div className="mt-4 h-3 rounded-full overflow-hidden" style={{ background: "var(--bg-card)" }}>
@@ -144,12 +172,12 @@ export function ScorePage() {
         </div>
 
         {/* Per-category breakdown */}
-        <div className="grid grid-cols-3 gap-4 mt-6">
-          {Array.from(categories.entries()).map(([name, { total, earned }]) => (
-            <div key={name}>
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-6">
+          {Array.from(categories.entries()).map(([name, { total, earned, skipped }]) => (
+            <div key={name} style={{ opacity: skipped ? 0.35 : 1 }}>
               <div className="text-xs font-mono mb-1" style={{ color: "var(--text)" }}>{name}</div>
-              <div className="text-lg font-mono font-bold" style={{ color: earned === total ? "var(--green)" : earned > 0 ? "var(--amber)" : "var(--text)" }}>
-                {earned}/{total}
+              <div className="text-lg font-mono font-bold" style={{ color: skipped ? "var(--text-dim)" : earned === total ? "var(--green)" : earned > 0 ? "var(--amber)" : "var(--text)" }}>
+                {skipped ? "N/A" : `${earned}/${total}`}
               </div>
             </div>
           ))}
@@ -166,10 +194,27 @@ export function ScorePage() {
       </div>
 
       {/* Checklist */}
-      {Array.from(categories.entries()).map(([categoryName, { items }]) => (
-        <div key={categoryName} className="mb-8">
-          <h2 className="text-lg font-mono font-bold mb-4" style={{ color: "var(--text-bright)" }}>{categoryName}</h2>
-          <div className="space-y-2">
+      {Array.from(categories.entries()).map(([categoryName, { items, skipped }]) => (
+        <div key={categoryName} className="mb-8" style={{ opacity: skipped ? 0.4 : 1 }}>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-mono font-bold" style={{ color: skipped ? "var(--text-dim)" : "var(--text-bright)" }}>
+              {categoryName} {skipped && <span className="text-xs font-normal" style={{ color: "var(--text-dim)" }}>(skipped)</span>}
+            </h2>
+            {OPTIONAL_CATEGORIES.has(categoryName) && (
+              <button
+                onClick={() => toggleSkip(categoryName)}
+                className="text-xs font-mono px-3 py-1 rounded border-none cursor-pointer"
+                style={{
+                  background: skipped ? "var(--green-glow)" : "rgba(255,51,51,0.1)",
+                  color: skipped ? "var(--green)" : "var(--red)",
+                  border: skipped ? "1px solid var(--green-border)" : "1px solid rgba(255,51,51,0.2)",
+                }}
+              >
+                {skipped ? "Include in score" : "Not applicable"}
+              </button>
+            )}
+          </div>
+          {!skipped && (<div className="space-y-2">
             {items.map(item => (
               <label
                 key={item.id}
@@ -195,7 +240,7 @@ export function ScorePage() {
                 <span className="text-xs font-mono shrink-0" style={{ color: "#444" }}>+{item.weight}</span>
               </label>
             ))}
-          </div>
+          </div>)}
         </div>
       ))}
 
