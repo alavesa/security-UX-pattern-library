@@ -28,62 +28,62 @@ function PrivacyZuckeringDemo() {
 
       {/* Dark: Onboarding that tricks into sharing everything */}
       {view === "dark" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-red-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono">DARK PATTERN</span>
           </div>
 
           {darkStep === 0 && (
             <div className="text-center">
-              <Users className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-              <h3 className="font-bold text-gray-900 mb-2">Find your friends!</h3>
-              <p className="text-sm text-gray-600 mb-6">Connect with people you already know to get the most out of the app.</p>
-              <button onClick={() => setDarkStep(1)} className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer hover:bg-blue-700">
+              <Users className="w-12 h-12 mx-auto mb-4" />
+              <h3 className="font-bold mb-2">Find your friends!</h3>
+              <p className="text-sm mb-6">Connect with people you already know to get the most out of the app.</p>
+              <button onClick={() => setDarkStep(1)} className="w-full text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer">
                 Get Started
               </button>
-              <p className="text-xs text-gray-400 mt-3">Step 1 of 3</p>
+              <p className="text-xs mt-3">Step 1 of 3</p>
             </div>
           )}
 
           {darkStep === 1 && (
             <div className="text-center">
-              <Globe className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-              <h3 className="font-bold text-gray-900 mb-2">Personalize your experience</h3>
-              <p className="text-sm text-gray-600 mb-2">Allow access to make the app work better for you.</p>
-              <p className="text-xs text-gray-400 mb-6">This helps us show you relevant content near you.</p>
+              <Globe className="w-12 h-12 mx-auto mb-4" />
+              <h3 className="font-bold mb-2">Personalize your experience</h3>
+              <p className="text-sm mb-2">Allow access to make the app work better for you.</p>
+              <p className="text-xs mb-6">This helps us show you relevant content near you.</p>
 
               <div className="space-y-3 mb-6 text-left">
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-2"><Users className="w-4 h-4 text-gray-500" /><span className="text-sm">Contacts</span></div>
-                  <div aria-hidden="true" className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
+                <div className="flex items-center justify-between p-3 rounded-lg">
+                  <div className="flex items-center gap-2"><Users className="w-4 h-4" /><span className="text-sm">Contacts</span></div>
+                  <div aria-hidden="true" className="w-10 h-5 rounded-full relative"><div className="w-4 h-4 rounded-full absolute top-0.5 right-0.5" /></div>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-gray-500" /><span className="text-sm">Location</span></div>
-                  <div aria-hidden="true" className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
+                <div className="flex items-center justify-between p-3 rounded-lg">
+                  <div className="flex items-center gap-2"><MapPin className="w-4 h-4" /><span className="text-sm">Location</span></div>
+                  <div aria-hidden="true" className="w-10 h-5 rounded-full relative"><div className="w-4 h-4 rounded-full absolute top-0.5 right-0.5" /></div>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-2"><Camera className="w-4 h-4 text-gray-500" /><span className="text-sm">Camera & Photos</span></div>
-                  <div aria-hidden="true" className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
+                <div className="flex items-center justify-between p-3 rounded-lg">
+                  <div className="flex items-center gap-2"><Camera className="w-4 h-4" /><span className="text-sm">Camera & Photos</span></div>
+                  <div aria-hidden="true" className="w-10 h-5 rounded-full relative"><div className="w-4 h-4 rounded-full absolute top-0.5 right-0.5" /></div>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-2"><Mic className="w-4 h-4 text-gray-500" /><span className="text-sm">Microphone</span></div>
-                  <div aria-hidden="true" className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
+                <div className="flex items-center justify-between p-3 rounded-lg">
+                  <div className="flex items-center gap-2"><Mic className="w-4 h-4" /><span className="text-sm">Microphone</span></div>
+                  <div aria-hidden="true" className="w-10 h-5 rounded-full relative"><div className="w-4 h-4 rounded-full absolute top-0.5 right-0.5" /></div>
                 </div>
               </div>
 
-              <button onClick={() => setDarkStep(2)} className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer">
+              <button onClick={() => setDarkStep(2)} className="w-full text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer">
                 Continue
               </button>
-              <p className="text-xs text-gray-300 mt-2">
+              <p className="text-xs mt-2">
                 By continuing, you agree to share this data with us and our partners
               </p>
             </div>
           )}
 
           {darkStep === 2 && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <h3 className="text-sm font-semibold text-red-800 mb-2">What just happened:</h3>
-              <ul className="text-xs text-red-700 space-y-1.5">
+            <div className="border rounded-lg p-4">
+              <h3 className="text-sm font-semibold mb-2">What just happened:</h3>
+              <ul className="text-xs space-y-1.5">
                 <li><strong>All permissions pre-enabled</strong> — user has to opt OUT of each one individually</li>
                 <li><strong>"Find your friends"</strong> — friendly framing for uploading your entire contact list</li>
                 <li><strong>"Personalize your experience"</strong> — euphemism for location tracking + data harvesting</li>
@@ -99,13 +99,13 @@ function PrivacyZuckeringDemo() {
 
       {/* Ethical version */}
       {view === "ethical" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-green-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono">ETHICAL</span>
           </div>
 
-          <h3 className="font-bold text-gray-900 mb-2">App permissions</h3>
-          <p className="text-sm text-gray-600 mb-6">Choose what you'd like to share. You can change these anytime in Settings.</p>
+          <h3 className="font-bold mb-2">App permissions</h3>
+          <p className="text-sm mb-6">Choose what you'd like to share. You can change these anytime in Settings.</p>
 
           <div className="space-y-4 mb-6">
             {[
@@ -114,11 +114,11 @@ function PrivacyZuckeringDemo() {
               { key: "camera" as const, icon: Camera, label: "Camera", why: "Take and share photos in the app", optional: true },
               { key: "microphone" as const, icon: Mic, label: "Microphone", why: "Record voice messages", optional: true },
             ].map(({ key, icon: Icon, label, why, optional }) => (
-              <div key={key} className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg">
-                <Icon className="w-5 h-5 text-gray-400 mt-0.5 shrink-0" />
+              <div key={key} className="flex items-start gap-3 p-3 border rounded-lg">
+                <Icon className="w-5 h-5 mt-0.5 shrink-0" />
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-900">{label}</span>
+                    <span className="text-sm font-medium">{label}</span>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input
                         type="checkbox"
@@ -127,25 +127,25 @@ function PrivacyZuckeringDemo() {
                         onChange={e => setEthicalPermissions(p => ({ ...p, [key]: e.target.checked }))}
                         className="sr-only peer"
                       />
-                      <div className={`relative w-10 h-5 rounded-full transition-colors ${ethicalPermissions[key] ? "bg-blue-600" : "bg-gray-300"}`}>
-                        <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-all ${ethicalPermissions[key] ? "right-0.5" : "left-0.5"}`} />
+                      <div className={`relative w-10 h-5 rounded-full transition-colors ${ethicalPermissions[key] ? "" : "bg-gray-300"}`}>
+                        <div className={`w-4 h-4  rounded-full absolute top-0.5 transition-all ${ethicalPermissions[key] ? "right-0.5" : "left-0.5"}`} />
                       </div>
                     </label>
                   </div>
-                  <p className="text-xs text-gray-500 mt-0.5">{why}</p>
-                  {optional && <span className="text-xs text-gray-400">Optional</span>}
+                  <p className="text-xs mt-0.5">{why}</p>
+                  {optional && <span className="text-xs">Optional</span>}
                 </div>
               </div>
             ))}
           </div>
 
-          <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700">
+          <button className="w-full text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer">
             Continue {Object.values(ethicalPermissions).some(Boolean) ? `with ${Object.values(ethicalPermissions).filter(Boolean).length} permissions` : "without sharing"}
           </button>
 
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
-            <h4 className="text-sm font-semibold text-green-800 mb-2">What's right here:</h4>
-            <ul className="text-xs text-green-700 space-y-1.5">
+          <div className="border rounded-lg p-4 mt-4">
+            <h4 className="text-sm font-semibold mb-2">What's right here:</h4>
+            <ul className="text-xs space-y-1.5">
               <li><strong>All toggles default to OFF</strong> — opt-in, not opt-out</li>
               <li><strong>Each permission explained</strong> — users know WHY before they decide</li>
               <li><strong>Marked as "Optional"</strong> — no pressure, no guilt</li>

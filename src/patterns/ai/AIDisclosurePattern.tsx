@@ -69,18 +69,18 @@ function AIDisclosureDemo() {
         </button>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-lg border-2 overflow-hidden" style={{ borderColor: view === "dark" ? "#fca5a5" : "#86efac" }}>
+      <div className="rounded-2xl border-2 overflow-hidden" style={{ borderColor: view === "dark" ? "#fca5a5" : "#86efac" }}>
         {/* Header */}
-        <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between" style={{ background: view === "dark" ? "#fff" : "#f0fdf4" }}>
+        <div className="px-4 py-3 border-b flex items-center justify-between" style={{ background: view === "dark" ? "#fff" : "#f0fdf4" }}>
           <div className="flex items-center gap-2">
             {view === "dark" ? (
               <>
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <User className="w-4 h-4 text-blue-600" />
+                <div className="w-8 h-8 rounded-full flex items-center justify-center">
+                  <User className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-900">Sarah from Sales</p>
-                  <p className="text-xs text-green-600">Online now</p>
+                  <p className="text-sm font-medium">Sarah from Sales</p>
+                  <p className="text-xs">Online now</p>
                 </div>
               </>
             ) : (
@@ -89,7 +89,7 @@ function AIDisclosureDemo() {
                   <Bot className="w-4 h-4 text-purple-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-900">AI Assistant</p>
+                  <p className="text-sm font-medium">AI Assistant</p>
                   <p className="text-xs text-purple-600 flex items-center gap-1">
                     <Bot className="w-3 h-3" /> Powered by AI
                   </p>
@@ -116,14 +116,14 @@ function AIDisclosureDemo() {
         {/* Chat */}
         <div ref={scrollRef} role="log" aria-live="polite" aria-label="Chat messages" className="p-4 space-y-3 min-h-[200px] max-h-[300px] overflow-y-auto">
           {messages.length === 0 && (
-            <p className="text-xs text-gray-400 text-center py-8">Type a message to start the demo</p>
+            <p className="text-xs text-center py-8">Type a message to start the demo</p>
           )}
           {messages.map((msg) => (
             <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
               <div className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm ${
                 msg.role === "user"
-                  ? "bg-blue-600 text-white rounded-br-none"
-                  : "bg-gray-100 text-gray-900 rounded-bl-none"
+                  ? " text-white rounded-br-none"
+                  : "  rounded-bl-none"
               }`}>
                 {msg.role === "ai" && view === "ethical" && (
                   <span className="text-xs text-purple-600 flex items-center gap-1 mb-1"><Bot className="w-3 h-3" /> AI</span>
@@ -134,7 +134,7 @@ function AIDisclosureDemo() {
           ))}
           {typing && (
             <div className="flex justify-start">
-              <div className="bg-gray-100 rounded-2xl rounded-bl-none px-4 py-3">
+              <div className="rounded-2xl rounded-bl-none px-4 py-3">
                 <div className="flex gap-1">
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -146,7 +146,7 @@ function AIDisclosureDemo() {
         </div>
 
         {/* Input */}
-        <div className="border-t border-gray-200 px-4 py-3 flex gap-2">
+        <div className="border-t px-4 py-3 flex gap-2">
           <label htmlFor="chat-input" className="sr-only">Chat message</label>
           <input
             id="chat-input"
@@ -157,7 +157,7 @@ function AIDisclosureDemo() {
             className="flex-1 text-sm border-none outline-none bg-transparent"
             disabled={typing}
           />
-          <button onClick={sendMessage} aria-label="Send message" className="text-blue-600 bg-transparent border-none cursor-pointer" disabled={typing}>
+          <button onClick={sendMessage} aria-label="Send message" className="bg-transparent border-none cursor-pointer" disabled={typing}>
             <Send className="w-4 h-4" />
           </button>
         </div>

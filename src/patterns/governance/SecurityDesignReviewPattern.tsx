@@ -26,30 +26,30 @@ function SecurityDesignReviewDemo() {
 
   return (
     <div className="w-full max-w-lg">
-      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+      <div className="rounded-2xl border p-6">
         <div aria-live="polite" aria-atomic="true">
         {phase === "checklist" && (
           <>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-bold text-gray-900 text-sm">Security UX Design Review</h3>
-              <span className="text-xs text-gray-400 font-mono">{Object.values(checks).filter(Boolean).length}/{REVIEW_ITEMS.length}</span>
+              <h3 className="font-bold text-sm">Security UX Design Review</h3>
+              <span className="text-xs font-mono">{Object.values(checks).filter(Boolean).length}/{REVIEW_ITEMS.length}</span>
             </div>
 
             <div className="space-y-2 mb-4">
               {REVIEW_ITEMS.map(item => (
-                <label key={item.id} className="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+                <label key={item.id} className="flex items-start gap-3 p-2 rounded cursor-pointer hover:">
                   <input
                     type="checkbox"
                     checked={checks[item.id] ?? false}
                     onChange={e => setChecks(c => ({ ...c, [item.id]: e.target.checked }))}
-                    className="mt-0.5 w-4 h-4 rounded border-gray-300 text-blue-600"
+                    className="mt-0.5 w-4 h-4 rounded"
                   />
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-gray-900">{item.label}</span>
-                      {item.critical && <span className="text-xs bg-red-100 text-red-600 px-1 rounded">Required</span>}
+                      <span className="text-sm">{item.label}</span>
+                      {item.critical && <span className="text-xs px-1 rounded">Required</span>}
                     </div>
-                    <span className="text-xs text-gray-400">{item.category}</span>
+                    <span className="text-xs">{item.category}</span>
                   </div>
                 </label>
               ))}
@@ -58,7 +58,7 @@ function SecurityDesignReviewDemo() {
             <button
               onClick={() => { setSubmittedCount(Object.values(checks).filter(Boolean).length); setPhase("review"); }}
               disabled={!criticalComplete}
-              className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {criticalComplete ? "Submit for review" : `Complete all required items (${REVIEW_ITEMS.filter(i => i.critical && checks[i.id]).length}/${REVIEW_ITEMS.filter(i => i.critical).length})`}
             </button>
@@ -67,38 +67,38 @@ function SecurityDesignReviewDemo() {
 
         {phase === "review" && (
           <div className="text-center">
-            <Clock className="w-10 h-10 text-blue-500 mx-auto mb-3" />
-            <h3 className="font-bold text-gray-900 mb-1">In review</h3>
-            <p className="text-sm text-gray-500 mb-4">Security design review submitted. Awaiting approval from Security UX Lead.</p>
+            <Clock className="w-10 h-10 mx-auto mb-3" />
+            <h3 className="font-bold mb-1">In review</h3>
+            <p className="text-sm mb-4">Security design review submitted. Awaiting approval from Security UX Lead.</p>
 
-            <div className="bg-gray-50 rounded-lg p-4 text-left mb-4">
+            <div className="rounded-lg p-4 text-left mb-4">
               <div className="flex items-center justify-between text-xs mb-2">
-                <span className="text-gray-500">Submitted by</span>
-                <span className="text-gray-900">Designer</span>
+                <span >Submitted by</span>
+                <span >Designer</span>
               </div>
               <div className="flex items-center justify-between text-xs mb-2">
-                <span className="text-gray-500">Reviewer</span>
-                <span className="text-gray-900">Security UX Lead</span>
+                <span >Reviewer</span>
+                <span >Security UX Lead</span>
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-gray-500">Status</span>
-                <span className="text-amber-600 flex items-center gap-1"><Clock className="w-3 h-3" /> Pending</span>
+                <span >Status</span>
+                <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Pending</span>
               </div>
             </div>
 
-            <button onClick={() => setPhase("approved")} aria-label="Simulate approval (demo only)" className="text-xs text-blue-600 bg-transparent border-none cursor-pointer italic">[Simulate approval]</button>
+            <button onClick={() => setPhase("approved")} aria-label="Simulate approval (demo only)" className="text-xs bg-transparent border-none cursor-pointer italic">[Simulate approval]</button>
           </div>
         )}
 
         {phase === "approved" && (
           <div className="text-center">
-            <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-3" />
-            <h3 className="font-bold text-gray-900 mb-1">Approved</h3>
-            <p className="text-sm text-gray-500 mb-4">Security UX review passed. Design is cleared for development.</p>
+            <CheckCircle2 className="w-12 h-12 mx-auto mb-3" />
+            <h3 className="font-bold mb-1">Approved</h3>
+            <p className="text-sm mb-4">Security UX review passed. Design is cleared for development.</p>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-left">
-              <p className="text-xs text-green-800"><strong>Review outcome:</strong></p>
-              <ul className="text-xs text-green-700 mt-2 space-y-1">
+            <div className="border rounded-lg p-4 text-left">
+              <p className="text-xs"><strong>Review outcome:</strong></p>
+              <ul className="text-xs mt-2 space-y-1">
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3" /> {submittedCount}/{REVIEW_ITEMS.length} items passed</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3" /> All critical items verified</li>
                 <li className="flex items-center gap-2"><Shield className="w-3 h-3" /> Design tokens consistent</li>

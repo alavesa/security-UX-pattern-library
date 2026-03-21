@@ -41,15 +41,15 @@ function BrokenAccessControlDemo() {
 
       {/* RBAC demo */}
       {scenario === "rbac" && (
-        <div role="tabpanel" id="panel-rbac" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div role="tabpanel" id="panel-rbac" className="rounded-2xl border p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-gray-900 text-sm">Document: Q4 Report</h3>
+            <h3 className="font-bold text-sm">Document: Q4 Report</h3>
             <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-gray-400" />
+              <Users className="w-4 h-4" />
               <select
                 value={currentRole}
                 onChange={e => setCurrentRole(e.target.value as Role)}
-                className="text-xs border border-gray-300 rounded px-2 py-1"
+                className="text-xs border rounded px-2 py-1"
               >
                 <option value="viewer">Viewer</option>
                 <option value="editor">Editor</option>
@@ -59,8 +59,8 @@ function BrokenAccessControlDemo() {
           </div>
 
           {/* Permission indicators */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-4">
-            <p className="text-xs font-medium text-gray-500 mb-3">Your permissions as <strong className="text-gray-900">{currentRole}</strong>:</p>
+          <div className="rounded-lg p-4 mb-4">
+            <p className="text-xs font-medium mb-3">Your permissions as <strong >{currentRole}</strong>:</p>
             <div className="grid grid-cols-2 gap-2">
               {[
                 { label: "View document", allowed: perms.canView },
@@ -70,10 +70,10 @@ function BrokenAccessControlDemo() {
               ].map(({ label, allowed }) => (
                 <div key={label} className="flex items-center gap-2 text-xs">
                   {allowed
-                    ? <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
-                    : <Lock className="w-3.5 h-3.5 text-gray-300" />
+                    ? <CheckCircle2 className="w-3.5 h-3.5" />
+                    : <Lock className="w-3.5 h-3.5" />
                   }
-                  <span className={allowed ? "text-gray-700" : "text-gray-400"}>{label}</span>
+                  <span className={allowed ? "" : ""}>{label}</span>
                 </div>
               ))}
             </div>
@@ -81,28 +81,28 @@ function BrokenAccessControlDemo() {
 
           {/* Action buttons */}
           <div className="space-y-2">
-            <button className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded-lg text-sm font-medium border-none cursor-pointer">
+            <button className="w-full flex items-center justify-center gap-2 text-white py-2 rounded-lg text-sm font-medium border-none cursor-pointer">
               <Eye className="w-4 h-4" /> View Document
             </button>
             <button
               aria-disabled={!perms.canEdit}
               aria-label={!perms.canEdit ? 'Edit Document — requires Editor role or above' : undefined}
               onClick={e => { if (!perms.canEdit) { e.preventDefault(); return; } }}
-              className="w-full flex items-center justify-center gap-2 border border-gray-300 text-gray-700 py-2 rounded-lg text-sm font-medium bg-white cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 border py-2 rounded-lg text-sm font-medium cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
             >
-              Edit Document {!perms.canEdit && <Lock className="w-3 h-3 text-gray-400" />}
+              Edit Document {!perms.canEdit && <Lock className="w-3 h-3" />}
             </button>
             <button
               aria-disabled={!perms.canDelete}
               aria-label={!perms.canDelete ? 'Delete Document — requires Admin role' : undefined}
               onClick={e => { if (!perms.canDelete) { e.preventDefault(); return; } }}
-              className="w-full flex items-center justify-center gap-2 border border-red-200 text-red-600 py-2 rounded-lg text-sm font-medium bg-white cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 border py-2 rounded-lg text-sm font-medium cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
             >
-              Delete Document {!perms.canDelete && <Lock className="w-3 h-3 text-gray-400" />}
+              Delete Document {!perms.canDelete && <Lock className="w-3 h-3" />}
             </button>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-xs text-blue-800">
+          <div className="border rounded-lg p-3 mt-4 text-xs">
             <strong>Pattern:</strong> Disabled buttons with lock icons show what exists but isn't allowed. Users understand the system's capabilities without being able to misuse them. Switch roles to see how the UI adapts.
           </div>
         </div>
@@ -110,21 +110,21 @@ function BrokenAccessControlDemo() {
 
       {/* IDOR prevention */}
       {scenario === "idor" && (
-        <div role="tabpanel" id="panel-idor" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-          <h3 className="font-bold text-gray-900 text-sm mb-4">Access user profile</h3>
+        <div role="tabpanel" id="panel-idor" className="rounded-2xl border p-6">
+          <h3 className="font-bold text-sm mb-4">Access user profile</h3>
 
           <div className="mb-4">
-            <label className="block text-xs font-medium text-gray-700 mb-1">User ID</label>
+            <label className="block text-xs font-medium mb-1">User ID</label>
             <div className="flex gap-2">
               <input
                 value={idorId}
                 onChange={e => { setIdorId(e.target.value); setIdorSubmitted(false); }}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono"
+                className="flex-1 px-3 py-2 border rounded-lg text-sm font-mono"
                 placeholder="Enter user ID"
               />
               <button
                 onClick={() => setIdorSubmitted(true)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium border-none cursor-pointer"
+                className="px-4 py-2 text-white rounded-lg text-sm font-medium border-none cursor-pointer"
               >
                 View
               </button>
@@ -132,86 +132,86 @@ function BrokenAccessControlDemo() {
           </div>
 
           {idorSubmitted && idorId === "12345" && (
-            <div className="border border-green-200 bg-green-50 rounded-lg p-4">
+            <div className="border rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
-                <CheckCircle2 className="w-4 h-4 text-green-600" />
-                <span className="text-sm font-medium text-green-800">Access granted</span>
+                <CheckCircle2 className="w-4 h-4" />
+                <span className="text-sm font-medium">Access granted</span>
               </div>
-              <p className="text-xs text-green-700">User ID 12345 — this is your profile.</p>
+              <p className="text-xs">User ID 12345 — this is your profile.</p>
             </div>
           )}
 
           {idorSubmitted && idorId !== "12345" && idorId.length > 0 && (
-            <div role="alert" className="border border-red-200 bg-red-50 rounded-lg p-4">
+            <div role="alert" className="border rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
-                <ShieldAlert className="w-4 h-4 text-red-600" />
-                <span className="text-sm font-medium text-red-800">Access denied</span>
+                <ShieldAlert className="w-4 h-4" />
+                <span className="text-sm font-medium">Access denied</span>
               </div>
-              <p className="text-xs text-red-700 mb-2">You don't have permission to view user {idorId}'s profile.</p>
-              <p className="text-xs text-red-600">This attempt has been logged.</p>
+              <p className="text-xs mb-2">You don't have permission to view user {idorId}'s profile.</p>
+              <p className="text-xs">This attempt has been logged.</p>
             </div>
           )}
 
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-4 text-xs text-amber-800">
+          <div className="border rounded-lg p-3 mt-4 text-xs">
             <strong>IDOR (Insecure Direct Object Reference):</strong> Changing the user ID in the URL shouldn't give access to other users' data. The server must verify authorization on every request — the UI should show a clear "Access denied" with a logged warning, not just return empty data.
           </div>
 
-          <p className="text-xs text-gray-400 mt-3">Try changing the ID to any other number to see the IDOR prevention.</p>
+          <p className="text-xs mt-3">Try changing the ID to any other number to see the IDOR prevention.</p>
         </div>
       )}
 
       {/* Privilege escalation */}
       {scenario === "elevation" && (
-        <div role="tabpanel" id="panel-elevation" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-          <h3 className="font-bold text-gray-900 text-sm mb-2">Account settings</h3>
-          <p className="text-xs text-gray-500 mb-4">Current role: <strong>Editor</strong></p>
+        <div role="tabpanel" id="panel-elevation" className="rounded-2xl border p-6">
+          <h3 className="font-bold text-sm mb-2">Account settings</h3>
+          <p className="text-xs mb-4">Current role: <strong>Editor</strong></p>
 
           <div className="space-y-3 mb-4">
-            <div className="flex items-center justify-between py-2 border-b border-gray-100">
-              <span className="text-sm text-gray-700">Change display name</span>
-              <span className="text-xs text-green-600">Allowed</span>
+            <div className="flex items-center justify-between py-2 border-b">
+              <span className="text-sm">Change display name</span>
+              <span className="text-xs">Allowed</span>
             </div>
-            <div className="flex items-center justify-between py-2 border-b border-gray-100">
-              <span className="text-sm text-gray-700">Change email</span>
-              <span className="text-xs text-green-600">Allowed</span>
+            <div className="flex items-center justify-between py-2 border-b">
+              <span className="text-sm">Change email</span>
+              <span className="text-xs">Allowed</span>
             </div>
-            <div className="flex items-center justify-between py-2 border-b border-gray-100">
-              <span className="text-sm text-gray-700">Change password</span>
-              <span className="text-xs text-green-600">Allowed</span>
+            <div className="flex items-center justify-between py-2 border-b">
+              <span className="text-sm">Change password</span>
+              <span className="text-xs">Allowed</span>
             </div>
-            <div className="flex items-center justify-between py-2 border-b border-gray-100">
-              <span className="text-sm text-gray-400">Change role to Admin</span>
-              <span className="text-xs text-gray-300 flex items-center gap-1"><Lock className="w-3 h-3" /> Admin only</span>
+            <div className="flex items-center justify-between py-2 border-b">
+              <span className="text-sm">Change role to Admin</span>
+              <span className="text-xs flex items-center gap-1"><Lock className="w-3 h-3" /> Admin only</span>
             </div>
           </div>
 
           {!elevationAttempted ? (
             <button
               onClick={() => setElevationAttempted(true)}
-              className="w-full border border-amber-200 text-amber-700 py-2.5 rounded-lg text-sm font-medium bg-amber-50 cursor-pointer"
+              className="w-full border py-2.5 rounded-lg text-sm font-medium cursor-pointer"
             >
               Simulate: try to change role via API manipulation
             </button>
           ) : (
-            <div role="alert" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
+            <div role="alert" className="border-2 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-3">
-                <ShieldAlert className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
+                <ShieldAlert className="w-5 h-5 mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-sm font-bold text-red-800">Privilege escalation blocked</p>
-                  <p className="text-xs text-red-700 mt-1">
+                  <p className="text-sm font-bold">Privilege escalation blocked</p>
+                  <p className="text-xs mt-1">
                     Attempted role change from "editor" to "admin" was blocked by server-side authorization.
                   </p>
                 </div>
               </div>
 
-              <div className="bg-white border border-red-200 rounded p-3 font-mono text-xs text-red-700 space-y-1">
-                <div><span className="text-red-400">POST</span> /api/users/12345/role</div>
-                <div><span className="text-red-400">Body:</span> {"{"} "role": "admin" {"}"}</div>
-                <div><span className="text-red-400">Response:</span> 403 Forbidden</div>
-                <div><span className="text-red-400">Log:</span> PRIVILEGE_ESCALATION_ATTEMPT user=12345</div>
+              <div className="border rounded p-3 font-mono text-xs space-y-1">
+                <div><span >POST</span> /api/users/12345/role</div>
+                <div><span >Body:</span> {"{"} "role": "admin" {"}"}</div>
+                <div><span >Response:</span> 403 Forbidden</div>
+                <div><span >Log:</span> PRIVILEGE_ESCALATION_ATTEMPT user=12345</div>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-3 text-xs text-blue-800">
+              <div className="border rounded-lg p-3 mt-3 text-xs">
                 <strong>Pattern:</strong> Even if a user manipulates the API request, the server blocks it AND logs the attempt. The UI shows what happened transparently — security through visibility.
               </div>
             </div>

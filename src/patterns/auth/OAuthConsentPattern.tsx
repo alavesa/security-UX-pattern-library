@@ -33,7 +33,7 @@ function OAuthConsentDemo() {
 
       {/* Dark: over-permissioned */}
       {view === "dark" && darkChoice === null && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-red-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono">OVER-PERMISSIONED</span>
           </div>
@@ -42,12 +42,12 @@ function OAuthConsentDemo() {
             <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-3">
               <span className="text-2xl">📊</span>
             </div>
-            <h2 className="text-lg font-bold text-gray-900">Analytics Pro</h2>
-            <p className="text-xs text-gray-500">wants to access your GitHub account</p>
+            <h2 className="text-lg font-bold">Analytics Pro</h2>
+            <p className="text-xs">wants to access your GitHub account</p>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-4 mb-4">
-            <h3 className="text-sm font-semibold text-gray-900 mb-3">This app will be able to:</h3>
+          <div className="border rounded-lg p-4 mb-4">
+            <h3 className="text-sm font-semibold mb-3">This app will be able to:</h3>
             <div className="space-y-2">
               {[
                 { label: "Read your profile information", icon: "👤", risky: false },
@@ -61,27 +61,27 @@ function OAuthConsentDemo() {
               ].map(({ label, icon, risky }) => (
                 <div key={label} className="flex items-center gap-2 text-sm">
                   <span aria-hidden="true">{icon}</span>
-                  <span className={risky ? "text-red-700" : "text-gray-700"}>{label}</span>
-                  {risky && <span className="text-xs bg-red-100 text-red-600 px-1 rounded ml-auto">excessive</span>}
+                  <span className={risky ? "" : ""}>{label}</span>
+                  {risky && <span className="text-xs px-1 rounded ml-auto">excessive</span>}
                 </div>
               ))}
             </div>
           </div>
 
-          <button onClick={() => setDarkChoice("authorized")} className="w-full bg-green-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-green-700">
+          <button onClick={() => setDarkChoice("authorized")} className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer">
             Authorize Analytics Pro
           </button>
-          <button onClick={() => setDarkChoice("denied")} className="w-full mt-2 text-sm text-gray-500 bg-transparent border-none cursor-pointer py-2">
+          <button onClick={() => setDarkChoice("denied")} className="w-full mt-2 text-sm bg-transparent border-none cursor-pointer py-2">
             Cancel
           </button>
         </div>
       )}
 
       {view === "dark" && darkChoice !== null && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-red-200 p-6">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-            <h3 className="text-sm font-semibold text-red-800 mb-2">What's wrong:</h3>
-            <ul className="text-xs text-red-700 space-y-1.5">
+        <div className="rounded-2xl border-2 p-6">
+          <div className="border rounded-lg p-4">
+            <h3 className="text-sm font-semibold mb-2">What's wrong:</h3>
+            <ul className="text-xs space-y-1.5">
               <li><strong>8 permissions</strong> — an analytics app only needs profile + repos (read-only)</li>
               <li><strong>"Delete repositories"</strong> — why would an analytics tool need this?</li>
               <li><strong>"Manage organizations"</strong> — far beyond what's needed</li>
@@ -96,7 +96,7 @@ function OAuthConsentDemo() {
 
       {/* Ethical: least privilege with granular control */}
       {view === "ethical" && ethicalChoice === null && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-green-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono">LEAST PRIVILEGE</span>
           </div>
@@ -105,13 +105,13 @@ function OAuthConsentDemo() {
             <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-3">
               <span className="text-2xl">📊</span>
             </div>
-            <h2 className="text-lg font-bold text-gray-900">Analytics Pro</h2>
-            <p className="text-xs text-gray-500">wants to access your GitHub account</p>
+            <h2 className="text-lg font-bold">Analytics Pro</h2>
+            <p className="text-xs">wants to access your GitHub account</p>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-4 mb-4">
-            <h3 id="perm-group-label" className="text-sm font-semibold text-gray-900 mb-1">Permissions requested</h3>
-            <p className="text-xs text-gray-400 mb-3">Required permissions can't be deselected. Optional ones are your choice.</p>
+          <div className="border rounded-lg p-4 mb-4">
+            <h3 id="perm-group-label" className="text-sm font-semibold mb-1">Permissions requested</h3>
+            <p className="text-xs mb-3">Required permissions can't be deselected. Optional ones are your choice.</p>
 
             <div role="group" aria-labelledby="perm-group-label" className="space-y-3">
               {[
@@ -123,7 +123,7 @@ function OAuthConsentDemo() {
                 <div key={key} className="flex items-start gap-3">
                   <div className="mt-0.5">
                     {required ? (
-                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                      <CheckCircle2 className="w-4 h-4" />
                     ) : (
                       <input
                         type="checkbox"
@@ -132,64 +132,64 @@ function OAuthConsentDemo() {
                         aria-describedby={`perm-desc-${key}`}
                         checked={optionalPermissions[key as keyof typeof optionalPermissions]}
                         onChange={e => setOptionalPermissions(p => ({ ...p, [key]: e.target.checked }))}
-                        className="w-4 h-4 rounded border-gray-300 text-blue-600"
+                        className="w-4 h-4 rounded"
                       />
                     )}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-gray-900">{label}</span>
-                      {required && <span className="text-xs bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">Required</span>}
-                      {!required && <span className="text-xs bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded">Optional</span>}
+                      <span className="text-sm">{label}</span>
+                      {required && <span className="text-xs px-1.5 py-0.5 rounded">Required</span>}
+                      {!required && <span className="text-xs px-1.5 py-0.5 rounded">Optional</span>}
                     </div>
-                    <p id={`perm-desc-${key}`} className="text-xs text-gray-500 mt-0.5">{why}</p>
+                    <p id={`perm-desc-${key}`} className="text-xs mt-0.5">{why}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4 flex items-start gap-2">
-            <Eye className="w-3.5 h-3.5 text-gray-400 mt-0.5 shrink-0" />
-            <p className="text-xs text-gray-600">
+          <div className="border rounded-lg p-3 mb-4 flex items-start gap-2">
+            <Eye className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+            <p className="text-xs">
               Analytics Pro will have <strong>read-only</strong> access. It cannot modify, delete, or create content. You can revoke access anytime in Settings → Applications.
             </p>
           </div>
 
           <button
             onClick={() => setEthicalChoice("authorized")}
-            className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700"
+            className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer"
           >
             Authorize with {grantedCount} permissions
           </button>
-          <button onClick={() => setEthicalChoice("denied")} className="w-full mt-2 border border-gray-300 text-gray-700 py-2 rounded-lg text-sm bg-white cursor-pointer hover:bg-gray-50">
+          <button onClick={() => setEthicalChoice("denied")} className="w-full mt-2 border py-2 rounded-lg text-sm cursor-pointer hover:">
             Deny access
           </button>
         </div>
       )}
 
       {view === "ethical" && ethicalChoice !== null && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-green-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           {ethicalChoice === "authorized" ? (
             <>
               <div className="flex items-center gap-2 mb-3">
-                <CheckCircle2 className="w-5 h-5 text-green-600" />
-                <span className="font-semibold text-green-800">Access granted</span>
+                <CheckCircle2 className="w-5 h-5" />
+                <span className="font-semibold">Access granted</span>
               </div>
-              <p className="text-sm text-gray-600 mb-3">Analytics Pro can now access {grantedCount} items.</p>
+              <p className="text-sm mb-3">Analytics Pro can now access {grantedCount} items.</p>
             </>
           ) : (
             <>
               <div className="flex items-center gap-2 mb-3">
-                <XCircle className="w-5 h-5 text-gray-500" />
-                <span className="font-semibold text-gray-700">Access denied</span>
+                <XCircle className="w-5 h-5" />
+                <span className="font-semibold">Access denied</span>
               </div>
-              <p className="text-sm text-gray-500 mb-3">No data was shared with Analytics Pro.</p>
+              <p className="text-sm mb-3">No data was shared with Analytics Pro.</p>
             </>
           )}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-            <h4 className="text-xs font-semibold text-green-800 mb-2">What's right:</h4>
-            <ul className="text-xs text-green-700 space-y-1.5">
+          <div className="border rounded-lg p-4">
+            <h4 className="text-xs font-semibold mb-2">What's right:</h4>
+            <ul className="text-xs space-y-1.5">
               <li><strong>Only 4 permissions</strong> — minimum needed for the app to function</li>
               <li><strong>Read-only</strong> — explicitly stated, no write/delete access</li>
               <li><strong>Required vs optional</strong> — user controls optional permissions</li>

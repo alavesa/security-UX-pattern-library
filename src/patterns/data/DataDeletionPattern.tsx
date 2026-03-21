@@ -46,12 +46,12 @@ function DataDeletionDemo() {
 
   return (
     <div className="w-full max-w-lg">
-      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6" aria-live="polite">
+      <div className="rounded-2xl border p-6" aria-live="polite">
 
         {step === "overview" && (
           <div>
-            <h3 className="font-bold text-gray-900 mb-1">Your data</h3>
-            <p className="text-sm text-gray-500 mb-6">Review, export, or delete your personal data.</p>
+            <h3 className="font-bold mb-1">Your data</h3>
+            <p className="text-sm mb-6">Review, export, or delete your personal data.</p>
 
             {/* Data summary */}
             <div className="space-y-3 mb-6">
@@ -61,26 +61,26 @@ function DataDeletionDemo() {
                 { category: "Activity", items: "Login history, preferences, analytics", size: "12 KB" },
                 { category: "Messages", items: "3 conversations, 89 messages", size: "45 KB" },
               ].map(({ category, items, size }) => (
-                <div key={category} className="flex items-center justify-between py-2 border-b border-gray-100">
+                <div key={category} className="flex items-center justify-between py-2 border-b">
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{category}</p>
-                    <p className="text-xs text-gray-400">{items}</p>
+                    <p className="text-sm font-medium">{category}</p>
+                    <p className="text-xs">{items}</p>
                   </div>
-                  <span className="text-xs text-gray-400">{size}</span>
+                  <span className="text-xs">{size}</span>
                 </div>
               ))}
             </div>
 
             <div className="space-y-2">
-              <button onClick={handleExport} className="w-full flex items-center justify-center gap-2 border border-blue-300 text-blue-700 py-2.5 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer hover:bg-blue-100">
+              <button onClick={handleExport} className="w-full flex items-center justify-center gap-2 border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
                 <Download className="w-4 h-4" /> Export all my data
               </button>
-              <button onClick={() => setStep("confirm")} className="w-full flex items-center justify-center gap-2 border border-red-200 text-red-600 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-red-50">
+              <button onClick={() => setStep("confirm")} className="w-full flex items-center justify-center gap-2 border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
                 <Trash2 className="w-4 h-4" /> Delete all my data
               </button>
             </div>
 
-            <p className="text-xs text-gray-400 mt-3 text-center">
+            <p className="text-xs mt-3 text-center">
               Data export complies with GDPR Article 20 (Right to Data Portability)
             </p>
           </div>
@@ -90,22 +90,22 @@ function DataDeletionDemo() {
           <div className="text-center">
             {!exportDone ? (
               <>
-                <Loader2 className="w-10 h-10 text-blue-500 mx-auto mb-4 animate-spin" />
-                <h3 className="font-bold text-gray-900 mb-1">Preparing your data export</h3>
-                <p className="text-sm text-gray-500">This may take a moment...</p>
+                <Loader2 className="w-10 h-10 mx-auto mb-4 animate-spin" />
+                <h3 className="font-bold mb-1">Preparing your data export</h3>
+                <p className="text-sm">This may take a moment...</p>
               </>
             ) : (
               <>
-                <CheckCircle2 className="w-10 h-10 text-green-500 mx-auto mb-4" />
-                <h3 className="font-bold text-gray-900 mb-1">Export ready</h3>
-                <p className="text-sm text-gray-500 mb-4">Your data has been packaged as a ZIP file.</p>
+                <CheckCircle2 className="w-10 h-10 mx-auto mb-4" />
+                <h3 className="font-bold mb-1">Export ready</h3>
+                <p className="text-sm mb-4">Your data has been packaged as a ZIP file.</p>
 
-                <div className="border border-gray-200 rounded-lg p-4 mb-4 text-left">
+                <div className="border rounded-lg p-4 mb-4 text-left">
                   <div className="flex items-center gap-2 mb-2">
-                    <Shield className="w-4 h-4 text-blue-600" />
-                    <span className="text-xs font-medium text-gray-700">Export details</span>
+                    <Shield className="w-4 h-4" />
+                    <span className="text-xs font-medium">Export details</span>
                   </div>
-                  <ul className="text-xs text-gray-500 space-y-1">
+                  <ul className="text-xs space-y-1">
                     <li>Format: JSON + media files in ZIP</li>
                     <li>Size: 156 MB</li>
                     <li>Download link expires in 48 hours</li>
@@ -113,15 +113,15 @@ function DataDeletionDemo() {
                   </ul>
                 </div>
 
-                <button className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700 flex items-center justify-center gap-2">
+                <button className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer flex items-center justify-center gap-2">
                   <Download className="w-4 h-4" /> Download export (156 MB)
                 </button>
                 {returnToConfirm && (
-                  <button onClick={() => { setReturnToConfirm(false); setStep("confirm"); }} className="mt-3 w-full border border-red-200 text-red-600 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-red-50">
+                  <button onClick={() => { setReturnToConfirm(false); setStep("confirm"); }} className="mt-3 w-full border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
                     Continue to deletion
                   </button>
                 )}
-                <button onClick={() => { setReturnToConfirm(false); setStep("overview"); }} className="mt-3 text-xs text-gray-500 bg-transparent border-none cursor-pointer hover:text-gray-700">
+                <button onClick={() => { setReturnToConfirm(false); setStep("overview"); }} className="mt-3 text-xs bg-transparent border-none cursor-pointer hover:">
                   Back to data overview
                 </button>
               </>
@@ -132,18 +132,18 @@ function DataDeletionDemo() {
         {step === "confirm" && (
           <div>
             <div className="flex items-start gap-3 mb-4">
-              <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center shrink-0">
-                <AlertTriangle className="w-5 h-5 text-red-600" />
+              <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                <AlertTriangle className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-gray-900">Delete all data permanently?</h3>
-                <p className="text-sm text-gray-500">This action cannot be undone.</p>
+                <h3 className="font-bold">Delete all data permanently?</h3>
+                <p className="text-sm">This action cannot be undone.</p>
               </div>
             </div>
 
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-              <h4 className="text-xs font-semibold text-red-800 mb-2">What will be permanently deleted:</h4>
-              <ul className="text-xs text-red-700 space-y-1">
+            <div className="border rounded-lg p-4 mb-4">
+              <h4 className="text-xs font-semibold mb-2">What will be permanently deleted:</h4>
+              <ul className="text-xs space-y-1">
                 <li>Your profile and account credentials</li>
                 <li>42 posts and 128 comments</li>
                 <li>15 uploaded files (156 MB)</li>
@@ -153,24 +153,24 @@ function DataDeletionDemo() {
             </div>
 
             {!exportDone && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4 flex items-start gap-2">
-                <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
-                <div className="text-xs text-amber-800">
+              <div className="border rounded-lg p-3 mb-4 flex items-start gap-2">
+                <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" />
+                <div className="text-xs">
                   <strong>Recommended:</strong> Export your data before deleting.
-                  <button onClick={handleExportFromConfirm} className="text-amber-700 underline ml-1 bg-transparent border-none cursor-pointer">Download my data first</button>
+                  <button onClick={handleExportFromConfirm} className="underline ml-1 bg-transparent border-none cursor-pointer">Download my data first</button>
                 </div>
               </div>
             )}
 
             {exportDone && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" />
-                <span className="text-xs text-green-700">Data export downloaded</span>
+              <div className="border rounded-lg p-3 mb-4 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <span className="text-xs">Data export downloaded</span>
               </div>
             )}
 
             <div className="mb-4">
-              <label className="block text-xs font-medium text-gray-700 mb-1">
+              <label className="block text-xs font-medium mb-1">
                 Type <strong>DELETE MY ACCOUNT</strong> to confirm
               </label>
               <input
@@ -178,13 +178,13 @@ function DataDeletionDemo() {
                 onChange={e => setConfirmText(e.target.value)}
                 placeholder="DELETE MY ACCOUNT"
                 autoComplete="off"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full px-3 py-2 border rounded-lg text-sm font-mono focus:outline-none focus:ring-2"
               />
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4 flex items-start gap-2">
-              <Clock className="w-4 h-4 text-gray-500 mt-0.5 shrink-0" />
-              <div className="text-xs text-gray-600">
+            <div className="border rounded-lg p-3 mb-4 flex items-start gap-2">
+              <Clock className="w-4 h-4 mt-0.5 shrink-0" />
+              <div className="text-xs">
                 <strong>30-day grace period:</strong> After confirming, your account will be deactivated immediately but data is retained for 30 days. You can recover your account during this period by signing in.
               </div>
             </div>
@@ -193,11 +193,11 @@ function DataDeletionDemo() {
               <button
                 onClick={handleDelete}
                 disabled={confirmText.trim() !== "DELETE MY ACCOUNT"}
-                className="w-full bg-red-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Permanently delete my account
               </button>
-              <button onClick={() => setStep("overview")} className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-gray-50">
+              <button onClick={() => setStep("overview")} className="w-full border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
                 Cancel
               </button>
             </div>
@@ -206,33 +206,33 @@ function DataDeletionDemo() {
 
         {step === "processing" && (
           <div className="text-center py-8">
-            <Loader2 className="w-10 h-10 text-red-500 mx-auto mb-4 animate-spin" />
-            <h3 className="font-bold text-gray-900 mb-1">Deleting your data</h3>
-            <p className="text-sm text-gray-500">This is being processed securely...</p>
+            <Loader2 className="w-10 h-10 mx-auto mb-4 animate-spin" />
+            <h3 className="font-bold mb-1">Deleting your data</h3>
+            <p className="text-sm">This is being processed securely...</p>
           </div>
         )}
 
         {step === "done" && (
           <div className="text-center">
-            <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-4" />
-            <h3 className="font-bold text-gray-900 mb-2">Account deletion initiated</h3>
-            <p className="text-sm text-gray-500 mb-4">Your account has been deactivated and data deletion has been scheduled.</p>
+            <CheckCircle2 className="w-12 h-12 mx-auto mb-4" />
+            <h3 className="font-bold mb-2">Account deletion initiated</h3>
+            <p className="text-sm mb-4">Your account has been deactivated and data deletion has been scheduled.</p>
 
-            <div className="border border-gray-200 rounded-lg p-4 text-left space-y-2">
-              <div className="flex items-center gap-2 text-xs text-gray-600">
+            <div className="border rounded-lg p-4 text-left space-y-2">
+              <div className="flex items-center gap-2 text-xs">
                 <Clock className="w-3.5 h-3.5" />
                 30-day grace period started — sign in to cancel
               </div>
-              <div className="flex items-center gap-2 text-xs text-gray-600">
-                <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
+              <div className="flex items-center gap-2 text-xs">
+                <CheckCircle2 className="w-3.5 h-3.5" />
                 Confirmation email sent to your address
               </div>
-              <div className="flex items-center gap-2 text-xs text-gray-600">
-                <Shield className="w-3.5 h-3.5 text-blue-500" />
+              <div className="flex items-center gap-2 text-xs">
+                <Shield className="w-3.5 h-3.5" />
                 Data will be permanently erased after grace period
               </div>
-              <div className="flex items-center gap-2 text-xs text-gray-600">
-                <Shield className="w-3.5 h-3.5 text-blue-500" />
+              <div className="flex items-center gap-2 text-xs">
+                <Shield className="w-3.5 h-3.5" />
                 GDPR deletion reference: {deletionRef}
               </div>
             </div>

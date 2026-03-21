@@ -40,113 +40,113 @@ function HiddenUnsubscribeDemo() {
 
       {/* Dark pattern: 5-step deletion maze */}
       {view === "dark" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-red-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono">DARK PATTERN</span>
           </div>
 
           {darkStep === 0 && (
             <div>
-              <h3 className="font-bold text-gray-900 mb-2">Account Settings</h3>
+              <h3 className="font-bold mb-2">Account Settings</h3>
               <div className="space-y-2 mb-6">
                 {["Profile", "Notifications", "Privacy", "Billing", "Help & Support"].map(item => (
-                  <div key={item} className="flex items-center justify-between py-2 border-b border-gray-100">
-                    <span className="text-sm text-gray-700">{item}</span>
-                    <span className="text-gray-300">→</span>
+                  <div key={item} className="flex items-center justify-between py-2 border-b">
+                    <span className="text-sm">{item}</span>
+                    <span >→</span>
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-gray-300 mb-2">
-                Looking for something else? <button type="button" onClick={() => setDarkStep(1)} className="text-xs text-gray-400 underline bg-transparent border-none cursor-pointer">Visit our help center</button>
+              <p className="text-xs mb-2">
+                Looking for something else? <button type="button" onClick={() => setDarkStep(1)} className="text-xs underline bg-transparent border-none cursor-pointer">Visit our help center</button>
               </p>
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
-                <p className="text-xs text-red-700"><strong>Notice:</strong> "Delete account" isn't in the settings. You have to find a tiny link to the help center.</p>
+              <div className="border rounded-lg p-3 mt-4">
+                <p className="text-xs"><strong>Notice:</strong> "Delete account" isn't in the settings. You have to find a tiny link to the help center.</p>
               </div>
             </div>
           )}
 
           {darkStep === 1 && (
             <div>
-              <h3 className="font-bold text-gray-900 mb-4">Help Center</h3>
+              <h3 className="font-bold mb-4">Help Center</h3>
               <label htmlFor="help-search" className="sr-only">Search for help</label>
-              <input id="help-search" placeholder="Search for help..." className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-4" />
+              <input id="help-search" placeholder="Search for help..." className="w-full px-3 py-2 border rounded-lg text-sm mb-4" />
               <div className="space-y-2 mb-4">
                 {["How to change my password", "Billing FAQ", "Privacy settings", "Contact support"].map(item => (
-                  <div key={item} className="border-b border-gray-100">
-                    <button type="button" className="w-full text-left py-2 text-sm text-blue-600 cursor-pointer bg-transparent border-none">{item}</button>
+                  <div key={item} className="border-b">
+                    <button type="button" className="w-full text-left py-2 text-sm cursor-pointer bg-transparent border-none">{item}</button>
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-gray-400">
-                Can't find what you need? <button type="button" onClick={() => setDarkStep(2)} className="text-xs text-gray-400 underline bg-transparent border-none cursor-pointer">Contact us</button>
+              <p className="text-xs">
+                Can't find what you need? <button type="button" onClick={() => setDarkStep(2)} className="text-xs underline bg-transparent border-none cursor-pointer">Contact us</button>
               </p>
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
-                <p className="text-xs text-red-700"><strong>Step 2:</strong> The help center doesn't have a "delete account" option either. You need to contact support.</p>
+              <div className="border rounded-lg p-3 mt-4">
+                <p className="text-xs"><strong>Step 2:</strong> The help center doesn't have a "delete account" option either. You need to contact support.</p>
               </div>
             </div>
           )}
 
           {darkStep === 2 && (
             <div>
-              <h3 className="font-bold text-gray-900 mb-2">We're sorry to see you go</h3>
-              <p className="text-sm text-gray-600 mb-4">Before you leave, would you like to try these instead?</p>
+              <h3 className="font-bold mb-2">We're sorry to see you go</h3>
+              <p className="text-sm mb-4">Before you leave, would you like to try these instead?</p>
 
               <div className="space-y-2 mb-4">
-                <button type="button" className="w-full border border-blue-300 text-blue-700 py-3 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer">
+                <button type="button" className="w-full border py-3 rounded-lg text-sm font-medium cursor-pointer">
                   Pause my account instead (keep all data)
                 </button>
-                <button type="button" className="w-full border border-blue-300 text-blue-700 py-3 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer">
+                <button type="button" className="w-full border py-3 rounded-lg text-sm font-medium cursor-pointer">
                   Downgrade to free plan
                 </button>
-                <button type="button" className="w-full border border-blue-300 text-blue-700 py-3 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer">
+                <button type="button" className="w-full border py-3 rounded-lg text-sm font-medium cursor-pointer">
                   Talk to a retention specialist
                 </button>
               </div>
 
-              <button type="button" onClick={() => setDarkStep(3)} className="text-xs text-gray-400 bg-transparent border-none cursor-pointer">
+              <button type="button" onClick={() => setDarkStep(3)} className="text-xs bg-transparent border-none cursor-pointer">
                 I still want to delete my account
               </button>
 
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
-                <p className="text-xs text-red-700"><strong>Step 3:</strong> Three retention offers before you can proceed. The actual delete link is tiny gray text at the bottom.</p>
+              <div className="border rounded-lg p-3 mt-4">
+                <p className="text-xs"><strong>Step 3:</strong> Three retention offers before you can proceed. The actual delete link is tiny gray text at the bottom.</p>
               </div>
             </div>
           )}
 
           {darkStep === 3 && (
             <div>
-              <h3 className="font-bold text-gray-900 mb-4">Tell us why you're leaving</h3>
-              <p className="text-sm text-gray-600 mb-4">Please select a reason (required):</p>
+              <h3 className="font-bold mb-4">Tell us why you're leaving</h3>
+              <p className="text-sm mb-4">Please select a reason (required):</p>
               <div className="space-y-2 mb-4">
                 {["Too expensive", "Found a better alternative", "Don't need it anymore", "Privacy concerns", "Other"].map(r => (
-                  <label key={r} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-                    <input type="radio" name="reason" className="text-blue-600" />
+                  <label key={r} className="flex items-center gap-2 text-sm cursor-pointer">
+                    <input type="radio" name="reason" />
                     {r}
                   </label>
                 ))}
               </div>
               <label htmlFor="deletion-reason" className="sr-only">Please explain in detail why you are leaving</label>
-              <textarea id="deletion-reason" placeholder="Please explain in detail (required, minimum 50 characters)..." className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-4 h-20" />
-              <button type="button" onClick={() => setDarkStep(4)} className="w-full bg-red-600 text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer">
+              <textarea id="deletion-reason" placeholder="Please explain in detail (required, minimum 50 characters)..." className="w-full px-3 py-2 border rounded-lg text-sm mb-4 h-20" />
+              <button type="button" onClick={() => setDarkStep(4)} className="w-full text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer">
                 Permanently delete my account
               </button>
 
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
-                <p className="text-xs text-red-700"><strong>Step 4:</strong> Required survey with minimum character count. All designed to make you give up.</p>
+              <div className="border rounded-lg p-3 mt-4">
+                <p className="text-xs"><strong>Step 4:</strong> Required survey with minimum character count. All designed to make you give up.</p>
               </div>
             </div>
           )}
 
           {darkStep === 4 && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <h3 className="text-sm font-semibold text-red-800 mb-2">That was 4 steps to delete an account:</h3>
-              <ol className="text-xs text-red-700 space-y-1 list-decimal list-inside">
+            <div className="border rounded-lg p-4">
+              <h3 className="text-sm font-semibold mb-2">That was 4 steps to delete an account:</h3>
+              <ol className="text-xs space-y-1 list-decimal list-inside">
                 <li>Settings → no delete option (hidden in help center link)</li>
                 <li>Help center → no delete option (hidden in contact link)</li>
                 <li>3 retention offers before seeing the real delete link</li>
                 <li>Required survey with minimum character count</li>
               </ol>
-              <p className="text-xs text-red-700 mt-2 font-semibold">This violates GDPR Article 17 (Right to Erasure) — deletion must be as easy as signup.</p>
+              <p className="text-xs mt-2 font-semibold">This violates GDPR Article 17 (Right to Erasure) — deletion must be as easy as signup.</p>
             </div>
           )}
 
@@ -161,27 +161,27 @@ function HiddenUnsubscribeDemo() {
 
       {/* Ethical version */}
       {view === "ethical" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-green-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono">ETHICAL</span>
           </div>
 
           {ethicalStep === 0 && (
             <div>
-              <h3 className="font-bold text-gray-900 mb-2">Account Settings</h3>
+              <h3 className="font-bold mb-2">Account Settings</h3>
               <div className="space-y-2 mb-4">
                 {["Profile", "Notifications", "Privacy", "Billing"].map(item => (
-                  <div key={item} className="flex items-center justify-between py-2 border-b border-gray-100">
-                    <span className="text-sm text-gray-700">{item}</span>
-                    <span className="text-gray-300">→</span>
+                  <div key={item} className="flex items-center justify-between py-2 border-b">
+                    <span className="text-sm">{item}</span>
+                    <span >→</span>
                   </div>
                 ))}
               </div>
-              <div className="border-t border-gray-200 pt-4">
+              <div className="border-t pt-4">
                 <button
                   type="button"
                   onClick={() => setEthicalStep(1)}
-                  className="flex items-center gap-2 text-sm text-red-600 hover:text-red-800 bg-transparent border-none cursor-pointer"
+                  className="flex items-center gap-2 text-sm hover: bg-transparent border-none cursor-pointer"
                 >
                   <Trash2 aria-hidden="true" className="w-4 h-4" />
                   Delete my account
@@ -193,22 +193,22 @@ function HiddenUnsubscribeDemo() {
           {ethicalStep === 1 && (
             <div>
               <div className="flex items-start gap-3 mb-4">
-                <AlertTriangle aria-hidden="true" className="w-6 h-6 text-amber-500 shrink-0" />
+                <AlertTriangle aria-hidden="true" className="w-6 h-6 shrink-0" />
                 <div>
-                  <h3 className="font-bold text-gray-900 mb-1">Delete your account?</h3>
-                  <p className="text-sm text-gray-600">This is permanent and cannot be undone.</p>
+                  <h3 className="font-bold mb-1">Delete your account?</h3>
+                  <p className="text-sm">This is permanent and cannot be undone.</p>
                 </div>
               </div>
 
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
-                <h4 className="text-xs font-semibold text-amber-800 mb-2">What will be deleted:</h4>
-                <ul className="text-xs text-amber-700 space-y-1">
+              <div className="border rounded-lg p-4 mb-4">
+                <h4 className="text-xs font-semibold mb-2">What will be deleted:</h4>
+                <ul className="text-xs space-y-1">
                   <li>Your profile and settings</li>
                   <li>All saved data and history</li>
                   <li>Active subscription (if any)</li>
                 </ul>
-                <h4 className="text-xs font-semibold text-amber-800 mt-3 mb-2">Want to keep your data?</h4>
-                <button type="button" onClick={() => alert('In a real app, this would trigger a data export email.')} className="text-xs text-blue-600 bg-transparent border-none cursor-pointer underline">
+                <h4 className="text-xs font-semibold mt-3 mb-2">Want to keep your data?</h4>
+                <button type="button" onClick={() => alert('In a real app, this would trigger a data export email.')} className="text-xs bg-transparent border-none cursor-pointer underline">
                   Download your data first
                 </button>
               </div>
@@ -217,14 +217,14 @@ function HiddenUnsubscribeDemo() {
                 <button
                   type="button"
                   onClick={() => setEthicalStep(2)}
-                  className="w-full bg-red-600 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-red-700 transition-colors border-none cursor-pointer"
+                  className="w-full text-white py-2.5 rounded-lg font-medium text-sm transition-colors border-none cursor-pointer"
                 >
                   Permanently delete my account
                 </button>
                 <button
                   type="button"
                   onClick={() => setEthicalStep(0)}
-                  className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors bg-white cursor-pointer"
+                  className="w-full border py-2.5 rounded-lg text-sm font-medium hover: transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -234,13 +234,13 @@ function HiddenUnsubscribeDemo() {
 
           {ethicalStep === 2 && (
             <div className="text-center">
-              <CheckCircle2 aria-hidden="true" className="w-12 h-12 text-green-500 mx-auto mb-4" />
-              <h3 className="font-bold text-gray-900 mb-2">Account deleted</h3>
-              <p className="text-sm text-gray-600 mb-4">Your data has been scheduled for deletion. You'll receive a confirmation email.</p>
+              <CheckCircle2 aria-hidden="true" className="w-12 h-12 mx-auto mb-4" />
+              <h3 className="font-bold mb-2">Account deleted</h3>
+              <p className="text-sm mb-4">Your data has been scheduled for deletion. You'll receive a confirmation email.</p>
 
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-left">
-                <h4 className="text-sm font-semibold text-green-800 mb-2">What's right here:</h4>
-                <ul className="text-xs text-green-700 space-y-1.5">
+              <div className="border rounded-lg p-4 text-left">
+                <h4 className="text-sm font-semibold mb-2">What's right here:</h4>
+                <ul className="text-xs space-y-1.5">
                   <li><strong>2 steps total</strong> — find it in settings, confirm once</li>
                   <li><strong>Clear about consequences</strong> — lists exactly what gets deleted</li>
                   <li><strong>Data export offered</strong> — respects GDPR right to data portability</li>

@@ -125,43 +125,43 @@ function MfaDemo() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
+      <div className="rounded-2xl border p-8 text-center">
         {status === "success" ? (
           <>
-            <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle2 className="w-7 h-7 text-green-600" />
+            <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle2 className="w-7 h-7" />
             </div>
-            <h2 className="text-xl font-bold text-gray-900 mb-1">Verified!</h2>
-            <p className="text-sm text-gray-500 mb-4">Two-factor authentication complete. Redirecting to your account...</p>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-left">
-              <p className="text-xs text-blue-800">
+            <h2 className="text-xl font-bold mb-1">Verified!</h2>
+            <p className="text-sm mb-4">Two-factor authentication complete. Redirecting to your account...</p>
+            <div className="border rounded-lg p-3 text-left">
+              <p className="text-xs">
                 <strong>Security note:</strong> After MFA success, log the verification method and timestamp for audit trails. If a backup code was used, remind the user to generate new ones.
               </p>
             </div>
           </>
         ) : (
           <>
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              {method === "totp" ? <Shield className="w-6 h-6 text-blue-600" /> :
-               method === "sms" ? <Smartphone className="w-6 h-6 text-blue-600" /> :
-               <KeyRound className="w-6 h-6 text-blue-600" />}
+            <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+              {method === "totp" ? <Shield className="w-6 h-6" /> :
+               method === "sms" ? <Smartphone className="w-6 h-6" /> :
+               <KeyRound className="w-6 h-6" />}
             </div>
 
-            <h2 className="text-xl font-bold text-gray-900 mb-1">Two-factor authentication</h2>
-            <p className="text-sm text-gray-500 mb-6">
+            <h2 className="text-xl font-bold mb-1">Two-factor authentication</h2>
+            <p className="text-sm mb-6">
               {method === "totp" ? "Enter the 6-digit code from your authenticator app" :
                method === "sms" ? "Enter the code sent to +358 •••• ••42" :
                "Enter one of your backup codes"}
             </p>
 
             {/* Method toggle */}
-            <div className="flex gap-1 mb-6 bg-gray-100 rounded-lg p-1">
+            <div className="flex gap-1 mb-6 rounded-lg p-1">
               {(["totp", "sms", "backup"] as const).map(m => (
                 <button
                   key={m}
                   onClick={() => { setMethod(m); reset(); }}
                   className={`flex-1 text-xs py-1.5 rounded-md transition-colors border-none cursor-pointer ${
-                    method === m ? "bg-white shadow-sm text-gray-900 font-medium" : "text-gray-500 bg-transparent"
+                    method === m ? " shadow-sm  font-medium" : " bg-transparent"
                   }`}
                 >
                   {m === "totp" ? "Auth App" : m === "sms" ? "SMS" : "Backup"}
@@ -178,18 +178,18 @@ function MfaDemo() {
                   value={backupCode}
                   onChange={e => setBackupCode(e.target.value)}
                   placeholder="XXXX-XXXX-XXXX"
-                  className="w-full px-3 py-3 text-center font-mono text-lg border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-3 text-center font-mono text-lg border rounded-lg mb-4 focus:outline-none focus:ring-2"
                   disabled={status === "loading"}
                   autoComplete="off"
                 />
                 <button
                   type="submit"
                   disabled={status === "loading" || !backupCode}
-                  className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-blue-700 disabled:opacity-50 transition-colors flex items-center justify-center gap-2"
+                  className="w-full text-white py-2.5 rounded-lg font-medium text-sm disabled:opacity-50 transition-colors flex items-center justify-center gap-2"
                 >
                   {status === "loading" ? <><Loader2 className="w-4 h-4 animate-spin" /> Verifying...</> : "Use backup code"}
                 </button>
-                <p className="text-xs text-amber-600 mt-3">
+                <p className="text-xs mt-3">
                   {/* TODO: fetch remaining count from server — never hardcode this value */}
                   Each backup code can only be used once. You have 7 remaining.
                 </p>
@@ -211,7 +211,7 @@ function MfaDemo() {
                       autoComplete="one-time-code"
                       disabled={status === "loading"}
                       className={`w-9 h-11 sm:w-11 sm:h-14 text-center text-base sm:text-lg font-mono border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
-                        status === "error" ? "border-red-300 focus:ring-red-500 bg-red-50" : "border-gray-300 focus:ring-blue-500"
+                        status === "error" ? "  " : " "
                       }`}
                       aria-label={`Digit ${i + 1}`}
                     />
@@ -220,12 +220,12 @@ function MfaDemo() {
 
                 {/* Status messages */}
                 {status === "loading" && (
-                  <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+                  <div className="flex items-center justify-center gap-2 text-sm">
                     <Loader2 className="w-4 h-4 animate-spin" /> Verifying...
                   </div>
                 )}
                 {status === "error" && (
-                  <p className="text-sm text-red-600" role="alert">
+                  <p className="text-sm" role="alert">
                     Invalid code. {failCount >= 3 ? "Too many attempts. Try a backup code." : "Please try again."}
                   </p>
                 )}
@@ -247,8 +247,8 @@ function MfaDemo() {
 
             {/* Fail count hint */}
             {failCount >= 2 && method !== "backup" && (
-              <p className="text-xs text-amber-600 mt-3">
-                Having trouble? Try using a <button onClick={() => setMethod("backup")} className="underline bg-transparent border-none cursor-pointer text-amber-600">backup code</button> instead.
+              <p className="text-xs mt-3">
+                Having trouble? Try using a <button onClick={() => setMethod("backup")} className="underline bg-transparent border-none cursor-pointer">backup code</button> instead.
               </p>
             )}
           </>

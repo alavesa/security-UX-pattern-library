@@ -8,15 +8,15 @@ function EthicalOutcome({ choice }: { choice: string }) {
   if (choice === "enabled") {
     return (
       <>
-        <Bell className="w-8 h-8 text-green-600 mx-auto mb-2" />
-        <p className="text-sm font-semibold text-green-800">Notifications enabled</p>
+        <Bell className="w-8 h-8 mx-auto mb-2" />
+        <p className="text-sm font-semibold">Notifications enabled</p>
       </>
     );
   }
   return (
     <>
-      <BellOff className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-      <p className="text-sm font-semibold text-gray-700">Popup dismissed 
+      <BellOff className="w-8 h-8 mx-auto mb-2" />
+      <p className="text-sm font-semibold">Popup dismissed 
 not taken</p>
     </>
   );
@@ -47,7 +47,7 @@ function BaitSwitchDemo() {
 
       {/* Dark: Close button that does something else */}
       {view === "dark" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-red-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono">DARK PATTERN</span>
           </div>
@@ -55,47 +55,47 @@ function BaitSwitchDemo() {
           {darkStep === 0 && (
             <div>
               {/* Fake app content */}
-              <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
-                <div className="h-3 bg-gray-200 rounded w-full mb-1" />
-                <div className="h-3 bg-gray-200 rounded w-5/6" />
+              <div className="rounded-lg p-4 mb-4">
+                <div className="h-4 rounded w-3/4 mb-2" />
+                <div className="h-3 rounded w-full mb-1" />
+                <div className="h-3 rounded w-5/6" />
               </div>
 
               {/* Popup with misleading X */}
-              <div className="border-2 border-blue-300 bg-blue-50 rounded-xl p-5 relative">
+              <div className="border-2 rounded-xl p-5 relative">
                 <button
                   type="button"
                   onClick={() => setDarkStep(1)}
-                  className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-200 bg-transparent border-none cursor-pointer text-gray-400"
+                  className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full hover: bg-transparent border-none cursor-pointer"
                   aria-label="Enable notifications (dark pattern demo)"
                 >
                   <X className="w-4 h-4" />
                 </button>
 
-                <Bell className="w-10 h-10 text-blue-500 mb-3" />
-                <h3 className="font-bold text-gray-900 mb-1">Stay in the loop!</h3>
-                <p className="text-sm text-gray-600 mb-4">Get notified about important updates and offers.</p>
+                <Bell className="w-10 h-10 mb-3" />
+                <h3 className="font-bold mb-1">Stay in the loop!</h3>
+                <p className="text-sm mb-4">Get notified about important updates and offers.</p>
 
-                <button type="button" onClick={() => setDarkStep(2)} className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer">
+                <button type="button" onClick={() => setDarkStep(2)} className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer">
                   Enable notifications
                 </button>
               </div>
 
-              <p className="text-xs text-gray-400 mt-3 text-center">Try clicking the X button to close this popup</p>
+              <p className="text-xs mt-3 text-center">Try clicking the X button to close this popup</p>
             </div>
           )}
 
           {darkStep === 1 && (
             <div>
-              <div className="bg-green-50 border border-green-300 rounded-lg p-4 text-center mb-4">
-                <Bell className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                <p className="text-sm font-semibold text-green-800">Notifications enabled!</p>
-                <p className="text-xs text-green-600">You'll receive push notifications from us.</p>
+              <div className="border rounded-lg p-4 text-center mb-4">
+                <Bell className="w-8 h-8 mx-auto mb-2" />
+                <p className="text-sm font-semibold">Notifications enabled!</p>
+                <p className="text-xs">You'll receive push notifications from us.</p>
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <h3 className="text-sm font-semibold text-red-800 mb-2">What just happened:</h3>
-                <ul className="text-xs text-red-700 space-y-1.5">
+              <div className="border rounded-lg p-4">
+                <h3 className="text-sm font-semibold mb-2">What just happened:</h3>
+                <ul className="text-xs space-y-1.5">
                   <li><strong>The X button didn't close the popup</strong> — it enabled notifications</li>
                   <li>Users expect X to mean "dismiss" — hijacking this is a trust violation</li>
                   <li>This is "Bait and Switch" — the UI promises one action but performs another</li>
@@ -107,9 +107,9 @@ function BaitSwitchDemo() {
           )}
 
           {darkStep === 2 && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <p className="text-xs text-red-700">You clicked "Enable notifications" — that was the expected action. But try the X button too to see the bait and switch.</p>
-              <button type="button" onClick={() => setDarkStep(0)} className="text-xs text-red-600 underline mt-2 bg-transparent border-none cursor-pointer">Try again</button>
+            <div className="border rounded-lg p-4">
+              <p className="text-xs">You clicked "Enable notifications" — that was the expected action. But try the X button too to see the bait and switch.</p>
+              <button type="button" onClick={() => setDarkStep(0)} className="text-xs underline mt-2 bg-transparent border-none cursor-pointer">Try again</button>
             </div>
           )}
         </div>
@@ -117,38 +117,38 @@ function BaitSwitchDemo() {
 
       {/* Ethical version */}
       {view === "ethical" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-green-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono">ETHICAL</span>
           </div>
 
           {ethicalChoice === null ? (
             <div>
-              <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
-                <div className="h-3 bg-gray-200 rounded w-full mb-1" />
-                <div className="h-3 bg-gray-200 rounded w-5/6" />
+              <div className="rounded-lg p-4 mb-4">
+                <div className="h-4 rounded w-3/4 mb-2" />
+                <div className="h-3 rounded w-full mb-1" />
+                <div className="h-3 rounded w-5/6" />
               </div>
 
-              <div className="border border-gray-200 bg-white rounded-xl p-5 relative">
+              <div className="border rounded-xl p-5 relative">
                 <button
                   type="button"
                   onClick={() => setEthicalChoice("dismissed")}
-                  className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-100 bg-transparent border-none cursor-pointer text-gray-400"
+                  className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full hover: bg-transparent border-none cursor-pointer"
                   aria-label="Dismiss"
                 >
                   <X className="w-4 h-4" />
                 </button>
 
-                <Bell className="w-10 h-10 text-blue-500 mb-3" />
-                <h3 className="font-bold text-gray-900 mb-1">Turn on notifications?</h3>
-                <p className="text-sm text-gray-600 mb-4">Get notified when someone replies to your posts. You can manage this in Settings anytime.</p>
+                <Bell className="w-10 h-10 mb-3" />
+                <h3 className="font-bold mb-1">Turn on notifications?</h3>
+                <p className="text-sm mb-4">Get notified when someone replies to your posts. You can manage this in Settings anytime.</p>
 
                 <div className="space-y-2">
-                  <button type="button" onClick={() => setEthicalChoice("enabled")} className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700">
+                  <button type="button" onClick={() => setEthicalChoice("enabled")} className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer">
                     Enable notifications
                   </button>
-                  <button type="button" onClick={() => setEthicalChoice("dismissed")} className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-gray-50">
+                  <button type="button" onClick={() => setEthicalChoice("dismissed")} className="w-full border py-2.5 rounded-lg text-sm font-medium cursor-pointer hover:">
                     Not now
                   </button>
                 </div>
@@ -156,13 +156,13 @@ function BaitSwitchDemo() {
             </div>
           ) : (
             <div>
-              <div className={`${ethicalChoice === "enabled" ? "bg-green-50 border-green-200" : "bg-gray-50 border-gray-200"} border rounded-lg p-4 text-center mb-4`}>
+              <div className={`${ethicalChoice === "enabled" ? " " : " "} border rounded-lg p-4 text-center mb-4`}>
                 <EthicalOutcome choice={ethicalChoice} />
               </div>
 
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-green-800 mb-2">What's right here:</h4>
-                <ul className="text-xs text-green-700 space-y-1.5">
+              <div className="border rounded-lg p-4">
+                <h4 className="text-sm font-semibold mb-2">What's right here:</h4>
+                <ul className="text-xs space-y-1.5">
                   <li><strong>X button dismisses</strong> — does exactly what users expect</li>
                   <li><strong>"Not now" button</strong> — explicit decline option with neutral language</li>
                   <li><strong>Clear description</strong> — says what notifications you'll get</li>

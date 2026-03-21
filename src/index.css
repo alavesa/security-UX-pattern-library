@@ -31,6 +31,51 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Dark theme defaults for pattern demos */
+/* These ensure elements that lost Tailwind color classes still look correct */
+[role="region"] p,
+[role="region"] span,
+[role="region"] h2,
+[role="region"] h3,
+[role="region"] h4,
+[role="region"] label,
+[role="region"] li {
+  color: var(--text-bright);
+}
+
+[role="region"] .border {
+  border-color: var(--border);
+}
+
+[role="region"] .rounded-2xl,
+[role="region"] .rounded-xl {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+[role="region"] .rounded-lg {
+  background: var(--bg);
+}
+
+[role="region"] .rounded-full {
+  background: var(--bg-elevated);
+}
+
+[role="region"] input,
+[role="region"] select {
+  background: var(--bg);
+  color: var(--text-bright);
+  border-color: var(--border);
+}
+
+[role="region"] input::placeholder {
+  color: var(--text-dim);
+}
+
+[role="region"] button {
+  font-family: 'JetBrains Mono', monospace;
+}
+
 /* Responsive pattern demos */
 @media (max-width: 640px) {
   .max-w-lg {

@@ -40,19 +40,19 @@ function ConfirmshamingDemo() {
 
       {/* Dark pattern version */}
       {view === "dark" && (
-        <div className="relative bg-white rounded-2xl shadow-lg border-2 border-red-200 overflow-hidden">
+        <div className="relative rounded-2xl border-2 overflow-hidden">
           <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono text-right">
             DARK PATTERN
           </div>
 
           {!darkDismissed ? (
             <div className="p-8 text-center">
-              <Shield className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Enable two-factor authentication</h2>
-              <p className="text-sm text-gray-600 mb-6">Protect your account with an extra layer of security.</p>
+              <Shield className="w-12 h-12 mx-auto mb-4" />
+              <h2 className="text-xl font-bold mb-2">Enable two-factor authentication</h2>
+              <p className="text-sm mb-6">Protect your account with an extra layer of security.</p>
 
               <div className="space-y-3">
-                <button type="button" className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-sm hover:bg-blue-700 transition-colors border-none cursor-pointer">
+                <button type="button" className="w-full text-white py-3 rounded-lg font-semibold text-sm transition-colors border-none cursor-pointer">
                   Yes, protect my account
                 </button>
                 <button
@@ -67,10 +67,10 @@ function ConfirmshamingDemo() {
             </div>
           ) : (
             <div className="p-8 text-center">
-              <p className="text-sm text-gray-500 mb-4">You dismissed the prompt.</p>
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-left">
-                <h3 className="text-sm font-semibold text-red-800 mb-2">What's wrong here:</h3>
-                <ul className="text-xs text-red-700 space-y-1.5">
+              <p className="text-sm mb-4">You dismissed the prompt.</p>
+              <div className="border rounded-lg p-4 text-left">
+                <h3 className="text-sm font-semibold mb-2">What's wrong here:</h3>
+                <ul className="text-xs space-y-1.5">
                   <li><strong>"I don't care about my security"</strong> — guilts the user for making a valid choice</li>
                   <li>Implies the user is irresponsible or foolish for declining</li>
                   <li>Only two options: comply or be shamed</li>
@@ -85,37 +85,37 @@ function ConfirmshamingDemo() {
 
       {/* Ethical version */}
       {view === "ethical" && (
-        <div className="relative bg-white rounded-2xl shadow-lg border-2 border-green-200 overflow-hidden">
+        <div className="relative rounded-2xl border-2 overflow-hidden">
           <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono text-right">
             ETHICAL
           </div>
 
           {ethicalChoice === null ? (
             <div className="p-8 text-center">
-              <Shield className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Add two-factor authentication?</h2>
-              <p className="text-sm text-gray-600 mb-2">This adds an extra verification step when you sign in.</p>
-              <p className="text-xs text-gray-400 mb-6">You can always enable this later in Settings → Security.</p>
+              <Shield className="w-12 h-12 mx-auto mb-4" />
+              <h2 className="text-xl font-bold mb-2">Add two-factor authentication?</h2>
+              <p className="text-sm mb-2">This adds an extra verification step when you sign in.</p>
+              <p className="text-xs mb-6">You can always enable this later in Settings → Security.</p>
 
               <div className="space-y-2">
                 <button
                   type="button"
                   onClick={() => setEthicalChoice("enabled")}
-                  className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors border-none cursor-pointer"
+                  className="w-full text-white py-3 rounded-lg font-medium text-sm transition-colors border-none cursor-pointer"
                 >
                   Set up now
                 </button>
                 <button
                   type="button"
                   onClick={() => setEthicalChoice("later")}
-                  className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors bg-white cursor-pointer"
+                  className="w-full border py-2.5 rounded-lg text-sm font-medium hover: transition-colors cursor-pointer"
                 >
                   Remind me later
                 </button>
                 <button
                   type="button"
                   onClick={() => setEthicalChoice("skip")}
-                  className="w-full text-sm py-2 text-gray-500 bg-transparent border-none cursor-pointer hover:text-gray-700"
+                  className="w-full text-sm py-2 bg-transparent border-none cursor-pointer hover:"
                 >
                   Skip for now
                 </button>
@@ -123,12 +123,12 @@ function ConfirmshamingDemo() {
             </div>
           ) : (
             <div className="p-8 text-center">
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm mb-4">
                 You chose: <strong>{choiceLabels[ethicalChoice] ?? ethicalChoice}</strong>
               </p>
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-left">
-                <h3 className="text-sm font-semibold text-green-800 mb-2">What's right here:</h3>
-                <ul className="text-xs text-green-700 space-y-1.5">
+              <div className="border rounded-lg p-4 text-left">
+                <h3 className="text-sm font-semibold mb-2">What's right here:</h3>
+                <ul className="text-xs space-y-1.5">
                   <li><strong>Neutral language</strong> — no guilt, no shaming, no manipulation</li>
                   <li><strong>Three choices</strong> — set up, remind later, or skip — all equally valid</li>
                   <li><strong>Clear path back</strong> — tells users where to find this later (Settings → Security)</li>

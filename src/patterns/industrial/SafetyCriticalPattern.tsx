@@ -65,10 +65,10 @@ function SafetyCriticalDemo() {
 
       {/* Emergency shutdown */}
       {scenario === "shutdown" && (
-        <div className="bg-gray-900 rounded-2xl shadow-lg border border-gray-700 overflow-hidden">
+        <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
           <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-            <span className="font-mono text-xs text-green-400">POWER PLANT CONTROL</span>
-            <span className="font-mono text-xs text-green-400">● NORMAL OPERATIONS</span>
+            <span className="font-mono text-xs">POWER PLANT CONTROL</span>
+            <span className="font-mono text-xs">● NORMAL OPERATIONS</span>
           </div>
 
           <div className="p-8">
@@ -78,31 +78,31 @@ function SafetyCriticalDemo() {
 
                 <div className="bg-gray-800 rounded-lg p-4 mb-6 text-left">
                   <div className="grid grid-cols-2 gap-3 font-mono text-xs">
-                    <div><span className="text-gray-500">Status:</span> <span className="text-green-400">Running</span></div>
-                    <div><span className="text-gray-500">Output:</span> <span className="text-white">340 MW</span></div>
-                    <div><span className="text-gray-500">Temp:</span> <span className="text-white">1,104°C</span></div>
-                    <div><span className="text-gray-500">RPM:</span> <span className="text-white">3,600</span></div>
+                    <div><span >Status:</span> <span >Running</span></div>
+                    <div><span >Output:</span> <span className="text-white">340 MW</span></div>
+                    <div><span >Temp:</span> <span className="text-white">1,104°C</span></div>
+                    <div><span >RPM:</span> <span className="text-white">3,600</span></div>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setStep('confirm')}
-                  className="font-mono text-lg bg-red-600 text-white px-8 py-5 rounded-xl border-4 border-red-400 cursor-pointer hover:bg-red-700 font-bold w-full"
+                  className="font-mono text-lg text-white px-8 py-5 rounded-xl border-4 border-red-400 cursor-pointer font-bold w-full"
                 >
                   ⚠ EMERGENCY STOP
                 </button>
-                <p className="font-mono text-xs text-gray-500 mt-3">Large button, high contrast, no confirmation needed for first press</p>
+                <p className="font-mono text-xs mt-3">Large button, high contrast, no confirmation needed for first press</p>
               </div>
             )}
 
             {step === 'confirm' && (
               <div className="text-center">
-                <AlertTriangle className="w-12 h-12 text-red-400 mx-auto mb-4" />
-                <h3 className="font-mono text-lg text-red-400 mb-2">CONFIRM EMERGENCY STOP</h3>
-                <p className="font-mono text-xs text-gray-400 mb-4">Turbine #3 — 340 MW output will be lost</p>
+                <AlertTriangle className="w-12 h-12 mx-auto mb-4" />
+                <h3 className="font-mono text-lg mb-2">CONFIRM EMERGENCY STOP</h3>
+                <p className="font-mono text-xs mb-4">Turbine #3 — 340 MW output will be lost</p>
 
                 <div className="bg-red-950 border border-red-700 rounded-lg p-4 mb-6 text-left">
-                  <h4 className="font-mono text-xs text-red-400 mb-2">IMPACT:</h4>
+                  <h4 className="font-mono text-xs mb-2">IMPACT:</h4>
                   <ul className="font-mono text-xs text-red-300 space-y-1">
                     <li>• Grid output reduced by 340 MW (23% of capacity)</li>
                     <li>• Cooldown sequence: ~45 minutes</li>
@@ -111,7 +111,7 @@ function SafetyCriticalDemo() {
                   </ul>
                 </div>
 
-                <p className="font-mono text-xs text-amber-400 mb-4">HOLD the button for 3 seconds to confirm</p>
+                <p className="font-mono text-xs mb-4">HOLD the button for 3 seconds to confirm</p>
 
                 <button
                   onMouseDown={startHold}
@@ -123,11 +123,11 @@ function SafetyCriticalDemo() {
                   className="font-mono text-lg text-white px-8 py-5 rounded-xl border-4 border-red-400 cursor-pointer font-bold w-full relative overflow-hidden"
                   style={{ background: "#991b1b" }}
                 >
-                  <div className="absolute inset-0 bg-red-600 transition-all" style={{ width: `${holdProgress}%` }} />
+                  <div className="absolute inset-0 transition-all" style={{ width: `${holdProgress}%` }} />
                   <span className="relative">HOLD TO CONFIRM STOP</span>
                 </button>
 
-                <button onClick={reset} className="font-mono text-xs text-gray-500 mt-4 bg-transparent border-none cursor-pointer hover:text-gray-300">
+                <button onClick={reset} className="font-mono text-xs mt-4 bg-transparent border-none cursor-pointer hover:">
                   Cancel — return to normal operations
                 </button>
               </div>
@@ -135,15 +135,15 @@ function SafetyCriticalDemo() {
 
             {step === 'executing' && (
               <div className="text-center">
-                <XCircle className="w-12 h-12 text-red-400 mx-auto mb-3" />
-                <h3 className="font-mono text-lg text-red-400 mb-2">TURBINE #3 — STOPPING</h3>
+                <XCircle className="w-12 h-12 mx-auto mb-3" />
+                <h3 className="font-mono text-lg mb-2">TURBINE #3 — STOPPING</h3>
                 <div className="bg-gray-800 rounded-lg p-4 font-mono text-xs text-left space-y-2 mb-4">
-                  <div className="text-amber-400">▶ Fuel supply cut off</div>
-                  <div className="text-amber-400">▶ Generator disconnected from grid</div>
-                  <div className="text-amber-400">▶ Load transferred to Turbine #1, #2</div>
-                  <div className="text-gray-500">○ Cooldown sequence in progress...</div>
-                  <div className="text-gray-500">○ Supervisor notified</div>
-                  <div className="text-gray-500">○ Incident logged: ESD-2026-0320-001</div>
+                  <div >▶ Fuel supply cut off</div>
+                  <div >▶ Generator disconnected from grid</div>
+                  <div >▶ Load transferred to Turbine #1, #2</div>
+                  <div >○ Cooldown sequence in progress...</div>
+                  <div >○ Supervisor notified</div>
+                  <div >○ Incident logged: ESD-2026-0320-001</div>
                 </div>
 
                 <div className="bg-blue-900/50 border border-blue-700 rounded-lg p-3 text-left">
@@ -157,7 +157,7 @@ function SafetyCriticalDemo() {
 
       {/* Safety override */}
       {scenario === "override" && (
-        <div className="bg-gray-900 rounded-2xl shadow-lg border border-gray-700 overflow-hidden">
+        <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
           <div className="bg-amber-900 px-4 py-2 flex items-center justify-between border-b border-amber-700">
             <span className="font-mono text-xs text-amber-200">SAFETY SYSTEM OVERRIDE</span>
             <span className="font-mono text-xs text-amber-300">REQUIRES SUPERVISOR</span>
@@ -165,15 +165,15 @@ function SafetyCriticalDemo() {
 
           <div className="p-8">
             <div className="flex items-start gap-3 mb-4">
-              <Shield className="w-8 h-8 text-amber-400 shrink-0" />
+              <Shield className="w-8 h-8 shrink-0" />
               <div>
                 <h3 className="font-mono text-sm text-white">Override: High Pressure Alarm — Vessel P-301</h3>
-                <p className="font-mono text-xs text-gray-400 mt-1">Current pressure: 42 bar (limit: 40 bar)</p>
+                <p className="font-mono text-xs mt-1">Current pressure: 42 bar (limit: 40 bar)</p>
               </div>
             </div>
 
             <div className="bg-red-950 border border-red-700 rounded-lg p-4 mb-4">
-              <h4 className="font-mono text-xs text-red-400 mb-2">⚠ SAFETY IMPLICATIONS:</h4>
+              <h4 className="font-mono text-xs mb-2">⚠ SAFETY IMPLICATIONS:</h4>
               <ul className="font-mono text-xs text-red-300 space-y-1">
                 <li>• This override disables the automatic pressure relief on P-301</li>
                 <li>• Vessel rated for max 50 bar — current: 42 bar (84% of max)</li>
@@ -183,19 +183,19 @@ function SafetyCriticalDemo() {
             </div>
 
             <div className="bg-gray-800 rounded-lg p-4 mb-4">
-              <h4 className="font-mono text-xs text-amber-400 mb-3">REQUIRED APPROVALS:</h4>
+              <h4 className="font-mono text-xs mb-3">REQUIRED APPROVALS:</h4>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-gray-300">Operator (K. Virtanen)</span>
-                  <span className="font-mono text-xs text-green-400 flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Approved</span>
+                  <span className="font-mono text-xs">Operator (K. Virtanen)</span>
+                  <span className="font-mono text-xs flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Approved</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-gray-300">Shift Supervisor (M. Korhonen)</span>
-                  <span className="font-mono text-xs text-amber-400 flex items-center gap-1"><Clock className="w-3 h-3" /> Pending</span>
+                  <span className="font-mono text-xs">Shift Supervisor (M. Korhonen)</span>
+                  <span className="font-mono text-xs flex items-center gap-1"><Clock className="w-3 h-3" /> Pending</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-gray-300">Safety Engineer</span>
-                  <span className="font-mono text-xs text-gray-500">Not required (&lt;45 bar)</span>
+                  <span className="font-mono text-xs">Safety Engineer</span>
+                  <span className="font-mono text-xs">Not required (&lt;45 bar)</span>
                 </div>
               </div>
             </div>
@@ -209,10 +209,10 @@ function SafetyCriticalDemo() {
 
       {/* Parameter change */}
       {scenario === "parameter" && (
-        <div className="bg-gray-900 rounded-2xl shadow-lg border border-gray-700 overflow-hidden">
+        <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
           <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-            <span className="font-mono text-xs text-green-400">PARAMETER ADJUSTMENT</span>
-            <span className="font-mono text-xs text-gray-500">DRILLING OPERATIONS</span>
+            <span className="font-mono text-xs">PARAMETER ADJUSTMENT</span>
+            <span className="font-mono text-xs">DRILLING OPERATIONS</span>
           </div>
 
           <div className="p-8">
@@ -220,26 +220,26 @@ function SafetyCriticalDemo() {
 
             <div className="bg-gray-800 rounded-lg p-4 mb-4">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs text-gray-400">Current value</span>
+                <span className="font-mono text-xs">Current value</span>
                 <span className="font-mono text-lg text-white">120 RPM</span>
               </div>
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs text-gray-400">Requested value</span>
-                <span className="font-mono text-lg text-amber-400">180 RPM</span>
+                <span className="font-mono text-xs">Requested value</span>
+                <span className="font-mono text-lg">180 RPM</span>
               </div>
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs text-gray-400">Change</span>
-                <span className="font-mono text-sm text-amber-400">+50% increase</span>
+                <span className="font-mono text-xs">Change</span>
+                <span className="font-mono text-sm">+50% increase</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-gray-400">Safe range</span>
-                <span className="font-mono text-sm text-green-400">60 — 200 RPM</span>
+                <span className="font-mono text-xs">Safe range</span>
+                <span className="font-mono text-sm">60 — 200 RPM</span>
               </div>
             </div>
 
             {/* Visual context */}
             <div className="mb-4">
-              <div className="flex justify-between font-mono text-xs text-gray-500 mb-1">
+              <div className="flex justify-between font-mono text-xs mb-1">
                 <span>60</span>
                 <span>200</span>
               </div>
@@ -250,18 +250,18 @@ function SafetyCriticalDemo() {
                 <div className="absolute top-0 bottom-0 right-0 w-[15%] bg-amber-900/30 rounded-r-full" />
                 <div className="absolute top-0 bottom-0 left-0 w-[10%] bg-amber-900/30 rounded-l-full" />
                 {/* Current */}
-                <div className="absolute top-0 bottom-0 w-1 bg-white" style={{ left: "43%" }}>
+                <div className="absolute top-0 bottom-0 w-1" style={{ left: "43%" }}>
                   <div className="absolute -top-4 -translate-x-1/2 text-xs font-mono text-white whitespace-nowrap">120</div>
                 </div>
                 {/* Target */}
                 <div className="absolute top-0 bottom-0 w-1 bg-amber-400" style={{ left: "86%" }}>
-                  <div className="absolute -top-4 -translate-x-1/2 text-xs font-mono text-amber-400 whitespace-nowrap">180</div>
+                  <div className="absolute -top-4 -translate-x-1/2 text-xs font-mono whitespace-nowrap">180</div>
                 </div>
               </div>
               <div className="flex justify-between font-mono text-xs mt-1">
-                <span className="text-amber-400">caution</span>
-                <span className="text-green-400">safe range</span>
-                <span className="text-amber-400">caution</span>
+                <span >caution</span>
+                <span >safe range</span>
+                <span >caution</span>
               </div>
             </div>
 

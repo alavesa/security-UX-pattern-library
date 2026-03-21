@@ -28,38 +28,38 @@ function ForcedContinuityDemo() {
 
       {/* Dark: Free trial → auto-charge */}
       {view === "dark" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-red-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono">DARK PATTERN</span>
           </div>
 
           {darkStep === 0 && (
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Start your free trial</h3>
-              <p className="text-4xl font-bold text-blue-600 mb-1">$0</p>
-              <p className="text-sm text-gray-500 mb-6">7-day free trial</p>
+              <h3 className="text-2xl font-bold mb-2">Start your free trial</h3>
+              <p className="text-4xl font-bold mb-1">$0</p>
+              <p className="text-sm mb-6">7-day free trial</p>
 
               <div className="text-left space-y-2 mb-6">
                 {["Unlimited access to all features", "Priority support", "Cancel anytime"].map(f => (
-                  <div key={f} className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 aria-hidden="true" className="w-4 h-4 text-green-500" /> {f}
+                  <div key={f} className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 aria-hidden="true" className="w-4 h-4" /> {f}
                   </div>
                 ))}
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1 text-left">Payment method</label>
-                <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-lg">
-                  <CreditCard aria-hidden="true" className="w-5 h-5 text-gray-400" />
-                  <span className="text-sm text-gray-500">•••• •••• •••• 4242</span>
+                <label className="block text-sm font-medium mb-1 text-left">Payment method</label>
+                <div className="flex items-center gap-2 p-3 border rounded-lg">
+                  <CreditCard aria-hidden="true" className="w-5 h-5" />
+                  <span className="text-sm">•••• •••• •••• 4242</span>
                 </div>
               </div>
 
-              <button type="button" onClick={() => setDarkStep(1)} className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer hover:bg-blue-700">
+              <button type="button" onClick={() => setDarkStep(1)} className="w-full text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer">
                 Start Free Trial
               </button>
 
-              <p role="note" aria-label="Example of deceptive fine print" className="text-xs text-gray-300 mt-3 leading-relaxed">
+              <p role="note" aria-label="Example of deceptive fine print" className="text-xs mt-3 leading-relaxed">
                 <span className="sr-only">Intentionally hard to read — example of deceptive fine print: </span>
                 After your free trial ends, you will be automatically charged $29.99/month. By clicking "Start Free Trial" you agree to our Terms of Service and authorize recurring charges.
               </p>
@@ -69,14 +69,14 @@ function ForcedContinuityDemo() {
           {darkStep === 1 && (
             <div>
               <div className="text-center mb-4">
-                <CheckCircle2 aria-hidden="true" className="w-12 h-12 text-green-500 mx-auto mb-2" />
-                <h3 className="font-bold text-gray-900">Trial started!</h3>
-                <p className="text-sm text-gray-500">Your free trial is active.</p>
+                <CheckCircle2 aria-hidden="true" className="w-12 h-12 mx-auto mb-2" />
+                <h3 className="font-bold">Trial started!</h3>
+                <p className="text-sm">Your free trial is active.</p>
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <h3 className="text-sm font-semibold text-red-800 mb-2">What's wrong here:</h3>
-                <ul className="text-xs text-red-700 space-y-1.5">
+              <div className="border rounded-lg p-4">
+                <h3 className="text-sm font-semibold mb-2">What's wrong here:</h3>
+                <ul className="text-xs space-y-1.5">
                   <li><strong>$29.99/month hidden in micro-text</strong> — the price after trial is barely visible</li>
                   <li><strong>Credit card required upfront</strong> — for a "free" trial</li>
                   <li><strong>"Cancel anytime" is misleading</strong> — cancellation is typically buried and complex</li>
@@ -93,42 +93,42 @@ function ForcedContinuityDemo() {
 
       {/* Ethical version */}
       {view === "ethical" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-green-200 p-6">
+        <div className="rounded-2xl border-2 p-6">
           <div className="text-right mb-2">
             <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono">ETHICAL</span>
           </div>
 
           {ethicalStep === 0 && (
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">Try it free for 7 days</h3>
+              <h3 className="text-2xl font-bold mb-2 text-center">Try it free for 7 days</h3>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <div className="border rounded-lg p-4 mb-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-blue-900">Free trial</span>
-                  <span className="text-sm font-bold text-blue-900">$0 for 7 days</span>
+                  <span className="text-sm font-medium">Free trial</span>
+                  <span className="text-sm font-bold">$0 for 7 days</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-blue-900">Then</span>
-                  <span className="text-sm font-bold text-blue-900">$29.99/month</span>
+                  <span className="text-sm font-medium">Then</span>
+                  <span className="text-sm font-bold">$29.99/month</span>
                 </div>
               </div>
 
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4 flex items-start gap-2">
-                <AlertTriangle aria-hidden="true" className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
-                <div className="text-xs text-amber-800">
+              <div className="border rounded-lg p-3 mb-4 flex items-start gap-2">
+                <AlertTriangle aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0" />
+                <div className="text-xs">
                   <strong>No credit card required.</strong> We'll ask for payment only if you choose to continue after the trial.
                 </div>
               </div>
 
               <div className="text-left space-y-2 mb-6">
                 {["Unlimited access during trial", "We'll email you 2 days before it ends", "No charge if you don't continue"].map(f => (
-                  <div key={f} className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 aria-hidden="true" className="w-4 h-4 text-green-500" /> {f}
+                  <div key={f} className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 aria-hidden="true" className="w-4 h-4" /> {f}
                   </div>
                 ))}
               </div>
 
-              <button type="button" onClick={() => setEthicalStep(1)} className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700">
+              <button type="button" onClick={() => setEthicalStep(1)} className="w-full text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer">
                 Start free trial — no credit card needed
               </button>
             </div>
@@ -137,32 +137,32 @@ function ForcedContinuityDemo() {
           {ethicalStep === 1 && (
             <div>
               <div className="text-center mb-4">
-                <CheckCircle2 aria-hidden="true" className="w-12 h-12 text-green-500 mx-auto mb-2" />
-                <h3 className="font-bold text-gray-900">Trial started!</h3>
-                <p className="text-sm text-gray-500 mb-2">Your 7-day free trial is active.</p>
+                <CheckCircle2 aria-hidden="true" className="w-12 h-12 mx-auto mb-2" />
+                <h3 className="font-bold">Trial started!</h3>
+                <p className="text-sm mb-2">Your 7-day free trial is active.</p>
               </div>
 
-              <div className="border border-gray-200 rounded-lg p-4 mb-4">
-                <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2"><Clock aria-hidden="true" className="w-4 h-4" /> What happens next:</h4>
-                <div className="space-y-3 text-xs text-gray-600">
+              <div className="border rounded-lg p-4 mb-4">
+                <h4 className="text-sm font-semibold mb-3 flex items-center gap-2"><Clock aria-hidden="true" className="w-4 h-4" /> What happens next:</h4>
+                <div className="space-y-3 text-xs">
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0 text-blue-600 font-bold">1</div>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold">1</div>
                     <div><strong>Day 5:</strong> We'll email you a reminder that your trial ends in 2 days</div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0 text-blue-600 font-bold">2</div>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold">2</div>
                     <div><strong>Day 7:</strong> Trial ends. We'll ask if you'd like to subscribe</div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center shrink-0 text-gray-600 font-bold">3</div>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold">3</div>
                     <div><strong>No action needed to cancel</strong> — trial simply ends</div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-green-800 mb-2">What's right here:</h4>
-                <ul className="text-xs text-green-700 space-y-1.5">
+              <div className="border rounded-lg p-4">
+                <h4 className="text-sm font-semibold mb-2">What's right here:</h4>
+                <ul className="text-xs space-y-1.5">
                   <li><strong>No credit card upfront</strong> — the trial is genuinely free</li>
                   <li><strong>Price clearly shown</strong> — $29.99/month visible BEFORE signup, not in fine print</li>
                   <li><strong>Reminder before expiry</strong> — email 2 days before trial ends</li>

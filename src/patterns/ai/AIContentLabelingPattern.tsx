@@ -19,45 +19,45 @@ function AIContentLabelingDemo() {
 
       {/* Social media feed with AI labels */}
       {scenario === "social" && (
-        <div role="tabpanel" id="tabpanel-social" aria-labelledby="tab-social" className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-          <div className="border-b border-gray-200 px-4 py-3">
-            <h3 className="text-sm font-semibold text-gray-900">Your Feed</h3>
+        <div role="tabpanel" id="tabpanel-social" aria-labelledby="tab-social" className="rounded-2xl border overflow-hidden">
+          <div className="border-b px-4 py-3">
+            <h3 className="text-sm font-semibold">Your Feed</h3>
           </div>
 
           {/* Human post */}
-          <div className="p-4 border-b border-gray-100">
+          <div className="p-4 border-b">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">JD</div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs">JD</div>
               <div>
-                <p className="text-sm font-medium text-gray-900">Jane Doe</p>
-                <p className="text-xs text-gray-400">2 hours ago</p>
+                <p className="text-sm font-medium">Jane Doe</p>
+                <p className="text-xs">2 hours ago</p>
               </div>
             </div>
-            <p className="text-sm text-gray-700">Just finished hiking Mt. Rainier! The view from the summit was incredible.</p>
-            <div className="mt-2 bg-gray-200 rounded-lg h-32 flex items-center justify-center text-gray-400 text-xs">
+            <p className="text-sm">Just finished hiking Mt. Rainier! The view from the summit was incredible.</p>
+            <div className="mt-2 rounded-lg h-32 flex items-center justify-center text-xs">
               [Photo]
             </div>
           </div>
 
           {/* AI-generated post */}
-          <div className="p-4 border-b border-gray-100 bg-purple-50/30">
+          <div className="p-4 border-b bg-purple-50/30">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
                 <Sparkles className="w-4 h-4 text-purple-600" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-medium text-gray-900">Travel Weekly</p>
+                  <p className="text-sm font-medium">Travel Weekly</p>
                   <span className="text-xs bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded flex items-center gap-1">
                     <Bot className="w-3 h-3" /> AI Generated
                   </span>
                 </div>
-                <p className="text-xs text-gray-400">Sponsored · 1 hour ago</p>
+                <p className="text-xs">Sponsored · 1 hour ago</p>
               </div>
             </div>
-            <p className="text-sm text-gray-700">10 hidden hiking gems near Seattle that locals don't want you to know about! Number 7 will blow your mind.</p>
-            <div className="mt-2 bg-gray-200 rounded-lg h-32 flex items-center justify-center relative">
-              <span className="text-gray-400 text-xs">[AI-Generated Image]</span>
+            <p className="text-sm">10 hidden hiking gems near Seattle that locals don't want you to know about! Number 7 will blow your mind.</p>
+            <div className="mt-2 rounded-lg h-32 flex items-center justify-center relative">
+              <span className="text-xs">[AI-Generated Image]</span>
               <span className="absolute bottom-2 right-2 text-xs bg-black/60 text-white px-2 py-0.5 rounded flex items-center gap-1">
                 <Sparkles className="w-3 h-3" /> AI Generated
               </span>
@@ -71,19 +71,19 @@ function AIContentLabelingDemo() {
           {/* AI-assisted post */}
           <div className="p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xs">MK</div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs">MK</div>
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-medium text-gray-900">Mark Kim</p>
-                  <span className="text-xs bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded flex items-center gap-1">
+                  <p className="text-sm font-medium">Mark Kim</p>
+                  <span className="text-xs px-1.5 py-0.5 rounded flex items-center gap-1">
                     <Sparkles className="w-3 h-3" /> AI Assisted
                   </span>
                 </div>
-                <p className="text-xs text-gray-400">30 min ago</p>
+                <p className="text-xs">30 min ago</p>
               </div>
             </div>
-            <p className="text-sm text-gray-700">Here's my summary of the Q4 earnings call...</p>
-            <div className="mt-2 bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-700">
+            <p className="text-sm">Here's my summary of the Q4 earnings call...</p>
+            <div className="mt-2 border rounded-lg p-3 text-xs">
               <strong>AI-assisted content:</strong> This post was written by a human with AI writing assistance. The ideas are the author's; the wording was refined by AI.
             </div>
           </div>
@@ -92,7 +92,7 @@ function AIContentLabelingDemo() {
 
       {/* Article with AI labeling */}
       {scenario === "article" && (
-        <div role="tabpanel" id="tabpanel-article" aria-labelledby="tab-article" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div role="tabpanel" id="tabpanel-article" aria-labelledby="tab-article" className="rounded-2xl border p-6">
           {/* AI-generated article */}
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
@@ -100,14 +100,14 @@ function AIContentLabelingDemo() {
                 <Bot className="w-3.5 h-3.5" /> AI-Generated Article
               </span>
             </div>
-            <h2 className="text-lg font-bold text-gray-900 mb-2">The Future of Remote Work: 5 Trends for 2026</h2>
-            <p className="text-sm text-gray-600 mb-3">This article was generated by an AI language model and reviewed by an editor.</p>
-            <div className="space-y-2 text-sm text-gray-700">
+            <h2 className="text-lg font-bold mb-2">The Future of Remote Work: 5 Trends for 2026</h2>
+            <p className="text-sm mb-3">This article was generated by an AI language model and reviewed by an editor.</p>
+            <div className="space-y-2 text-sm">
               <p>The landscape of remote work continues to evolve...</p>
-              <p className="text-gray-400">[Article content...]</p>
+              <p >[Article content...]</p>
             </div>
 
-            <div className="border-t border-gray-200 mt-4 pt-4">
+            <div className="border-t mt-4 pt-4">
               <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <h4 className="text-xs font-semibold text-purple-800 mb-2 flex items-center gap-1">
                   <Info className="w-3.5 h-3.5" /> Transparency notice
@@ -122,7 +122,7 @@ function AIContentLabelingDemo() {
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-800">
+          <div className="border rounded-lg p-3 text-xs">
             <strong>EU AI Act Art. 50(4):</strong> AI-generated text published to inform the public on matters of public interest must be labeled as AI-generated, unless the content has been subjected to human review and a natural person holds editorial responsibility.
           </div>
         </div>
@@ -130,21 +130,21 @@ function AIContentLabelingDemo() {
 
       {/* AI-generated image labeling */}
       {scenario === "image" && (
-        <div role="tabpanel" id="tabpanel-image" aria-labelledby="tab-image" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-          <h3 className="font-bold text-gray-900 text-sm mb-4">Content authenticity signals</h3>
+        <div role="tabpanel" id="tabpanel-image" aria-labelledby="tab-image" className="rounded-2xl border p-6">
+          <h3 className="font-bold text-sm mb-4">Content authenticity signals</h3>
 
           <div className="space-y-4">
             {/* Real photo */}
-            <div className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="bg-gray-200 h-32 flex items-center justify-center text-gray-400 text-xs relative">
+            <div className="border rounded-lg overflow-hidden">
+              <div className="h-32 flex items-center justify-center text-xs relative">
                 [Real photograph]
-                <span className="absolute bottom-2 left-2 text-xs bg-green-600 text-white px-2 py-0.5 rounded flex items-center gap-1">
+                <span className="absolute bottom-2 left-2 text-xs text-white px-2 py-0.5 rounded flex items-center gap-1">
                   <CheckCircle2 className="w-3 h-3" /> Authentic
                 </span>
               </div>
               <div className="p-3">
-                <p className="text-xs text-green-700 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Original photograph — camera metadata verified</p>
-                <p className="text-xs text-gray-400 mt-1">Canon EOS R5 · ISO 200 · f/8 · 1/250s · No AI modifications detected</p>
+                <p className="text-xs flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Original photograph — camera metadata verified</p>
+                <p className="text-xs mt-1">Canon EOS R5 · ISO 200 · f/8 · 1/250s · No AI modifications detected</p>
               </div>
             </div>
 
@@ -158,26 +158,26 @@ function AIContentLabelingDemo() {
               </div>
               <div className="p-3">
                 <p className="text-xs text-purple-700 flex items-center gap-1"><Sparkles className="w-3.5 h-3.5" /> AI-generated image</p>
-                <p className="text-xs text-gray-400 mt-1">Model: DALL-E 3 · C2PA watermark embedded · Generated March 2026</p>
+                <p className="text-xs mt-1">Model: DALL-E 3 · C2PA watermark embedded · Generated March 2026</p>
               </div>
             </div>
 
             {/* AI-modified image */}
-            <div className="border border-amber-200 rounded-lg overflow-hidden">
-              <div className="bg-amber-50 h-32 flex items-center justify-center text-amber-400 text-xs relative">
+            <div className="border rounded-lg overflow-hidden">
+              <div className="h-32 flex items-center justify-center text-xs relative">
                 [AI-modified photograph]
                 <span className="absolute bottom-2 left-2 text-xs bg-amber-600 text-white px-2 py-0.5 rounded flex items-center gap-1">
                   <AlertTriangle className="w-3 h-3" /> AI Modified
                 </span>
               </div>
               <div className="p-3">
-                <p className="text-xs text-amber-700 flex items-center gap-1"><AlertTriangle className="w-3.5 h-3.5" /> Original photo with AI modifications</p>
-                <p className="text-xs text-gray-400 mt-1">Background replaced by AI · Subject face untouched · Modification map available</p>
+                <p className="text-xs flex items-center gap-1"><AlertTriangle className="w-3.5 h-3.5" /> Original photo with AI modifications</p>
+                <p className="text-xs mt-1">Background replaced by AI · Subject face untouched · Modification map available</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-xs text-blue-800">
+          <div className="border rounded-lg p-3 mt-4 text-xs">
             <strong>C2PA Standard:</strong> The Coalition for Content Provenance and Authenticity provides machine-readable metadata for content authenticity. EU AI Act Art. 50(2) requires AI-generated content to be marked in machine-readable format.
           </div>
         </div>

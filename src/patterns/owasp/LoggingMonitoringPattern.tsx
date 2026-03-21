@@ -70,9 +70,9 @@ function LoggingMonitoringDemo() {
 
       {/* Live log stream */}
       {scenario === "log" && (
-        <div className="bg-gray-900 rounded-2xl shadow-lg border border-gray-700 overflow-hidden">
+        <div className="bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
           <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-            <span className="text-xs font-mono text-green-400 flex items-center gap-2">
+            <span className="text-xs font-mono flex items-center gap-2">
               <Activity className="w-3.5 h-3.5" /> Security Event Log
             </span>
             <div className="flex gap-1">
@@ -89,20 +89,20 @@ function LoggingMonitoringDemo() {
               <div key={log.id} className={`flex items-start gap-2 py-1 px-2 rounded ${
                 log.type === "critical" ? "bg-red-900/30" : log.type === "warning" ? "bg-amber-900/20" : ""
               }`}>
-                <span className="text-gray-500 shrink-0">{log.time}</span>
+                <span className="shrink-0">{log.time}</span>
                 <span className={`shrink-0 w-2 h-2 rounded-full mt-1 ${
                   log.type === "critical" ? "bg-red-500" : log.type === "warning" ? "bg-amber-500" : "bg-green-500"
                 }`} />
                 <span className={`shrink-0 ${
-                  log.type === "critical" ? "text-red-400" : log.type === "warning" ? "text-amber-400" : "text-green-400"
+                  log.type === "critical" ? "" : log.type === "warning" ? "" : ""
                 }`}>
                   {log.event}
                 </span>
-                <span className="text-gray-400 truncate">{log.user} — {log.detail}</span>
+                <span className="truncate">{log.user} — {log.detail}</span>
               </div>
             ))}
             {!done && (
-              <div className="text-gray-500 animate-pulse">▊</div>
+              <div className="animate-pulse">▊</div>
             )}
           </div>
         </div>
@@ -110,56 +110,56 @@ function LoggingMonitoringDemo() {
 
       {/* Anomaly detection */}
       {scenario === "anomaly" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-          <h3 className="font-bold text-gray-900 text-sm mb-4 flex items-center gap-2">
-            <ShieldAlert className="w-4 h-4 text-red-600" /> Anomalies detected
+        <div className="rounded-2xl border p-6">
+          <h3 className="font-bold text-sm mb-4 flex items-center gap-2">
+            <ShieldAlert className="w-4 h-4" /> Anomalies detected
           </h3>
 
           <div className="space-y-3">
-            <div role="alert" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
+            <div role="alert" className="border-2 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
-                <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
+                <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-sm font-bold text-red-800">Bulk data export</p>
-                  <p className="text-xs text-red-700">user42 exported 15,000 records in 2 minutes — normal is &lt;100/day</p>
+                  <p className="text-sm font-bold">Bulk data export</p>
+                  <p className="text-xs">user42 exported 15,000 records in 2 minutes — normal is &lt;100/day</p>
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => { /* dispatch(securityAction('block-user')) */ }} className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block user</button>
-                <button onClick={() => { /* dispatch(securityAction('investigate')) */ }} className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">Investigate</button>
+                <button onClick={() => { /* dispatch(securityAction('block-user')) */ }} className="text-xs text-white px-3 py-1 rounded border-none cursor-pointer">Block user</button>
+                <button onClick={() => { /* dispatch(securityAction('investigate')) */ }} className="text-xs border px-3 py-1 rounded cursor-pointer">Investigate</button>
               </div>
             </div>
 
-            <div role="alert" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
+            <div role="alert" className="border-2 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
-                <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
+                <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-sm font-bold text-red-800">Brute force attack</p>
-                  <p className="text-xs text-red-700">3 failed login attempts for admin@example.com from Lagos, NG in 4 seconds</p>
+                  <p className="text-sm font-bold">Brute force attack</p>
+                  <p className="text-xs">3 failed login attempts for admin@example.com from Lagos, NG in 4 seconds</p>
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => { /* dispatch(securityAction('block-ip')) */ }} className="text-xs bg-red-600 text-white px-3 py-1 rounded border-none cursor-pointer">Block IP</button>
-                <button onClick={() => { /* dispatch(securityAction('view-logs')) */ }} className="text-xs border border-red-300 text-red-700 px-3 py-1 rounded bg-white cursor-pointer">View logs</button>
+                <button onClick={() => { /* dispatch(securityAction('block-ip')) */ }} className="text-xs text-white px-3 py-1 rounded border-none cursor-pointer">Block IP</button>
+                <button onClick={() => { /* dispatch(securityAction('view-logs')) */ }} className="text-xs border px-3 py-1 rounded cursor-pointer">View logs</button>
               </div>
             </div>
 
-            <div role="status" aria-live="polite" className="border border-amber-200 bg-amber-50 rounded-lg p-4">
+            <div role="status" aria-live="polite" className="border rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
-                <AlertTriangle className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" />
+                <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-sm font-bold text-amber-800">Unusual login location</p>
-                  <p className="text-xs text-amber-700">alex@example.com signed in from Brazil — usually signs in from Germany</p>
+                  <p className="text-sm font-bold">Unusual login location</p>
+                  <p className="text-xs">alex@example.com signed in from Brazil — usually signs in from Germany</p>
                 </div>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => { /* dispatch(securityAction('notify-user')) */ }} className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Notify user</button>
-                <button onClick={() => { /* dispatch(securityAction('mark-safe')) */ }} className="text-xs border border-amber-300 text-amber-700 px-3 py-1 rounded bg-white cursor-pointer">Mark as safe</button>
+                <button onClick={() => { /* dispatch(securityAction('notify-user')) */ }} className="text-xs border px-3 py-1 rounded cursor-pointer">Notify user</button>
+                <button onClick={() => { /* dispatch(securityAction('mark-safe')) */ }} className="text-xs border px-3 py-1 rounded cursor-pointer">Mark as safe</button>
               </div>
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-xs text-blue-800">
+          <div className="border rounded-lg p-3 mt-4 text-xs">
             <strong>Pattern:</strong> Anomalies are ranked by severity with immediate action buttons. Each shows: what happened, why it's unusual (compared to baseline), and what to do about it. Admins can act without leaving the alert.
           </div>
         </div>
@@ -167,18 +167,18 @@ function LoggingMonitoringDemo() {
 
       {/* Audit trail */}
       {scenario === "audit" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div className="rounded-2xl border p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-gray-900 text-sm flex items-center gap-2">
+            <h3 className="font-bold text-sm flex items-center gap-2">
               <Eye className="w-4 h-4" /> Audit Trail
             </h3>
             <div className="flex items-center gap-2">
-              <Filter className="w-3.5 h-3.5 text-gray-400" />
-              <span className="text-xs text-gray-400">user42@example.com</span>
+              <Filter className="w-3.5 h-3.5" />
+              <span className="text-xs">user42@example.com</span>
             </div>
           </div>
 
-          <div className="border-l-2 border-gray-200 ml-3 space-y-4">
+          <div className="border-l-2 ml-3 space-y-4">
             {[
               { id: 1, time: "14:37:22", event: "Exported 15,000 user records", severity: "critical", icon: ShieldAlert },
               { id: 2, time: "14:34:02", event: "Attempted role change to admin (BLOCKED)", severity: "critical", icon: ShieldAlert },
@@ -192,10 +192,10 @@ function LoggingMonitoringDemo() {
                 }`} />
                 <div>
                   <div className="flex items-center gap-2">
-                    <Clock className="w-3 h-3 text-gray-400" />
-                    <span className="text-xs text-gray-400 font-mono">{time}</span>
+                    <Clock className="w-3 h-3" />
+                    <span className="text-xs font-mono">{time}</span>
                   </div>
-                  <p className={`text-sm flex items-center gap-1 ${severity === "critical" ? "text-red-700 font-medium" : severity === "warning" ? "text-amber-700" : "text-gray-600"}`}>
+                  <p className={`text-sm flex items-center gap-1 ${severity === "critical" ? " font-medium" : severity === "warning" ? "" : ""}`}>
                     <Icon className="w-4 h-4 shrink-0" />
                     {event}
                   </p>
@@ -204,7 +204,7 @@ function LoggingMonitoringDemo() {
             ))}
           </div>
 
-          <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4 text-xs text-red-800">
+          <div className="border rounded-lg p-3 mt-4 text-xs">
             <strong>Analysis:</strong> This user created an account via API, immediately accessed the admin panel, attempted privilege escalation, and then bulk-exported user data. This is a textbook data exfiltration pattern.
           </div>
         </div>

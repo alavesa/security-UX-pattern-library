@@ -48,9 +48,9 @@ function BreachNotificationDemo() {
 
       {/* Banner notification */}
       {scenario === "banner" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div className="rounded-2xl border overflow-hidden">
           {!dismissed && (
-            <div className="bg-red-600 text-white px-4 py-3" role="alert" aria-live="assertive" aria-atomic="true">
+            <div className="text-white px-4 py-3" role="alert" aria-live="assertive" aria-atomic="true">
               <div className="flex items-start gap-3">
                 <ShieldAlert className="w-5 h-5 mt-0.5 shrink-0" />
                 <div className="flex-1">
@@ -75,7 +75,7 @@ function BreachNotificationDemo() {
           <div className="p-6">
             <div className="flex justify-end mb-2">
               <div className="relative">
-                <div className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 text-sm" title="Settings">⚙</div>
+                <div className="w-7 h-7 rounded-full flex items-center justify-center text-sm" title="Settings">⚙</div>
                 {dismissed && (
                   <span
                     className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"
@@ -85,15 +85,15 @@ function BreachNotificationDemo() {
                 )}
               </div>
             </div>
-            <div className="h-4 bg-gray-100 rounded w-3/4 mb-3" />
-            <div className="h-3 bg-gray-100 rounded w-full mb-2" />
-            <div className="h-3 bg-gray-100 rounded w-5/6 mb-4" />
-            <div className="h-8 bg-gray-100 rounded w-32" />
+            <div className="h-4 rounded w-3/4 mb-3" />
+            <div className="h-3 rounded w-full mb-2" />
+            <div className="h-3 rounded w-5/6 mb-4" />
+            <div className="h-8 rounded w-32" />
           </div>
 
           {dismissed && (
             <div className="px-6 pb-4">
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800">
+              <div className="border rounded-lg p-3 text-xs">
                 <strong>UX note:</strong> The banner was dismissed but the security issue persists. The red badge on the settings icon above demonstrates the correct pattern — a persistent, less intrusive indicator that keeps the alert discoverable so the user can return to it.
               </div>
             </div>
@@ -103,35 +103,35 @@ function BreachNotificationDemo() {
 
       {/* Full page notification */}
       {scenario === "fullpage" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+        <div className="rounded-2xl border p-8">
           <div className="text-center mb-6">
-            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <ShieldAlert className="w-8 h-8 text-red-600" />
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <ShieldAlert className="w-8 h-8" />
             </div>
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Your account may be compromised</h2>
-            <p className="text-sm text-gray-600">
+            <h2 className="text-xl font-bold mb-2">Your account may be compromised</h2>
+            <p className="text-sm">
               On {INCIDENT.date}, we detected unauthorized access to our systems. Based on our investigation, the following data may have been exposed:
             </p>
           </div>
 
           {/* What was exposed */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-            <h3 className="text-sm font-semibold text-red-800 mb-2">Data potentially exposed:</h3>
-            <ul className="text-sm text-red-700 space-y-1">
-              <li className="flex items-center gap-2"><span className="text-red-400">*</span> Email address</li>
-              <li className="flex items-center gap-2"><span className="text-red-400">*</span> Hashed password (bcrypt)</li>
-              <li className="flex items-center gap-2"><span className="text-red-400">*</span> Display name</li>
+          <div className="border rounded-lg p-4 mb-4">
+            <h3 className="text-sm font-semibold mb-2">Data potentially exposed:</h3>
+            <ul className="text-sm space-y-1">
+              <li className="flex items-center gap-2"><span >*</span> Email address</li>
+              <li className="flex items-center gap-2"><span >*</span> Hashed password (bcrypt)</li>
+              <li className="flex items-center gap-2"><span >*</span> Display name</li>
             </ul>
-            <p className="text-xs text-red-600 mt-2">Payment data and SSN were NOT affected.</p>
+            <p className="text-xs mt-2">Payment data and SSN were NOT affected.</p>
           </div>
 
           {/* What wasn't exposed */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
-            <h3 className="text-sm font-semibold text-green-800 mb-2">Data NOT exposed:</h3>
-            <ul className="text-sm text-green-700 space-y-1">
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Payment information</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Social security numbers</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Physical addresses</li>
+          <div className="border rounded-lg p-4 mb-4">
+            <h3 className="text-sm font-semibold mb-2">Data NOT exposed:</h3>
+            <ul className="text-sm space-y-1">
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Payment information</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Social security numbers</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Physical addresses</li>
             </ul>
           </div>
 
@@ -141,24 +141,24 @@ function BreachNotificationDemo() {
             onClick={() => setExpanded(!expanded)}
             aria-expanded={expanded}
             aria-controls="timeline-content"
-            className="flex items-center justify-between w-full text-left text-sm font-medium text-gray-700 py-2 bg-transparent border-none cursor-pointer"
+            className="flex items-center justify-between w-full text-left text-sm font-medium py-2 bg-transparent border-none cursor-pointer"
           >
             <span className="flex items-center gap-2"><Clock className="w-4 h-4" /> Incident timeline</span>
             {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
           {expanded && (
-            <div id="timeline-content" className="border-l-2 border-gray-200 ml-2 pl-4 pb-2 space-y-3 text-xs text-gray-600">
-              <div><strong className="text-gray-900">Mar 15, 14:32 UTC</strong> — Unauthorized access detected</div>
-              <div><strong className="text-gray-900">Mar 15, 14:45 UTC</strong> — Access revoked, investigation started</div>
-              <div><strong className="text-gray-900">Mar 16, 09:00 UTC</strong> — Affected accounts identified</div>
-              <div><strong className="text-gray-900">Mar 16, 12:00 UTC</strong> — Users notified (this message)</div>
-              <div><strong className="text-gray-900">Mar 17, ongoing</strong> — Forensic investigation with external partner</div>
+            <div id="timeline-content" className="border-l-2 ml-2 pl-4 pb-2 space-y-3 text-xs">
+              <div><strong >Mar 15, 14:32 UTC</strong> — Unauthorized access detected</div>
+              <div><strong >Mar 15, 14:45 UTC</strong> — Access revoked, investigation started</div>
+              <div><strong >Mar 16, 09:00 UTC</strong> — Affected accounts identified</div>
+              <div><strong >Mar 16, 12:00 UTC</strong> — Users notified (this message)</div>
+              <div><strong >Mar 17, ongoing</strong> — Forensic investigation with external partner</div>
             </div>
           )}
 
           {/* Action checklist */}
-          <div className="border border-gray-200 rounded-lg p-4 mt-4">
-            <h3 className="text-sm font-semibold text-gray-900 mb-3">Secure your account:</h3>
+          <div className="border rounded-lg p-4 mt-4">
+            <h3 className="text-sm font-semibold mb-3">Secure your account:</h3>
             <div className="space-y-2">
               {[
                 { key: "password" as const, label: "Change your password" },
@@ -171,14 +171,14 @@ function BreachNotificationDemo() {
                     type="checkbox"
                     checked={checklist[key]}
                     onChange={e => setChecklist(c => ({ ...c, [key]: e.target.checked }))}
-                    className="w-4 h-4 rounded border-gray-300 text-blue-600"
+                    className="w-4 h-4 rounded"
                   />
-                  <span className={`text-sm ${checklist[key] ? "text-gray-400 line-through" : "text-gray-700"}`}>{label}</span>
+                  <span className={`text-sm ${checklist[key] ? " line-through" : ""}`}>{label}</span>
                 </label>
               ))}
             </div>
             {allDone && (
-              <div className="flex items-center gap-2 mt-3 text-sm text-green-600">
+              <div className="flex items-center gap-2 mt-3 text-sm">
                 <CheckCircle2 className="w-4 h-4" /> You've reviewed all recommended steps. Make sure you've completed each action in the app.
               </div>
             )}
@@ -188,50 +188,50 @@ function BreachNotificationDemo() {
 
       {/* Email notification */}
       {scenario === "email" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div className="rounded-2xl border overflow-hidden">
           {/* Email header */}
-          <div className="bg-gray-50 border-b border-gray-200 px-6 py-4">
-            <div className="text-xs text-gray-400 mb-1">From: security@example.com</div>
-            <div className="text-xs text-gray-400 mb-2">To: you@email.com</div>
-            <div className="text-sm font-semibold text-gray-900">
-              <AlertTriangle className="w-4 h-4 inline text-red-500 mr-1" />
+          <div className="border-b px-6 py-4">
+            <div className="text-xs mb-1">From: security@example.com</div>
+            <div className="text-xs mb-2">To: you@email.com</div>
+            <div className="text-sm font-semibold">
+              <AlertTriangle className="w-4 h-4 inline mr-1" />
               Important: Security incident affecting your account
             </div>
           </div>
 
-          <div className="p-6 text-sm text-gray-700 space-y-4">
+          <div className="p-6 text-sm space-y-4">
             <p>Hi there,</p>
 
             <p>We're writing to inform you of a security incident that may affect your account. We take this seriously and want to be transparent about what happened.</p>
 
-            <div className="bg-red-50 border-l-4 border-red-500 p-4">
-              <p className="font-semibold text-red-800">What happened</p>
-              <p className="text-red-700 text-xs mt-1">On {INCIDENT.date}, we detected unauthorized access to a database containing user email addresses and hashed passwords.</p>
+            <div className="border-l-4 p-4">
+              <p className="font-semibold">What happened</p>
+              <p className="text-xs mt-1">On {INCIDENT.date}, we detected unauthorized access to a database containing user email addresses and hashed passwords.</p>
             </div>
 
-            <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
-              <p className="font-semibold text-blue-800">What we're doing</p>
-              <p className="text-blue-700 text-xs mt-1">We've engaged an external cybersecurity firm, reset all sessions, and reported to relevant authorities (GDPR Article 33 notification filed).</p>
+            <div className="border-l-4 p-4">
+              <p className="font-semibold">What we're doing</p>
+              <p className="text-xs mt-1">We've engaged an external cybersecurity firm, reset all sessions, and reported to relevant authorities (GDPR Article 33 notification filed).</p>
             </div>
 
-            <div className="bg-green-50 border-l-4 border-green-500 p-4">
-              <p className="font-semibold text-green-800">What you should do</p>
-              <ol className="text-green-700 text-xs mt-1 list-decimal list-inside space-y-1">
+            <div className="border-l-4 p-4">
+              <p className="font-semibold">What you should do</p>
+              <ol className="text-xs mt-1 list-decimal list-inside space-y-1">
                 <li>Change your password immediately</li>
                 <li>Enable two-factor authentication</li>
                 <li>Change this password on any other site where you reused it</li>
               </ol>
             </div>
 
-            <button type="button" className="inline-flex items-center gap-1 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium border-none cursor-pointer">
+            <button type="button" className="inline-flex items-center gap-1 text-white px-4 py-2 rounded-lg text-sm font-medium border-none cursor-pointer">
               Secure My Account
             </button>
 
-            <p className="text-xs text-gray-400">
+            <p className="text-xs">
               If you didn't request this email, it's still legitimate. Do NOT click links in emails you don't trust — instead, go directly to example.com and sign in.
             </p>
 
-            <p className="text-xs text-gray-500 border-t border-gray-100 pt-4">
+            <p className="text-xs border-t pt-4">
               This email was sent by the Security Team at Example Corp.<br />
               Reference: {INCIDENT.reference} | GDPR notification ref: {INCIDENT.gdprRef}
             </p>

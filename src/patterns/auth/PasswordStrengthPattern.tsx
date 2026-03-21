@@ -47,18 +47,18 @@ function PasswordDemo() {
   if (submitted) {
     return (
       <div className="w-full max-w-sm">
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-          <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <ShieldCheck className="w-7 h-7 text-green-600" />
+        <div className="rounded-2xl border p-8 text-center">
+          <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+            <ShieldCheck className="w-7 h-7" />
           </div>
-          <h2 className="text-xl font-bold text-gray-900 mb-1">Password set!</h2>
-          <p className="text-sm text-gray-500 mb-4">Your new password is strong and secure.</p>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-left mb-4">
-            <p className="text-xs text-blue-800">
+          <h2 className="text-xl font-bold mb-1">Password set!</h2>
+          <p className="text-sm mb-4">Your new password is strong and secure.</p>
+          <div className="border rounded-lg p-3 text-left mb-4">
+            <p className="text-xs">
               <strong>Behind the scenes:</strong> Password hashed with bcrypt (cost factor 12). Previous hash removed. All sessions invalidated. Confirmation email sent.
             </p>
           </div>
-          <button onClick={() => { setSubmitted(false); setPassword(""); setConfirm(""); }} className="text-sm text-blue-600 hover:text-blue-800 bg-transparent border-none cursor-pointer">
+          <button onClick={() => { setSubmitted(false); setPassword(""); setConfirm(""); }} className="text-sm hover: bg-transparent border-none cursor-pointer">
             Try another password
           </button>
         </div>
@@ -68,14 +68,14 @@ function PasswordDemo() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
-        <h2 className="text-xl font-bold text-gray-900 mb-1">Create password</h2>
-        <p className="text-sm text-gray-500 mb-6">Choose a strong password for your account</p>
+      <div className="rounded-2xl border p-8">
+        <h2 className="text-xl font-bold mb-1">Create password</h2>
+        <p className="text-sm mb-6">Choose a strong password for your account</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Password field */}
           <div>
-            <label htmlFor="new-password" className="block text-sm font-medium text-gray-700 mb-1">New password</label>
+            <label htmlFor="new-password" className="block text-sm font-medium mb-1">New password</label>
             <div className="relative">
               <input
                 id="new-password"
@@ -83,13 +83,13 @@ function PasswordDemo() {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="Minimum 12 characters"
-                className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 pr-10 border rounded-lg text-sm focus:outline-none focus:ring-2"
                 autoComplete="new-password"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 bg-transparent border-none cursor-pointer"
+                className="absolute right-2 top-1/2 -translate-y-1/2 hover: bg-transparent border-none cursor-pointer"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -104,16 +104,16 @@ function PasswordDemo() {
                 {[1, 2, 3, 4].map(i => (
                   <div
                     key={i}
-                    className={`h-1.5 flex-1 rounded-full transition-all ${i <= (breached ? 1 : score) ? color : "bg-gray-200"}`}
+                    className={`h-1.5 flex-1 rounded-full transition-all ${i <= (breached ? 1 : score) ? color : ""}`}
                   />
                 ))}
               </div>
               <div className="flex justify-between items-center">
-                <span className={`text-xs font-medium ${breached || score <= 1 ? "text-red-600" : score <= 2 ? "text-orange-600" : score <= 3 ? "text-blue-600" : "text-green-600"}`}>
+                <span className={`text-xs font-medium ${breached || score <= 1 ? "" : score <= 2 ? "text-orange-600" : score <= 3 ? "" : ""}`}>
                   {label}
                 </span>
                 {score <= 1 && !breached && (
-                  <span className="text-xs text-red-500 flex items-center gap-1">
+                  <span className="text-xs flex items-center gap-1">
                     <AlertTriangle className="w-3 h-3" /> Easily guessable
                   </span>
                 )}
@@ -121,7 +121,7 @@ function PasswordDemo() {
 
               {/* Breach warning */}
               {breached && (
-                <div className="flex items-start gap-2 text-sm p-3 rounded-lg bg-red-50 text-red-700 border border-red-200" role="alert">
+                <div className="flex items-start gap-2 text-sm p-3 rounded-lg border" role="alert">
                   <ShieldAlert className="w-5 h-5 mt-0.5 shrink-0" />
                   <div>
                     <strong className="block text-xs">Password found in data breach!</strong>
@@ -131,14 +131,14 @@ function PasswordDemo() {
               )}
 
               {/* Checklist */}
-              <div className="space-y-1.5 border-t border-gray-100 pt-3">
+              <div className="space-y-1.5 border-t pt-3">
                 {checks.map(({ label, pass }) => (
                   <div key={label} className="flex items-center gap-2 text-sm">
                     {pass
-                      ? <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
-                      : <XCircle className="w-4 h-4 text-gray-300 shrink-0" />
+                      ? <CheckCircle2 className="w-4 h-4 shrink-0" />
+                      : <XCircle className="w-4 h-4 shrink-0" />
                     }
-                    <span className={pass ? "text-gray-700" : "text-gray-400"}>{label}</span>
+                    <span className={pass ? "" : ""}>{label}</span>
                   </div>
                 ))}
               </div>
@@ -147,7 +147,7 @@ function PasswordDemo() {
 
           {/* Confirm password */}
           <div>
-            <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700 mb-1">Confirm password</label>
+            <label htmlFor="confirm-password" className="block text-sm font-medium mb-1">Confirm password</label>
             <div className="relative">
               <input
                 id="confirm-password"
@@ -158,26 +158,26 @@ function PasswordDemo() {
                 className={`w-full px-3 py-2 pr-10 border rounded-lg text-sm focus:outline-none focus:ring-2 ${
                   confirm.length > 0
                     ? passwordsMatch
-                      ? "border-green-300 focus:ring-green-500"
-                      : "border-red-300 focus:ring-red-500"
-                    : "border-gray-300 focus:ring-blue-500"
+                      ? " "
+                      : " "
+                    : " "
                 }`}
                 autoComplete="new-password"
               />
               <button
                 type="button"
                 onClick={() => setShowConfirm(!showConfirm)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 bg-transparent border-none cursor-pointer"
+                className="absolute right-2 top-1/2 -translate-y-1/2 hover: bg-transparent border-none cursor-pointer"
                 aria-label={showConfirm ? "Hide confirm password" : "Show confirm password"}
               >
                 {showConfirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
             {confirm.length > 0 && !passwordsMatch && (
-              <p className="text-xs text-red-500 mt-1">Passwords don't match</p>
+              <p className="text-xs mt-1">Passwords don't match</p>
             )}
             {passwordsMatch && (
-              <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
+              <p className="text-xs mt-1 flex items-center gap-1">
                 <CheckCircle2 className="w-3 h-3" /> Passwords match
               </p>
             )}
@@ -186,7 +186,7 @@ function PasswordDemo() {
           <button
             type="submit"
             disabled={!canSubmit}
-            className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="w-full text-white py-2.5 rounded-lg font-medium text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             Set password
           </button>
