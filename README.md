@@ -67,7 +67,7 @@ $█
 
 Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
 
-## 32 Interactive Patterns + 4 Strategic Tools
+## 33 Interactive Patterns + 4 Strategic Tools
 
 The most comprehensive interactive security UX pattern library. Each pattern has a live demo, do/don't guidelines, security rationale with OWASP/CWE/GDPR references, and accessibility notes.
 
@@ -75,7 +75,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 
 | Tool | What it does |
 |------|-------------|
-| **Security UX Score** | Checklist across 8 categories → A+ through F grade with shareable badge |
+| **Security UX Score** | Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. |
 | **Compliance Mapper** | Select from 16 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
 | **Report Generator** | Answer 6 questions → downloadable .md report with prioritized patterns |
@@ -183,7 +183,7 @@ npm run dev
 
 Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scanlines, Matrix rain with katakana. Each category has its own color: green (auth/threat), red (dark patterns), cyan (data), amber (OWASP), purple (AI), orange (industrial).
 
-## Sources (40)
+## Sources (38)
 
 **EU Regulation:** GDPR, NIS2, DORA, CRA, EU AI Act, EU DSA, ePrivacy, EU Consumer Rights Directive
 
