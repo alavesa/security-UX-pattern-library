@@ -40,8 +40,8 @@ const QUESTIONS: MaturityQuestion[] = [
     levels: [
       "HTTPS only, no encryption at rest",
       "HTTPS + encrypted at rest, basic access controls",
-      "E2E encryption, data export, GDPR deletion support",
-      "Zero-knowledge architecture, user-controlled encryption keys, automated data lifecycle",
+      "E2E encryption, data export, GDPR deletion support, user-facing activity log",
+      "Zero-knowledge architecture, user-controlled encryption keys, automated data lifecycle, full audit trail with data access log",
     ],
   },
   {
@@ -165,6 +165,7 @@ export function MaturityPage() {
     if ((answers.errors ?? 0) < 2) recs.push({ path: "/patterns/auth/login", label: "Login Flow", reason: "Implement generic error messages" });
     if ((answers.data ?? 0) < 3) recs.push({ path: "/patterns/data/encryption", label: "Encryption Indicators", reason: "Show users what's encrypted" });
     if ((answers.data ?? 0) < 3) recs.push({ path: "/patterns/data/deletion", label: "Data Deletion", reason: "Add GDPR-compliant deletion flow" });
+    if ((answers.data ?? 0) < 3) recs.push({ path: "/patterns/data/activity-log", label: "Activity Log", reason: "Add user-facing activity log for GDPR Art. 15 compliance" });
     if ((answers.monitoring ?? 0) < 3) recs.push({ path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", reason: "Build security event dashboard" });
     if ((answers.consent ?? 0) < 2) recs.push({ path: "/patterns/dark/cookie-consent", label: "Cookie Consent", reason: "Fix consent flow to be GDPR compliant" });
     if ((answers.response ?? 0) < 3) recs.push({ path: "/patterns/threat/breach-notification", label: "Breach Notification", reason: "Create breach communication plan" });

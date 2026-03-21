@@ -32,6 +32,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "Data" },
       { path: "/patterns/data/file-upload", label: "Secure File Upload", category: "Data" },
       { path: "/patterns/data/deletion", label: "Data Deletion", category: "Data" },
+      { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
       { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
     ],
   },
@@ -63,6 +64,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/owasp/broken-access-control", label: "Access Control", category: "OWASP" },
       { path: "/patterns/owasp/security-misconfiguration", label: "Security Config", category: "OWASP" },
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
+      { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
     ],
   },
   {
@@ -84,6 +86,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
       { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
       { path: "/patterns/threat/suspicious-activity", label: "Suspicious Activity", category: "Threat" },
+      { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
     ],
   },
   {
