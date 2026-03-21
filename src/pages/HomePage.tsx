@@ -17,50 +17,40 @@ function MatrixRain() {
     };
     resize();
 
-    // Elder Futhark + Younger Futhark + Anglo-Saxon runes
-    const runes = "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛝᛟᛞᛠᚳᚴᚵᛂᛄᛆᛋᛐᛑᛓᛔᛕᛖᛘᛙᛛᛜᛡᛢᛣᛤᛥᛦ";
-    const fontSize = 16;
+    const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン{}[]<>/\\|=+-*&^%$#@!?.,:;";
+    const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = Array.from({ length: columns }, () => Math.random() * -40);
+    const drops: number[] = Array.from({ length: columns }, () => Math.random() * -50);
 
     let animationId: number;
     let frame = 0;
 
     const draw = () => {
       frame++;
-      if (frame % 2 !== 0) {
+      // Only draw every 3rd frame for performance + slower rain
+      if (frame % 3 !== 0) {
         animationId = requestAnimationFrame(draw);
         return;
       }
 
-      // Classic Matrix fade — dark overlay each frame
-      ctx.fillStyle = "rgba(10, 10, 10, 0.1)";
+      ctx.fillStyle = "rgba(10, 10, 10, 0.08)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.font = `${fontSize}px monospace`;
-
       for (let i = 0; i < drops.length; i++) {
-        const rune = runes[Math.floor(Math.random() * runes.length)];
+        const char = chars[Math.floor(Math.random() * chars.length)];
         const x = i * fontSize;
         const y = drops[i] * fontSize;
 
-        // Head of the stream is bright white-green
-        ctx.fillStyle = "#00ff41";
-        ctx.fillText(rune, x, y);
+        // Head of the drop is brighter
+        const isHead = Math.random() > 0.95;
+        ctx.fillStyle = isHead ? "#00ff41" : "rgba(0, 255, 65, 0.15)";
+        ctx.font = `${fontSize}px monospace`;
+        ctx.fillText(char, x, y);
 
-        // Trail character slightly above is dimmer
-        if (drops[i] > 1) {
-          const trailRune = runes[Math.floor(Math.random() * runes.length)];
-          ctx.fillStyle = "rgba(0, 255, 65, 0.3)";
-          ctx.fillText(trailRune, x, (drops[i] - 1) * fontSize);
-        }
-
-        drops[i]++;
-
-        // Reset drop randomly after passing the bottom
-        if (y > canvas.height && Math.random() > 0.99) {
+        if (y > canvas.height && Math.random() > 0.98) {
           drops[i] = 0;
         }
+        drops[i] += 0.5;
       }
 
       animationId = requestAnimationFrame(draw);
@@ -81,7 +71,7 @@ function MatrixRain() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.7 }}
+      style={{ opacity: 0.4 }}
     />
   );
 }
