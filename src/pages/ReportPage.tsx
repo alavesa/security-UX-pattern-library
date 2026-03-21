@@ -44,7 +44,7 @@ const QUESTIONS: ReportQuestion[] = [
     question: "How critical is account security?",
     options: [
       { label: "High — handles payments or sensitive actions", value: "high", patterns: ["/patterns/auth/mfa", "/patterns/auth/session-timeout", "/patterns/auth/account-recovery", "/patterns/threat/suspicious-activity", "/patterns/owasp/broken-access-control", "/patterns/data/activity-log"], risk: "high" },
-      { label: "Medium — standard user accounts", value: "medium", patterns: ["/patterns/auth/mfa", "/patterns/auth/session-timeout", "/patterns/auth/account-recovery"], risk: "medium" },
+      { label: "Medium — standard user accounts", value: "medium", patterns: ["/patterns/auth/mfa", "/patterns/auth/session-timeout", "/patterns/auth/account-recovery", "/patterns/auth/accessible-auth"], risk: "medium" },
       { label: "Low — optional accounts or read-only", value: "low", patterns: ["/patterns/auth/login", "/patterns/auth/password-strength"], risk: "low" },
     ],
   },

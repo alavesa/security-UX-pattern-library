@@ -5,7 +5,7 @@ Interactive patterns for designing secure user experiences.
 ```
 $ ls ./patterns
 
-🔒 auth/ (7)
+🔒 auth/ (8)
    login_flow ............ OWASP A07, CWE-307
    multi_factor_auth ..... OWASP A07, CWE-308
    password_strength ..... OWASP A07, CWE-521
@@ -13,6 +13,7 @@ $ ls ./patterns
    account_recovery ...... OWASP A07, CWE-640
    passkeys .............. WebAuthn, FIDO2
    oauth_consent ......... OAuth 2.0, CWE-250
+   accessible_auth ....... WCAG 2.2, SC 3.3.8
 
 🔒 threat/ (3)
    breach_notification ... GDPR Art. 33, CWE-200
@@ -57,7 +58,7 @@ $ ls ./patterns
 $ get --score
 🛡 Security UX Score: rate your app → A+ through F
 $ get --compliance
-📋 Compliance Mapper: 16 regulations including NIS2 + DORA + EU AI Act + IEC 62443
+📋 Compliance Mapper: 17 regulations including NIS2 + DORA + WCAG 2.2 + EU AI Act + IEC 62443
 $ get --maturity
 📊 Maturity Model: assess your security UX → Level 1-4
 $ get --report
@@ -67,7 +68,7 @@ $█
 
 Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
 
-## 33 Interactive Patterns + 4 Strategic Tools
+## 34 Interactive Patterns + 4 Strategic Tools
 
 The most comprehensive interactive security UX pattern library. Each pattern has a live demo, do/don't guidelines, security rationale with OWASP/CWE/GDPR references, and accessibility notes.
 
@@ -80,7 +81,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
 | **Report Generator** | Answer 6 questions → downloadable .md report with prioritized patterns |
 
-## Authentication (7)
+## Authentication (8)
 
 | Pattern | What it covers |
 |---------|----------------|
@@ -91,6 +92,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 | Account Recovery | Secure reset flow, one-time tokens, anti-enumeration |
 | Passkeys / WebAuthn | Create passkey, sign in (0.8s, phishing-proof), manage across devices |
 | OAuth Consent | Over-permissioned vs least privilege, granular control, explained permissions |
+| Accessible Authentication | CAPTCHA alternatives (passkey, magic link), screen reader MFA, timed actions with announcements (WCAG 2.2 SC 3.3.8) |
 
 ## Threat Response (3)
 
@@ -187,7 +189,7 @@ Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scan
 
 **EU Regulation:** GDPR, NIS2, DORA, CRA, EU AI Act, EU DSA, ePrivacy, EU Consumer Rights Directive
 
-**Standards & Compliance:** OWASP, CWE, NIST, WCAG, ISO 27001, SOC 2, PCI DSS, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act
+**Standards & Compliance:** OWASP, CWE, NIST, WCAG 2.2 (SC 3.3.8 Accessible Auth), ISO 27001, SOC 2, PCI DSS, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act
 
 **Industrial:** IEC 62443, IEC 61511, ISA-18.2, ISA-101, EEMUA 191
 

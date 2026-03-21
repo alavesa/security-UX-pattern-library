@@ -170,7 +170,7 @@ export function HomePage() {
             {[
               { value: "34", label: "patterns", color: "var(--green)" },
               { value: "8", label: "categories", color: "var(--cyan)" },
-              { value: "16", label: "regulations", color: "var(--amber)" },
+              { value: "17", label: "regulations", color: "var(--amber)" },
               { value: "4", label: "tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
@@ -691,7 +691,7 @@ export function HomePage() {
               <li><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>OWASP Top 10 (2021)</a> — Web application security risks</li>
               <li><a href="https://cwe.mitre.org/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>MITRE CWE</a> — Common Weakness Enumeration</li>
               <li><a href="https://pages.nist.gov/800-63-3/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>NIST SP 800-63B</a> — Digital Identity Guidelines</li>
-              <li><a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>WCAG 2.1</a> — Web Content Accessibility Guidelines</li>
+              <li><a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>WCAG 2.2</a> — Web Content Accessibility Guidelines (SC 3.3.8 Accessible Auth)</li>
               <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>ISO 27001</a> — Information Security Management</li>
               <li><a href="https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>SOC 2</a> — Service organization security controls</li>
               <li><a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>PCI DSS</a> — Payment Card Industry Data Security</li>

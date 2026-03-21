@@ -18,8 +18,8 @@ const QUESTIONS: MaturityQuestion[] = [
     levels: [
       "Username + password only, no strength requirements",
       "Password strength meter, rate limiting on login",
-      "MFA available, breach detection, session management",
-      "Adaptive MFA, passkeys, risk-based authentication",
+      "MFA available, breach detection, session management, WCAG 2.2 accessible auth",
+      "Adaptive MFA, passkeys, risk-based authentication, no CAPTCHA dependency",
     ],
   },
   {
@@ -162,6 +162,7 @@ export function MaturityPage() {
     const recs: { path: string; label: string; reason: string }[] = [];
     if ((answers.auth ?? 0) < 2) recs.push({ path: "/patterns/auth/password-strength", label: "Password Strength", reason: "Add real-time strength feedback" });
     if ((answers.auth ?? 0) < 3) recs.push({ path: "/patterns/auth/mfa", label: "Multi-Factor Auth", reason: "Upgrade from password-only to MFA" });
+    if ((answers.auth ?? 0) < 3) recs.push({ path: "/patterns/auth/accessible-auth", label: "Accessible Auth", reason: "Provide CAPTCHA alternatives for WCAG 2.2 SC 3.3.8 compliance" });
     if ((answers.errors ?? 0) < 2) recs.push({ path: "/patterns/auth/login", label: "Login Flow", reason: "Implement generic error messages" });
     if ((answers.data ?? 0) < 3) recs.push({ path: "/patterns/data/encryption", label: "Encryption Indicators", reason: "Show users what's encrypted" });
     if ((answers.data ?? 0) < 3) recs.push({ path: "/patterns/data/deletion", label: "Data Deletion", reason: "Add GDPR-compliant deletion flow" });

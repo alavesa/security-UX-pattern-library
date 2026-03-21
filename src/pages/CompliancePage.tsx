@@ -201,6 +201,22 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/auth/passkeys", label: "Passkeys", category: "Auth" },
       { path: "/patterns/auth/login", label: "Login Flow", category: "Auth" },
       { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
+      { path: "/patterns/auth/accessible-auth", label: "Accessible Authentication", category: "Auth" },
+    ],
+  },
+  {
+    id: "wcag",
+    name: "WCAG 2.2",
+    fullName: "Web Content Accessibility Guidelines 2.2",
+    color: "#a78bfa",
+    patterns: [
+      { path: "/patterns/auth/accessible-auth", label: "Accessible Authentication", category: "Auth" },
+      { path: "/patterns/auth/login", label: "Login Flow", category: "Auth" },
+      { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
+      { path: "/patterns/auth/passkeys", label: "Passkeys", category: "Auth" },
+      { path: "/patterns/auth/session-timeout", label: "Session Timeout", category: "Auth" },
+      { path: "/patterns/dark/cookie-consent", label: "Cookie Consent", category: "Dark Patterns" },
+      { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue", category: "Industrial" },
     ],
   },
   {
