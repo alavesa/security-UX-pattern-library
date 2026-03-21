@@ -203,6 +203,27 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
     ],
   },
+  {
+    id: "nis2",
+    name: "NIS2",
+    fullName: "Network and Information Security Directive 2 (EU)",
+    color: "#3b82f6",
+    patterns: [
+      { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
+      { path: "/patterns/auth/session-timeout", label: "Session Timeout", category: "Auth" },
+      { path: "/patterns/auth/passkeys", label: "Passkeys", category: "Auth" },
+      { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
+      { path: "/patterns/threat/suspicious-activity", label: "Suspicious Activity", category: "Threat" },
+      { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "Data" },
+      { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
+      { path: "/patterns/owasp/broken-access-control", label: "Access Control", category: "OWASP" },
+      { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
+      { path: "/patterns/owasp/security-misconfiguration", label: "Security Config", category: "OWASP" },
+      { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "Industrial" },
+      { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue", category: "Industrial" },
+      { path: "/patterns/industrial/navigation-levels", label: "Navigation Levels", category: "Industrial" },
+    ],
+  },
 ];
 
 const REG_BY_NAME = new Map(ALL_REGULATIONS.map(r => [r.name, r]));

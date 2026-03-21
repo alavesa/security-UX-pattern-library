@@ -89,7 +89,7 @@ export function HomePage() {
             {[
               { value: "30", label: "patterns", color: "var(--green)" },
               { value: "8", label: "categories", color: "var(--cyan)" },
-              { value: "13", label: "regulations", color: "var(--amber)" },
+              { value: "14", label: "regulations", color: "var(--amber)" },
               { value: "4", label: "tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
@@ -565,6 +565,7 @@ export function HomePage() {
               <li><a href="https://www.w3.org/TR/webauthn-2/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>WebAuthn Level 2</a> — Passkey / FIDO2 authentication standard</li>
               <li><a href="https://datatracker.ietf.org/doc/html/rfc6749" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>RFC 6749 (OAuth 2.0)</a> — Authorization framework</li>
               <li><a href="https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>SOC 2</a> — Service organization security controls</li>
+              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/nis2-directive" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>NIS2 Directive</a> — EU cybersecurity for essential & important entities</li>
             </ul>
           </div>
 
