@@ -17,37 +17,11 @@ function MatrixRain() {
     };
     resize();
 
-    const words = [
-      "encrypt", "shield", "auth", "trust", "guard", "secure", "access",
-      "token", "cipher", "verify", "protect", "defend", "audit", "comply",
-      "OWASP", "GDPR", "NIS2", "DORA", "CRA", "MFA", "FIDO2", "OAuth",
-      "firewall", "breach", "alert", "monitor", "detect", "respond",
-      "passkey", "hash", "salt", "TLS", "HTTPS", "zero-trust", "IAM",
-      "RBAC", "SSO", "SAML", "JWT", "HMAC", "AES-256", "RSA",
-      "phishing", "XSS", "CSRF", "inject", "sanitize", "escape",
-      "consent", "privacy", "delete", "export", "notify", "log",
-      "ISA-101", "IEC-62443", "ISA-18.2", "SOC2", "ISO-27001",
-      "alarm", "safety", "override", "confirm", "revoke", "session",
-    ];
-    const fontSize = 12;
-    const columnWidth = 80;
-    const columns = Math.floor(canvas.width / columnWidth);
-
-    interface Drop {
-      word: string;
-      x: number;
-      y: number;
-      speed: number;
-      bright: boolean;
-    }
-
-    const drops: Drop[] = Array.from({ length: columns }, (_, i) => ({
-      word: words[Math.floor(Math.random() * words.length)],
-      x: i * columnWidth + Math.random() * 20,
-      y: Math.random() * -canvas.height,
-      speed: 0.3 + Math.random() * 0.7,
-      bright: Math.random() > 0.85,
-    }));
+    // Elder Futhark + Younger Futhark + Anglo-Saxon runes
+    const runes = "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛝᛟᛞᛠᚳᚴᚵᛂᛄᛆᛋᛐᛑᛓᛔᛕᛖᛘᛙᛛᛜᛡᛢᛣᛤᛥᛦ";
+    const fontSize = 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops: number[] = Array.from({ length: columns }, () => Math.random() * -40);
 
     let animationId: number;
     let frame = 0;
@@ -59,22 +33,33 @@ function MatrixRain() {
         return;
       }
 
-      ctx.fillStyle = "rgba(10, 10, 10, 0.06)";
+      // Classic Matrix fade — dark overlay each frame
+      ctx.fillStyle = "rgba(10, 10, 10, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      for (const drop of drops) {
-        ctx.fillStyle = drop.bright ? "rgba(0, 255, 65, 0.8)" : "rgba(0, 255, 65, 0.25)";
-        ctx.font = `${fontSize}px monospace`;
-        ctx.fillText(drop.word, drop.x, drop.y);
+      ctx.font = `${fontSize}px monospace`;
 
-        drop.y += drop.speed;
+      for (let i = 0; i < drops.length; i++) {
+        const rune = runes[Math.floor(Math.random() * runes.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-        if (drop.y > canvas.height + 20) {
-          drop.word = words[Math.floor(Math.random() * words.length)];
-          drop.y = Math.random() * -100;
-          drop.x = Math.floor(Math.random() * columns) * columnWidth + Math.random() * 20;
-          drop.speed = 0.3 + Math.random() * 0.7;
-          drop.bright = Math.random() > 0.85;
+        // Head of the stream is bright white-green
+        ctx.fillStyle = "#00ff41";
+        ctx.fillText(rune, x, y);
+
+        // Trail character slightly above is dimmer
+        if (drops[i] > 1) {
+          const trailRune = runes[Math.floor(Math.random() * runes.length)];
+          ctx.fillStyle = "rgba(0, 255, 65, 0.3)";
+          ctx.fillText(trailRune, x, (drops[i] - 1) * fontSize);
+        }
+
+        drops[i]++;
+
+        // Reset drop randomly after passing the bottom
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
         }
       }
 
