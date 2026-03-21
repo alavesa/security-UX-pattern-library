@@ -23,9 +23,9 @@ function evaluatePassword(pw: string) {
   const passed = checks.filter(c => c.pass).length;
   const score = pw.length === 0 ? 0 : breached ? 0 : passed <= 2 ? 1 : passed <= 4 ? 2 : passed <= 5 ? 3 : 4;
   const labels = ["", "Weak", "Fair", "Strong", "Very Strong"];
-  const colors = ["", "bg-red-500", "bg-orange-500", "bg-blue-500", "bg-green-500"];
+  const colors = ["", "var(--red)", "#ff6600", "var(--cyan)", "var(--green)"];
 
-  return { checks, score, label: breached ? "Breached" : labels[score], color: breached ? "bg-red-500" : colors[score], breached };
+  return { checks, score, label: breached ? "Breached" : labels[score], color: breached ? "var(--red)" : colors[score], breached };
 }
 
 function PasswordDemo() {
@@ -47,18 +47,18 @@ function PasswordDemo() {
   if (submitted) {
     return (
       <div className="w-full max-w-sm">
-        <div className="rounded-2xl border p-8 text-center">
-          <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-            <ShieldCheck className="w-7 h-7" />
+        <div className="rounded-2xl p-8 text-center" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(0,255,65,0.1)" }}>
+            <ShieldCheck className="w-7 h-7" style={{ color: "var(--green)" }} />
           </div>
-          <h2 className="text-xl font-bold mb-1">Password set!</h2>
-          <p className="text-sm mb-4">Your new password is strong and secure.</p>
-          <div className="border rounded-lg p-3 text-left mb-4">
-            <p className="text-xs">
+          <h2 className="text-xl font-bold font-mono mb-1" style={{ color: "var(--green)" }}>Password set!</h2>
+          <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Your new password is strong and secure.</p>
+          <div className="rounded-lg p-3 text-left mb-4" style={{ background: "rgba(0,229,255,0.05)", border: "1px solid rgba(0,229,255,0.2)" }}>
+            <p className="text-xs font-mono" style={{ color: "var(--cyan)" }}>
               <strong>Behind the scenes:</strong> Password hashed with bcrypt (cost factor 12). Previous hash removed. All sessions invalidated. Confirmation email sent.
             </p>
           </div>
-          <button onClick={() => { setSubmitted(false); setPassword(""); setConfirm(""); }} className="text-sm hover: bg-transparent border-none cursor-pointer">
+          <button type="button" onClick={() => { setSubmitted(false); setPassword(""); setConfirm(""); }} className="text-sm font-mono bg-transparent border-none cursor-pointer" style={{ color: "var(--text-dim)" }}>
             Try another password
           </button>
         </div>
@@ -68,14 +68,14 @@ function PasswordDemo() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="rounded-2xl border p-8">
-        <h2 className="text-xl font-bold mb-1">Create password</h2>
-        <p className="text-sm mb-6">Choose a strong password for your account</p>
+      <div className="rounded-2xl p-6 sm:p-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <h2 className="text-xl font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Create password</h2>
+        <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>Choose a strong password for your account</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Password field */}
           <div>
-            <label htmlFor="new-password" className="block text-sm font-medium mb-1">New password</label>
+            <label htmlFor="new-password" className="block text-sm font-medium font-mono mb-1" style={{ color: "var(--text-bright)" }}>New password</label>
             <div className="relative">
               <input
                 id="new-password"
@@ -104,16 +104,17 @@ function PasswordDemo() {
                 {[1, 2, 3, 4].map(i => (
                   <div
                     key={i}
-                    className={`h-1.5 flex-1 rounded-full transition-all ${i <= (breached ? 1 : score) ? color : ""}`}
+                    className="h-1.5 flex-1 rounded-full transition-all"
+                    style={{ background: i <= (breached ? 1 : score) ? color : "var(--border)" }}
                   />
                 ))}
               </div>
               <div className="flex justify-between items-center">
-                <span className={`text-xs font-medium ${breached || score <= 1 ? "" : score <= 2 ? "text-orange-600" : score <= 3 ? "" : ""}`}>
+                <span className="text-xs font-medium font-mono" style={{ color }}>
                   {label}
                 </span>
                 {score <= 1 && !breached && (
-                  <span className="text-xs flex items-center gap-1">
+                  <span className="text-xs font-mono flex items-center gap-1" style={{ color: "var(--amber)" }}>
                     <AlertTriangle className="w-3 h-3" /> Easily guessable
                   </span>
                 )}
@@ -121,24 +122,24 @@ function PasswordDemo() {
 
               {/* Breach warning */}
               {breached && (
-                <div className="flex items-start gap-2 text-sm p-3 rounded-lg border" role="alert">
-                  <ShieldAlert className="w-5 h-5 mt-0.5 shrink-0" />
+                <div className="flex items-start gap-2 text-sm p-3 rounded-lg" role="alert" style={{ background: "rgba(255,51,51,0.1)", border: "1px solid rgba(255,51,51,0.3)" }}>
+                  <ShieldAlert className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} />
                   <div>
-                    <strong className="block text-xs">Password found in data breach!</strong>
-                    <span className="text-xs">This password appeared in known breaches and should never be used. Attackers try these first.</span>
+                    <strong className="block text-xs font-mono" style={{ color: "var(--red)" }}>Password found in data breach!</strong>
+                    <span className="text-xs font-mono" style={{ color: "var(--text)" }}>This password appeared in known breaches and should never be used. Attackers try these first.</span>
                   </div>
                 </div>
               )}
 
               {/* Checklist */}
-              <div className="space-y-1.5 border-t pt-3">
-                {checks.map(({ label, pass }) => (
-                  <div key={label} className="flex items-center gap-2 text-sm">
+              <div className="space-y-1.5 pt-3" style={{ borderTop: "1px solid var(--border)" }}>
+                {checks.map(({ label: checkLabel, pass }) => (
+                  <div key={checkLabel} className="flex items-center gap-2 text-sm font-mono">
                     {pass
-                      ? <CheckCircle2 className="w-4 h-4 shrink-0" />
-                      : <XCircle className="w-4 h-4 shrink-0" />
+                      ? <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: "var(--green)" }} />
+                      : <XCircle className="w-4 h-4 shrink-0" style={{ color: "var(--text-dim)" }} />
                     }
-                    <span className={pass ? "" : ""}>{label}</span>
+                    <span style={{ color: pass ? "var(--green)" : "var(--text-dim)" }}>{checkLabel}</span>
                   </div>
                 ))}
               </div>
@@ -147,7 +148,7 @@ function PasswordDemo() {
 
           {/* Confirm password */}
           <div>
-            <label htmlFor="confirm-password" className="block text-sm font-medium mb-1">Confirm password</label>
+            <label htmlFor="confirm-password" className="block text-sm font-medium font-mono mb-1" style={{ color: "var(--text-bright)" }}>Confirm password</label>
             <div className="relative">
               <input
                 id="confirm-password"
@@ -155,29 +156,29 @@ function PasswordDemo() {
                 value={confirm}
                 onChange={e => setConfirm(e.target.value)}
                 placeholder="Re-enter your password"
-                className={`w-full px-3 py-2 pr-10 border rounded-lg text-sm focus:outline-none focus:ring-2 ${
-                  confirm.length > 0
-                    ? passwordsMatch
-                      ? " "
-                      : " "
-                    : " "
-                }`}
+                className="w-full px-3 py-2 pr-10 rounded-lg text-sm font-mono focus:outline-none"
+                style={{
+                  background: "var(--bg)",
+                  color: "var(--text-bright)",
+                  border: `1px solid ${confirm.length > 0 ? (passwordsMatch ? "var(--green)" : "var(--red)") : "var(--border)"}`,
+                }}
                 autoComplete="new-password"
               />
               <button
                 type="button"
                 onClick={() => setShowConfirm(!showConfirm)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 hover: bg-transparent border-none cursor-pointer"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-transparent border-none cursor-pointer"
                 aria-label={showConfirm ? "Hide confirm password" : "Show confirm password"}
+                style={{ color: "var(--text-dim)" }}
               >
                 {showConfirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
             {confirm.length > 0 && !passwordsMatch && (
-              <p className="text-xs mt-1">Passwords don't match</p>
+              <p className="text-xs font-mono mt-1" style={{ color: "var(--red)" }}>Passwords don't match</p>
             )}
             {passwordsMatch && (
-              <p className="text-xs mt-1 flex items-center gap-1">
+              <p className="text-xs font-mono mt-1 flex items-center gap-1" style={{ color: "var(--green)" }}>
                 <CheckCircle2 className="w-3 h-3" /> Passwords match
               </p>
             )}
@@ -186,7 +187,8 @@ function PasswordDemo() {
           <button
             type="submit"
             disabled={!canSubmit}
-            className="w-full text-white py-2.5 rounded-lg font-medium text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="w-full py-2.5 rounded-lg font-medium font-mono text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-colors border-none cursor-pointer"
+            style={{ background: canSubmit ? "var(--green)" : "var(--bg-elevated)", color: canSubmit ? "var(--bg)" : "var(--text-dim)" }}
           >
             Set password
           </button>
