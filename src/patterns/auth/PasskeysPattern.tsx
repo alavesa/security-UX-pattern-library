@@ -2,13 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Fingerprint, Smartphone, Shield, CheckCircle2, Loader2, Key, Monitor, AlertTriangle } from "lucide-react";
+import { Fingerprint, Smartphone, CheckCircle2, Loader2, Key, Monitor, AlertTriangle } from "lucide-react";
 
 function PasskeysDemo() {
   const [scenario, setScenario] = useState<"register" | "login" | "manage">("register");
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const simulateAuth = (nextStep: number) => {
     setLoading(true);

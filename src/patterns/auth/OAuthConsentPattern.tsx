@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Shield, ShieldOff, CheckCircle2, XCircle, ExternalLink, AlertTriangle, Eye } from "lucide-react";
+import { Shield, ShieldOff, CheckCircle2, XCircle, Eye } from "lucide-react";
 
 const REQUIRED_PERMISSIONS = ['profile', 'email'] as const;
 

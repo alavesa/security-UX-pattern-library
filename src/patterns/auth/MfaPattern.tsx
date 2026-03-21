@@ -13,8 +13,8 @@ function MfaDemo() {
   const [backupCode, setBackupCode] = useState("");
   const [failCount, setFailCount] = useState(0);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-  const verifyTimerRef = useRef<ReturnType<typeof setTimeout>>();
-  const clearTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const verifyTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const clearTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const backupInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { FileText, Download, Shield, AlertTriangle, CheckCircle2, Copy, CheckCheck } from "lucide-react";
+import { FileText, Download, CheckCircle2, Copy, CheckCheck } from "lucide-react";
 import { ALL_PATTERNS } from "../data/patterns";
 
 type RiskLevel = 'low' | 'medium' | 'high' | 'critical';

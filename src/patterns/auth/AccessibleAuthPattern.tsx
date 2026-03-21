@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Accessibility, Eye, EyeOff, CheckCircle2, XCircle, AlertTriangle, Clock, Fingerprint, Mail, Shield } from "lucide-react";
+import { Accessibility, CheckCircle2, XCircle, AlertTriangle, Clock, Fingerprint, Mail, Shield } from "lucide-react";
 
 type Scenario = "captcha" | "mfa" | "timeout";
 type CaptchaView = "inaccessible" | "accessible";
