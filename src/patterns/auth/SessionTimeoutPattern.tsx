@@ -52,11 +52,14 @@ function SessionTimeoutDemo() {
     setPhase("active");
   }, []);
 
+  const phaseColor = phase === "active" ? "var(--green)" : phase === "warning" ? "var(--amber)" : "var(--red)";
+  const phaseBg = phase === "active" ? "rgba(0,255,65,0.15)" : phase === "warning" ? "rgba(255,170,0,0.15)" : "rgba(255,51,51,0.15)";
+
   if (!running) {
     return (
       <div className="text-center">
-        <p className="text-sm mb-4">Demo: {TIMEOUT_SECONDS}s session with warning at {WARNING_AT}s remaining</p>
-        <button onClick={start} className="text-white px-6 py-2.5 rounded-lg font-medium text-sm transition-colors border-none cursor-pointer">
+        <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Demo: {TIMEOUT_SECONDS}s session with warning at {WARNING_AT}s remaining</p>
+        <button type="button" onClick={start} className="px-6 py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer" style={{ background: "var(--green)", color: "var(--bg)" }}>
           Start session timer
         </button>
       </div>
@@ -66,43 +69,37 @@ function SessionTimeoutDemo() {
   return (
     <div className="w-full max-w-md">
       {/* Active session indicator */}
-      <div className="rounded-2xl border p-6 mb-4">
+      <div className="rounded-2xl p-6 mb-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-medium">Session Status</span>
-          <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-            phase === "active" ? " " :
-            phase === "warning" ? " " :
-            " "
-          }`}>
+          <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>Session Status</span>
+          <span className="text-xs font-medium font-mono px-2.5 py-1 rounded-full" style={{ background: phaseBg, color: phaseColor }}>
             {phase === "active" ? "Active" : phase === "warning" ? "Expiring" : "Expired"}
           </span>
         </div>
 
         {/* Progress bar */}
-        <div className="h-2 rounded-full overflow-hidden mb-2">
+        <div className="h-2 rounded-full overflow-hidden mb-2" style={{ background: "var(--border)" }}>
           <div
-            className={`h-full rounded-full transition-all duration-1000 ${
-              phase === "active" ? "bg-green-500" : phase === "warning" ? "bg-amber-500" : "bg-red-500"
-            }`}
-            style={{ width: `${(secondsLeft / TIMEOUT_SECONDS) * 100}%` }}
+            className="h-full rounded-full transition-all duration-1000"
+            style={{ width: `${(secondsLeft / TIMEOUT_SECONDS) * 100}%`, background: phaseColor }}
           />
         </div>
-        <p className="text-xs text-right">{secondsLeft}s remaining</p>
+        <p className="text-xs font-mono text-right" style={{ color: phaseColor }}>{secondsLeft}s remaining</p>
       </div>
 
       {/* Warning modal */}
       {phase === "warning" && (
-        <div className="border rounded-2xl p-6 text-center" role="alertdialog" aria-label="Session expiring">
-          <AlertTriangle className="w-10 h-10 mx-auto mb-3" />
-          <h3 className="font-bold mb-1">Session expiring</h3>
-          <p className="text-sm mb-1">Your session will expire in <strong>{secondsLeft} seconds</strong>.</p>
+        <div className="rounded-2xl p-6 text-center" role="alertdialog" aria-label="Session expiring" style={{ background: "rgba(255,170,0,0.08)", border: "2px solid rgba(255,170,0,0.3)" }}>
+          <AlertTriangle className="w-10 h-10 mx-auto mb-3" style={{ color: "var(--amber)" }} />
+          <h3 className="font-bold font-mono mb-1" style={{ color: "var(--amber)" }}>Session expiring</h3>
+          <p className="text-sm font-mono mb-1" style={{ color: "var(--text-bright)" }}>Your session will expire in <strong style={{ color: "var(--amber)" }}>{secondsLeft} seconds</strong>.</p>
           <span className="sr-only" aria-live="polite" aria-atomic="true">{(secondsLeft % 5 === 0 || secondsLeft <= 5) ? `${secondsLeft} seconds remaining` : ""}</span>
-          <p className="text-xs mb-4">Any unsaved changes will be preserved.</p>
+          <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>Any unsaved changes will be preserved.</p>
           <div className="flex gap-3 justify-center">
-            <button ref={stayBtnRef} onClick={extend} className="text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors border-none cursor-pointer">
+            <button type="button" ref={stayBtnRef} onClick={extend} className="px-5 py-2 rounded-lg text-sm font-medium font-mono border-none cursor-pointer" style={{ background: "var(--green)", color: "var(--bg)" }}>
               Stay signed in
             </button>
-            <button onClick={() => { setPhase("expired"); setSecondsLeft(0); }} className="border px-5 py-2 rounded-lg text-sm font-medium hover: transition-colors cursor-pointer">
+            <button type="button" onClick={() => { setPhase("expired"); setSecondsLeft(0); }} className="px-5 py-2 rounded-lg text-sm font-medium font-mono cursor-pointer" style={{ background: "transparent", color: "var(--text)", border: "1px solid var(--border)" }}>
               Sign out
             </button>
           </div>
@@ -111,17 +108,17 @@ function SessionTimeoutDemo() {
 
       {/* Expired */}
       {phase === "expired" && (
-        <div className="border rounded-2xl p-6 text-center" role="alert">
-          <Timer className="w-10 h-10 mx-auto mb-3" />
-          <h3 className="font-bold mb-1">Session expired</h3>
-          <p className="text-sm mb-4">You've been signed out for your security. Your work has been auto-saved.</p>
-          <button onClick={reset} className="text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors border-none cursor-pointer">
+        <div className="rounded-2xl p-6 text-center" role="alert" style={{ background: "rgba(255,51,51,0.08)", border: "2px solid rgba(255,51,51,0.3)" }}>
+          <Timer className="w-10 h-10 mx-auto mb-3" style={{ color: "var(--red)" }} />
+          <h3 className="font-bold font-mono mb-1" style={{ color: "var(--red)" }}>Session expired</h3>
+          <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>You've been signed out for your security. Your work has been auto-saved.</p>
+          <button type="button" onClick={reset} className="px-5 py-2 rounded-lg text-sm font-medium font-mono border-none cursor-pointer" style={{ background: "var(--green)", color: "var(--bg)" }}>
             Sign in again
           </button>
         </div>
       )}
 
-      <button onClick={reset} className="mt-4 text-xs hover: mx-auto block bg-transparent border-none cursor-pointer">
+      <button type="button" onClick={reset} className="mt-4 text-xs font-mono mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text-dim)" }}>
         Reset demo
       </button>
     </div>
