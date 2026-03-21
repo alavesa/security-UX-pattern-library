@@ -87,9 +87,9 @@ export function HomePage() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
-              { value: "28", label: "patterns", color: "var(--green)" },
-              { value: "7", label: "categories", color: "var(--cyan)" },
-              { value: "8", label: "regulations", color: "var(--amber)" },
+              { value: "29", label: "patterns", color: "var(--green)" },
+              { value: "8", label: "categories", color: "var(--cyan)" },
+              { value: "13", label: "regulations", color: "var(--amber)" },
               { value: "4", label: "tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
