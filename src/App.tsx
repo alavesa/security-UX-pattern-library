@@ -36,6 +36,7 @@ import { AIDecisionExplanationPattern } from "./patterns/ai/AIDecisionExplanatio
 import { OperatorAuthPattern } from "./patterns/industrial/OperatorAuthPattern";
 import { SafetyCriticalPattern } from "./patterns/industrial/SafetyCriticalPattern";
 import { AlarmFatiguePattern } from "./patterns/industrial/AlarmFatiguePattern";
+import { NavigationLevelsPattern } from "./patterns/industrial/NavigationLevelsPattern";
 
 export default function App() {
   return (
@@ -76,6 +77,7 @@ export default function App() {
           <Route path="patterns/industrial/operator-auth" element={<PatternPage><OperatorAuthPattern /></PatternPage>} />
           <Route path="patterns/industrial/safety-critical" element={<PatternPage><SafetyCriticalPattern /></PatternPage>} />
           <Route path="patterns/industrial/alarm-fatigue" element={<PatternPage><AlarmFatiguePattern /></PatternPage>} />
+          <Route path="patterns/industrial/navigation-levels" element={<PatternPage><NavigationLevelsPattern /></PatternPage>} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

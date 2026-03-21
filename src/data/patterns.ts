@@ -55,6 +55,7 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "industrial", tags: ["industrial", "IEC 62443", "OT security", "badge", "biometric", "emergency"] },
   { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "industrial", tags: ["industrial", "IEC 61511", "safety", "emergency shutdown", "override"] },
   { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue Management", category: "industrial", tags: ["industrial", "ISA-18.2", "EEMUA 191", "alarm management", "HMI"] },
+  { path: "/patterns/industrial/navigation-levels", label: "Navigation & Levels of Detail", category: "industrial", tags: ["industrial", "ISA-101", "HMI", "navigation", "drill-down", "levels of detail"] },
   // Governance
   { path: "/patterns/governance/design-review", label: "Security Design Review", category: "governance", tags: ["governance", "design system", "review", "checklist", "process"] },
 ];

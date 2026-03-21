@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers } from "lucide-react";
 
 const AUTH_PATTERNS = [
   {
@@ -180,6 +180,7 @@ export function HomePage() {
               { path: "/patterns/industrial/operator-auth", name: "operator_auth", ref: "IEC 62443" },
               { path: "/patterns/industrial/safety-critical", name: "safety_critical", ref: "IEC 61511" },
               { path: "/patterns/industrial/alarm-fatigue", name: "alarm_fatigue", ref: "ISA-18.2" },
+              { path: "/patterns/industrial/navigation-levels", name: "navigation_levels", ref: "ISA-101" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
                 {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
@@ -407,6 +408,7 @@ export function HomePage() {
               { path: "/patterns/industrial/operator-auth", label: "operator_auth", icon: Fingerprint, description: "Badge + PIN for gloved hands, adaptive biometrics, emergency override with accountability" },
               { path: "/patterns/industrial/safety-critical", label: "safety_critical", icon: Zap, description: "Emergency shutdown hold-to-confirm, graduated safety overrides, parameter change with range context" },
               { path: "/patterns/industrial/alarm-fatigue", label: "alarm_fatigue", icon: Bell, description: "Alarm flood vs smart grouping, root cause highlighting, alarm shelving — ISA-18.2 compliant" },
+              { path: "/patterns/industrial/navigation-levels", label: "navigation_levels", icon: Layers, description: "ISA-101 4-level HMI hierarchy — plant overview to diagnostic detail with breadcrumbs and alarm navigation" },
             ].map(({ path, label, icon: Icon, description }) => (
               <Link
                 key={path}
