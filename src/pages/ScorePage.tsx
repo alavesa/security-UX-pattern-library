@@ -54,6 +54,16 @@ const CHECKS: CheckItem[] = [
   { id: "ind-safety", question: "Safety-critical actions use graduated confirmation (hold-to-confirm)", category: "Industrial", weight: 5, tip: "IEC 61511 — safety actions must never be blocked by auth" },
   { id: "ind-alarms", question: "Alarm management follows ISA-18.2 (max 6/hour, grouped by root cause)", category: "Industrial", weight: 5, tip: "Alarm fatigue contributed to Deepwater Horizon, Texas City disasters" },
   { id: "ind-nav", question: "HMI follows ISA-101 navigation hierarchy (overview → area → unit → detail)", category: "Industrial", weight: 5, tip: "Operators must reach any detail within 3 clicks during abnormal situations" },
+
+  // OWASP (15 points)
+  { id: "owasp-access", question: "Access control enforced at UI level (role-based views, disabled actions)", category: "OWASP", weight: 5, tip: "A01 Broken Access Control — #1 most common vulnerability" },
+  { id: "owasp-config", question: "Security headers visible to users (HTTPS, CSP status)", category: "OWASP", weight: 5, tip: "A05 Security Misconfiguration — debug mode and default creds exposed" },
+  { id: "owasp-logging", question: "Security events logged and visible to admins/users", category: "OWASP", weight: 5, tip: "A09 Logging — average breach detection is 204 days without monitoring" },
+
+  // Governance (15 points — skip if not applicable)
+  { id: "gov-review", question: "Security UX changes go through a design review process", category: "Governance", weight: 5, tip: "Without review, each team reinvents security UX differently" },
+  { id: "gov-change", question: "Change management process exists for security UX changes", category: "Governance", weight: 5, tip: "IEC 62443 and ISO 27001 require formal change management" },
+  { id: "gov-audit", question: "Regular compliance audits are conducted against applicable regulations", category: "Governance", weight: 5, tip: "NIS2 Art. 21 requires regular security audits" },
 ];
 
 const MAX_SCORE = CHECKS.reduce((sum, c) => sum + c.weight, 0);
