@@ -41,7 +41,7 @@ function LoggingMonitoringDemo() {
     setDone(false);
     idxRef.current = 0;
 
-    const filteredLogs = filter === "all" ? [...MOCK_LOGS] :
+    const filteredLogs = filter === "all" ? MOCK_LOGS :
       MOCK_LOGS.filter(l => filter === "critical" ? l.type === "critical" : l.type === "warning" || l.type === "critical");
 
     const timer = setInterval(() => {
@@ -78,7 +78,7 @@ function LoggingMonitoringDemo() {
             <div className="flex gap-1">
               {(["all", "warning", "critical"] as const).map(f => (
                 <button key={f} onClick={() => setFilter(f)} className="text-xs px-2 py-0.5 rounded font-mono border-none cursor-pointer" style={{ background: filter === f ? "rgba(0,255,65,0.2)" : "transparent", color: filter === f ? "#00ff41" : "#666" }}>
-                  {f}
+                  {f === "warning" ? "≥ warning" : f}
                 </button>
               ))}
             </div>
@@ -116,7 +116,7 @@ function LoggingMonitoringDemo() {
           </h3>
 
           <div className="space-y-3">
-            <div role="alert" aria-live="assertive" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
+            <div role="alert" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
                 <div>
@@ -130,7 +130,7 @@ function LoggingMonitoringDemo() {
               </div>
             </div>
 
-            <div role="alert" aria-live="polite" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
+            <div role="alert" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
                 <div>
@@ -144,7 +144,7 @@ function LoggingMonitoringDemo() {
               </div>
             </div>
 
-            <div role="alert" aria-live="polite" className="border border-amber-200 bg-amber-50 rounded-lg p-4">
+            <div role="status" aria-live="polite" className="border border-amber-200 bg-amber-50 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" />
                 <div>

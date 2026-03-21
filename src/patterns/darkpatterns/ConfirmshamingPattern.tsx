@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Shield, ShieldOff, ArrowRight } from "lucide-react";
+import { Shield, ShieldOff } from "lucide-react";
 
 function ConfirmshamingDemo() {
   const [view, setView] = useState<"dark" | "ethical">("dark");
@@ -14,30 +14,34 @@ function ConfirmshamingDemo() {
     setEthicalChoice(null);
   };
 
+  const choiceLabels: Record<string, string> = { enabled: "Set up now", later: "Remind me later", skip: "Skip for now" };
+
   return (
     <div className="w-full max-w-xl">
       {/* Toggle */}
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <button
+          type="button"
           onClick={() => { setView("dark"); reset(); }}
           className={`flex-1 text-xs py-2 rounded-md font-mono transition-colors border-none cursor-pointer ${view === "dark" ? "font-medium" : ""}`}
           style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}
         >
-          <ShieldOff className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
+          <ShieldOff className="w-3.5 h-3.5 inline mr-1" aria-hidden="true" /> Dark Pattern
         </button>
         <button
+          type="button"
           onClick={() => { setView("ethical"); reset(); }}
           className={`flex-1 text-xs py-2 rounded-md font-mono transition-colors border-none cursor-pointer ${view === "ethical" ? "font-medium" : ""}`}
           style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}
         >
-          <Shield className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
+          <Shield className="w-3.5 h-3.5 inline mr-1" aria-hidden="true" /> Ethical Alternative
         </button>
       </div>
 
       {/* Dark pattern version */}
       {view === "dark" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-red-200 overflow-hidden">
-          <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono" style={{ position: "relative", textAlign: "right" }}>
+        <div className="relative bg-white rounded-2xl shadow-lg border-2 border-red-200 overflow-hidden">
+          <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono text-right">
             DARK PATTERN
           </div>
 
@@ -48,10 +52,11 @@ function ConfirmshamingDemo() {
               <p className="text-sm text-gray-600 mb-6">Protect your account with an extra layer of security.</p>
 
               <div className="space-y-3">
-                <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-sm hover:bg-blue-700 transition-colors border-none cursor-pointer">
+                <button type="button" className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-sm hover:bg-blue-700 transition-colors border-none cursor-pointer">
                   Yes, protect my account
                 </button>
                 <button
+                  type="button"
                   onClick={() => setDarkDismissed(true)}
                   className="w-full text-sm py-2 bg-transparent border-none cursor-pointer"
                   style={{ color: "#999" }}
@@ -80,8 +85,8 @@ function ConfirmshamingDemo() {
 
       {/* Ethical version */}
       {view === "ethical" && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-green-200 overflow-hidden">
-          <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono" style={{ position: "relative", textAlign: "right" }}>
+        <div className="relative bg-white rounded-2xl shadow-lg border-2 border-green-200 overflow-hidden">
+          <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded font-mono text-right">
             ETHICAL
           </div>
 
@@ -94,18 +99,21 @@ function ConfirmshamingDemo() {
 
               <div className="space-y-2">
                 <button
+                  type="button"
                   onClick={() => setEthicalChoice("enabled")}
                   className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors border-none cursor-pointer"
                 >
                   Set up now
                 </button>
                 <button
+                  type="button"
                   onClick={() => setEthicalChoice("later")}
                   className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors bg-white cursor-pointer"
                 >
                   Remind me later
                 </button>
                 <button
+                  type="button"
                   onClick={() => setEthicalChoice("skip")}
                   className="w-full text-sm py-2 text-gray-500 bg-transparent border-none cursor-pointer hover:text-gray-700"
                 >
@@ -116,7 +124,7 @@ function ConfirmshamingDemo() {
           ) : (
             <div className="p-8 text-center">
               <p className="text-sm text-gray-500 mb-4">
-                You chose: <strong>{ethicalChoice === "enabled" ? "Set up now" : ethicalChoice === "later" ? "Remind me later" : "Skip for now"}</strong>
+                You chose: <strong>{choiceLabels[ethicalChoice] ?? ethicalChoice}</strong>
               </p>
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-left">
                 <h3 className="text-sm font-semibold text-green-800 mb-2">What's right here:</h3>
@@ -133,7 +141,7 @@ function ConfirmshamingDemo() {
         </div>
       )}
 
-      <button onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
+      <button type="button" onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
         Reset demo
       </button>
     </div>

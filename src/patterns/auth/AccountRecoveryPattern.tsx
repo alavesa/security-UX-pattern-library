@@ -7,6 +7,9 @@ import { Mail, ArrowRight, CheckCircle2, Shield } from "lucide-react";
 function AccountRecoveryDemo() {
   const [step, setStep] = useState<"email" | "sent" | "verify" | "reset" | "done">("email");
   const [email, setEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [resetError, setResetError] = useState("");
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,15 +18,27 @@ function AccountRecoveryDemo() {
     setStep("sent");
   };
 
-  const handleVerify = () => setStep("reset");
+  const handleVerify = () => setStep("verify");
   const handleReset = (e: React.FormEvent) => {
     e.preventDefault();
+    if (newPassword.length < 12) {
+      setResetError("Password must be at least 12 characters.");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setResetError("Passwords do not match.");
+      return;
+    }
+    setResetError("");
     setStep("done");
   };
 
   const reset = () => {
     setStep("email");
     setEmail("");
+    setNewPassword("");
+    setConfirmPassword("");
+    setResetError("");
   };
 
   return (
@@ -35,14 +50,16 @@ function AccountRecoveryDemo() {
             <p className="text-sm text-gray-500 mb-6">Enter your email and we'll send you a reset link.</p>
             <form onSubmit={handleEmailSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email address</label>
+                <label htmlFor="recovery-email" className="block text-sm font-medium text-gray-700 mb-1">Email address</label>
                 <input
+                  id="recovery-email"
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   autoComplete="email"
+                  required
                 />
               </div>
               <button type="submit" className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
@@ -97,13 +114,14 @@ function AccountRecoveryDemo() {
             <p className="text-sm text-gray-500 mb-6">Choose a strong password you haven't used before.</p>
             <form onSubmit={handleReset} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">New password</label>
-                <input type="password" placeholder="Minimum 12 characters" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <label htmlFor="new-password" className="block text-sm font-medium text-gray-700 mb-1">New password</label>
+                <input id="new-password" type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="Minimum 12 characters" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" autoComplete="new-password" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Confirm password</label>
-                <input type="password" placeholder="Re-enter your password" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700 mb-1">Confirm password</label>
+                <input id="confirm-password" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Re-enter your password" className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" autoComplete="new-password" />
               </div>
+              {resetError && <p className="text-sm text-red-600">{resetError}</p>}
               <button type="submit" className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors">
                 Update password
               </button>

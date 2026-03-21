@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Shield, ShieldAlert, Lock, Users, Eye, EyeOff, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { ShieldAlert, Lock, Users, Eye, CheckCircle2 } from "lucide-react";
 
 type Role = "viewer" | "editor" | "admin";
 
@@ -17,6 +17,7 @@ function BrokenAccessControlDemo() {
   const [currentRole, setCurrentRole] = useState<Role>("viewer");
   const [idorId, setIdorId] = useState("12345");
   const [elevationAttempted, setElevationAttempted] = useState(false);
+  const [idorSubmitted, setIdorSubmitted] = useState(false);
 
   const perms = PERMISSIONS[currentRole];
 
@@ -24,14 +25,15 @@ function BrokenAccessControlDemo() {
     setCurrentRole("viewer");
     setIdorId("12345");
     setElevationAttempted(false);
+    setIdorSubmitted(false);
   };
 
   return (
     <div className="w-full max-w-lg">
       {/* Scenario toggle */}
-      <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+      <div role="tablist" className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["rbac", "idor", "elevation"] as const).map(s => (
-          <button key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button key={s} role="tab" aria-selected={scenario === s} aria-controls={`panel-${s}`} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
             {s === "rbac" ? "Role-Based UI" : s === "idor" ? "IDOR Prevention" : "Privilege Escalation"}
           </button>
         ))}
@@ -39,7 +41,7 @@ function BrokenAccessControlDemo() {
 
       {/* RBAC demo */}
       {scenario === "rbac" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div role="tabpanel" id="panel-rbac" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-gray-900 text-sm">Document: Q4 Report</h3>
             <div className="flex items-center gap-2">
@@ -83,14 +85,18 @@ function BrokenAccessControlDemo() {
               <Eye className="w-4 h-4" /> View Document
             </button>
             <button
-              disabled={!perms.canEdit}
-              className="w-full flex items-center justify-center gap-2 border border-gray-300 text-gray-700 py-2 rounded-lg text-sm font-medium bg-white cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              aria-disabled={!perms.canEdit}
+              aria-label={!perms.canEdit ? 'Edit Document — requires Editor role or above' : undefined}
+              onClick={e => { if (!perms.canEdit) { e.preventDefault(); return; } }}
+              className="w-full flex items-center justify-center gap-2 border border-gray-300 text-gray-700 py-2 rounded-lg text-sm font-medium bg-white cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
             >
               Edit Document {!perms.canEdit && <Lock className="w-3 h-3 text-gray-400" />}
             </button>
             <button
-              disabled={!perms.canDelete}
-              className="w-full flex items-center justify-center gap-2 border border-red-200 text-red-600 py-2 rounded-lg text-sm font-medium bg-white cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              aria-disabled={!perms.canDelete}
+              aria-label={!perms.canDelete ? 'Delete Document — requires Admin role' : undefined}
+              onClick={e => { if (!perms.canDelete) { e.preventDefault(); return; } }}
+              className="w-full flex items-center justify-center gap-2 border border-red-200 text-red-600 py-2 rounded-lg text-sm font-medium bg-white cursor-pointer aria-disabled:opacity-40 aria-disabled:cursor-not-allowed"
             >
               Delete Document {!perms.canDelete && <Lock className="w-3 h-3 text-gray-400" />}
             </button>
@@ -104,7 +110,7 @@ function BrokenAccessControlDemo() {
 
       {/* IDOR prevention */}
       {scenario === "idor" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div role="tabpanel" id="panel-idor" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
           <h3 className="font-bold text-gray-900 text-sm mb-4">Access user profile</h3>
 
           <div className="mb-4">
@@ -112,12 +118,12 @@ function BrokenAccessControlDemo() {
             <div className="flex gap-2">
               <input
                 value={idorId}
-                onChange={e => setIdorId(e.target.value)}
+                onChange={e => { setIdorId(e.target.value); setIdorSubmitted(false); }}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono"
                 placeholder="Enter user ID"
               />
               <button
-                onClick={() => {}}
+                onClick={() => setIdorSubmitted(true)}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium border-none cursor-pointer"
               >
                 View
@@ -125,7 +131,7 @@ function BrokenAccessControlDemo() {
             </div>
           </div>
 
-          {idorId === "12345" && (
+          {idorSubmitted && idorId === "12345" && (
             <div className="border border-green-200 bg-green-50 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -135,8 +141,8 @@ function BrokenAccessControlDemo() {
             </div>
           )}
 
-          {idorId !== "12345" && idorId.length > 0 && (
-            <div className="border border-red-200 bg-red-50 rounded-lg p-4">
+          {idorSubmitted && idorId !== "12345" && idorId.length > 0 && (
+            <div role="alert" className="border border-red-200 bg-red-50 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
                 <ShieldAlert className="w-4 h-4 text-red-600" />
                 <span className="text-sm font-medium text-red-800">Access denied</span>
@@ -156,7 +162,7 @@ function BrokenAccessControlDemo() {
 
       {/* Privilege escalation */}
       {scenario === "elevation" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div role="tabpanel" id="panel-elevation" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
           <h3 className="font-bold text-gray-900 text-sm mb-2">Account settings</h3>
           <p className="text-xs text-gray-500 mb-4">Current role: <strong>Editor</strong></p>
 
@@ -187,7 +193,7 @@ function BrokenAccessControlDemo() {
               Simulate: try to change role via API manipulation
             </button>
           ) : (
-            <div className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
+            <div role="alert" className="border-2 border-red-300 bg-red-50 rounded-lg p-4">
               <div className="flex items-start gap-2 mb-3">
                 <ShieldAlert className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
                 <div>

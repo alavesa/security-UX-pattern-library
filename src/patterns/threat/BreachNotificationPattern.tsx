@@ -2,7 +2,13 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { ShieldAlert, ChevronDown, ChevronUp, ExternalLink, CheckCircle2, Clock, AlertTriangle } from "lucide-react";
+import { ShieldAlert, ChevronDown, ChevronUp, CheckCircle2, Clock, AlertTriangle } from "lucide-react";
+
+const INCIDENT = {
+  date: "March 15, 2026",
+  reference: "INC-2026-0315",
+  gdprRef: "DPA-FI-2026-0412",
+};
 
 function BreachNotificationDemo() {
   const [scenario, setScenario] = useState<"banner" | "fullpage" | "email">("banner");
@@ -25,6 +31,7 @@ function BreachNotificationDemo() {
         {(["banner", "fullpage", "email"] as const).map(s => (
           <button
             key={s}
+            type="button"
             onClick={() => { setScenario(s); reset(); }}
             className={`flex-1 text-xs py-2 rounded-md font-mono transition-colors border-none cursor-pointer ${
               scenario === s ? "font-medium" : ""
@@ -43,19 +50,19 @@ function BreachNotificationDemo() {
       {scenario === "banner" && (
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
           {!dismissed && (
-            <div className="bg-red-600 text-white px-4 py-3">
+            <div className="bg-red-600 text-white px-4 py-3" role="alert" aria-live="assertive" aria-atomic="true">
               <div className="flex items-start gap-3">
                 <ShieldAlert className="w-5 h-5 mt-0.5 shrink-0" />
                 <div className="flex-1">
                   <p className="text-sm font-semibold">Security Alert: Data Breach Detected</p>
                   <p className="text-xs mt-1 text-red-100">
-                    We detected unauthorized access to our systems on March 15, 2026. Your account may be affected.
+                    We detected unauthorized access to our systems on {INCIDENT.date}. Your account may be affected.
                   </p>
                   <div className="flex gap-3 mt-2">
-                    <button onClick={() => setExpanded(true)} className="text-xs font-medium underline bg-transparent border-none text-white cursor-pointer">
+                    <button type="button" onClick={() => setExpanded(true)} className="text-xs font-medium underline bg-transparent border-none text-white cursor-pointer">
                       Learn more & secure your account
                     </button>
-                    <button onClick={() => setDismissed(true)} className="text-xs text-red-200 bg-transparent border-none cursor-pointer">
+                    <button type="button" onClick={() => setDismissed(true)} className="text-xs text-red-200 bg-transparent border-none cursor-pointer">
                       Dismiss
                     </button>
                   </div>
@@ -66,6 +73,18 @@ function BreachNotificationDemo() {
 
           {/* App content below */}
           <div className="p-6">
+            <div className="flex justify-end mb-2">
+              <div className="relative">
+                <div className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 text-sm" title="Settings">⚙</div>
+                {dismissed && (
+                  <span
+                    className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"
+                    role="status"
+                    aria-label="1 security alert pending"
+                  />
+                )}
+              </div>
+            </div>
             <div className="h-4 bg-gray-100 rounded w-3/4 mb-3" />
             <div className="h-3 bg-gray-100 rounded w-full mb-2" />
             <div className="h-3 bg-gray-100 rounded w-5/6 mb-4" />
@@ -75,7 +94,7 @@ function BreachNotificationDemo() {
           {dismissed && (
             <div className="px-6 pb-4">
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800">
-                <strong>UX note:</strong> The banner was dismissed but the security issue persists. Show a persistent but less intrusive indicator (badge on settings icon) so the user can return to it.
+                <strong>UX note:</strong> The banner was dismissed but the security issue persists. The red badge on the settings icon above demonstrates the correct pattern — a persistent, less intrusive indicator that keeps the alert discoverable so the user can return to it.
               </div>
             </div>
           )}
@@ -91,7 +110,7 @@ function BreachNotificationDemo() {
             </div>
             <h2 className="text-xl font-bold text-gray-900 mb-2">Your account may be compromised</h2>
             <p className="text-sm text-gray-600">
-              On March 15, 2026, we detected unauthorized access to our systems. Based on our investigation, the following data may have been exposed:
+              On {INCIDENT.date}, we detected unauthorized access to our systems. Based on our investigation, the following data may have been exposed:
             </p>
           </div>
 
@@ -118,14 +137,17 @@ function BreachNotificationDemo() {
 
           {/* Timeline */}
           <button
+            type="button"
             onClick={() => setExpanded(!expanded)}
+            aria-expanded={expanded}
+            aria-controls="timeline-content"
             className="flex items-center justify-between w-full text-left text-sm font-medium text-gray-700 py-2 bg-transparent border-none cursor-pointer"
           >
             <span className="flex items-center gap-2"><Clock className="w-4 h-4" /> Incident timeline</span>
             {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
           {expanded && (
-            <div className="border-l-2 border-gray-200 ml-2 pl-4 pb-2 space-y-3 text-xs text-gray-600">
+            <div id="timeline-content" className="border-l-2 border-gray-200 ml-2 pl-4 pb-2 space-y-3 text-xs text-gray-600">
               <div><strong className="text-gray-900">Mar 15, 14:32 UTC</strong> — Unauthorized access detected</div>
               <div><strong className="text-gray-900">Mar 15, 14:45 UTC</strong> — Access revoked, investigation started</div>
               <div><strong className="text-gray-900">Mar 16, 09:00 UTC</strong> — Affected accounts identified</div>
@@ -157,7 +179,7 @@ function BreachNotificationDemo() {
             </div>
             {allDone && (
               <div className="flex items-center gap-2 mt-3 text-sm text-green-600">
-                <CheckCircle2 className="w-4 h-4" /> All steps completed. Your account is secured.
+                <CheckCircle2 className="w-4 h-4" /> You've reviewed all recommended steps. Make sure you've completed each action in the app.
               </div>
             )}
           </div>
@@ -184,7 +206,7 @@ function BreachNotificationDemo() {
 
             <div className="bg-red-50 border-l-4 border-red-500 p-4">
               <p className="font-semibold text-red-800">What happened</p>
-              <p className="text-red-700 text-xs mt-1">On March 15, 2026, we detected unauthorized access to a database containing user email addresses and hashed passwords.</p>
+              <p className="text-red-700 text-xs mt-1">On {INCIDENT.date}, we detected unauthorized access to a database containing user email addresses and hashed passwords.</p>
             </div>
 
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
@@ -201,9 +223,9 @@ function BreachNotificationDemo() {
               </ol>
             </div>
 
-            <a href="#" onClick={e => e.preventDefault()} className="inline-flex items-center gap-1 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium no-underline">
-              Secure My Account <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+            <button type="button" className="inline-flex items-center gap-1 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium border-none cursor-pointer">
+              Secure My Account
+            </button>
 
             <p className="text-xs text-gray-400">
               If you didn't request this email, it's still legitimate. Do NOT click links in emails you don't trust — instead, go directly to example.com and sign in.
@@ -211,13 +233,13 @@ function BreachNotificationDemo() {
 
             <p className="text-xs text-gray-500 border-t border-gray-100 pt-4">
               This email was sent by the Security Team at Example Corp.<br />
-              Reference: INC-2026-0315 | GDPR notification ref: DPA-FI-2026-0412
+              Reference: {INCIDENT.reference} | GDPR notification ref: {INCIDENT.gdprRef}
             </p>
           </div>
         </div>
       )}
 
-      <button onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
+      <button type="button" onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
         Reset demo
       </button>
     </div>

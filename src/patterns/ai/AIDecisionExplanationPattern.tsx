@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
@@ -16,11 +16,16 @@ function AIDecisionExplanationDemo() {
     setContentAction("none");
   };
 
+  const selectScenario = (s: typeof scenario) => { setScenario(s); reset(); };
+
+  const appealRef = useMemo(() => `APPEAL-${Date.now()}`, []);
+  const modRef = useMemo(() => `MOD-${Date.now()}`, []);
+
   return (
     <div className="w-full max-w-lg">
-      <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+      <div role="tablist" aria-label="Decision scenario" className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["loan", "content", "hiring"] as const).map(s => (
-          <button key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button key={s} type="button" role="tab" aria-selected={scenario === s} onClick={() => selectScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
             {s === "loan" ? "Loan Decision" : s === "content" ? "Content Moderation" : "Hiring AI"}
           </button>
         ))}
@@ -51,7 +56,7 @@ function AIDecisionExplanationDemo() {
 
           {/* Explanation */}
           <div className="border border-gray-200 rounded-lg mb-4">
-            <button onClick={() => setExpanded(!expanded)} className="w-full flex items-center justify-between p-4 text-left bg-transparent border-none cursor-pointer">
+            <button type="button" aria-expanded={expanded} aria-controls="loan-explanation-panel" onClick={() => setExpanded(!expanded)} className="w-full flex items-center justify-between p-4 text-left bg-transparent border-none cursor-pointer">
               <span className="text-sm font-medium text-gray-900 flex items-center gap-2">
                 <HelpCircle className="w-4 h-4 text-blue-600" /> Why was my application declined?
               </span>
@@ -59,7 +64,7 @@ function AIDecisionExplanationDemo() {
             </button>
 
             {expanded && (
-              <div className="px-4 pb-4 border-t border-gray-200 pt-4">
+              <div id="loan-explanation-panel" className="px-4 pb-4 border-t border-gray-200 pt-4">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3 text-xs text-blue-800">
                   <strong>How this decision was made:</strong> An AI model assessed your application based on the following factors. A human reviewer confirmed the decision.
                 </div>
@@ -105,14 +110,14 @@ function AIDecisionExplanationDemo() {
               <li>You can provide additional information and request reconsideration</li>
             </ul>
             {!appealStarted ? (
-              <button onClick={() => setAppealStarted(true)} className="text-xs bg-blue-600 text-white px-4 py-2 rounded border-none cursor-pointer hover:bg-blue-700">
+              <button type="button" onClick={() => setAppealStarted(true)} className="text-xs bg-blue-600 text-white px-4 py-2 rounded border-none cursor-pointer hover:bg-blue-700">
                 Request human review
               </button>
             ) : (
               <div className="bg-white border border-blue-200 rounded p-3">
                 <CheckCircle2 className="w-5 h-5 text-green-500 mb-2" />
                 <p className="text-xs text-green-700 font-medium">Human review requested</p>
-                <p className="text-xs text-gray-500">A human reviewer will assess your application within 5 business days. Reference: APPEAL-2026-0320-7821</p>
+                <p className="text-xs text-gray-500">A human reviewer will assess your application within 5 business days. Reference: {appealRef}</p>
               </div>
             )}
           </div>
@@ -159,10 +164,10 @@ function AIDecisionExplanationDemo() {
           {contentAction === "none" && (
             <>
               <div className="flex gap-2">
-                <button onClick={() => setContentAction("appealed")} className="flex-1 bg-blue-600 text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer hover:bg-blue-700">
+                <button type="button" onClick={() => setContentAction("appealed")} className="flex-1 bg-blue-600 text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer hover:bg-blue-700">
                   Appeal — request human review
                 </button>
-                <button onClick={() => setContentAction("accepted")} className="flex-1 border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-gray-50">
+                <button type="button" onClick={() => setContentAction("accepted")} className="flex-1 border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-gray-50">
                   I understand
                 </button>
               </div>
@@ -174,7 +179,7 @@ function AIDecisionExplanationDemo() {
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
               <CheckCircle2 className="w-6 h-6 text-blue-600 mx-auto mb-2" />
               <p className="text-sm font-medium text-blue-800">Appeal submitted</p>
-              <p className="text-xs text-blue-700 mt-1">A human moderator will review your post within 24 hours. Reference: MOD-2026-0320-4291</p>
+              <p className="text-xs text-blue-700 mt-1">A human moderator will review your post within 24 hours. Reference: {modRef}</p>
               <p className="text-xs text-gray-500 mt-2">Your post remains hidden during review. If the appeal succeeds, it will be restored.</p>
             </div>
           )}
@@ -212,7 +217,7 @@ function AIDecisionExplanationDemo() {
                   <span className={`text-xs font-mono ${score >= 80 ? "text-green-600" : "text-amber-600"}`}>{score}%</span>
                 </div>
                 <div className="h-1.5 bg-gray-200 rounded-full">
-                  <div className={`h-full rounded-full ${score >= 80 ? "bg-green-500" : "bg-amber-500"}`} style={{ width: `${score}%` }} />
+                  <div role="progressbar" aria-valuenow={score} aria-valuemin={0} aria-valuemax={100} aria-label={`${area} score`} className={`h-full rounded-full ${score >= 80 ? "bg-green-500" : "bg-amber-500"}`} style={{ width: `${score}%` }} />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">{detail}</p>
               </div>
@@ -234,7 +239,7 @@ function AIDecisionExplanationDemo() {
         </div>
       )}
 
-      <button onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>Reset demo</button>
+      <button type="button" onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>Reset demo</button>
     </div>
   );
 }

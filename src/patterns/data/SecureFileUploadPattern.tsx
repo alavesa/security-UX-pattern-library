@@ -1,10 +1,11 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
 import { Upload, FileText, ShieldCheck, AlertTriangle, CheckCircle2, XCircle, Loader2, Lock } from "lucide-react";
 
 interface FileItem {
+  id: string;
   name: string;
   size: string;
   status: "scanning" | "safe" | "infected" | "rejected";
@@ -14,23 +15,25 @@ interface FileItem {
 function SecureFileUploadDemo() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [dragOver, setDragOver] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const simulateUpload = useCallback((fileName: string) => {
+    const id = crypto.randomUUID();
     const ext = fileName.split(".").pop()?.toLowerCase() ?? "";
     const dangerousExts = ["exe", "bat", "cmd", "scr", "ps1", "vbs"];
     const size = `${(Math.random() * 5 + 0.1).toFixed(1)} MB`;
 
     if (dangerousExts.includes(ext)) {
-      setFiles(f => [...f, { name: fileName, size, status: "rejected", type: ext }]);
+      setFiles(f => [...f, { id, name: fileName, size, status: "rejected", type: ext }]);
       return;
     }
 
-    setFiles(f => [...f, { name: fileName, size, status: "scanning", type: ext }]);
+    setFiles(f => [...f, { id, name: fileName, size, status: "scanning", type: ext }]);
 
     setTimeout(() => {
       const isMalware = fileName.toLowerCase().includes("virus") || fileName.toLowerCase().includes("malware");
       setFiles(f => f.map(file =>
-        file.name === fileName ? { ...file, status: isMalware ? "infected" : "safe" } : file
+        file.id === id ? { ...file, status: isMalware ? "infected" : "safe" } : file
       ));
     }, 2000);
   }, []);
@@ -53,9 +56,14 @@ function SecureFileUploadDemo() {
             dragOver ? "border-blue-400 bg-blue-50" : "border-gray-300"
           }`}
           onDragOver={e => { e.preventDefault(); setDragOver(true); }}
-          onDragLeave={() => setDragOver(false)}
-          onDrop={e => { e.preventDefault(); setDragOver(false); }}
+          onDragLeave={e => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setDragOver(false); }}
+          onDrop={e => { e.preventDefault(); setDragOver(false); Array.from(e.dataTransfer.files).forEach(f => simulateUpload(f.name)); }}
+          onClick={() => inputRef.current?.click()}
+          tabIndex={0}
+          role="button"
+          onKeyDown={e => { if (e.key === "Enter" || e.key === " ") inputRef.current?.click(); }}
         >
+          <input ref={inputRef} type="file" multiple className="sr-only" onChange={e => { Array.from(e.target.files ?? []).forEach(f => simulateUpload(f.name)); e.target.value = ""; }} />
           <Upload className="w-10 h-10 text-gray-400 mx-auto mb-3" />
           <p className="text-sm font-medium text-gray-700 mb-1">Drop files here or click to browse</p>
           <p className="text-xs text-gray-400 mb-3">PDF, DOCX, XLSX, PNG, JPG up to 10 MB</p>
@@ -71,15 +79,15 @@ function SecureFileUploadDemo() {
           <span>Executable files (.exe, .bat, .cmd, .scr, .ps1, .vbs) are blocked for security.</span>
         </div>
 
-        <button onClick={handleDemoFiles} className="w-full mt-4 bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700">
+        <button onClick={handleDemoFiles} disabled={files.some(f => f.status === "scanning")} className="w-full mt-4 bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed">
           Simulate uploading 4 files
         </button>
 
         {/* File list */}
         {files.length > 0 && (
-          <div className="mt-4 space-y-2">
-            {files.map((file, i) => (
-              <div key={i} className={`flex items-center gap-3 p-3 rounded-lg border ${
+          <div className="mt-4 space-y-2" aria-live="polite" aria-atomic="false">
+            {files.map((file) => (
+              <div key={file.id} className={`flex items-center gap-3 p-3 rounded-lg border ${
                 file.status === "safe" ? "border-green-200 bg-green-50" :
                 file.status === "infected" ? "border-red-200 bg-red-50" :
                 file.status === "rejected" ? "border-red-200 bg-red-50" :
@@ -96,16 +104,16 @@ function SecureFileUploadDemo() {
                 </div>
                 <div className="shrink-0">
                   {file.status === "scanning" && (
-                    <span className="flex items-center gap-1 text-xs text-blue-600"><Loader2 className="w-3.5 h-3.5 animate-spin" /> Scanning</span>
+                    <span className="flex items-center gap-1 text-xs text-blue-600"><Loader2 aria-hidden="true" className="w-3.5 h-3.5 animate-spin" /> Scanning</span>
                   )}
                   {file.status === "safe" && (
-                    <span className="flex items-center gap-1 text-xs text-green-600"><CheckCircle2 className="w-3.5 h-3.5" /> Safe</span>
+                    <span className="flex items-center gap-1 text-xs text-green-600"><CheckCircle2 aria-hidden="true" className="w-3.5 h-3.5" /> Safe</span>
                   )}
                   {file.status === "infected" && (
-                    <span className="flex items-center gap-1 text-xs text-red-600"><XCircle className="w-3.5 h-3.5" /> Malware detected</span>
+                    <span className="flex items-center gap-1 text-xs text-red-600"><XCircle aria-hidden="true" className="w-3.5 h-3.5" /> Malware detected</span>
                   )}
                   {file.status === "rejected" && (
-                    <span className="flex items-center gap-1 text-xs text-red-600"><XCircle className="w-3.5 h-3.5" /> Blocked filetype</span>
+                    <span className="flex items-center gap-1 text-xs text-red-600"><XCircle aria-hidden="true" className="w-3.5 h-3.5" /> Blocked filetype</span>
                   )}
                 </div>
               </div>

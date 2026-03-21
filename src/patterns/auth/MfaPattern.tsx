@@ -13,6 +13,9 @@ function MfaDemo() {
   const [backupCode, setBackupCode] = useState("");
   const [failCount, setFailCount] = useState(0);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const verifyTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const clearTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const backupInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (method !== "backup") inputRefs.current[0]?.focus();
@@ -24,6 +27,31 @@ function MfaDemo() {
     const timer = setTimeout(() => setResendCooldown(c => c - 1), 1000);
     return () => clearTimeout(timer);
   }, [resendCooldown]);
+
+  // Clear pending verification timers on unmount
+  useEffect(() => {
+    return () => {
+      clearTimeout(verifyTimerRef.current);
+      clearTimeout(clearTimerRef.current);
+    };
+  }, []);
+
+  const submitCode = useCallback((codeStr: string) => {
+    setStatus("loading");
+    verifyTimerRef.current = setTimeout(() => {
+      if (codeStr === "123456") {
+        setStatus("success");
+      } else {
+        setStatus("error");
+        setFailCount(c => c + 1);
+        clearTimerRef.current = setTimeout(() => {
+          setCode(["", "", "", "", "", ""]);
+          setStatus("input");
+          inputRefs.current[0]?.focus();
+        }, 1500);
+      }
+    }, 1200);
+  }, []);
 
   const handleInput = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return;
@@ -52,23 +80,6 @@ function MfaDemo() {
     }
   };
 
-  const submitCode = useCallback((codeStr: string) => {
-    setStatus("loading");
-    setTimeout(() => {
-      if (codeStr === "123456") {
-        setStatus("success");
-      } else {
-        setStatus("error");
-        setFailCount(c => c + 1);
-        setTimeout(() => {
-          setCode(["", "", "", "", "", ""]);
-          setStatus("input");
-          inputRefs.current[0]?.focus();
-        }, 1500);
-      }
-    }, 1200);
-  }, []);
-
   const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
     if (e.key === "Backspace" && !code[index] && index > 0) {
       inputRefs.current[index - 1]?.focus();
@@ -86,27 +97,30 @@ function MfaDemo() {
   const handleBackupSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
-    setTimeout(() => {
+    verifyTimerRef.current = setTimeout(() => {
       if (backupCode.toLowerCase() === "abcd-efgh-1234") {
         setStatus("success");
       } else {
         setStatus("error");
-        setTimeout(() => {
+        setFailCount(c => c + 1);
+        clearTimerRef.current = setTimeout(() => {
           setStatus("input");
           setBackupCode("");
+          backupInputRef.current?.focus();
         }, 1500);
       }
     }, 1200);
   };
 
   const reset = () => {
+    clearTimeout(verifyTimerRef.current);
+    clearTimeout(clearTimerRef.current);
     setCode(["", "", "", "", "", ""]);
     setStatus("input");
     setFailCount(0);
     setResendCooldown(0);
     setResendCount(0);
     setBackupCode("");
-    inputRefs.current[0]?.focus();
   };
 
   return (
@@ -159,6 +173,7 @@ function MfaDemo() {
             {method === "backup" ? (
               <form onSubmit={handleBackupSubmit}>
                 <input
+                  ref={backupInputRef}
                   type="text"
                   value={backupCode}
                   onChange={e => setBackupCode(e.target.value)}
@@ -175,6 +190,7 @@ function MfaDemo() {
                   {status === "loading" ? <><Loader2 className="w-4 h-4 animate-spin" /> Verifying...</> : "Use backup code"}
                 </button>
                 <p className="text-xs text-amber-600 mt-3">
+                  {/* TODO: fetch remaining count from server — never hardcode this value */}
                   Each backup code can only be used once. You have 7 remaining.
                 </p>
               </form>
@@ -192,8 +208,9 @@ function MfaDemo() {
                       value={digit}
                       onChange={e => handleInput(i, e.target.value)}
                       onKeyDown={e => handleKeyDown(i, e)}
+                      autoComplete="one-time-code"
                       disabled={status === "loading"}
-                      className={`w-9 h-11 sm:w-11 sm:h-13 text-center text-base sm:text-lg font-mono border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
+                      className={`w-9 h-11 sm:w-11 sm:h-14 text-center text-base sm:text-lg font-mono border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
                         status === "error" ? "border-red-300 focus:ring-red-500 bg-red-50" : "border-gray-300 focus:ring-blue-500"
                       }`}
                       aria-label={`Digit ${i + 1}`}

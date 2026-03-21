@@ -4,12 +4,31 @@ import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
 import { Shield, ShieldOff, X, Bell, BellOff } from "lucide-react";
 
+function EthicalOutcome({ choice }: { choice: string }) {
+  if (choice === "enabled") {
+    return (
+      <>
+        <Bell className="w-8 h-8 text-green-600 mx-auto mb-2" />
+        <p className="text-sm font-semibold text-green-800">Notifications enabled</p>
+      </>
+    );
+  }
+  return (
+    <>
+      <BellOff className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+      <p className="text-sm font-semibold text-gray-700">Popup dismissed 
+not taken</p>
+    </>
+  );
+}
+
 function BaitSwitchDemo() {
   const [view, setView] = useState<"dark" | "ethical">("dark");
   const [darkStep, setDarkStep] = useState(0);
   const [ethicalChoice, setEthicalChoice] = useState<string | null>(null);
 
   const reset = () => {
+    setView("dark");
     setDarkStep(0);
     setEthicalChoice(null);
   };
@@ -18,10 +37,10 @@ function BaitSwitchDemo() {
     <div className="w-full max-w-xl">
       {/* Toggle */}
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <button onClick={() => { setView("dark"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}>
+        <button type="button" onClick={() => { setView("dark"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}>
           <ShieldOff className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
         </button>
-        <button onClick={() => { setView("ethical"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}>
+        <button type="button" onClick={() => { setView("ethical"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}>
           <Shield className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
         </button>
       </div>
@@ -45,9 +64,10 @@ function BaitSwitchDemo() {
               {/* Popup with misleading X */}
               <div className="border-2 border-blue-300 bg-blue-50 rounded-xl p-5 relative">
                 <button
+                  type="button"
                   onClick={() => setDarkStep(1)}
                   className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-200 bg-transparent border-none cursor-pointer text-gray-400"
-                  aria-label="Close"
+                  aria-label="Enable notifications (dark pattern demo)"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -56,7 +76,7 @@ function BaitSwitchDemo() {
                 <h3 className="font-bold text-gray-900 mb-1">Stay in the loop!</h3>
                 <p className="text-sm text-gray-600 mb-4">Get notified about important updates and offers.</p>
 
-                <button onClick={() => setDarkStep(2)} className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer">
+                <button type="button" onClick={() => setDarkStep(2)} className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer">
                   Enable notifications
                 </button>
               </div>
@@ -89,7 +109,7 @@ function BaitSwitchDemo() {
           {darkStep === 2 && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">
               <p className="text-xs text-red-700">You clicked "Enable notifications" — that was the expected action. But try the X button too to see the bait and switch.</p>
-              <button onClick={() => setDarkStep(0)} className="text-xs text-red-600 underline mt-2 bg-transparent border-none cursor-pointer">Try again</button>
+              <button type="button" onClick={() => setDarkStep(0)} className="text-xs text-red-600 underline mt-2 bg-transparent border-none cursor-pointer">Try again</button>
             </div>
           )}
         </div>
@@ -112,6 +132,7 @@ function BaitSwitchDemo() {
 
               <div className="border border-gray-200 bg-white rounded-xl p-5 relative">
                 <button
+                  type="button"
                   onClick={() => setEthicalChoice("dismissed")}
                   className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-100 bg-transparent border-none cursor-pointer text-gray-400"
                   aria-label="Dismiss"
@@ -124,10 +145,10 @@ function BaitSwitchDemo() {
                 <p className="text-sm text-gray-600 mb-4">Get notified when someone replies to your posts. You can manage this in Settings anytime.</p>
 
                 <div className="space-y-2">
-                  <button onClick={() => setEthicalChoice("enabled")} className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700">
+                  <button type="button" onClick={() => setEthicalChoice("enabled")} className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700">
                     Enable notifications
                   </button>
-                  <button onClick={() => setEthicalChoice("dismissed")} className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-gray-50">
+                  <button type="button" onClick={() => setEthicalChoice("dismissed")} className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-gray-50">
                     Not now
                   </button>
                 </div>
@@ -136,10 +157,7 @@ function BaitSwitchDemo() {
           ) : (
             <div>
               <div className={`${ethicalChoice === "enabled" ? "bg-green-50 border-green-200" : "bg-gray-50 border-gray-200"} border rounded-lg p-4 text-center mb-4`}>
-                {ethicalChoice === "enabled"
-                  ? <><Bell className="w-8 h-8 text-green-600 mx-auto mb-2" /><p className="text-sm font-semibold text-green-800">Notifications enabled</p></>
-                  : <><BellOff className="w-8 h-8 text-gray-400 mx-auto mb-2" /><p className="text-sm font-semibold text-gray-700">Popup dismissed — no action taken</p></>
-                }
+                <EthicalOutcome choice={ethicalChoice} />
               </div>
 
               <div className="bg-green-50 border border-green-200 rounded-lg p-4">
@@ -157,7 +175,7 @@ function BaitSwitchDemo() {
         </div>
       )}
 
-      <button onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
+      <button type="button" onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
         Reset demo
       </button>
     </div>

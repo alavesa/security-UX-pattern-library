@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
@@ -8,26 +8,45 @@ function DataDeletionDemo() {
   const [step, setStep] = useState<"overview" | "export" | "confirm" | "processing" | "done">("overview");
   const [exportDone, setExportDone] = useState(false);
   const [confirmText, setConfirmText] = useState("");
+  const [returnToConfirm, setReturnToConfirm] = useState(false);
+  const [deletionRef] = useState(() => `DEL-${Date.now()}`);
+  const exportTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const deleteTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(exportTimerRef.current);
+      clearTimeout(deleteTimerRef.current);
+    };
+  }, []);
 
   const reset = () => {
     setStep("overview");
     setExportDone(false);
     setConfirmText("");
+    setReturnToConfirm(false);
   };
 
   const handleExport = () => {
+    if (exportDone || step === "export") return;
     setStep("export");
-    setTimeout(() => setExportDone(true), 2000);
+    exportTimerRef.current = setTimeout(() => setExportDone(true), 2000);
+  };
+
+  const handleExportFromConfirm = () => {
+    setReturnToConfirm(true);
+    handleExport();
   };
 
   const handleDelete = () => {
+    if (confirmText.trim() !== "DELETE MY ACCOUNT") return;
     setStep("processing");
-    setTimeout(() => setStep("done"), 3000);
+    deleteTimerRef.current = setTimeout(() => setStep("done"), 3000);
   };
 
   return (
     <div className="w-full max-w-lg">
-      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6" aria-live="polite">
 
         {step === "overview" && (
           <div>
@@ -97,7 +116,12 @@ function DataDeletionDemo() {
                 <button className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700 flex items-center justify-center gap-2">
                   <Download className="w-4 h-4" /> Download export (156 MB)
                 </button>
-                <button onClick={() => setStep("overview")} className="mt-3 text-xs text-gray-500 bg-transparent border-none cursor-pointer hover:text-gray-700">
+                {returnToConfirm && (
+                  <button onClick={() => { setReturnToConfirm(false); setStep("confirm"); }} className="mt-3 w-full border border-red-200 text-red-600 py-2.5 rounded-lg text-sm font-medium bg-white cursor-pointer hover:bg-red-50">
+                    Continue to deletion
+                  </button>
+                )}
+                <button onClick={() => { setReturnToConfirm(false); setStep("overview"); }} className="mt-3 text-xs text-gray-500 bg-transparent border-none cursor-pointer hover:text-gray-700">
                   Back to data overview
                 </button>
               </>
@@ -133,7 +157,7 @@ function DataDeletionDemo() {
                 <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
                 <div className="text-xs text-amber-800">
                   <strong>Recommended:</strong> Export your data before deleting.
-                  <button onClick={handleExport} className="text-amber-700 underline ml-1 bg-transparent border-none cursor-pointer">Download my data first</button>
+                  <button onClick={handleExportFromConfirm} className="text-amber-700 underline ml-1 bg-transparent border-none cursor-pointer">Download my data first</button>
                 </div>
               </div>
             )}
@@ -153,6 +177,7 @@ function DataDeletionDemo() {
                 value={confirmText}
                 onChange={e => setConfirmText(e.target.value)}
                 placeholder="DELETE MY ACCOUNT"
+                autoComplete="off"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono focus:outline-none focus:ring-2 focus:ring-red-500"
               />
             </div>
@@ -167,7 +192,7 @@ function DataDeletionDemo() {
             <div className="space-y-2">
               <button
                 onClick={handleDelete}
-                disabled={confirmText !== "DELETE MY ACCOUNT"}
+                disabled={confirmText.trim() !== "DELETE MY ACCOUNT"}
                 className="w-full bg-red-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Permanently delete my account
@@ -208,7 +233,7 @@ function DataDeletionDemo() {
               </div>
               <div className="flex items-center gap-2 text-xs text-gray-600">
                 <Shield className="w-3.5 h-3.5 text-blue-500" />
-                GDPR deletion reference: DEL-2026-0320-4821
+                GDPR deletion reference: {deletionRef}
               </div>
             </div>
           </div>

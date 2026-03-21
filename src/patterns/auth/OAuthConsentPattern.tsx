@@ -1,20 +1,24 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
 import { Shield, ShieldOff, CheckCircle2, XCircle, ExternalLink, AlertTriangle, Eye } from "lucide-react";
 
+const REQUIRED_PERMISSIONS = ['profile', 'email'] as const;
+
 function OAuthConsentDemo() {
   const [view, setView] = useState<"dark" | "ethical">("dark");
   const [darkChoice, setDarkChoice] = useState<string | null>(null);
-  const [ethicalPermissions, setEthicalPermissions] = useState({ profile: true, email: true, repos: false, gists: false });
+  const [optionalPermissions, setOptionalPermissions] = useState({ repos: false, gists: false });
   const [ethicalChoice, setEthicalChoice] = useState<string | null>(null);
 
   const reset = () => {
     setDarkChoice(null);
     setEthicalChoice(null);
-    setEthicalPermissions({ profile: true, email: true, repos: false, gists: false });
+    setOptionalPermissions({ repos: false, gists: false });
   };
+
+  const grantedCount = useMemo(() => REQUIRED_PERMISSIONS.length + Object.values(optionalPermissions).filter(Boolean).length, [optionalPermissions]);
 
   return (
     <div className="w-full max-w-md">
@@ -56,7 +60,7 @@ function OAuthConsentDemo() {
                 { label: "Manage webhooks", icon: "🔗", risky: true },
               ].map(({ label, icon, risky }) => (
                 <div key={label} className="flex items-center gap-2 text-sm">
-                  <span>{icon}</span>
+                  <span aria-hidden="true">{icon}</span>
                   <span className={risky ? "text-red-700" : "text-gray-700"}>{label}</span>
                   {risky && <span className="text-xs bg-red-100 text-red-600 px-1 rounded ml-auto">excessive</span>}
                 </div>
@@ -106,10 +110,10 @@ function OAuthConsentDemo() {
           </div>
 
           <div className="border border-gray-200 rounded-lg p-4 mb-4">
-            <h3 className="text-sm font-semibold text-gray-900 mb-1">Permissions requested</h3>
+            <h3 id="perm-group-label" className="text-sm font-semibold text-gray-900 mb-1">Permissions requested</h3>
             <p className="text-xs text-gray-400 mb-3">Required permissions can't be deselected. Optional ones are your choice.</p>
 
-            <div className="space-y-3">
+            <div role="group" aria-labelledby="perm-group-label" className="space-y-3">
               {[
                 { key: "profile" as const, label: "Read your profile", why: "To display your name in dashboards", required: true },
                 { key: "email" as const, label: "Read your email", why: "To send weekly reports", required: true },
@@ -123,8 +127,11 @@ function OAuthConsentDemo() {
                     ) : (
                       <input
                         type="checkbox"
-                        checked={ethicalPermissions[key]}
-                        onChange={e => setEthicalPermissions(p => ({ ...p, [key]: e.target.checked }))}
+                        id={`perm-${key}`}
+                        aria-label={label}
+                        aria-describedby={`perm-desc-${key}`}
+                        checked={optionalPermissions[key as keyof typeof optionalPermissions]}
+                        onChange={e => setOptionalPermissions(p => ({ ...p, [key]: e.target.checked }))}
                         className="w-4 h-4 rounded border-gray-300 text-blue-600"
                       />
                     )}
@@ -135,7 +142,7 @@ function OAuthConsentDemo() {
                       {required && <span className="text-xs bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">Required</span>}
                       {!required && <span className="text-xs bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded">Optional</span>}
                     </div>
-                    <p className="text-xs text-gray-500 mt-0.5">{why}</p>
+                    <p id={`perm-desc-${key}`} className="text-xs text-gray-500 mt-0.5">{why}</p>
                   </div>
                 </div>
               ))}
@@ -153,7 +160,7 @@ function OAuthConsentDemo() {
             onClick={() => setEthicalChoice("authorized")}
             className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700"
           >
-            Authorize with {Object.values(ethicalPermissions).filter(Boolean).length} permissions
+            Authorize with {grantedCount} permissions
           </button>
           <button onClick={() => setEthicalChoice("denied")} className="w-full mt-2 border border-gray-300 text-gray-700 py-2 rounded-lg text-sm bg-white cursor-pointer hover:bg-gray-50">
             Deny access
@@ -169,7 +176,7 @@ function OAuthConsentDemo() {
                 <CheckCircle2 className="w-5 h-5 text-green-600" />
                 <span className="font-semibold text-green-800">Access granted</span>
               </div>
-              <p className="text-sm text-gray-600 mb-3">Analytics Pro can now access {Object.values(ethicalPermissions).filter(Boolean).length} items.</p>
+              <p className="text-sm text-gray-600 mb-3">Analytics Pro can now access {grantedCount} items.</p>
             </>
           ) : (
             <>
@@ -195,7 +202,7 @@ function OAuthConsentDemo() {
         </div>
       )}
 
-      <button onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>Reset demo</button>
+      <button onClick={() => { reset(); setView("dark"); }} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>Reset demo</button>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
@@ -33,14 +33,25 @@ const MANAGED_ALARMS: Alarm[] = [
   { id: 3, time: "14:32:02", priority: "medium", message: "Compressor C-301 vibration high — may be related", tag: "VT-301", acknowledged: false, shelved: false },
 ];
 
+const PRIORITY_STYLES: Record<string, { bg: string; border: string; text: string }> = {
+  critical: { bg: "#7f1d1d", border: "#dc2626", text: "#fca5a5" },
+  high: { bg: "#78350f", border: "#d97706", text: "#fde68a" },
+  medium: { bg: "#1e3a5f", border: "#3b82f6", text: "#93c5fd" },
+  low: { bg: "#1f2937", border: "#4b5563", text: "#9ca3af" },
+};
+
 function AlarmFatigueDemo() {
   const [scenario, setScenario] = useState<"flood" | "managed" | "shelving">("flood");
   const [alarms, setAlarms] = useState<Alarm[]>([]);
   const [running, setRunning] = useState(false);
+  const hasResetRef = useRef(false);
 
   useEffect(() => {
     if (!running) return;
-    setAlarms([]);
+    if (!hasResetRef.current) {
+      setAlarms([]);
+      hasResetRef.current = true;
+    }
 
     const source = scenario === "flood" || scenario === "shelving" ? FLOOD_ALARMS : MANAGED_ALARMS;
     const delay = scenario === "managed" ? 800 : 300;
@@ -68,17 +79,22 @@ function AlarmFatigueDemo() {
     setAlarms(prev => prev.map(a => a.id === id ? { ...a, shelved: true } : a));
   };
 
+  const stats = useMemo(() => ({
+    active: alarms.filter(a => !a.acknowledged && !a.shelved).length,
+    unshelved: alarms.filter(a => !a.shelved),
+    critical: alarms.filter(a => a.priority === "critical" && !a.shelved && !a.acknowledged).length,
+    high: alarms.filter(a => a.priority === "high" && !a.shelved && !a.acknowledged).length,
+    medium: alarms.filter(a => a.priority === "medium" && !a.shelved && !a.acknowledged).length,
+    low: alarms.filter(a => a.priority === "low" && !a.shelved && !a.acknowledged).length,
+    shelvedCount: alarms.filter(a => a.shelved).length,
+  }), [alarms]);
+
   const reset = () => {
     setAlarms([]);
     setRunning(false);
   };
 
-  const priorityStyle = (p: string) => {
-    if (p === "critical") return { bg: "#7f1d1d", border: "#dc2626", text: "#fca5a5" };
-    if (p === "high") return { bg: "#78350f", border: "#d97706", text: "#fde68a" };
-    if (p === "medium") return { bg: "#1e3a5f", border: "#3b82f6", text: "#93c5fd" };
-    return { bg: "#1f2937", border: "#4b5563", text: "#9ca3af" };
-  };
+  const priorityStyle = (p: string) => PRIORITY_STYLES[p] ?? PRIORITY_STYLES.low;
 
   return (
     <div className="w-full max-w-lg">
@@ -97,7 +113,7 @@ function AlarmFatigueDemo() {
             {scenario === "flood" ? "ALARM FLOOD — 10 alarms in 5 seconds" : "SMART ALARM MANAGEMENT"}
           </span>
           <span className="font-mono text-xs text-gray-500">
-            {alarms.filter(a => !a.acknowledged && !a.shelved).length} active
+            {stats.active} active
           </span>
         </div>
 
@@ -113,13 +129,13 @@ function AlarmFatigueDemo() {
                   : "Demonstrates alarm shelving — suppress known nuisance alarms temporarily"
                 }
               </p>
-              <button onClick={() => setRunning(true)} className="font-mono text-sm bg-amber-600 text-white px-6 py-3 rounded border-none cursor-pointer hover:bg-amber-700">
+              <button onClick={() => { hasResetRef.current = false; setRunning(true); }} className="font-mono text-sm bg-amber-600 text-white px-6 py-3 rounded border-none cursor-pointer hover:bg-amber-700">
                 Start alarm simulation
               </button>
             </div>
           )}
 
-          {alarms.filter(a => !a.shelved).map(alarm => {
+          {stats.unshelved.map(alarm => {
             const style = priorityStyle(alarm.priority);
             return (
               <div
@@ -132,9 +148,7 @@ function AlarmFatigueDemo() {
                 }}
               >
                 <div className="shrink-0 mt-0.5">
-                  {alarm.priority === "critical" ? <AlertTriangle className="w-4 h-4" style={{ color: style.text }} /> :
-                   alarm.priority === "high" ? <AlertTriangle className="w-4 h-4" style={{ color: style.text }} /> :
-                   <Bell className="w-4 h-4" style={{ color: style.text }} />}
+                  {(alarm.priority === "critical" || alarm.priority === "high") ? <AlertTriangle className="w-4 h-4" style={{ color: style.text }} /> : <Bell className="w-4 h-4" style={{ color: style.text }} />}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
@@ -164,13 +178,13 @@ function AlarmFatigueDemo() {
         {alarms.length > 0 && (
           <div className="bg-gray-800 px-4 py-2 border-t border-gray-700 flex items-center justify-between font-mono text-xs">
             <div className="flex gap-3">
-              <span style={{ color: "#fca5a5" }}>{alarms.filter(a => a.priority === "critical" && !a.shelved).length} crit</span>
-              <span style={{ color: "#fde68a" }}>{alarms.filter(a => a.priority === "high" && !a.shelved).length} high</span>
-              <span style={{ color: "#93c5fd" }}>{alarms.filter(a => a.priority === "medium" && !a.shelved).length} med</span>
-              <span style={{ color: "#9ca3af" }}>{alarms.filter(a => a.priority === "low" && !a.shelved).length} low</span>
+              <span style={{ color: "#fca5a5" }}>{stats.critical} crit</span>
+              <span style={{ color: "#fde68a" }}>{stats.high} high</span>
+              <span style={{ color: "#93c5fd" }}>{stats.medium} med</span>
+              <span style={{ color: "#9ca3af" }}>{stats.low} low</span>
             </div>
-            {alarms.some(a => a.shelved) && (
-              <span className="text-gray-500">{alarms.filter(a => a.shelved).length} shelved</span>
+            {stats.shelvedCount > 0 && (
+              <span className="text-gray-500">{stats.shelvedCount} shelved</span>
             )}
           </div>
         )}
@@ -191,7 +205,7 @@ function AlarmFatigueDemo() {
           )}
           {scenario === "shelving" && (
             <p style={{ color: "var(--cyan)" }}>
-              <strong>Shelving:</strong> Known nuisance alarms can be temporarily suppressed. Shelved alarms are tracked, auto-unshelve after a set time, and are visible in the shelved count. This prevents operators from permanently disabling alarms while reducing noise.
+              <strong>Shelving:</strong> Known nuisance alarms can be temporarily suppressed. Shelved alarms are tracked and visible in the shelved count, keeping them monitored rather than permanently disabled. This reduces noise while maintaining awareness of suppressed conditions.
             </p>
           )}
         </div>

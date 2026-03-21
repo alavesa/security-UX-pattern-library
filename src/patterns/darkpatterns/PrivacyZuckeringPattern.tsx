@@ -1,28 +1,28 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Shield, ShieldOff, Users, Globe, MapPin, Camera, Mic, CheckCircle2 } from "lucide-react";
+import { Shield, ShieldOff, Users, Globe, MapPin, Camera, Mic } from "lucide-react";
 
 function PrivacyZuckeringDemo() {
   const [view, setView] = useState<"dark" | "ethical">("dark");
   const [darkStep, setDarkStep] = useState(0);
   const [ethicalPermissions, setEthicalPermissions] = useState({ contacts: false, location: false, camera: false, microphone: false });
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setDarkStep(0);
     setEthicalPermissions({ contacts: false, location: false, camera: false, microphone: false });
-  };
+  }, []);
 
   return (
     <div className="w-full max-w-xl">
       {/* Toggle */}
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <button onClick={() => { setView("dark"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}>
-          <ShieldOff className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
+        <button aria-pressed={view === "dark"} onClick={() => { setView("dark"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}>
+          <ShieldOff aria-hidden="true" className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
         </button>
-        <button onClick={() => { setView("ethical"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}>
-          <Shield className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
+        <button aria-pressed={view === "ethical"} onClick={() => { setView("ethical"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}>
+          <Shield aria-hidden="true" className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
         </button>
       </div>
 
@@ -55,19 +55,19 @@ function PrivacyZuckeringDemo() {
               <div className="space-y-3 mb-6 text-left">
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center gap-2"><Users className="w-4 h-4 text-gray-500" /><span className="text-sm">Contacts</span></div>
-                  <div className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
+                  <div aria-hidden="true" className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
                 </div>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-gray-500" /><span className="text-sm">Location</span></div>
-                  <div className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
+                  <div aria-hidden="true" className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
                 </div>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center gap-2"><Camera className="w-4 h-4 text-gray-500" /><span className="text-sm">Camera & Photos</span></div>
-                  <div className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
+                  <div aria-hidden="true" className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
                 </div>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center gap-2"><Mic className="w-4 h-4 text-gray-500" /><span className="text-sm">Microphone</span></div>
-                  <div className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
+                  <div aria-hidden="true" className="w-10 h-5 bg-blue-600 rounded-full relative"><div className="w-4 h-4 bg-white rounded-full absolute top-0.5 right-0.5" /></div>
                 </div>
               </div>
 
@@ -122,11 +122,12 @@ function PrivacyZuckeringDemo() {
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input
                         type="checkbox"
+                        aria-label={label}
                         checked={ethicalPermissions[key]}
                         onChange={e => setEthicalPermissions(p => ({ ...p, [key]: e.target.checked }))}
                         className="sr-only peer"
                       />
-                      <div className={`w-10 h-5 rounded-full transition-colors ${ethicalPermissions[key] ? "bg-blue-600" : "bg-gray-300"}`}>
+                      <div className={`relative w-10 h-5 rounded-full transition-colors ${ethicalPermissions[key] ? "bg-blue-600" : "bg-gray-300"}`}>
                         <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-all ${ethicalPermissions[key] ? "right-0.5" : "left-0.5"}`} />
                       </div>
                     </label>

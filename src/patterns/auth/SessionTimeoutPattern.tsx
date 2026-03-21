@@ -1,13 +1,13 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
 import { Timer, AlertTriangle } from "lucide-react";
 
-function SessionTimeoutDemo() {
-  const TIMEOUT_SECONDS = 15;
-  const WARNING_AT = 10;
+const TIMEOUT_SECONDS = 15;
+const WARNING_AT = 10;
 
+function SessionTimeoutDemo() {
   const [secondsLeft, setSecondsLeft] = useState(TIMEOUT_SECONDS);
   const [phase, setPhase] = useState<"active" | "warning" | "expired">("active");
   const [running, setRunning] = useState(false);
@@ -22,7 +22,7 @@ function SessionTimeoutDemo() {
     const timer = setTimeout(() => {
       const next = secondsLeft - 1;
       setSecondsLeft(next);
-      if (next <= (TIMEOUT_SECONDS - WARNING_AT) && phase === "active") {
+      if (next <= WARNING_AT && phase === "active") {
         setPhase("warning");
       }
     }, 1000);
@@ -35,17 +35,22 @@ function SessionTimeoutDemo() {
     setPhase("active");
   }, []);
 
-  const start = () => {
+  const stayBtnRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (phase === "warning") stayBtnRef.current?.focus();
+  }, [phase]);
+
+  const start = useCallback(() => {
     setSecondsLeft(TIMEOUT_SECONDS);
     setPhase("active");
     setRunning(true);
-  };
+  }, []);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setRunning(false);
     setSecondsLeft(TIMEOUT_SECONDS);
     setPhase("active");
-  };
+  }, []);
 
   if (!running) {
     return (
@@ -91,9 +96,10 @@ function SessionTimeoutDemo() {
           <AlertTriangle className="w-10 h-10 text-amber-500 mx-auto mb-3" />
           <h3 className="font-bold text-gray-900 mb-1">Session expiring</h3>
           <p className="text-sm text-gray-600 mb-1">Your session will expire in <strong>{secondsLeft} seconds</strong>.</p>
+          <span className="sr-only" aria-live="polite" aria-atomic="true">{(secondsLeft % 5 === 0 || secondsLeft <= 5) ? `${secondsLeft} seconds remaining` : ""}</span>
           <p className="text-xs text-gray-400 mb-4">Any unsaved changes will be preserved.</p>
           <div className="flex gap-3 justify-center">
-            <button onClick={extend} className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors border-none cursor-pointer">
+            <button ref={stayBtnRef} onClick={extend} className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors border-none cursor-pointer">
               Stay signed in
             </button>
             <button onClick={() => { setPhase("expired"); setSecondsLeft(0); }} className="border border-gray-300 text-gray-700 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors bg-white cursor-pointer">

@@ -1,22 +1,25 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
 import { CheckCircle2, XCircle, AlertTriangle, Eye, EyeOff, ShieldAlert, ShieldCheck } from "lucide-react";
 
+// NOTE: This is a placeholder list for demo purposes only. In production, replace with a real breach-check
+// API call (e.g., Have I Been Pwned k-anonymity API: https://api.pwnedpasswords.com/range/{first5hash}).
+// Never log or transmit the plaintext password; only the first 5 hex chars of SHA-1 are sent to HIBP.
 const BREACHED_PASSWORDS = ["password123", "letmein2024", "qwerty123456", "admin12345", "iloveyou123"];
 
 function evaluatePassword(pw: string) {
+  const breached = BREACHED_PASSWORDS.includes(pw.toLowerCase());
   const checks = [
     { label: "At least 12 characters", pass: pw.length >= 12 },
     { label: "Contains uppercase letter", pass: /[A-Z]/.test(pw) },
     { label: "Contains lowercase letter", pass: /[a-z]/.test(pw) },
     { label: "Contains a number", pass: /\d/.test(pw) },
     { label: "Contains special character", pass: /[^A-Za-z0-9]/.test(pw) },
-    { label: "Not a common password", pass: pw.length > 0 && !["password", "123456789012", "qwertyuiop12"].includes(pw.toLowerCase()) },
+    { label: "Not a common password", pass: pw.length > 0 && !breached && !["password", "123456789012", "qwertyuiop12"].includes(pw.toLowerCase()) },
   ];
 
-  const breached = BREACHED_PASSWORDS.includes(pw.toLowerCase());
   const passed = checks.filter(c => c.pass).length;
   const score = pw.length === 0 ? 0 : breached ? 0 : passed <= 2 ? 1 : passed <= 4 ? 2 : passed <= 5 ? 3 : 4;
   const labels = ["", "Weak", "Fair", "Strong", "Very Strong"];
@@ -32,7 +35,7 @@ function PasswordDemo() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const { checks, score, label, color, breached } = evaluatePassword(password);
+  const { checks, score, label, color, breached } = useMemo(() => evaluatePassword(password), [password]);
   const passwordsMatch = password === confirm && confirm.length > 0;
   const canSubmit = score >= 3 && passwordsMatch && !breached;
 
@@ -72,9 +75,10 @@ function PasswordDemo() {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Password field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">New password</label>
+            <label htmlFor="new-password" className="block text-sm font-medium text-gray-700 mb-1">New password</label>
             <div className="relative">
               <input
+                id="new-password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={e => setPassword(e.target.value)}
@@ -95,7 +99,7 @@ function PasswordDemo() {
 
           {/* Strength meter */}
           {password.length > 0 && (
-            <>
+            <div aria-live="polite" aria-atomic="false">
               <div className="flex gap-1 mb-1">
                 {[1, 2, 3, 4].map(i => (
                   <div
@@ -138,14 +142,15 @@ function PasswordDemo() {
                   </div>
                 ))}
               </div>
-            </>
+            </div>
           )}
 
           {/* Confirm password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Confirm password</label>
+            <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700 mb-1">Confirm password</label>
             <div className="relative">
               <input
+                id="confirm-password"
                 type={showConfirm ? "text" : "password"}
                 value={confirm}
                 onChange={e => setConfirm(e.target.value)}
@@ -163,7 +168,7 @@ function PasswordDemo() {
                 type="button"
                 onClick={() => setShowConfirm(!showConfirm)}
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 bg-transparent border-none cursor-pointer"
-                aria-label={showConfirm ? "Hide password" : "Show password"}
+                aria-label={showConfirm ? "Hide confirm password" : "Show confirm password"}
               >
                 {showConfirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -196,6 +201,7 @@ function PasswordDemo() {
         </p>
         <p style={{ color: "var(--text)" }}>Short password → watch checklist update in real-time</p>
         <p style={{ color: "var(--text)" }}>Strong password + matching confirm → submit enabled</p>
+        <p style={{ color: "var(--text)" }}><strong>Note:</strong> Breach list is a demo placeholder — replace with Have I Been Pwned API in production.</p>
       </div>
     </div>
   );

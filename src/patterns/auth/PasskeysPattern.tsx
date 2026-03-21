@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
@@ -8,25 +8,29 @@ function PasskeysDemo() {
   const [scenario, setScenario] = useState<"register" | "login" | "manage">("register");
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const simulateAuth = (nextStep: number) => {
     setLoading(true);
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setLoading(false);
       setStep(nextStep);
     }, 1500);
   };
 
   const reset = () => {
+    clearTimeout(timerRef.current);
     setStep(0);
     setLoading(false);
   };
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
 
   return (
     <div className="w-full max-w-sm">
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["register", "login", "manage"] as const).map(s => (
-          <button key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button type="button" key={s} onClick={() => { setScenario(s); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
             {s === "register" ? "Create Passkey" : s === "login" ? "Sign In" : "Manage Keys"}
           </button>
         ))}
@@ -50,10 +54,10 @@ function PasskeysDemo() {
                   <li>Syncs across your devices via iCloud/Google</li>
                 </ul>
               </div>
-              <button onClick={() => simulateAuth(1)} disabled={loading} className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2">
+              <button type="button" onClick={() => simulateAuth(1)} disabled={loading} className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2">
                 {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Creating...</> : <><Fingerprint className="w-4 h-4" /> Create passkey</>}
               </button>
-              <button className="w-full mt-2 text-sm text-gray-500 bg-transparent border-none cursor-pointer py-2">
+              <button type="button" className="w-full mt-2 text-sm text-gray-500 bg-transparent border-none cursor-pointer py-2">
                 Maybe later
               </button>
             </div>
@@ -62,11 +66,11 @@ function PasskeysDemo() {
           {step === 1 && (
             <div className="text-center">
               <div className="border-2 border-blue-200 rounded-2xl p-6 mb-4 bg-blue-50/50">
-                <Fingerprint className="w-16 h-16 text-blue-500 mx-auto mb-3" style={{ animation: "pulse 2s infinite" }} />
+                <Fingerprint className="w-16 h-16 text-blue-500 mx-auto mb-3 animate-pulse" />
                 <p className="text-sm font-medium text-gray-900">Verify your identity</p>
                 <p className="text-xs text-gray-500 mt-1">Use Touch ID, Face ID, or your screen lock</p>
               </div>
-              <button onClick={() => simulateAuth(2)} disabled={loading} className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer flex items-center justify-center gap-2">
+              <button type="button" onClick={() => simulateAuth(2)} disabled={loading} className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer flex items-center justify-center gap-2">
                 {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Verifying...</> : "Simulate biometric verification"}
               </button>
             </div>
@@ -113,7 +117,7 @@ function PasskeysDemo() {
               <h2 className="text-xl font-bold text-gray-900 mb-1">Welcome back</h2>
               <p className="text-sm text-gray-500 mb-6">Sign in with your passkey</p>
 
-              <button onClick={() => simulateAuth(1)} disabled={loading} className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2 mb-3">
+              <button type="button" onClick={() => simulateAuth(1)} disabled={loading} className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2 mb-3">
                 {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Authenticating...</> : <><Fingerprint className="w-5 h-5" /> Sign in with passkey</>}
               </button>
 
@@ -123,7 +127,7 @@ function PasskeysDemo() {
                 <div className="flex-1 h-px bg-gray-200" />
               </div>
 
-              <button className="w-full border border-gray-300 text-gray-600 py-2.5 rounded-lg text-sm bg-white cursor-pointer hover:bg-gray-50">
+              <button type="button" className="w-full border border-gray-300 text-gray-600 py-2.5 rounded-lg text-sm bg-white cursor-pointer hover:bg-gray-50">
                 Use password instead
               </button>
 
@@ -167,7 +171,10 @@ function PasskeysDemo() {
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-medium text-gray-900">{device}</p>
-                    <span className="text-xs text-green-600 flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Active</span>
+                    {active
+                      ? <span className="text-xs text-green-600 flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Active</span>
+                      : <span className="text-xs text-red-500">Revoked</span>
+                    }
                   </div>
                   <p className="text-xs text-gray-500">{method} · {synced} · Created {created}</p>
                 </div>
@@ -182,13 +189,13 @@ function PasskeysDemo() {
             </p>
           </div>
 
-          <button className="w-full border border-blue-300 text-blue-700 py-2.5 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer hover:bg-blue-100 flex items-center justify-center gap-2">
+          <button type="button" className="w-full border border-blue-300 text-blue-700 py-2.5 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer hover:bg-blue-100 flex items-center justify-center gap-2">
             <Key className="w-4 h-4" /> Add passkey on another device
           </button>
         </div>
       )}
 
-      <button onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>Reset demo</button>
+      <button type="button" onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>Reset demo</button>
     </div>
   );
 }

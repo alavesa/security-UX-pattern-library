@@ -2,17 +2,17 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Lock, Unlock, ShieldCheck, ShieldAlert, Send, Eye, EyeOff } from "lucide-react";
+import { Lock, Unlock, ShieldCheck, ShieldAlert, Send, Eye } from "lucide-react";
 
 function EncryptionIndicatorDemo() {
   const [scenario, setScenario] = useState<"messaging" | "connection" | "storage">("messaging");
   const [message, setMessage] = useState("");
-  const [sent, setSent] = useState(false);
+  const [sentMessages, setSentMessages] = useState<string[]>([]);
   const [showDetails, setShowDetails] = useState(false);
 
   const reset = () => {
     setMessage("");
-    setSent(false);
+    setSentMessages([]);
     setShowDetails(false);
   };
 
@@ -36,7 +36,7 @@ function EncryptionIndicatorDemo() {
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">AJ</div>
               <div>
                 <p className="text-sm font-medium text-gray-900">Alice Johnson</p>
-                <p className="text-xs text-green-600 flex items-center gap-1"><Lock className="w-3 h-3" /> End-to-end encrypted</p>
+                <p className="text-xs text-green-600 flex items-center gap-1"><Lock className="w-3 h-3" aria-hidden="true" /> End-to-end encrypted</p>
               </div>
             </div>
             <button onClick={() => setShowDetails(!showDetails)} className="text-xs text-blue-600 bg-transparent border-none cursor-pointer hover:underline">
@@ -67,36 +67,37 @@ function EncryptionIndicatorDemo() {
             <div className="flex justify-start">
               <div className="bg-gray-100 rounded-2xl rounded-bl-none px-4 py-2 max-w-[80%]">
                 <p className="text-sm text-gray-900">Hey, can you send me the quarterly report?</p>
-                <p className="text-xs text-gray-400 mt-1 flex items-center gap-1"><Lock className="w-2.5 h-2.5" /> 10:32 AM</p>
+                <p className="text-xs text-gray-400 mt-1 flex items-center gap-1"><Lock className="w-2.5 h-2.5" aria-hidden="true" /> 10:32 AM</p>
               </div>
             </div>
             <div className="flex justify-end">
               <div className="bg-blue-600 rounded-2xl rounded-br-none px-4 py-2 max-w-[80%]">
                 <p className="text-sm text-white">Sure, sending it now. It has sensitive financial data so glad this is encrypted.</p>
-                <p className="text-xs text-blue-200 mt-1 flex items-center gap-1"><Lock className="w-2.5 h-2.5" /> 10:33 AM</p>
+                <p className="text-xs text-blue-200 mt-1 flex items-center gap-1"><Lock className="w-2.5 h-2.5" aria-hidden="true" /> 10:33 AM</p>
               </div>
             </div>
-            {sent && (
-              <div className="flex justify-end">
+            {sentMessages.map((msg, i) => (
+              <div key={i} className="flex justify-end">
                 <div className="bg-blue-600 rounded-2xl rounded-br-none px-4 py-2 max-w-[80%]">
-                  <p className="text-sm text-white">{message}</p>
-                  <p className="text-xs text-blue-200 mt-1 flex items-center gap-1"><Lock className="w-2.5 h-2.5" /> Just now</p>
+                  <p className="text-sm text-white">{msg}</p>
+                  <p className="text-xs text-blue-200 mt-1 flex items-center gap-1"><Lock className="w-2.5 h-2.5" aria-hidden="true" /> Just now</p>
                 </div>
               </div>
-            )}
+            ))}
           </div>
 
           {/* Input */}
           <div className="border-t border-gray-200 px-4 py-3 flex items-center gap-2">
-            <Lock className="w-4 h-4 text-green-500 shrink-0" />
+            <Lock className="w-4 h-4 text-green-500 shrink-0" aria-hidden="true" />
             <input
+              aria-label="Encrypted message"
               value={message}
               onChange={e => setMessage(e.target.value)}
               placeholder="Encrypted message..."
               className="flex-1 text-sm border-none outline-none bg-transparent"
-              onKeyDown={e => { if (e.key === "Enter" && message) { setSent(true); setMessage(""); } }}
+              onKeyDown={e => { if (e.key === "Enter" && message) { setSentMessages(prev => [...prev, message]); setMessage(""); } }}
             />
-            <button onClick={() => { if (message) { setSent(true); setMessage(""); } }} className="text-blue-600 bg-transparent border-none cursor-pointer">
+            <button aria-label="Send message" onClick={() => { if (message) { setSentMessages(prev => [...prev, message]); setMessage(""); } }} className="text-blue-600 bg-transparent border-none cursor-pointer">
               <Send className="w-4 h-4" />
             </button>
           </div>
@@ -171,7 +172,7 @@ function EncryptionIndicatorDemo() {
               { name: "Personal documents", status: "encrypted", icon: Lock, detail: "AES-256 • Encrypted at rest • Only you can decrypt" },
               { name: "Profile information", status: "encrypted", icon: Lock, detail: "AES-256 • Encrypted at rest • Visible to admins" },
               { name: "Chat history", status: "e2e", icon: ShieldCheck, detail: "Signal Protocol • End-to-end encrypted • No server access" },
-              { name: "Usage analytics", status: "plain", icon: EyeOff, detail: "Not encrypted • Anonymized • Used for service improvement" },
+              { name: "Usage analytics", status: "plain", icon: Eye, detail: "Not encrypted • Anonymized • Used for service improvement" },
             ].map(({ name, status, icon: Icon, detail }) => (
               <div key={name} className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg">
                 <Icon className={`w-5 h-5 mt-0.5 shrink-0 ${status === "e2e" ? "text-green-600" : status === "encrypted" ? "text-blue-600" : "text-gray-400"}`} />

@@ -4,29 +4,30 @@ import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
 import { CheckCircle2, XCircle, Clock, AlertTriangle, Shield } from "lucide-react";
 
+const REVIEW_ITEMS = [
+  { id: "auth", label: "Authentication pattern reviewed", category: "Auth", critical: true },
+  { id: "errors", label: "Error messages don't leak information", category: "Auth", critical: true },
+  { id: "encryption", label: "Data encryption indicators shown", category: "Data", critical: false },
+  { id: "consent", label: "Consent flows GDPR-compliant", category: "Dark Patterns", critical: true },
+  { id: "a11y", label: "Security flows keyboard accessible", category: "Accessibility", critical: true },
+  { id: "aria", label: "ARIA roles on all interactive elements", category: "Accessibility", critical: false },
+  { id: "industrial", label: "Touch targets meet IEC 62443 (if applicable)", category: "Industrial", critical: false },
+  { id: "tokens", label: "Security patterns applied consistently", category: "Consistency", critical: false },
+];
+
 function SecurityDesignReviewDemo() {
   const [phase, setPhase] = useState<"checklist" | "review" | "approved">("checklist");
   const [checks, setChecks] = useState<Record<string, boolean>>({});
-
-  const REVIEW_ITEMS = [
-    { id: "auth", label: "Authentication pattern reviewed", category: "Auth", critical: true },
-    { id: "errors", label: "Error messages don't leak information", category: "Auth", critical: true },
-    { id: "encryption", label: "Data encryption indicators shown", category: "Data", critical: false },
-    { id: "consent", label: "Consent flows GDPR-compliant", category: "Dark Patterns", critical: true },
-    { id: "a11y", label: "Security flows keyboard accessible", category: "Accessibility", critical: true },
-    { id: "aria", label: "ARIA roles on all interactive elements", category: "Accessibility", critical: false },
-    { id: "industrial", label: "Touch targets meet IEC 62443 (if applicable)", category: "Industrial", critical: false },
-    { id: "tokens", label: "Security patterns applied consistently", category: "Consistency", critical: false },
-  ];
+  const [submittedCount, setSubmittedCount] = useState<number>(0);
 
   const criticalComplete = REVIEW_ITEMS.filter(i => i.critical).every(i => checks[i.id]);
-  const allComplete = REVIEW_ITEMS.every(i => checks[i.id]);
 
-  const reset = () => { setPhase("checklist"); setChecks({}); };
+  const reset = () => { setPhase("checklist"); setChecks({}); setSubmittedCount(0); };
 
   return (
     <div className="w-full max-w-lg">
       <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div aria-live="polite" aria-atomic="true">
         {phase === "checklist" && (
           <>
             <div className="flex items-center justify-between mb-4">
@@ -55,7 +56,7 @@ function SecurityDesignReviewDemo() {
             </div>
 
             <button
-              onClick={() => setPhase("review")}
+              onClick={() => { setSubmittedCount(Object.values(checks).filter(Boolean).length); setPhase("review"); }}
               disabled={!criticalComplete}
               className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed"
             >
@@ -85,7 +86,7 @@ function SecurityDesignReviewDemo() {
               </div>
             </div>
 
-            <button onClick={() => setPhase("approved")} className="text-xs text-blue-600 bg-transparent border-none cursor-pointer">[Simulate approval]</button>
+            <button onClick={() => setPhase("approved")} aria-label="Simulate approval (demo only)" className="text-xs text-blue-600 bg-transparent border-none cursor-pointer italic">[Simulate approval]</button>
           </div>
         )}
 
@@ -98,13 +99,14 @@ function SecurityDesignReviewDemo() {
             <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-left">
               <p className="text-xs text-green-800"><strong>Review outcome:</strong></p>
               <ul className="text-xs text-green-700 mt-2 space-y-1">
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3" /> {Object.values(checks).filter(Boolean).length}/{REVIEW_ITEMS.length} items passed</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3" /> {submittedCount}/{REVIEW_ITEMS.length} items passed</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3" /> All critical items verified</li>
                 <li className="flex items-center gap-2"><Shield className="w-3 h-3" /> Design tokens consistent</li>
               </ul>
             </div>
           </div>
         )}
+        </div>
       </div>
 
       <div className="mt-4 p-3 rounded-lg text-xs" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>

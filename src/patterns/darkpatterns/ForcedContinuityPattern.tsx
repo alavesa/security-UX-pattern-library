@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
@@ -9,20 +9,20 @@ function ForcedContinuityDemo() {
   const [darkStep, setDarkStep] = useState(0);
   const [ethicalStep, setEthicalStep] = useState(0);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setDarkStep(0);
     setEthicalStep(0);
-  };
+  }, []);
 
   return (
     <div className="w-full max-w-xl">
       {/* Toggle */}
-      <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        <button onClick={() => { setView("dark"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}>
-          <ShieldOff className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
+      <div role="tablist" className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <button type="button" role="tab" aria-selected={view === "dark"} onClick={() => { setView("dark"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}>
+          <ShieldOff aria-hidden="true" className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
         </button>
-        <button onClick={() => { setView("ethical"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}>
-          <Shield className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
+        <button type="button" role="tab" aria-selected={view === "ethical"} onClick={() => { setView("ethical"); reset(); }} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}>
+          <Shield aria-hidden="true" className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
         </button>
       </div>
 
@@ -42,7 +42,7 @@ function ForcedContinuityDemo() {
               <div className="text-left space-y-2 mb-6">
                 {["Unlimited access to all features", "Priority support", "Cancel anytime"].map(f => (
                   <div key={f} className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="w-4 h-4 text-green-500" /> {f}
+                    <CheckCircle2 aria-hidden="true" className="w-4 h-4 text-green-500" /> {f}
                   </div>
                 ))}
               </div>
@@ -50,16 +50,17 @@ function ForcedContinuityDemo() {
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1 text-left">Payment method</label>
                 <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-lg">
-                  <CreditCard className="w-5 h-5 text-gray-400" />
+                  <CreditCard aria-hidden="true" className="w-5 h-5 text-gray-400" />
                   <span className="text-sm text-gray-500">•••• •••• •••• 4242</span>
                 </div>
               </div>
 
-              <button onClick={() => setDarkStep(1)} className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer hover:bg-blue-700">
+              <button type="button" onClick={() => setDarkStep(1)} className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold text-sm border-none cursor-pointer hover:bg-blue-700">
                 Start Free Trial
               </button>
 
-              <p className="text-xs text-gray-300 mt-3 leading-relaxed">
+              <p role="note" aria-label="Example of deceptive fine print" className="text-xs text-gray-300 mt-3 leading-relaxed">
+                <span className="sr-only">Intentionally hard to read — example of deceptive fine print: </span>
                 After your free trial ends, you will be automatically charged $29.99/month. By clicking "Start Free Trial" you agree to our Terms of Service and authorize recurring charges.
               </p>
             </div>
@@ -68,7 +69,7 @@ function ForcedContinuityDemo() {
           {darkStep === 1 && (
             <div>
               <div className="text-center mb-4">
-                <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-2" />
+                <CheckCircle2 aria-hidden="true" className="w-12 h-12 text-green-500 mx-auto mb-2" />
                 <h3 className="font-bold text-gray-900">Trial started!</h3>
                 <p className="text-sm text-gray-500">Your free trial is active.</p>
               </div>
@@ -113,7 +114,7 @@ function ForcedContinuityDemo() {
               </div>
 
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4 flex items-start gap-2">
-                <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
+                <AlertTriangle aria-hidden="true" className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
                 <div className="text-xs text-amber-800">
                   <strong>No credit card required.</strong> We'll ask for payment only if you choose to continue after the trial.
                 </div>
@@ -122,12 +123,12 @@ function ForcedContinuityDemo() {
               <div className="text-left space-y-2 mb-6">
                 {["Unlimited access during trial", "We'll email you 2 days before it ends", "No charge if you don't continue"].map(f => (
                   <div key={f} className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="w-4 h-4 text-green-500" /> {f}
+                    <CheckCircle2 aria-hidden="true" className="w-4 h-4 text-green-500" /> {f}
                   </div>
                 ))}
               </div>
 
-              <button onClick={() => setEthicalStep(1)} className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700">
+              <button type="button" onClick={() => setEthicalStep(1)} className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-blue-700">
                 Start free trial — no credit card needed
               </button>
             </div>
@@ -136,13 +137,13 @@ function ForcedContinuityDemo() {
           {ethicalStep === 1 && (
             <div>
               <div className="text-center mb-4">
-                <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-2" />
+                <CheckCircle2 aria-hidden="true" className="w-12 h-12 text-green-500 mx-auto mb-2" />
                 <h3 className="font-bold text-gray-900">Trial started!</h3>
                 <p className="text-sm text-gray-500 mb-2">Your 7-day free trial is active.</p>
               </div>
 
               <div className="border border-gray-200 rounded-lg p-4 mb-4">
-                <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2"><Clock className="w-4 h-4" /> What happens next:</h4>
+                <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2"><Clock aria-hidden="true" className="w-4 h-4" /> What happens next:</h4>
                 <div className="space-y-3 text-xs text-gray-600">
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0 text-blue-600 font-bold">1</div>
@@ -175,7 +176,7 @@ function ForcedContinuityDemo() {
         </div>
       )}
 
-      <button onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
+      <button type="button" onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded" style={{ color: "var(--text)" }}>
         Reset demo
       </button>
     </div>

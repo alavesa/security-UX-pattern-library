@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Shield, ShieldAlert, CheckCircle2, XCircle, AlertTriangle, Settings, RefreshCw } from "lucide-react";
+import { ShieldAlert, CheckCircle2, XCircle, AlertTriangle, Settings, RefreshCw } from "lucide-react";
 
 interface SecurityCheck {
   id: string;
@@ -28,6 +28,16 @@ const SECURITY_CHECKS: SecurityCheck[] = [
 function SecurityMisconfigDemo() {
   const [scenario, setScenario] = useState<"dashboard" | "debug" | "defaults">("dashboard");
   const [showFixes, setShowFixes] = useState(false);
+  const [setupStarted, setSetupStarted] = useState(false);
+  const [completedItems, setCompletedItems] = useState<Set<string>>(new Set());
+
+  const toggleItem = (label: string) => {
+    setCompletedItems(prev => {
+      const next = new Set(prev);
+      if (next.has(label)) { next.delete(label); } else { next.add(label); }
+      return next;
+    });
+  };
 
   const passCount = SECURITY_CHECKS.filter(c => c.status === "pass").length;
   const warnCount = SECURITY_CHECKS.filter(c => c.status === "warn").length;
@@ -35,9 +45,9 @@ function SecurityMisconfigDemo() {
 
   return (
     <div className="w-full max-w-lg">
-      <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+      <div role="tablist" className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["dashboard", "debug", "defaults"] as const).map(s => (
-          <button key={s} onClick={() => setScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button key={s} role="tab" aria-selected={scenario === s} onClick={() => setScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
             {s === "dashboard" ? "Security Headers" : s === "debug" ? "Debug Mode" : "Default Creds"}
           </button>
         ))}
@@ -113,7 +123,7 @@ function SecurityMisconfigDemo() {
               <div className="text-gray-500">    at POST /api/users (routes/users.ts:15:3)</div>
               <div className="text-yellow-400 mt-2">DB: sqlite:///app/data/production.db</div>
               <div className="text-yellow-400">ENV: NODE_ENV=development</div>
-              <div className="text-yellow-400">SECRET: jwt_secret=mysecret123</div>
+              <div className="text-yellow-400">SECRET: jwt_secret=••••••••••</div>
             </div>
 
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">
@@ -161,21 +171,26 @@ function SecurityMisconfigDemo() {
             <h4 className="text-xs font-semibold text-gray-700 mb-3">Security setup checklist:</h4>
             <div className="space-y-2">
               {[
-                { label: "Change admin password", done: false, critical: true },
-                { label: "Set up MFA for admin account", done: false, critical: true },
-                { label: "Review default CORS settings", done: false, critical: false },
-                { label: "Disable debug mode", done: false, critical: true },
-                { label: "Set security headers", done: false, critical: false },
-              ].map(({ label, critical }) => (
-                <div key={label} className="flex items-center justify-between py-1">
-                  <span className="text-sm text-gray-700">{label}</span>
-                  {critical && <span className="text-xs bg-red-100 text-red-600 px-1.5 py-0.5 rounded">Required</span>}
-                </div>
-              ))}
+                { label: "Change admin password", critical: true },
+                { label: "Set up MFA for admin account", critical: true },
+                { label: "Review default CORS settings", critical: false },
+                { label: "Disable debug mode", critical: true },
+                { label: "Set security headers", critical: false },
+              ].map(({ label, critical }) => {
+                const isDone = completedItems.has(label);
+                return (
+                  <div key={label} className={`flex items-center justify-between py-1 ${setupStarted ? "cursor-pointer" : ""}`} onClick={() => setupStarted && toggleItem(label)}>
+                    <span className={`text-sm ${isDone ? "line-through text-gray-400" : "text-gray-700"}`}>{label}</span>
+                    <div className="flex items-center gap-2">
+                      {isDone ? <CheckCircle2 className="w-4 h-4 text-green-500" /> : critical && <span className="text-xs bg-red-100 text-red-600 px-1.5 py-0.5 rounded">Required</span>}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
-          <button className="w-full bg-red-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-red-700 flex items-center justify-center gap-2">
+          <button onClick={() => setSetupStarted(true)} className="w-full bg-red-600 text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer hover:bg-red-700 flex items-center justify-center gap-2">
             <RefreshCw className="w-4 h-4" /> Start security setup
           </button>
 

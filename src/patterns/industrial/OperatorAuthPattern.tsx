@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
@@ -10,12 +10,22 @@ function OperatorAuthDemo() {
   const [pinEntered, setPinEntered] = useState(false);
   const [emergencyActive, setEmergencyActive] = useState(false);
   const [pin, setPin] = useState("");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [now, setNow] = useState(() => new Date());
+  const [activatedAt, setActivatedAt] = useState<Date | null>(null);
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
 
   const reset = () => {
+    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
     setBadgeScanned(false);
     setPinEntered(false);
     setEmergencyActive(false);
     setPin("");
+    setActivatedAt(null);
   };
 
   return (
@@ -34,7 +44,7 @@ function OperatorAuthDemo() {
           {/* Industrial HMI header */}
           <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
             <span className="font-mono text-xs text-green-400">DRILLING CONTROL SYSTEM v4.2</span>
-            <span className="font-mono text-xs text-gray-500">{new Date().toLocaleTimeString()}</span>
+            <span className="font-mono text-xs text-gray-500">{now.toLocaleTimeString()}</span>
           </div>
 
           <div className="p-8 text-center">
@@ -74,9 +84,10 @@ function OperatorAuthDemo() {
                         key={i}
                         onClick={() => {
                           if (num === "⌫") { setPin(p => p.slice(0, -1)); return; }
-                          const newPin = pin + num;
+                          if (pin.length >= 4) return;
+                          const newPin = pin + String(num);
                           setPin(newPin);
-                          if (newPin.length === 4) setTimeout(() => setPinEntered(true), 500);
+                          if (newPin.length === 4) { timerRef.current = setTimeout(() => setPinEntered(true), 500); }
                         }}
                         className="h-14 rounded-lg font-mono text-lg font-bold text-white border-none cursor-pointer"
                         style={{ background: "#374151" }}
@@ -93,7 +104,7 @@ function OperatorAuthDemo() {
                 <CheckCircle2 className="w-12 h-12 text-green-400 mx-auto mb-3" />
                 <h3 className="font-mono text-lg text-green-400 mb-2">AUTHENTICATED</h3>
                 <div className="bg-gray-800 rounded-lg p-4 text-left font-mono text-xs text-gray-300 space-y-1">
-                  <p>Operator: <span className="text-white">K. Virtanen</span></p>
+                  <p>Operator: <span className="text-white">K. VIRTANEN</span></p>
                   <p>Role: <span className="text-white">Driller — Level 3</span></p>
                   <p>Shift: <span className="text-white">Day shift (06:00-18:00)</span></p>
                   <p>Station: <span className="text-white">Driller's Chair — WS-04</span></p>
@@ -174,7 +185,7 @@ function OperatorAuthDemo() {
                   </ul>
                 </div>
 
-                <button onClick={() => setEmergencyActive(true)} className="font-mono text-sm bg-red-600 text-white px-8 py-4 rounded-lg border-2 border-red-400 cursor-pointer hover:bg-red-700 font-bold">
+                <button onClick={() => { setEmergencyActive(true); setActivatedAt(new Date()); }} className="font-mono text-sm bg-red-600 text-white px-8 py-4 rounded-lg border-2 border-red-400 cursor-pointer hover:bg-red-700 font-bold">
                   ACTIVATE EMERGENCY OVERRIDE
                 </button>
 
@@ -188,7 +199,7 @@ function OperatorAuthDemo() {
                 </div>
 
                 <div className="bg-gray-800 rounded-lg p-4 text-left font-mono text-xs space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-amber-400"><Clock className="w-3.5 h-3.5" /> Override activated at {new Date().toLocaleTimeString()}</div>
+                  <div className="flex items-center gap-2 text-amber-400"><Clock className="w-3.5 h-3.5" /> Override activated at {activatedAt?.toLocaleTimeString()}</div>
                   <div className="flex items-center gap-2 text-amber-400"><User className="w-3.5 h-3.5" /> Station: Driller's Chair — WS-04</div>
                   <div className="flex items-center gap-2 text-red-400"><AlertTriangle className="w-3.5 h-3.5" /> All actions logged for post-incident review</div>
                   <div className="flex items-center gap-2 text-red-400"><Shield className="w-3.5 h-3.5" /> Supervisor notification sent automatically</div>

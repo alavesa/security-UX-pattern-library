@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Shield, ShieldOff, Trash2, AlertTriangle, CheckCircle2, Loader2 } from "lucide-react";
+import { Shield, ShieldOff, Trash2, AlertTriangle, CheckCircle2 } from "lucide-react";
 
 function HiddenUnsubscribeDemo() {
   const [view, setView] = useState<"dark" | "ethical">("dark");
@@ -19,18 +19,22 @@ function HiddenUnsubscribeDemo() {
       {/* Toggle */}
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <button
+          type="button"
+          aria-pressed={view === "dark"}
           onClick={() => { setView("dark"); reset(); }}
           className="flex-1 text-xs py-2 rounded-md font-mono transition-colors border-none cursor-pointer"
           style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}
         >
-          <ShieldOff className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
+          <ShieldOff aria-hidden="true" className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
         </button>
         <button
+          type="button"
+          aria-pressed={view === "ethical"}
           onClick={() => { setView("ethical"); reset(); }}
           className="flex-1 text-xs py-2 rounded-md font-mono transition-colors border-none cursor-pointer"
           style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}
         >
-          <Shield className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
+          <Shield aria-hidden="true" className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
         </button>
       </div>
 
@@ -53,7 +57,7 @@ function HiddenUnsubscribeDemo() {
                 ))}
               </div>
               <p className="text-xs text-gray-300 mb-2">
-                Looking for something else? <button onClick={() => setDarkStep(1)} className="text-xs text-gray-400 underline bg-transparent border-none cursor-pointer">Visit our help center</button>
+                Looking for something else? <button type="button" onClick={() => setDarkStep(1)} className="text-xs text-gray-400 underline bg-transparent border-none cursor-pointer">Visit our help center</button>
               </p>
               <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
                 <p className="text-xs text-red-700"><strong>Notice:</strong> "Delete account" isn't in the settings. You have to find a tiny link to the help center.</p>
@@ -64,14 +68,17 @@ function HiddenUnsubscribeDemo() {
           {darkStep === 1 && (
             <div>
               <h3 className="font-bold text-gray-900 mb-4">Help Center</h3>
-              <input placeholder="Search for help..." className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-4" />
+              <label htmlFor="help-search" className="sr-only">Search for help</label>
+              <input id="help-search" placeholder="Search for help..." className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-4" />
               <div className="space-y-2 mb-4">
                 {["How to change my password", "Billing FAQ", "Privacy settings", "Contact support"].map(item => (
-                  <div key={item} className="py-2 border-b border-gray-100 text-sm text-blue-600 cursor-pointer">{item}</div>
+                  <div key={item} className="border-b border-gray-100">
+                    <button type="button" className="w-full text-left py-2 text-sm text-blue-600 cursor-pointer bg-transparent border-none">{item}</button>
+                  </div>
                 ))}
               </div>
               <p className="text-xs text-gray-400">
-                Can't find what you need? <button onClick={() => setDarkStep(2)} className="text-xs text-gray-400 underline bg-transparent border-none cursor-pointer">Contact us</button>
+                Can't find what you need? <button type="button" onClick={() => setDarkStep(2)} className="text-xs text-gray-400 underline bg-transparent border-none cursor-pointer">Contact us</button>
               </p>
               <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
                 <p className="text-xs text-red-700"><strong>Step 2:</strong> The help center doesn't have a "delete account" option either. You need to contact support.</p>
@@ -85,18 +92,18 @@ function HiddenUnsubscribeDemo() {
               <p className="text-sm text-gray-600 mb-4">Before you leave, would you like to try these instead?</p>
 
               <div className="space-y-2 mb-4">
-                <button className="w-full border border-blue-300 text-blue-700 py-3 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer">
+                <button type="button" className="w-full border border-blue-300 text-blue-700 py-3 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer">
                   Pause my account instead (keep all data)
                 </button>
-                <button className="w-full border border-blue-300 text-blue-700 py-3 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer">
+                <button type="button" className="w-full border border-blue-300 text-blue-700 py-3 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer">
                   Downgrade to free plan
                 </button>
-                <button className="w-full border border-blue-300 text-blue-700 py-3 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer">
+                <button type="button" className="w-full border border-blue-300 text-blue-700 py-3 rounded-lg text-sm font-medium bg-blue-50 cursor-pointer">
                   Talk to a retention specialist
                 </button>
               </div>
 
-              <button onClick={() => setDarkStep(3)} className="text-xs text-gray-400 bg-transparent border-none cursor-pointer">
+              <button type="button" onClick={() => setDarkStep(3)} className="text-xs text-gray-400 bg-transparent border-none cursor-pointer">
                 I still want to delete my account
               </button>
 
@@ -118,8 +125,9 @@ function HiddenUnsubscribeDemo() {
                   </label>
                 ))}
               </div>
-              <textarea placeholder="Please explain in detail (required, minimum 50 characters)..." className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-4 h-20" />
-              <button onClick={() => setDarkStep(4)} className="w-full bg-red-600 text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer">
+              <label htmlFor="deletion-reason" className="sr-only">Please explain in detail why you are leaving</label>
+              <textarea id="deletion-reason" placeholder="Please explain in detail (required, minimum 50 characters)..." className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-4 h-20" />
+              <button type="button" onClick={() => setDarkStep(4)} className="w-full bg-red-600 text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer">
                 Permanently delete my account
               </button>
 
@@ -145,7 +153,7 @@ function HiddenUnsubscribeDemo() {
           <div className="flex justify-between mt-4 text-xs" style={{ color: "var(--text)" }}>
             <span>Step {Math.min(darkStep + 1, 5)}/5</span>
             {darkStep > 0 && (
-              <button onClick={() => setDarkStep(s => s - 1)} className="bg-transparent border-none cursor-pointer underline" style={{ color: "var(--text)" }}>Back</button>
+              <button type="button" onClick={() => setDarkStep(s => s - 1)} className="bg-transparent border-none cursor-pointer underline" style={{ color: "var(--text)" }}>Back</button>
             )}
           </div>
         </div>
@@ -171,10 +179,11 @@ function HiddenUnsubscribeDemo() {
               </div>
               <div className="border-t border-gray-200 pt-4">
                 <button
+                  type="button"
                   onClick={() => setEthicalStep(1)}
                   className="flex items-center gap-2 text-sm text-red-600 hover:text-red-800 bg-transparent border-none cursor-pointer"
                 >
-                  <Trash2 className="w-4 h-4" />
+                  <Trash2 aria-hidden="true" className="w-4 h-4" />
                   Delete my account
                 </button>
               </div>
@@ -184,7 +193,7 @@ function HiddenUnsubscribeDemo() {
           {ethicalStep === 1 && (
             <div>
               <div className="flex items-start gap-3 mb-4">
-                <AlertTriangle className="w-6 h-6 text-amber-500 shrink-0" />
+                <AlertTriangle aria-hidden="true" className="w-6 h-6 text-amber-500 shrink-0" />
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Delete your account?</h3>
                   <p className="text-sm text-gray-600">This is permanent and cannot be undone.</p>
@@ -199,19 +208,21 @@ function HiddenUnsubscribeDemo() {
                   <li>Active subscription (if any)</li>
                 </ul>
                 <h4 className="text-xs font-semibold text-amber-800 mt-3 mb-2">Want to keep your data?</h4>
-                <button className="text-xs text-blue-600 bg-transparent border-none cursor-pointer underline">
+                <button type="button" onClick={() => alert('In a real app, this would trigger a data export email.')} className="text-xs text-blue-600 bg-transparent border-none cursor-pointer underline">
                   Download your data first
                 </button>
               </div>
 
               <div className="space-y-2">
                 <button
+                  type="button"
                   onClick={() => setEthicalStep(2)}
                   className="w-full bg-red-600 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-red-700 transition-colors border-none cursor-pointer"
                 >
                   Permanently delete my account
                 </button>
                 <button
+                  type="button"
                   onClick={() => setEthicalStep(0)}
                   className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors bg-white cursor-pointer"
                 >
@@ -223,7 +234,7 @@ function HiddenUnsubscribeDemo() {
 
           {ethicalStep === 2 && (
             <div className="text-center">
-              <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-4" />
+              <CheckCircle2 aria-hidden="true" className="w-12 h-12 text-green-500 mx-auto mb-4" />
               <h3 className="font-bold text-gray-900 mb-2">Account deleted</h3>
               <p className="text-sm text-gray-600 mb-4">Your data has been scheduled for deletion. You'll receive a confirmation email.</p>
 
@@ -242,7 +253,7 @@ function HiddenUnsubscribeDemo() {
         </div>
       )}
 
-      <button onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
+      <button type="button" onClick={reset} className="mt-4 text-xs hover:underline mx-auto block bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
         Reset demo
       </button>
     </div>

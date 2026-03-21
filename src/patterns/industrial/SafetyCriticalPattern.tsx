@@ -1,41 +1,57 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
 import { AlertTriangle, Shield, CheckCircle2, XCircle, Clock, Zap } from "lucide-react";
 
+type ShutdownStep = 'idle' | 'confirm' | 'executing';
+
+const HOLD_DURATION_MS = 3000;
+const TICK_INTERVAL_MS = 50;
+const INCREMENT = 100 / (HOLD_DURATION_MS / TICK_INTERVAL_MS);
+
 function SafetyCriticalDemo() {
   const [scenario, setScenario] = useState<"shutdown" | "override" | "parameter">("shutdown");
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState<ShutdownStep>('idle');
   const [holdProgress, setHoldProgress] = useState(0);
   const [holdTimer, setHoldTimer] = useState<ReturnType<typeof setInterval> | null>(null);
 
-  const reset = () => {
-    setStep(0);
+  const reset = useCallback(() => {
+    setStep('idle');
     setHoldProgress(0);
     if (holdTimer) clearInterval(holdTimer);
     setHoldTimer(null);
-  };
+  }, [holdTimer]);
 
-  const startHold = () => {
+  const startHold = useCallback(() => {
     const timer = setInterval(() => {
       setHoldProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setStep(3);
-          return 100;
-        }
-        return prev + 4;
+        if (prev >= 100) return 100;
+        return prev + INCREMENT;
       });
-    }, 50);
+    }, TICK_INTERVAL_MS);
     setHoldTimer(timer);
-  };
+  }, []);
 
-  const stopHold = () => {
+  const stopHold = useCallback(() => {
     if (holdTimer) clearInterval(holdTimer);
     setHoldTimer(null);
-    if (holdProgress < 100) setHoldProgress(0);
-  };
+    setHoldProgress(prev => prev >= 100 ? prev : 0);
+  }, [holdTimer]);
+
+  useEffect(() => {
+    return () => {
+      if (holdTimer) clearInterval(holdTimer);
+    };
+  }, [holdTimer]);
+
+  useEffect(() => {
+    if (holdProgress >= 100) {
+      if (holdTimer) clearInterval(holdTimer);
+      setHoldTimer(null);
+      setStep('executing');
+    }
+  }, [holdProgress, holdTimer]);
 
   return (
     <div className="w-full max-w-lg">
@@ -56,7 +72,7 @@ function SafetyCriticalDemo() {
           </div>
 
           <div className="p-8">
-            {step === 0 && (
+            {step === 'idle' && (
               <div className="text-center">
                 <h3 className="font-mono text-sm text-white mb-6">TURBINE #3 — EMERGENCY SHUTDOWN</h3>
 
@@ -70,7 +86,7 @@ function SafetyCriticalDemo() {
                 </div>
 
                 <button
-                  onClick={() => setStep(1)}
+                  onClick={() => setStep('confirm')}
                   className="font-mono text-lg bg-red-600 text-white px-8 py-5 rounded-xl border-4 border-red-400 cursor-pointer hover:bg-red-700 font-bold w-full"
                 >
                   ⚠ EMERGENCY STOP
@@ -79,7 +95,7 @@ function SafetyCriticalDemo() {
               </div>
             )}
 
-            {step === 1 && (
+            {step === 'confirm' && (
               <div className="text-center">
                 <AlertTriangle className="w-12 h-12 text-red-400 mx-auto mb-4" />
                 <h3 className="font-mono text-lg text-red-400 mb-2">CONFIRM EMERGENCY STOP</h3>
@@ -101,8 +117,9 @@ function SafetyCriticalDemo() {
                   onMouseDown={startHold}
                   onMouseUp={stopHold}
                   onMouseLeave={stopHold}
-                  onTouchStart={startHold}
+                  onTouchStart={(e) => { e.preventDefault(); startHold(); }}
                   onTouchEnd={stopHold}
+                  onTouchCancel={stopHold}
                   className="font-mono text-lg text-white px-8 py-5 rounded-xl border-4 border-red-400 cursor-pointer font-bold w-full relative overflow-hidden"
                   style={{ background: "#991b1b" }}
                 >
@@ -116,7 +133,7 @@ function SafetyCriticalDemo() {
               </div>
             )}
 
-            {step === 3 && (
+            {step === 'executing' && (
               <div className="text-center">
                 <XCircle className="w-12 h-12 text-red-400 mx-auto mb-3" />
                 <h3 className="font-mono text-lg text-red-400 mb-2">TURBINE #3 — STOPPING</h3>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
@@ -10,11 +10,11 @@ function CookieConsentDemo() {
   const [ethicalChoice, setEthicalChoice] = useState<string | null>(null);
   const [showDarkSettings, setShowDarkSettings] = useState(false);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setDarkChoice(null);
     setEthicalChoice(null);
     setShowDarkSettings(false);
-  };
+  }, []);
 
   return (
     <div className="w-full max-w-xl">
@@ -22,17 +22,19 @@ function CookieConsentDemo() {
       <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <button
           onClick={() => { setView("dark"); reset(); }}
+          aria-pressed={view === "dark"}
           className={`flex-1 text-xs py-2 rounded-md font-mono transition-colors border-none cursor-pointer`}
           style={{ background: view === "dark" ? "rgba(255,51,51,0.15)" : "transparent", color: view === "dark" ? "var(--red)" : "var(--text)" }}
         >
-          <ShieldOff className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
+          <ShieldOff aria-hidden="true" className="w-3.5 h-3.5 inline mr-1" /> Dark Pattern
         </button>
         <button
           onClick={() => { setView("ethical"); reset(); }}
+          aria-pressed={view === "ethical"}
           className={`flex-1 text-xs py-2 rounded-md font-mono transition-colors border-none cursor-pointer`}
           style={{ background: view === "ethical" ? "var(--green-glow)" : "transparent", color: view === "ethical" ? "var(--green)" : "var(--text)" }}
         >
-          <Shield className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
+          <Shield aria-hidden="true" className="w-3.5 h-3.5 inline mr-1" /> Ethical Alternative
         </button>
       </div>
 
@@ -44,12 +46,12 @@ function CookieConsentDemo() {
           </div>
           <div className="p-6">
             <div className="flex items-start gap-3 mb-4">
-              <Cookie className="w-8 h-8 text-amber-500 shrink-0" />
+              <Cookie aria-hidden="true" className="w-8 h-8 text-amber-500 shrink-0" />
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">We value your privacy</h3>
                 <p className="text-xs text-gray-500 leading-relaxed">
                   We and our 847 partners use cookies and similar technologies to provide, protect, and improve our services. By clicking "Accept All", you consent to our use of cookies.
-                  <a href="#" onClick={e => e.preventDefault()} className="text-blue-600"> Read our Cookie Policy</a>
+                  <button onClick={e => e.preventDefault()} className="text-blue-600 bg-transparent border-none p-0 underline cursor-pointer inline"> Read our Cookie Policy</button>
                 </p>
               </div>
             </div>
@@ -81,7 +83,7 @@ function CookieConsentDemo() {
             <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-mono">DARK PATTERN</span>
           </div>
 
-          <div className="space-y-3 mb-6">
+          <div className="space-y-3 mb-6" aria-hidden="true">
             {[
               { name: "Essential", on: true, locked: true },
               { name: "Performance & Analytics", on: true, locked: false },
@@ -145,7 +147,7 @@ function CookieConsentDemo() {
           </div>
           <div className="p-6">
             <div className="flex items-start gap-3 mb-4">
-              <Cookie className="w-8 h-8 text-amber-500 shrink-0" />
+              <Cookie aria-hidden="true" className="w-8 h-8 text-amber-500 shrink-0" />
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Cookie preferences</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
@@ -169,9 +171,10 @@ function CookieConsentDemo() {
               </button>
               <button
                 onClick={() => setEthicalChoice("custom")}
+                aria-label="Customize cookie settings"
                 className="flex items-center justify-center gap-1 border border-gray-300 text-gray-700 py-2.5 px-3 rounded-lg text-sm hover:bg-gray-50 transition-colors bg-white cursor-pointer"
               >
-                <Settings className="w-4 h-4" />
+                <Settings aria-hidden="true" className="w-4 h-4" />
               </button>
             </div>
           </div>

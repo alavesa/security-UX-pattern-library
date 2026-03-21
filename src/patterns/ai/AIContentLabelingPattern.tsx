@@ -2,16 +2,16 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Bot, Image, FileText, Video, CheckCircle2, AlertTriangle, Info, Sparkles } from "lucide-react";
+import { Bot, CheckCircle2, AlertTriangle, Info, Sparkles } from "lucide-react";
 
 function AIContentLabelingDemo() {
   const [scenario, setScenario] = useState<"social" | "article" | "image">("social");
 
   return (
     <div className="w-full max-w-lg">
-      <div className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+      <div role="tablist" className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {(["social", "article", "image"] as const).map(s => (
-          <button key={s} onClick={() => setScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
+          <button type="button" role="tab" aria-selected={scenario === s} aria-controls={`tabpanel-${s}`} id={`tab-${s}`} key={s} onClick={() => setScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--green-glow)" : "transparent", color: scenario === s ? "var(--green)" : "var(--text)" }}>
             {s === "social" ? "Social Feed" : s === "article" ? "Article" : "Image/Media"}
           </button>
         ))}
@@ -19,7 +19,7 @@ function AIContentLabelingDemo() {
 
       {/* Social media feed with AI labels */}
       {scenario === "social" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div role="tabpanel" id="tabpanel-social" aria-labelledby="tab-social" className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
           <div className="border-b border-gray-200 px-4 py-3">
             <h3 className="text-sm font-semibold text-gray-900">Your Feed</h3>
           </div>
@@ -92,7 +92,7 @@ function AIContentLabelingDemo() {
 
       {/* Article with AI labeling */}
       {scenario === "article" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div role="tabpanel" id="tabpanel-article" aria-labelledby="tab-article" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
           {/* AI-generated article */}
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
@@ -130,7 +130,7 @@ function AIContentLabelingDemo() {
 
       {/* AI-generated image labeling */}
       {scenario === "image" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div role="tabpanel" id="tabpanel-image" aria-labelledby="tab-image" className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
           <h3 className="font-bold text-gray-900 text-sm mb-4">Content authenticity signals</h3>
 
           <div className="space-y-4">
