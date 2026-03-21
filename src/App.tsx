@@ -1,5 +1,12 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Layout } from "./layouts/Layout";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
 import { HomePage } from "./pages/HomePage";
 import { PatternPage } from "./pages/PatternPage";
 import { ScorePage } from "./pages/ScorePage";
@@ -42,6 +49,7 @@ import { NavigationLevelsPattern } from "./patterns/industrial/NavigationLevelsP
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
