@@ -119,7 +119,7 @@ export function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="px-6 py-24 text-center border-b relative overflow-hidden" style={{ borderColor: "var(--border)" }}>
+      <section className="px-4 sm:px-6 py-16 sm:py-24 text-center border-b relative overflow-hidden" style={{ borderColor: "var(--border)" }}>
         <MatrixRain />
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 text-sm font-mono px-4 py-1.5 rounded mb-6"
@@ -128,7 +128,7 @@ export function HomePage() {
             open-source pattern library
           </div>
 
-          <h1 className="text-5xl font-bold tracking-tight mb-6 font-mono glow-text">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 font-mono glow-text">
             Security UX<br />Patterns
           </h1>
 
@@ -139,7 +139,7 @@ export function HomePage() {
             Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
           </p>
 
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/score"
               className="inline-flex items-center gap-2 px-6 py-3 rounded font-mono font-medium text-sm no-underline transition-all hover:shadow-lg"
