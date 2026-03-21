@@ -135,13 +135,13 @@ function PhishingWarningDemo() {
             <p style={{ color: "var(--text-bright)" }}>Dear Valued Customer,</p>
             <p style={{ color: "var(--text-bright)" }}>We have detected unusual activity on your account. Please verify your identity immediately to avoid account suspension.</p>
 
-            <div className="relative inline-block">
-              <a href="#" onClick={e => e.preventDefault()} className="inline-flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium font-mono no-underline" style={{ background: "var(--red)", color: "white" }}>
+            <div className="flex flex-wrap items-center gap-2">
+              <a href="#" onClick={e => e.preventDefault()} className="inline-flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium font-mono no-underline opacity-50 line-through" style={{ background: "var(--red)", color: "white" }}>
                 Verify Now <ExternalLink className="w-3.5 h-3.5" />
               </a>
-              <div className="absolute -top-1 -right-1 text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "var(--red)", color: "white" }}>
+              <span className="text-xs px-2 py-1 rounded font-mono font-bold" style={{ background: "var(--red)", color: "white" }}>
                 BLOCKED
-              </div>
+              </span>
             </div>
 
             <div className="rounded-lg p-3 mt-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
