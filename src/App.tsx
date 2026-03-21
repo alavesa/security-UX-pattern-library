@@ -15,6 +15,8 @@ import { MaturityPage } from "./pages/MaturityPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ReportPage } from "./pages/ReportPage";
 import { SecurityDesignReviewPattern } from "./patterns/governance/SecurityDesignReviewPattern";
+import { ChangeManagementPattern } from "./patterns/governance/ChangeManagementPattern";
+import { ComplianceAuditPattern } from "./patterns/governance/ComplianceAuditPattern";
 import { LoginPattern } from "./patterns/auth/LoginPattern";
 import { MfaPattern } from "./patterns/auth/MfaPattern";
 import { PasswordStrengthPattern } from "./patterns/auth/PasswordStrengthPattern";
@@ -58,6 +60,8 @@ export default function App() {
           <Route path="maturity" element={<MaturityPage />} />
           <Route path="report" element={<ReportPage />} />
           <Route path="patterns/governance/design-review" element={<PatternPage><SecurityDesignReviewPattern /></PatternPage>} />
+          <Route path="patterns/governance/change-management" element={<PatternPage><ChangeManagementPattern /></PatternPage>} />
+          <Route path="patterns/governance/compliance-audit" element={<PatternPage><ComplianceAuditPattern /></PatternPage>} />
           <Route path="patterns/auth/login" element={<PatternPage><LoginPattern /></PatternPage>} />
           <Route path="patterns/auth/mfa" element={<PatternPage><MfaPattern /></PatternPage>} />
           <Route path="patterns/auth/password-strength" element={<PatternPage><PasswordStrengthPattern /></PatternPage>} />

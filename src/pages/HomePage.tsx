@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers, ClipboardCheck, GitBranch, FileText } from "lucide-react";
 
 function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -168,7 +168,7 @@ export function HomePage() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
-              { value: "30", label: "patterns", color: "var(--green)" },
+              { value: "32", label: "patterns", color: "var(--green)" },
               { value: "8", label: "categories", color: "var(--cyan)" },
               { value: "16", label: "regulations", color: "var(--amber)" },
               { value: "4", label: "tools", color: "#c084fc" },
@@ -269,9 +269,11 @@ export function HomePage() {
               </Link>
             ))}
 
-            <div className="mt-2" style={{ color: "var(--text-bright)" }}>📋 governance/ (1)</div>
+            <div className="mt-2" style={{ color: "var(--text-bright)" }}>📋 governance/ (3)</div>
             {[
               { path: "/patterns/governance/design-review", name: "security_design_review", ref: "IEC 62443, ISO 27001" },
+              { path: "/patterns/governance/change-management", name: "change_management", ref: "IEC 62443, ITIL" },
+              { path: "/patterns/governance/compliance-audit", name: "compliance_audit", ref: "NIS2, DORA, GDPR" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
                 {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
@@ -514,6 +516,38 @@ export function HomePage() {
                 }}
               >
                 <Icon className="w-6 h-6 mb-3" style={{ color: "#f97316" }} />
+                <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Governance */}
+        <div className="mt-16">
+          <h2 className="text-xl font-mono mb-2" style={{ color: "var(--text-bright)" }}>./governance/</h2>
+          <p className="mb-6" style={{ color: "var(--text)" }}>Process patterns for managing security UX at scale. From industrial change management to compliance audits.</p>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { path: "/patterns/governance/design-review", label: "design_review", icon: ClipboardCheck, description: "Security UX review checklist — critical items must pass before shipping to development" },
+              { path: "/patterns/governance/change-management", label: "change_management", icon: GitBranch, description: "Propose, review, approve, deploy, rollback — structured workflow for security UX changes" },
+              { path: "/patterns/governance/compliance-audit", label: "compliance_audit", icon: FileText, description: "Scope regulations, assess requirements, collect evidence, generate gap analysis report" },
+            ].map(({ path, label, icon: Icon, description }) => (
+              <Link
+                key={path}
+                to={path}
+                className="group border rounded-lg p-6 no-underline transition-all"
+                style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(204,204,204,0.3)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(204,204,204,0.05)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <Icon className="w-6 h-6 mb-3" style={{ color: "var(--text-bright)" }} />
                 <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
               </Link>
