@@ -27,6 +27,7 @@ import { ForcedContinuityPattern } from "./patterns/darkpatterns/ForcedContinuit
 import { EncryptionIndicatorPattern } from "./patterns/data/EncryptionIndicatorPattern";
 import { SecureFileUploadPattern } from "./patterns/data/SecureFileUploadPattern";
 import { DataDeletionPattern } from "./patterns/data/DataDeletionPattern";
+import { ActivityLogPattern } from "./patterns/data/ActivityLogPattern";
 import { BrokenAccessControlPattern } from "./patterns/owasp/BrokenAccessControlPattern";
 import { SecurityMisconfigPattern } from "./patterns/owasp/SecurityMisconfigPattern";
 import { LoggingMonitoringPattern } from "./patterns/owasp/LoggingMonitoringPattern";
@@ -68,6 +69,7 @@ export default function App() {
           <Route path="patterns/data/encryption" element={<PatternPage><EncryptionIndicatorPattern /></PatternPage>} />
           <Route path="patterns/data/file-upload" element={<PatternPage><SecureFileUploadPattern /></PatternPage>} />
           <Route path="patterns/data/deletion" element={<PatternPage><DataDeletionPattern /></PatternPage>} />
+          <Route path="patterns/data/activity-log" element={<PatternPage><ActivityLogPattern /></PatternPage>} />
           <Route path="patterns/owasp/broken-access-control" element={<PatternPage><BrokenAccessControlPattern /></PatternPage>} />
           <Route path="patterns/owasp/security-misconfiguration" element={<PatternPage><SecurityMisconfigPattern /></PatternPage>} />
           <Route path="patterns/owasp/logging-monitoring" element={<PatternPage><LoggingMonitoringPattern /></PatternPage>} />

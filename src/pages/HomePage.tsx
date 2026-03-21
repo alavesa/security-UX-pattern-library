@@ -87,7 +87,7 @@ export function HomePage() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
-              { value: "29", label: "patterns", color: "var(--green)" },
+              { value: "30", label: "patterns", color: "var(--green)" },
               { value: "8", label: "categories", color: "var(--cyan)" },
               { value: "13", label: "regulations", color: "var(--amber)" },
               { value: "4", label: "tools", color: "#c084fc" },
@@ -147,6 +147,7 @@ export function HomePage() {
               { path: "/patterns/data/encryption", name: "encryption", ref: "OWASP A02, CWE-311" },
               { path: "/patterns/data/file-upload", name: "file_upload", ref: "OWASP A03, CWE-434" },
               { path: "/patterns/data/deletion", name: "data_deletion", ref: "GDPR Art. 17" },
+              { path: "/patterns/data/activity-log", name: "activity_log", ref: "GDPR Art. 15, CWE-778" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
                 {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
@@ -307,6 +308,7 @@ export function HomePage() {
               { path: "/patterns/data/encryption", label: "encryption_indicators", icon: Lock, description: "E2E messaging, connection security, and at-rest encryption dashboards" },
               { path: "/patterns/data/file-upload", label: "secure_file_upload", icon: Upload, description: "File type blocking, malware scanning, encryption status feedback" },
               { path: "/patterns/data/deletion", label: "data_deletion", icon: Trash2, description: "GDPR-compliant deletion with export, confirmation, and grace period" },
+              { path: "/patterns/data/activity-log", label: "activity_log", icon: Activity, description: "Account activity, active devices with session revoke, data access log — GDPR Art. 15" },
             ].map(({ path, label, icon: Icon, description }) => (
               <Link
                 key={path}

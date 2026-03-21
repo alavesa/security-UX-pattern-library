@@ -43,6 +43,7 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "data", tags: ["data protection", "OWASP A02", "CWE-311", "encryption", "E2E"] },
   { path: "/patterns/data/file-upload", label: "Secure File Upload", category: "data", tags: ["data protection", "OWASP A03", "CWE-434", "malware", "upload"] },
   { path: "/patterns/data/deletion", label: "Data Deletion", category: "data", tags: ["data protection", "GDPR Art. 17", "CWE-212", "right to erasure"] },
+  { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "data", tags: ["data protection", "GDPR Art. 15", "CWE-778", "OWASP A09", "audit trail", "device management"] },
   // OWASP
   { path: "/patterns/owasp/broken-access-control", label: "Broken Access Control", category: "owasp", tags: ["OWASP A01", "CWE-284", "CWE-639", "RBAC", "IDOR"] },
   { path: "/patterns/owasp/security-misconfiguration", label: "Security Misconfiguration", category: "owasp", tags: ["OWASP A05", "CWE-16", "CWE-209", "headers", "debug"] },

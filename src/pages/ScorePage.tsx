@@ -27,6 +27,7 @@ const CHECKS: CheckItem[] = [
   { id: "data-file-scanning", question: "Uploaded files are scanned for malware", category: "Data Protection", weight: 4, tip: "Unrestricted file upload is OWASP A03" },
   { id: "data-export", question: "Users can export their data", category: "Data Protection", weight: 4, tip: "GDPR Article 20 — Right to Data Portability" },
   { id: "data-deletion", question: "Users can delete their account in 2 clicks or fewer", category: "Data Protection", weight: 4, tip: "GDPR Article 17 — Right to Erasure" },
+  { id: "data-activity-log", question: "Users can view their account activity and active sessions", category: "Data Protection", weight: 4, tip: "GDPR Art. 15 — users have the right to know who accessed their data" },
   { id: "data-csp", question: "Content Security Policy headers are set", category: "Data Protection", weight: 4, tip: "Prevents XSS and data injection attacks" },
 
   // Threat Response (20 points)

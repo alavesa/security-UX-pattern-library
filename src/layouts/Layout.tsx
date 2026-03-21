@@ -48,6 +48,7 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/data/encryption", label: "encryption", icon: Lock },
       { path: "/patterns/data/file-upload", label: "file_upload", icon: Upload },
       { path: "/patterns/data/deletion", label: "deletion", icon: Trash2 },
+      { path: "/patterns/data/activity-log", label: "activity_log", icon: Activity },
     ],
   },
   {
