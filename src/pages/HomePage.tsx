@@ -182,7 +182,7 @@ export function HomePage() {
 
           {/* Terminal prompt — all links clickable */}
           <div className="mt-12 font-mono text-xs text-left max-w-lg mx-auto p-3 sm:p-4 rounded overflow-x-auto" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-            <div style={{ color: "#444" }}>$ ls ./patterns</div>
+            <div style={{ color: "#999" }}>$ ls ./patterns</div>
             <div className="mt-1" style={{ color: "var(--green)" }}>🔒 auth/ (8)</div>
             {[
               { path: "/patterns/auth/login", name: "login_flow", ref: "OWASP A07, CWE-307" },
@@ -195,7 +195,7 @@ export function HomePage() {
               { path: "/patterns/auth/accessible-auth", name: "accessible_auth", ref: "WCAG 2.2, SC 3.3.8" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
               </Link>
             ))}
 
@@ -206,7 +206,7 @@ export function HomePage() {
               { path: "/patterns/threat/suspicious-activity", name: "suspicious_activity", ref: "OWASP A07, CWE-778" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
               </Link>
             ))}
 
@@ -220,7 +220,7 @@ export function HomePage() {
               { path: "/patterns/dark/forced-continuity", name: "forced_continuity", ref: "FTC Neg. Option" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
               </Link>
             ))}
 
@@ -232,7 +232,7 @@ export function HomePage() {
               { path: "/patterns/data/activity-log", name: "activity_log", ref: "GDPR Art. 15, CWE-778" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
               </Link>
             ))}
 
@@ -243,7 +243,7 @@ export function HomePage() {
               { path: "/patterns/owasp/logging-monitoring", name: "A09_logging", ref: "CWE-778" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
               </Link>
             ))}
 
@@ -254,7 +254,7 @@ export function HomePage() {
               { path: "/patterns/ai/decision-explanation", name: "decision_explanation", ref: "GDPR Art. 22" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
               </Link>
             ))}
 
@@ -266,7 +266,7 @@ export function HomePage() {
               { path: "/patterns/industrial/navigation-levels", name: "navigation_levels", ref: "ISA-101" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
               </Link>
             ))}
 
@@ -277,16 +277,16 @@ export function HomePage() {
               { path: "/patterns/governance/compliance-audit", name: "compliance_audit", ref: "NIS2, DORA, GDPR" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
               </Link>
             ))}
 
-            <div className="mt-2" style={{ color: "#444" }}>$ cat ./CONTRIBUTING.md</div>
+            <div className="mt-2" style={{ color: "#999" }}>$ cat ./CONTRIBUTING.md</div>
             <div style={{ color: "var(--green)" }}>🤝 contribute/ (16 wanted)</div>
-            <div className="break-words" style={{ color: "#555" }}>   permissions · oauth_scopes · privacy_dashboard · age_verification · captcha · biometric_enrollment · magic_links · mobile_permissions · api_key_mgmt · secret_rotation · consent_audit · gdpr_requests ...</div>
-            <div style={{ color: "#444" }}>   → <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--green)" }}>fork & build a pattern</a></div>
+            <div className="break-words" style={{ color: "#888" }}>   permissions · oauth_scopes · privacy_dashboard · age_verification · captcha · biometric_enrollment · magic_links · mobile_permissions · api_key_mgmt · secret_rotation · consent_audit · gdpr_requests ...</div>
+            <div style={{ color: "#777" }}>   → <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--green)" }}>fork & build a pattern</a></div>
 
-            <div className="cursor-blink mt-1" style={{ color: "#444" }}>$</div>
+            <div className="cursor-blink mt-1" style={{ color: "#999" }}>$</div>
           </div>
         </div>
       </section>
@@ -592,7 +592,7 @@ export function HomePage() {
           </div>
 
           <div className="mt-8">
-            <p className="font-mono text-xs mb-4 text-center" style={{ color: "#555" }}>Wanted patterns — help build these:</p>
+            <p className="font-mono text-xs mb-4 text-center" style={{ color: "#888" }}>Wanted patterns — help build these:</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               {[
                 "Permissions & access control",
@@ -612,7 +612,7 @@ export function HomePage() {
                 "GDPR data subject request",
                 "Incident response playbook UI",
               ].map(item => (
-                <div key={item} className="border border-dashed rounded px-3 py-2 text-xs font-mono" style={{ borderColor: "#333", color: "#555" }}>
+                <div key={item} className="border border-dashed rounded px-3 py-2 text-xs font-mono" style={{ borderColor: "#333", color: "#888" }}>
                   {item}
                 </div>
               ))}
@@ -648,7 +648,7 @@ export function HomePage() {
                 <span className="font-mono font-bold text-sm" style={{ color: "var(--red)" }}>{fine}</span>
               </div>
               <p className="text-xs mb-1" style={{ color: "var(--text)" }}>{reason}</p>
-              <p className="text-xs" style={{ color: "#555" }}>{authority} · {year}</p>
+              <p className="text-xs" style={{ color: "#888" }}>{authority} · {year}</p>
             </a>
           ))}
         </div>
@@ -673,62 +673,62 @@ export function HomePage() {
           <div>
             <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "#3b82f6" }}>EU Regulation</h3>
             <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
-              <li><a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>GDPR</a> — Articles 5, 7, 15, 17, 20, 22, 33, 34</li>
-              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/nis2-directive" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>NIS2 Directive</a> — Cybersecurity for essential & important entities</li>
-              <li><a href="https://www.digital-operational-resilience-act.com/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>DORA</a> — Digital Operational Resilience (financial sector, Jan 2025)</li>
-              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>CRA</a> — Cyber Resilience Act (digital products, 2027)</li>
-              <li><a href="https://artificialintelligenceact.eu/article/50/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>EU AI Act Art. 50</a> — AI transparency obligations (Aug 2026)</li>
-              <li><a href="https://artificialintelligenceact.eu/high-level-summary/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>EU AI Act Overview</a> — High-level summary</li>
-              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>EU Digital Services Act</a> — Platform transparency + dark patterns</li>
-              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>ePrivacy Directive</a> — Cookie consent rules</li>
-              <li><a href="https://commission.europa.eu/law/law-topic/consumer-protection-law_en" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>EU Consumer Rights Directive</a> — Cancellation + unfair practices</li>
+              <li><a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>GDPR</a> — Articles 5, 7, 15, 17, 20, 22, 33, 34</li>
+              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/nis2-directive" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>NIS2 Directive</a> — Cybersecurity for essential & important entities</li>
+              <li><a href="https://www.digital-operational-resilience-act.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>DORA</a> — Digital Operational Resilience (financial sector, Jan 2025)</li>
+              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>CRA</a> — Cyber Resilience Act (digital products, 2027)</li>
+              <li><a href="https://artificialintelligenceact.eu/article/50/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU AI Act Art. 50</a> — AI transparency obligations (Aug 2026)</li>
+              <li><a href="https://artificialintelligenceact.eu/high-level-summary/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU AI Act Overview</a> — High-level summary</li>
+              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU Digital Services Act</a> — Platform transparency + dark patterns</li>
+              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ePrivacy Directive</a> — Cookie consent rules</li>
+              <li><a href="https://commission.europa.eu/law/law-topic/consumer-protection-law_en" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU Consumer Rights Directive</a> — Cancellation + unfair practices</li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--green)" }}>Standards & Compliance</h3>
             <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
-              <li><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>OWASP Top 10 (2021)</a> — Web application security risks</li>
-              <li><a href="https://cwe.mitre.org/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>MITRE CWE</a> — Common Weakness Enumeration</li>
-              <li><a href="https://pages.nist.gov/800-63-3/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>NIST SP 800-63B</a> — Digital Identity Guidelines</li>
-              <li><a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>WCAG 2.2</a> — Web Content Accessibility Guidelines (SC 3.3.8 Accessible Auth)</li>
-              <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>ISO 27001</a> — Information Security Management</li>
-              <li><a href="https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>SOC 2</a> — Service organization security controls</li>
-              <li><a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>PCI DSS</a> — Payment Card Industry Data Security</li>
-              <li><a href="https://www.w3.org/TR/webauthn-2/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>WebAuthn Level 2</a> — Passkey / FIDO2 standard</li>
-              <li><a href="https://datatracker.ietf.org/doc/html/rfc6749" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>RFC 6749 (OAuth 2.0)</a> — Authorization framework</li>
-              <li><a href="https://datatracker.ietf.org/doc/html/rfc6238" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>RFC 6238</a> — TOTP Algorithm</li>
-              <li><a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>CCPA</a> — California Consumer Privacy Act</li>
-              <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> — Consumer protection</li>
-              <li><a href="https://c2pa.org/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>C2PA Standard</a> — Content provenance and authenticity</li>
-              <li><a href="https://www.twobirds.com/en/insights/2026/taking-the-eu-ai-act-to-practice-understanding-the-draft-transparency-code-of-practice" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>AI Transparency Code of Practice</a> — Implementation guidance</li>
-              <li><a href="https://www.iab.com/guidelines/ai-transparency-and-disclosure-framework/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>IAB AI Transparency Framework</a> — Risk-based disclosure</li>
-              <li><a href="https://drata.com/blog/artificial-intelligence-regulations-state-and-federal-ai-laws-2026" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>US State AI Laws 2026</a> — Colorado, California, Illinois</li>
-              <li><a href="https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>Illinois AI Video Interview Act</a> — AI consent in hiring</li>
+              <li><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>OWASP Top 10 (2021)</a> — Web application security risks</li>
+              <li><a href="https://cwe.mitre.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>MITRE CWE</a> — Common Weakness Enumeration</li>
+              <li><a href="https://pages.nist.gov/800-63-3/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>NIST SP 800-63B</a> — Digital Identity Guidelines</li>
+              <li><a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>WCAG 2.2</a> — Web Content Accessibility Guidelines (SC 3.3.8 Accessible Auth)</li>
+              <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ISO 27001</a> — Information Security Management</li>
+              <li><a href="https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>SOC 2</a> — Service organization security controls</li>
+              <li><a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>PCI DSS</a> — Payment Card Industry Data Security</li>
+              <li><a href="https://www.w3.org/TR/webauthn-2/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>WebAuthn Level 2</a> — Passkey / FIDO2 standard</li>
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc6749" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>RFC 6749 (OAuth 2.0)</a> — Authorization framework</li>
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc6238" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>RFC 6238</a> — TOTP Algorithm</li>
+              <li><a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>CCPA</a> — California Consumer Privacy Act</li>
+              <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> — Consumer protection</li>
+              <li><a href="https://c2pa.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>C2PA Standard</a> — Content provenance and authenticity</li>
+              <li><a href="https://www.twobirds.com/en/insights/2026/taking-the-eu-ai-act-to-practice-understanding-the-draft-transparency-code-of-practice" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>AI Transparency Code of Practice</a> — Implementation guidance</li>
+              <li><a href="https://www.iab.com/guidelines/ai-transparency-and-disclosure-framework/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>IAB AI Transparency Framework</a> — Risk-based disclosure</li>
+              <li><a href="https://drata.com/blog/artificial-intelligence-regulations-state-and-federal-ai-laws-2026" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>US State AI Laws 2026</a> — Colorado, California, Illinois</li>
+              <li><a href="https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Illinois AI Video Interview Act</a> — AI consent in hiring</li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "#f97316" }}>Industrial Standards</h3>
             <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
-              <li><a href="https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>IEC 62443</a> — Industrial automation security</li>
-              <li><a href="https://www.iec.ch/functionalsafety" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>IEC 61511</a> — Safety instrumented systems</li>
-              <li><a href="https://www.isa.org/products/ansi-isa-18-2-2016-management-of-alarm-systems-fo" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>ISA-18.2 / IEC 62682</a> — Alarm management</li>
-              <li><a href="https://www.eemua.org/Products/Publications/Print/EEMUA-Publication-191.aspx" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>EEMUA 191</a> — Alarm systems guide</li>
-              <li><a href="https://www.isa.org/products/isa-101-01-2015-human-machine-interfaces-for-proce" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>ISA-101</a> — HMI design for process industries</li>
+              <li><a href="https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>IEC 62443</a> — Industrial automation security</li>
+              <li><a href="https://www.iec.ch/functionalsafety" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>IEC 61511</a> — Safety instrumented systems</li>
+              <li><a href="https://www.isa.org/products/ansi-isa-18-2-2016-management-of-alarm-systems-fo" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ISA-18.2 / IEC 62682</a> — Alarm management</li>
+              <li><a href="https://www.eemua.org/Products/Publications/Print/EEMUA-Publication-191.aspx" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EEMUA 191</a> — Alarm systems guide</li>
+              <li><a href="https://www.isa.org/products/isa-101-01-2015-human-machine-interfaces-for-proce" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ISA-101</a> — HMI design for process industries</li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--cyan)" }}>Research & Data</h3>
             <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
-              <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>Verizon DBIR 2024</a> — Data Breach Investigations Report</li>
-              <li><a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>IBM Cost of a Data Breach 2023</a> — 204-day average detection time</li>
-              <li><a href="https://www.microsoft.com/en-us/security/blog/2019/08/20/one-simple-action-you-can-take-to-prevent-99-9-percent-of-account-attacks/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>Microsoft MFA Study</a> — MFA prevents 99.9% of attacks</li>
-              <li><a href="https://arxiv.org/html/2601.13342v1" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>Privacy Starts with UI (USEC 2026)</a> — Privacy patterns in UI/UX</li>
-              <li><a href="https://www.deceptive.design/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>Deceptive Design</a> — Dark patterns by Harry Brignull</li>
-              <li><a href="https://www.deceptive.design/enforcement" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>Dark Patterns Enforcement</a> — Global enforcement database</li>
-              <li><a href="https://sharkstriker.com/blog/march-data-breaches-today-2026/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--text-bright)" }}>Data Breaches March 2026</a> — Current breach tracker</li>
+              <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Verizon DBIR 2024</a> — Data Breach Investigations Report</li>
+              <li><a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>IBM Cost of a Data Breach 2023</a> — 204-day average detection time</li>
+              <li><a href="https://www.microsoft.com/en-us/security/blog/2019/08/20/one-simple-action-you-can-take-to-prevent-99-9-percent-of-account-attacks/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Microsoft MFA Study</a> — MFA prevents 99.9% of attacks</li>
+              <li><a href="https://arxiv.org/html/2601.13342v1" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Privacy Starts with UI (USEC 2026)</a> — Privacy patterns in UI/UX</li>
+              <li><a href="https://www.deceptive.design/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Deceptive Design</a> — Dark patterns by Harry Brignull</li>
+              <li><a href="https://www.deceptive.design/enforcement" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Dark Patterns Enforcement</a> — Global enforcement database</li>
+              <li><a href="https://sharkstriker.com/blog/march-data-breaches-today-2026/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Data Breaches March 2026</a> — Current breach tracker</li>
             </ul>
           </div>
         </div>
@@ -742,13 +742,13 @@ export function HomePage() {
             <span className="font-mono font-bold text-sm" style={{ color: "var(--green)" }}>uxsec<span style={{ color: "var(--text)" }}>.dev</span></span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono" style={{ color: "#555" }}>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono" style={{ color: "#888" }}>
             <a href="https://www.neversay.no" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--text)" }}>piia alavesa</a>
-            <span style={{ color: "#333" }}>·</span>
+            <span style={{ color: "#777" }}>·</span>
             <a href="https://www.linkedin.com/in/piia-alavesa/" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--text)" }}>linkedin</a>
-            <span style={{ color: "#333" }}>·</span>
+            <span style={{ color: "#777" }}>·</span>
             <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--text)" }}>github</a>
-            <span style={{ color: "#333" }}>·</span>
+            <span style={{ color: "#777" }}>·</span>
             <span className="flex items-center gap-1">built with <a href="https://claude.ai" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--cyan)" }}>claude</a></span>
           </div>
         </div>

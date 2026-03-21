@@ -193,11 +193,11 @@ export function Layout() {
             <button
               onClick={() => setSearchOpen(true)}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-transparent border-none cursor-pointer font-mono text-xs"
-              style={{ color: "#555" }}
+              style={{ color: "#888" }}
             >
-              <Search className="w-3.5 h-3.5" /> <span className="text-xs px-1 py-0.5 rounded" style={{ background: "#1a1a1a", color: "#444" }}>⌘K</span>
+              <Search className="w-3.5 h-3.5" /> <span className="text-xs px-1 py-0.5 rounded" style={{ background: "#1a1a1a", color: "#777" }}>⌘K</span>
             </button>
-            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener noreferrer" className="no-underline px-3 py-1.5 rounded-md" style={{ color: "#555" }}>
+            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener noreferrer" className="no-underline px-3 py-1.5 rounded-md" style={{ color: "#888" }}>
               github
             </a>
           </nav>
@@ -228,7 +228,7 @@ export function Layout() {
             {CATEGORIES.map(cat => (
               <div key={cat.id}>
                 <button onClick={() => toggleCategory(cat.id)} className="w-full flex items-center justify-between px-3 py-2 text-xs bg-transparent border-none cursor-pointer font-mono" aria-expanded={openCategories.has(cat.id)} style={{ color: cat.color }}>
-                  {cat.label}/ <span style={{ color: "#555" }}>{cat.items.length}</span>
+                  {cat.label}/ <span style={{ color: "#888" }}>{cat.items.length}</span>
                 </button>
                 {openCategories.has(cat.id) && cat.items.map(item => (
                   <Link key={item.path} to={item.path} className="flex items-center gap-2 no-underline px-6 py-1.5 text-xs rounded" style={{ color: location.pathname === item.path ? cat.color : "var(--text)" }}>
@@ -238,7 +238,7 @@ export function Layout() {
               </div>
             ))}
             <div className="border-t my-2" style={{ borderColor: "var(--border)" }} />
-            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener noreferrer" className="block no-underline px-3 py-2 text-xs" style={{ color: "#555" }}>github</a>
+            <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener noreferrer" className="block no-underline px-3 py-2 text-xs" style={{ color: "#888" }}>github</a>
           </nav>
         )}
       </header>
@@ -249,7 +249,7 @@ export function Layout() {
           <aside className="w-56 shrink-0 border-r min-h-[calc(100vh-3.5rem)] py-4 px-3 hidden lg:block overflow-y-auto" style={{ borderColor: "var(--border)" }}>
             {/* Assess tools */}
             <div className="mb-3">
-              <p className="text-xs font-mono px-2 mb-2" style={{ color: "#444" }}>assess</p>
+              <p className="text-xs font-mono px-2 mb-2" style={{ color: "#777" }}>assess</p>
               {ASSESS_TOOLS.map(({ path, label, icon: Icon, color }) => (
                 <Link
                   key={path}
@@ -285,11 +285,11 @@ export function Layout() {
                   >
                     <span className="flex items-center gap-1">
                       {cat.label}/
-                      <span style={{ color: "#444" }}>{cat.items.length}</span>
+                      <span style={{ color: "#777" }}>{cat.items.length}</span>
                     </span>
                     <ChevronDown
                       className="w-3 h-3 transition-transform"
-                      style={{ color: "#444", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                      style={{ color: "#777", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                     />
                   </button>
 
