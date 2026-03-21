@@ -31,6 +31,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Responsive pattern demos */
+@media (max-width: 640px) {
+  .max-w-lg {
+    max-width: 100%;
+  }
+}
+
 /* Scanline effect */
 body::after {
   content: "";

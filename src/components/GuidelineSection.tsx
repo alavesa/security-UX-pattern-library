@@ -12,7 +12,7 @@ export function GuidelineSection({ dos, donts, securityRationale, accessibilityN
     <div className="space-y-6">
       {/* Do / Don't */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="border rounded-xl p-5" style={{ borderColor: "rgba(0,255,65,0.2)", background: "rgba(0,255,65,0.05)" }}>
+        <div className="border rounded-xl p-4 sm:p-5" style={{ borderColor: "rgba(0,255,65,0.2)", background: "rgba(0,255,65,0.05)" }}>
           <h3 className="flex items-center gap-2 font-mono font-semibold text-sm mb-3" style={{ color: "var(--green)" }}>
             <CheckCircle2 className="w-4 h-4" />
             // DO
@@ -26,7 +26,7 @@ export function GuidelineSection({ dos, donts, securityRationale, accessibilityN
             ))}
           </ul>
         </div>
-        <div className="border rounded-xl p-5" style={{ borderColor: "rgba(255,51,51,0.2)", background: "rgba(255,51,51,0.05)" }}>
+        <div className="border rounded-xl p-4 sm:p-5" style={{ borderColor: "rgba(255,51,51,0.2)", background: "rgba(255,51,51,0.05)" }}>
           <h3 className="flex items-center gap-2 font-mono font-semibold text-sm mb-3" style={{ color: "var(--red)" }}>
             <XCircle className="w-4 h-4" />
             // DON'T
@@ -43,7 +43,7 @@ export function GuidelineSection({ dos, donts, securityRationale, accessibilityN
       </div>
 
       {/* Security Rationale */}
-      <div className="border rounded-xl p-5" style={{ borderColor: "rgba(0,229,255,0.2)", background: "rgba(0,229,255,0.05)" }}>
+      <div className="border rounded-xl p-4 sm:p-5" style={{ borderColor: "rgba(0,229,255,0.2)", background: "rgba(0,229,255,0.05)" }}>
         <h3 className="flex items-center gap-2 font-mono font-semibold text-sm mb-2" style={{ color: "var(--cyan)" }}>
           <Shield className="w-4 h-4" />
           // SECURITY_RATIONALE
@@ -53,7 +53,7 @@ export function GuidelineSection({ dos, donts, securityRationale, accessibilityN
 
       {/* Accessibility */}
       {accessibilityNotes && accessibilityNotes.length > 0 && (
-        <div className="border rounded-xl p-5" style={{ borderColor: "rgba(255,170,0,0.2)", background: "rgba(255,170,0,0.05)" }}>
+        <div className="border rounded-xl p-4 sm:p-5" style={{ borderColor: "rgba(255,170,0,0.2)", background: "rgba(255,170,0,0.05)" }}>
           <h3 className="flex items-center gap-2 font-mono font-semibold text-sm mb-3" style={{ color: "var(--amber)" }}>
             <AlertTriangle className="w-4 h-4" />
             // ACCESSIBILITY

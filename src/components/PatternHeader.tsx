@@ -31,7 +31,7 @@ export function PatternHeader({ title, description, severity, tags }: PatternHea
           </span>
         ))}
       </div>
-      <h1 className="text-3xl font-bold font-mono mb-3 glow-text">{title}</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold font-mono mb-3 glow-text">{title}</h1>
       <p className="text-base leading-relaxed" style={{ color: "var(--text-bright)" }}>{description}</p>
     </div>
   );
