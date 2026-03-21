@@ -26,39 +26,41 @@ function SecurityDesignReviewDemo() {
 
   return (
     <div className="w-full max-w-lg">
-      <div className="rounded-2xl border p-6">
+      <div className="rounded-2xl p-4 sm:p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         <div aria-live="polite" aria-atomic="true">
         {phase === "checklist" && (
           <>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-bold text-sm">Security UX Design Review</h3>
-              <span className="text-xs font-mono">{Object.values(checks).filter(Boolean).length}/{REVIEW_ITEMS.length}</span>
+              <h3 className="font-bold font-mono text-sm" style={{ color: "var(--text-bright)" }}>Security UX Design Review</h3>
+              <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{Object.values(checks).filter(Boolean).length}/{REVIEW_ITEMS.length}</span>
             </div>
 
             <div className="space-y-2 mb-4">
               {REVIEW_ITEMS.map(item => (
-                <label key={item.id} className="flex items-start gap-3 p-2 rounded cursor-pointer hover:">
+                <label key={item.id} className="flex items-start gap-3 p-2 rounded cursor-pointer" style={{ background: checks[item.id] ? "rgba(0,255,65,0.05)" : "transparent" }}>
                   <input
                     type="checkbox"
                     checked={checks[item.id] ?? false}
                     onChange={e => setChecks(c => ({ ...c, [item.id]: e.target.checked }))}
-                    className="mt-0.5 w-4 h-4 rounded"
+                    className="mt-0.5 w-4 h-4 rounded accent-green-500"
                   />
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm">{item.label}</span>
-                      {item.critical && <span className="text-xs px-1 rounded">Required</span>}
+                      <span className="text-sm font-mono" style={{ color: checks[item.id] ? "var(--green)" : "var(--text-bright)" }}>{item.label}</span>
+                      {item.critical && <span className="text-xs font-mono px-1 rounded" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>Required</span>}
                     </div>
-                    <span className="text-xs">{item.category}</span>
+                    <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{item.category}</span>
                   </div>
                 </label>
               ))}
             </div>
 
             <button
+              type="button"
               onClick={() => { setSubmittedCount(Object.values(checks).filter(Boolean).length); setPhase("review"); }}
               disabled={!criticalComplete}
-              className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ background: criticalComplete ? "var(--green)" : "var(--bg-elevated)", color: criticalComplete ? "var(--bg)" : "var(--text-dim)" }}
             >
               {criticalComplete ? "Submit for review" : `Complete all required items (${REVIEW_ITEMS.filter(i => i.critical && checks[i.id]).length}/${REVIEW_ITEMS.filter(i => i.critical).length})`}
             </button>
@@ -67,41 +69,41 @@ function SecurityDesignReviewDemo() {
 
         {phase === "review" && (
           <div className="text-center">
-            <Clock className="w-10 h-10 mx-auto mb-3" />
-            <h3 className="font-bold mb-1">In review</h3>
-            <p className="text-sm mb-4">Security design review submitted. Awaiting approval from Security UX Lead.</p>
+            <Clock className="w-10 h-10 mx-auto mb-3" style={{ color: "var(--amber)" }} />
+            <h3 className="font-bold font-mono mb-1" style={{ color: "var(--amber)" }}>In review</h3>
+            <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Security design review submitted. Awaiting approval from Security UX Lead.</p>
 
-            <div className="rounded-lg p-4 text-left mb-4">
-              <div className="flex items-center justify-between text-xs mb-2">
-                <span >Submitted by</span>
-                <span >Designer</span>
+            <div className="rounded-lg p-4 text-left mb-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+              <div className="flex items-center justify-between text-xs font-mono mb-2">
+                <span style={{ color: "var(--text-dim)" }}>Submitted by</span>
+                <span style={{ color: "var(--text-bright)" }}>Designer</span>
               </div>
-              <div className="flex items-center justify-between text-xs mb-2">
-                <span >Reviewer</span>
-                <span >Security UX Lead</span>
+              <div className="flex items-center justify-between text-xs font-mono mb-2">
+                <span style={{ color: "var(--text-dim)" }}>Reviewer</span>
+                <span style={{ color: "var(--text-bright)" }}>Security UX Lead</span>
               </div>
-              <div className="flex items-center justify-between text-xs">
-                <span >Status</span>
-                <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Pending</span>
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span style={{ color: "var(--text-dim)" }}>Status</span>
+                <span className="flex items-center gap-1" style={{ color: "var(--amber)" }}><Clock className="w-3 h-3" /> Pending</span>
               </div>
             </div>
 
-            <button onClick={() => setPhase("approved")} aria-label="Simulate approval (demo only)" className="text-xs bg-transparent border-none cursor-pointer italic">[Simulate approval]</button>
+            <button type="button" onClick={() => setPhase("approved")} aria-label="Simulate approval (demo only)" className="text-xs font-mono bg-transparent border-none cursor-pointer italic" style={{ color: "var(--cyan)" }}>[Simulate approval]</button>
           </div>
         )}
 
         {phase === "approved" && (
           <div className="text-center">
-            <CheckCircle2 className="w-12 h-12 mx-auto mb-3" />
-            <h3 className="font-bold mb-1">Approved</h3>
-            <p className="text-sm mb-4">Security UX review passed. Design is cleared for development.</p>
+            <CheckCircle2 className="w-12 h-12 mx-auto mb-3" style={{ color: "var(--green)" }} />
+            <h3 className="font-bold font-mono mb-1" style={{ color: "var(--green)" }}>Approved</h3>
+            <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Security UX review passed. Design is cleared for development.</p>
 
-            <div className="border rounded-lg p-4 text-left">
-              <p className="text-xs"><strong>Review outcome:</strong></p>
-              <ul className="text-xs mt-2 space-y-1">
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3" /> {submittedCount}/{REVIEW_ITEMS.length} items passed</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3" /> All critical items verified</li>
-                <li className="flex items-center gap-2"><Shield className="w-3 h-3" /> Design tokens consistent</li>
+            <div className="rounded-lg p-4 text-left" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+              <p className="text-xs font-mono" style={{ color: "var(--green)" }}><strong>Review outcome:</strong></p>
+              <ul className="text-xs font-mono mt-2 space-y-1" style={{ color: "var(--text-bright)" }}>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3" style={{ color: "var(--green)" }} /> {submittedCount}/{REVIEW_ITEMS.length} items passed</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3" style={{ color: "var(--green)" }} /> All critical items verified</li>
+                <li className="flex items-center gap-2"><Shield className="w-3 h-3" style={{ color: "var(--green)" }} /> Security patterns consistent</li>
               </ul>
             </div>
           </div>
