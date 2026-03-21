@@ -38,26 +38,26 @@ function PasskeysDemo() {
 
       {/* Register passkey */}
       {scenario === "register" && (
-        <div className="rounded-2xl border p-8">
+        <div className="rounded-2xl p-6 sm:p-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           {step === 0 && (
             <div className="text-center">
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Key className="w-7 h-7" />
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(0,255,65,0.1)" }}>
+                <Key className="w-7 h-7" style={{ color: "var(--green)" }} />
               </div>
-              <h2 className="text-xl font-bold mb-2">Create a passkey</h2>
-              <p className="text-sm mb-2">Sign in faster and more securely — no password needed.</p>
-              <div className="border rounded-lg p-3 text-left mb-6">
-                <h4 className="text-xs font-semibold mb-2">What is a passkey?</h4>
-                <ul className="text-xs space-y-1">
+              <h2 className="text-xl font-bold font-mono mb-2" style={{ color: "var(--text-bright)" }}>Create a passkey</h2>
+              <p className="text-sm font-mono mb-2" style={{ color: "var(--text)" }}>Sign in faster and more securely — no password needed.</p>
+              <div className="rounded-lg p-3 text-left mb-6" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                <h4 className="text-xs font-semibold font-mono mb-2" style={{ color: "var(--green)" }}>What is a passkey?</h4>
+                <ul className="text-xs font-mono space-y-1" style={{ color: "var(--text-bright)" }}>
                   <li>Uses your fingerprint, face, or screen lock instead of a password</li>
                   <li>Can't be phished — the key never leaves your device</li>
                   <li>Syncs across your devices via iCloud/Google</li>
                 </ul>
               </div>
-              <button type="button" onClick={() => simulateAuth(1)} disabled={loading} className="w-full text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2">
+              <button type="button" onClick={() => simulateAuth(1)} disabled={loading} className="w-full py-3 rounded-lg font-medium font-mono text-sm border-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2" style={{ background: "var(--green)", color: "var(--bg)" }}>
                 {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Creating...</> : <><Fingerprint className="w-4 h-4" /> Create passkey</>}
               </button>
-              <button type="button" className="w-full mt-2 text-sm bg-transparent border-none cursor-pointer py-2">
+              <button type="button" className="w-full mt-2 text-sm font-mono bg-transparent border-none cursor-pointer py-2" style={{ color: "var(--text-dim)" }}>
                 Maybe later
               </button>
             </div>
@@ -65,12 +65,12 @@ function PasskeysDemo() {
 
           {step === 1 && (
             <div className="text-center">
-              <div className="border-2 rounded-2xl p-6 mb-4 /50">
-                <Fingerprint className="w-16 h-16 mx-auto mb-3 animate-pulse" />
-                <p className="text-sm font-medium">Verify your identity</p>
-                <p className="text-xs mt-1">Use Touch ID, Face ID, or your screen lock</p>
+              <div className="rounded-2xl p-6 mb-4" style={{ border: "2px solid var(--green-border)", background: "rgba(0,255,65,0.05)" }}>
+                <Fingerprint className="w-16 h-16 mx-auto mb-3 animate-pulse" style={{ color: "var(--green)" }} />
+                <p className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>Verify your identity</p>
+                <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>Use Touch ID, Face ID, or your screen lock</p>
               </div>
-              <button type="button" onClick={() => simulateAuth(2)} disabled={loading} className="w-full text-white py-2.5 rounded-lg font-medium text-sm border-none cursor-pointer flex items-center justify-center gap-2">
+              <button type="button" onClick={() => simulateAuth(2)} disabled={loading} className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer flex items-center justify-center gap-2" style={{ background: "var(--green)", color: "var(--bg)" }}>
                 {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Verifying...</> : "Simulate biometric verification"}
               </button>
             </div>
@@ -78,31 +78,31 @@ function PasskeysDemo() {
 
           {step === 2 && (
             <div className="text-center">
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle2 className="w-7 h-7" />
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(0,255,65,0.1)" }}>
+                <CheckCircle2 className="w-7 h-7" style={{ color: "var(--green)" }} />
               </div>
-              <h2 className="text-xl font-bold mb-2">Passkey created!</h2>
-              <p className="text-sm mb-4">You can now sign in with your fingerprint or face.</p>
-              <div className="border rounded-lg p-4 text-left space-y-2 text-xs">
+              <h2 className="text-xl font-bold font-mono mb-2" style={{ color: "var(--green)" }}>Passkey created!</h2>
+              <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>You can now sign in with your fingerprint or face.</p>
+              <div className="rounded-lg p-4 text-left space-y-2 text-xs font-mono" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
                 <div className="flex items-center justify-between">
-                  <span >Device</span>
-                  <span >MacBook Pro</span>
+                  <span style={{ color: "var(--text-dim)" }}>Device</span>
+                  <span style={{ color: "var(--text-bright)" }}>MacBook Pro</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span >Method</span>
-                  <span >Touch ID</span>
+                  <span style={{ color: "var(--text-dim)" }}>Method</span>
+                  <span style={{ color: "var(--text-bright)" }}>Touch ID</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span >Synced to</span>
-                  <span >iCloud Keychain</span>
+                  <span style={{ color: "var(--text-dim)" }}>Synced to</span>
+                  <span style={{ color: "var(--text-bright)" }}>iCloud Keychain</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span >Phishing protection</span>
-                  <span className="font-medium">Active</span>
+                  <span style={{ color: "var(--text-dim)" }}>Phishing protection</span>
+                  <span className="font-medium" style={{ color: "var(--green)" }}>Active</span>
                 </div>
               </div>
-              <div className="border rounded-lg p-3 text-left mt-4">
-                <p className="text-xs"><strong>Security upgrade:</strong> Passkeys are phishing-resistant by design. Unlike passwords, the private key never leaves your device and is bound to this specific website — it can't be tricked into working on a fake site.</p>
+              <div className="rounded-lg p-3 text-left mt-4" style={{ background: "rgba(0,229,255,0.05)", border: "1px solid rgba(0,229,255,0.2)" }}>
+                <p className="text-xs font-mono" style={{ color: "var(--cyan)" }}><strong>Security upgrade:</strong> Passkeys are phishing-resistant by design. Unlike passwords, the private key never leaves your device and is bound to this specific website.</p>
               </div>
             </div>
           )}
@@ -111,43 +111,43 @@ function PasskeysDemo() {
 
       {/* Login with passkey */}
       {scenario === "login" && (
-        <div className="rounded-2xl border p-8">
+        <div className="rounded-2xl p-6 sm:p-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           {step === 0 && (
             <div className="text-center">
-              <h2 className="text-xl font-bold mb-1">Welcome back</h2>
-              <p className="text-sm mb-6">Sign in with your passkey</p>
+              <h2 className="text-xl font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Welcome back</h2>
+              <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>Sign in with your passkey</p>
 
-              <button type="button" onClick={() => simulateAuth(1)} disabled={loading} className="w-full text-white py-3 rounded-lg font-medium text-sm border-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2 mb-3">
+              <button type="button" onClick={() => simulateAuth(1)} disabled={loading} className="w-full py-3 rounded-lg font-medium font-mono text-sm border-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2 mb-3" style={{ background: "var(--green)", color: "var(--bg)" }}>
                 {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Authenticating...</> : <><Fingerprint className="w-5 h-5" /> Sign in with passkey</>}
               </button>
 
               <div className="flex items-center gap-3 my-4">
-                <div className="flex-1 h-px" />
-                <span className="text-xs">or</span>
-                <div className="flex-1 h-px" />
+                <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
+                <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>or</span>
+                <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
               </div>
 
-              <button type="button" className="w-full border py-2.5 rounded-lg text-sm cursor-pointer hover:">
+              <button type="button" className="w-full py-2.5 rounded-lg text-sm font-mono cursor-pointer" style={{ background: "transparent", color: "var(--text)", border: "1px solid var(--border)" }}>
                 Use password instead
               </button>
 
-              <p className="text-xs mt-4">Passkey is the default — password is the fallback. Not the other way around.</p>
+              <p className="text-xs font-mono mt-4" style={{ color: "var(--text-dim)" }}>Passkey is the default — password is the fallback. Not the other way around.</p>
             </div>
           )}
 
           {step === 1 && (
             <div className="text-center">
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle2 className="w-7 h-7" />
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(0,255,65,0.1)" }}>
+                <CheckCircle2 className="w-7 h-7" style={{ color: "var(--green)" }} />
               </div>
-              <h2 className="text-xl font-bold mb-1">Signed in!</h2>
-              <p className="text-sm mb-4">Authenticated via Touch ID in 0.8 seconds.</p>
+              <h2 className="text-xl font-bold font-mono mb-1" style={{ color: "var(--green)" }}>Signed in!</h2>
+              <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Authenticated via Touch ID in 0.8 seconds.</p>
 
-              <div className="border rounded-lg p-3 text-left text-xs space-y-1">
-                <p><strong>No password entered</strong> — nothing to phish</p>
-                <p><strong>No SMS code</strong> — nothing to intercept</p>
-                <p><strong>Device-bound key</strong> — can't be stolen remotely</p>
-                <p><strong>Domain-locked</strong> — won't work on lookalike sites</p>
+              <div className="rounded-lg p-3 text-left text-xs font-mono space-y-1" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+                <p style={{ color: "var(--text-bright)" }}><strong style={{ color: "var(--green)" }}>No password entered</strong> — nothing to phish</p>
+                <p style={{ color: "var(--text-bright)" }}><strong style={{ color: "var(--green)" }}>No SMS code</strong> — nothing to intercept</p>
+                <p style={{ color: "var(--text-bright)" }}><strong style={{ color: "var(--green)" }}>Device-bound key</strong> — can't be stolen remotely</p>
+                <p style={{ color: "var(--text-bright)" }}><strong style={{ color: "var(--green)" }}>Domain-locked</strong> — won't work on lookalike sites</p>
               </div>
             </div>
           )}
@@ -156,9 +156,9 @@ function PasskeysDemo() {
 
       {/* Manage passkeys */}
       {scenario === "manage" && (
-        <div className="rounded-2xl border p-6">
-          <h2 className="text-lg font-bold mb-1">Your passkeys</h2>
-          <p className="text-sm mb-4">Devices registered for passwordless sign-in.</p>
+        <div className="rounded-2xl p-4 sm:p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h2 className="text-lg font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Your passkeys</h2>
+          <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Devices registered for passwordless sign-in.</p>
 
           <div className="space-y-3 mb-4">
             {[
@@ -166,24 +166,24 @@ function PasskeysDemo() {
               { device: "iPhone 16", method: "Face ID", synced: "iCloud Keychain", created: "Mar 15, 2026", icon: Smartphone, active: true },
               { device: "Windows PC (work)", method: "Windows Hello", synced: "Not synced", created: "Mar 18, 2026", icon: Monitor, active: true },
             ].map(({ device, method, synced, created, icon: Icon, active }) => (
-              <div key={device} className="flex items-start gap-3 p-3 border rounded-lg">
-                <Icon className="w-5 h-5 mt-0.5 shrink-0" />
+              <div key={device} className="flex items-start gap-3 p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                <Icon className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--text)" }} />
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <p className="text-sm font-medium">{device}</p>
+                    <p className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>{device}</p>
                     {active
-                      ? <span className="text-xs flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Active</span>
-                      : <span className="text-xs">Revoked</span>
+                      ? <span className="text-xs font-mono flex items-center gap-1" style={{ color: "var(--green)" }}><CheckCircle2 className="w-3 h-3" /> Active</span>
+                      : <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>Revoked</span>
                     }
                   </div>
-                  <p className="text-xs">{method} · {synced} · Created {created}</p>
+                  <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{method} · {synced} · Created {created}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="border rounded-lg p-3 mb-4">
-            <p className="text-xs flex items-start gap-2">
+          <div className="rounded-lg p-3 mb-4" style={{ background: "rgba(255,170,0,0.08)", border: "1px solid rgba(255,170,0,0.2)" }}>
+            <p className="text-xs font-mono flex items-start gap-2" style={{ color: "var(--amber)" }}>
               <AlertTriangle className="w-3.5 h-3.5 mt-0.5 shrink-0" />
               <span><strong>Keep a backup method:</strong> If you lose all devices with passkeys, you'll need your password or recovery codes. Don't disable password login until you have passkeys on multiple devices.</span>
             </p>
