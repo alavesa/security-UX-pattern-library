@@ -181,7 +181,7 @@ function MfaDemo() {
             ) : (
               <>
                 {/* 6-digit code input */}
-                <div className="flex gap-2 justify-center mb-4" role="group" aria-label="Verification code" onPaste={handlePaste}>
+                <div className="flex gap-1.5 sm:gap-2 justify-center mb-4" role="group" aria-label="Verification code" onPaste={handlePaste}>
                   {code.map((digit, i) => (
                     <input
                       key={i}
@@ -193,7 +193,7 @@ function MfaDemo() {
                       onChange={e => handleInput(i, e.target.value)}
                       onKeyDown={e => handleKeyDown(i, e)}
                       disabled={status === "loading"}
-                      className={`w-11 h-13 text-center text-lg font-mono border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
+                      className={`w-9 h-11 sm:w-11 sm:h-13 text-center text-base sm:text-lg font-mono border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
                         status === "error" ? "border-red-300 focus:ring-red-500 bg-red-50" : "border-gray-300 focus:ring-blue-500"
                       }`}
                       aria-label={`Digit ${i + 1}`}

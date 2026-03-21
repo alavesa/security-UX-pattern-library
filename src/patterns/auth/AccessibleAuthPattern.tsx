@@ -108,7 +108,7 @@ function AccessibleAuthDemo() {
               </p>
               {/* Fake distorted CAPTCHA */}
               <div className="p-4 rounded text-center mb-3" style={{ background: "#1a1a1a", border: "1px solid var(--border)" }}>
-                <p className="text-2xl font-mono tracking-widest" style={{ color: "var(--text-dim)", fontStyle: "italic", textDecoration: "line-through", letterSpacing: "0.3em", transform: "skewX(-10deg)" }}>
+                <p className="text-xl sm:text-2xl font-mono" style={{ color: "var(--text-dim)", fontStyle: "italic", textDecoration: "line-through", letterSpacing: "0.2em", transform: "skewX(-10deg)" }}>
                   xK9mP2
                 </p>
               </div>
@@ -199,8 +199,8 @@ function AccessibleAuthDemo() {
                   onChange={e => { setMfaCode(e.target.value.replace(/\D/g, "")); setMfaError(""); }}
                   onPaste={() => setMfaPasted(true)}
                   placeholder="000000"
-                  className="w-full px-4 py-3 rounded text-lg font-mono tracking-widest text-center border-none"
-                  style={{ background: "var(--bg)", color: "var(--text-bright)", border: `1px solid ${mfaError ? "var(--red)" : "var(--border)"}`, letterSpacing: "0.5em" }}
+                  className="w-full px-3 sm:px-4 py-3 rounded text-base sm:text-lg font-mono text-center border-none"
+                  style={{ background: "var(--bg)", color: "var(--text-bright)", border: `1px solid ${mfaError ? "var(--red)" : "var(--border)"}`, letterSpacing: "0.3em" }}
                   aria-describedby={mfaError ? "mfa-error" : undefined}
                   aria-invalid={mfaError ? "true" : undefined}
                 />
