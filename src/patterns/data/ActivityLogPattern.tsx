@@ -101,7 +101,7 @@ function ActivityLogDemo() {
 
       {/* Account Activity */}
       {scenario === "activity" && (
-        <div className="space-y-3">
+        <div className="rounded-xl p-4 sm:p-5 space-y-3" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           {/* Filter bar */}
           <div className="flex items-center gap-2 text-xs font-mono">
             <span style={{ color: "var(--text-dim)" }}>filter:</span>
@@ -159,7 +159,7 @@ function ActivityLogDemo() {
 
       {/* Active Devices */}
       {scenario === "devices" && (
-        <div className="space-y-2">
+        <div className="rounded-xl p-4 sm:p-5 space-y-2" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>
             {DEVICES.length - revokedDevices.size} active sessions
           </p>
@@ -207,7 +207,7 @@ function ActivityLogDemo() {
 
       {/* Data Access Log */}
       {scenario === "access" && (
-        <div className="space-y-3">
+        <div className="rounded-xl p-4 sm:p-5 space-y-3" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>
             GDPR Art. 15 — Right of access. Who accessed your data and why.
           </p>
