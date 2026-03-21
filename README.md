@@ -27,10 +27,11 @@ $ ls ./patterns
    bait_and_switch ....... FTC Act Section 5
    forced_continuity ..... FTC Negative Option Rule
 
-🔐 data/ (3)
+🔐 data/ (4)
    encryption_indicators . OWASP A02, CWE-311
    secure_file_upload .... OWASP A03, CWE-434
    data_deletion ......... GDPR Art. 17, CWE-212
+   activity_log .......... GDPR Art. 15, CWE-778
 
 🛡 owasp/ (3)
    A01_access_control .... CWE-284, CWE-639
@@ -42,15 +43,21 @@ $ ls ./patterns
    content_labeling ...... EU AI Act Art. 50, C2PA
    decision_explanation .. GDPR Art. 22
 
-🏭 industrial/ (3)
+🏭 industrial/ (4)
    operator_auth ......... IEC 62443
    safety_critical ....... IEC 61511
    alarm_fatigue ......... ISA-18.2, EEMUA 191
+   navigation_levels ..... ISA-101
+
+📋 governance/ (3)
+   security_design_review  IEC 62443, ISO 27001
+   change_management ..... IEC 62443, ITIL
+   compliance_audit ...... NIS2, DORA, GDPR
 
 $ get --score
 🛡 Security UX Score: rate your app → A+ through F
 $ get --compliance
-📋 Compliance Mapper: 11 regulations including EU AI Act + IEC 62443
+📋 Compliance Mapper: 16 regulations including NIS2 + DORA + EU AI Act + IEC 62443
 $ get --maturity
 📊 Maturity Model: assess your security UX → Level 1-4
 $ get --report
@@ -58,9 +65,9 @@ $ get --report
 $█
 ```
 
-Built from 20 years of UX design leadership and a double M.Sc. in Cyber Security and Information Systems.
+Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
 
-## 28 Interactive Patterns + 4 Strategic Tools
+## 32 Interactive Patterns + 4 Strategic Tools
 
 The most comprehensive interactive security UX pattern library. Each pattern has a live demo, do/don't guidelines, security rationale with OWASP/CWE/GDPR references, and accessibility notes.
 
@@ -68,8 +75,8 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 
 | Tool | What it does |
 |------|-------------|
-| **Security UX Score** | 28-item checklist across 6 categories → A+ through F grade with shareable badge |
-| **Compliance Mapper** | Select from 11 regulations (GDPR, SOC 2, EU AI Act, IEC 62443...) → see which patterns you need |
+| **Security UX Score** | Checklist across 8 categories → A+ through F grade with shareable badge |
+| **Compliance Mapper** | Select from 16 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
 | **Report Generator** | Answer 6 questions → downloadable .md report with prioritized patterns |
 
@@ -82,8 +89,8 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 | Password Strength | Real-time meter, breach detection, confirm field, show/hide |
 | Session Timeout | Countdown warning, auto-save, graceful expiry |
 | Account Recovery | Secure reset flow, one-time tokens, anti-enumeration |
-| **Passkeys / WebAuthn** | Create passkey, sign in (0.8s, phishing-proof), manage across devices |
-| **OAuth Consent** | Over-permissioned vs least privilege, granular control, explained permissions |
+| Passkeys / WebAuthn | Create passkey, sign in (0.8s, phishing-proof), manage across devices |
+| OAuth Consent | Over-permissioned vs least privilege, granular control, explained permissions |
 
 ## Threat Response (3)
 
@@ -106,13 +113,14 @@ Each shows the manipulative version side-by-side with the ethical alternative.
 | Bait & Switch | X button enables features | X means close, always |
 | Forced Continuity | Free trial auto-charge trap | No-card trial, pre-expiry reminder |
 
-## Data Protection (3)
+## Data Protection (4)
 
 | Pattern | What it covers |
 |---------|----------------|
 | Encryption Indicators | E2E messaging, connection security, at-rest dashboard (3 variants) |
 | Secure File Upload | File type blocking, malware scanning, encryption status |
 | Data Deletion | GDPR-compliant deletion with export, confirmation, grace period |
+| Activity & Audit Log | Account activity, active devices with session revoke, data access log (GDPR Art. 15) |
 
 ## OWASP Top 10 (3)
 
@@ -130,13 +138,22 @@ Each shows the manipulative version side-by-side with the ethical alternative.
 | AI Content Labeling | Social feed labels, article transparency, image authenticity (C2PA) |
 | AI Decision Explanation | Loan decisions, content moderation, hiring AI with human appeal |
 
-## Industrial Security UX (3)
+## Industrial Security UX (4)
 
 | Pattern | What it covers |
 |---------|----------------|
 | Operator Authentication | Badge + PIN for gloves, adaptive biometrics, emergency override |
 | Safety-Critical Confirmation | Hold-to-confirm shutdown, graduated overrides, parameter ranges |
 | Alarm Fatigue Management | Alarm flood vs smart grouping, root cause, shelving (ISA-18.2) |
+| Navigation & Levels of Detail | ISA-101 4-level HMI hierarchy — plant overview to diagnostic detail |
+
+## Governance (3)
+
+| Pattern | What it covers |
+|---------|----------------|
+| Security Design Review | Checklist with critical/non-critical items, approval workflow |
+| Change Management | Propose → Review → Approve → Rollout → Rollback with impact assessment |
+| Compliance Audit Workflow | Scope regulations → Assess requirements → Collect evidence → Gap analysis report |
 
 ## Recent Enforcement
 
@@ -164,17 +181,17 @@ npm run dev
 
 ## Design
 
-Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scanlines, blinking cursor. Each category has its own color: green (auth/threat), red (dark patterns), cyan (data), amber (OWASP), purple (AI), orange (industrial).
+Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scanlines, Matrix rain with katakana. Each category has its own color: green (auth/threat), red (dark patterns), cyan (data), amber (OWASP), purple (AI), orange (industrial).
 
-## Sources (31)
+## Sources (40)
 
-**Standards:** OWASP, CWE, NIST, GDPR, WCAG, FTC, EU DSA, ISO 27001, PCI DSS, ePrivacy, EU Consumer Rights
+**EU Regulation:** GDPR, NIS2, DORA, CRA, EU AI Act, EU DSA, ePrivacy, EU Consumer Rights Directive
 
-**AI Regulation:** EU AI Act Art. 50, Transparency Code, US State AI Laws, IAB Framework, C2PA, Illinois AI Act
+**Standards & Compliance:** OWASP, CWE, NIST, WCAG, ISO 27001, SOC 2, PCI DSS, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act
 
-**Industrial:** IEC 62443, IEC 61511, ISA-18.2, EEMUA 191
+**Industrial:** IEC 62443, IEC 61511, ISA-18.2, ISA-101, EEMUA 191
 
-**Research:** Verizon DBIR, IBM Breach Report, Microsoft MFA Study, USEC 2026, Deceptive Design, RFC 6238, CCPA
+**Research:** Verizon DBIR, IBM Breach Report, Microsoft MFA Study, USEC 2026, Deceptive Design, Dark Patterns Enforcement, RFC 6238
 
 ## Author
 
