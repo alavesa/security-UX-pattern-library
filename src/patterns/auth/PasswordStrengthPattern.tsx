@@ -83,14 +83,16 @@ function PasswordDemo() {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="Minimum 12 characters"
-                className="w-full px-3 py-2 pr-10 border rounded-lg text-sm focus:outline-none focus:ring-2"
+                className="w-full px-3 py-2 pr-10 rounded-lg text-sm font-mono focus:outline-none"
+                style={{ background: "var(--bg)", color: "var(--text-bright)", border: "1px solid var(--border)" }}
                 autoComplete="new-password"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 hover: bg-transparent border-none cursor-pointer"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-transparent border-none cursor-pointer"
                 aria-label={showPassword ? "Hide password" : "Show password"}
+                style={{ color: "var(--text-dim)" }}
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
