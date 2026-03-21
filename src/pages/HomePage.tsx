@@ -17,52 +17,58 @@ function MatrixRain() {
     };
     resize();
 
-    const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン{}[]<>/\\|=+-*&^%$#@!?.,:;";
+    // Half-width katakana + digits — authentic Matrix characters
+    const chars = "日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:・.=*+-<>¦╌";
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = Array.from({ length: columns }, () => Math.random() * -50);
+    const drops: number[] = Array.from({ length: columns }, () => Math.random() * canvas.height / fontSize);
 
-    let animationId: number;
-    let frame = 0;
+    let rafId: number;
+    let last = 0;
+    const tick = (now: number) => {
+      rafId = requestAnimationFrame(tick);
+      if (now - last < 33) return; // ~30fps
+      last = now;
 
-    const draw = () => {
-      frame++;
-      // Only draw every 3rd frame for performance + slower rain
-      if (frame % 3 !== 0) {
-        animationId = requestAnimationFrame(draw);
-        return;
-      }
-
-      ctx.fillStyle = "rgba(10, 10, 10, 0.08)";
+      // Fade overlay — creates the trailing effect
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
         const x = i * fontSize;
         const y = drops[i] * fontSize;
 
-        // Head of the drop is brighter
-        const isHead = Math.random() > 0.95;
-        ctx.fillStyle = isHead ? "#00ff41" : "rgba(0, 255, 65, 0.15)";
-        ctx.font = `${fontSize}px monospace`;
-        ctx.fillText(char, x, y);
+        // Head — bright white-green (like the movie)
+        ctx.fillStyle = "#cefad0";
+        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y);
 
-        if (y > canvas.height && Math.random() > 0.98) {
-          drops[i] = 0;
+        // Just behind head — pure green
+        if (drops[i] > 0) {
+          ctx.fillStyle = "#00ff41";
+          ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, (drops[i] - 1) * fontSize);
         }
-        drops[i] += 0.5;
+
+        // Random mutations in the trail
+        if (Math.random() > 0.95 && drops[i] > 2) {
+          ctx.fillStyle = "rgba(0, 255, 65, 0.3)";
+          ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, Math.floor(Math.random() * drops[i]) * fontSize);
+        }
+
+        // Reset at bottom — staggered
+        if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
       }
 
-      animationId = requestAnimationFrame(draw);
     };
 
-    draw();
+    rafId = requestAnimationFrame(tick);
 
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
 
     return () => {
-      cancelAnimationFrame(animationId);
+      cancelAnimationFrame(rafId);
       ro.disconnect();
     };
   }, []);
