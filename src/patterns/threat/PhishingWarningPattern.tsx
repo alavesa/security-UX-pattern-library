@@ -170,7 +170,7 @@ function PhishingWarningDemo() {
                 <CheckCircle2 className="w-4 h-4" style={{ color: "var(--green)" }} />
                 <span className="text-sm font-medium font-mono" style={{ color: "var(--green)" }}>Safe</span>
               </div>
-              <p className="text-xs font-mono mb-1" style={{ color: "var(--text)" }}>https://example.com/account/settings</p>
+              <p className="text-xs font-mono mb-1 break-all" style={{ color: "var(--text)" }}>https://example.com/account/settings</p>
               <p className="text-xs font-mono" style={{ color: "var(--green)" }}>Domain verified · HTTPS · Known organization</p>
             </div>
 
@@ -180,7 +180,7 @@ function PhishingWarningDemo() {
                 <AlertTriangle className="w-4 h-4" style={{ color: "var(--amber)" }} />
                 <span className="text-sm font-medium font-mono" style={{ color: "var(--amber)" }}>Suspicious</span>
               </div>
-              <p className="text-xs font-mono mb-1" style={{ color: "var(--text)" }}>
+              <p className="text-xs font-mono mb-1 break-all" style={{ color: "var(--text)" }}>
                 https://examp<span style={{ color: "var(--red)", fontWeight: "bold" }}>1</span>e.com/login?redirect=...
               </p>
               <p className="text-xs font-mono" style={{ color: "var(--amber)" }}>Lookalike domain · Registered 3 days ago · Contains redirect</p>
@@ -192,7 +192,7 @@ function PhishingWarningDemo() {
                 <XCircle className="w-4 h-4" style={{ color: "var(--red)" }} />
                 <span className="text-sm font-medium font-mono" style={{ color: "var(--red)" }}>Dangerous</span>
               </div>
-              <p className="text-xs font-mono mb-1" style={{ color: "var(--text)" }}>http://192.168.1.100/login.php</p>
+              <p className="text-xs font-mono mb-1 break-all" style={{ color: "var(--text)" }}>http://192.168.1.100/login.php</p>
               <p className="text-xs font-mono" style={{ color: "var(--red)" }}>Raw IP address · No HTTPS · Known phishing page</p>
             </div>
           </div>
