@@ -34,7 +34,7 @@ function MatrixRain() {
       }
 
       // Classic Matrix fade — dark overlay each frame
-      ctx.fillStyle = "rgba(10, 10, 10, 0.05)";
+      ctx.fillStyle = "rgba(10, 10, 10, 0.1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = `${fontSize}px monospace`;
@@ -58,7 +58,7 @@ function MatrixRain() {
         drops[i]++;
 
         // Reset drop randomly after passing the bottom
-        if (y > canvas.height && Math.random() > 0.975) {
+        if (y > canvas.height && Math.random() > 0.99) {
           drops[i] = 0;
         }
       }
