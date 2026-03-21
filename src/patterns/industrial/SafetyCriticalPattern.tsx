@@ -78,16 +78,17 @@ function SafetyCriticalDemo() {
 
                 <div className="bg-gray-800 rounded-lg p-4 mb-6 text-left">
                   <div className="grid grid-cols-2 gap-3 font-mono text-xs">
-                    <div><span >Status:</span> <span >Running</span></div>
-                    <div><span >Output:</span> <span className="text-white">340 MW</span></div>
-                    <div><span >Temp:</span> <span className="text-white">1,104°C</span></div>
-                    <div><span >RPM:</span> <span className="text-white">3,600</span></div>
+                    <div><span style={{ color: "var(--text-dim)" }}>Status:</span> <span style={{ color: "var(--green)" }}>Running</span></div>
+                    <div><span style={{ color: "var(--text-dim)" }}>Output:</span> <span className="text-white">340 MW</span></div>
+                    <div><span style={{ color: "var(--text-dim)" }}>Temp:</span> <span className="text-white">1,104°C</span></div>
+                    <div><span style={{ color: "var(--text-dim)" }}>RPM:</span> <span className="text-white">3,600</span></div>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setStep('confirm')}
-                  className="font-mono text-lg text-white px-8 py-5 rounded-xl border-4 border-red-400 cursor-pointer font-bold w-full"
+                  className="font-mono text-lg text-white px-8 py-5 rounded-xl border-4 cursor-pointer font-bold w-full"
+                  style={{ background: "#991b1b", borderColor: "var(--red)" }}
                 >
                   ⚠ EMERGENCY STOP
                 </button>
@@ -97,9 +98,9 @@ function SafetyCriticalDemo() {
 
             {step === 'confirm' && (
               <div className="text-center">
-                <AlertTriangle className="w-12 h-12 mx-auto mb-4" />
-                <h3 className="font-mono text-lg mb-2">CONFIRM EMERGENCY STOP</h3>
-                <p className="font-mono text-xs mb-4">Turbine #3 — 340 MW output will be lost</p>
+                <AlertTriangle className="w-12 h-12 mx-auto mb-4" style={{ color: "var(--red)" }} />
+                <h3 className="font-mono text-lg mb-2" style={{ color: "var(--red)" }}>CONFIRM EMERGENCY STOP</h3>
+                <p className="font-mono text-xs mb-4" style={{ color: "var(--text)" }}>Turbine #3 — 340 MW output will be lost</p>
 
                 <div className="bg-red-950 border border-red-700 rounded-lg p-4 mb-6 text-left">
                   <h4 className="font-mono text-xs mb-2">IMPACT:</h4>
@@ -123,7 +124,7 @@ function SafetyCriticalDemo() {
                   className="font-mono text-lg text-white px-8 py-5 rounded-xl border-4 border-red-400 cursor-pointer font-bold w-full relative overflow-hidden"
                   style={{ background: "#991b1b" }}
                 >
-                  <div className="absolute inset-0 transition-all" style={{ width: `${holdProgress}%` }} />
+                  <div className="absolute inset-0 transition-all" style={{ width: `${holdProgress}%`, background: "rgba(255,51,51,0.5)" }} />
                   <span className="relative">HOLD TO CONFIRM STOP</span>
                 </button>
 
@@ -135,15 +136,15 @@ function SafetyCriticalDemo() {
 
             {step === 'executing' && (
               <div className="text-center">
-                <XCircle className="w-12 h-12 mx-auto mb-3" />
-                <h3 className="font-mono text-lg mb-2">TURBINE #3 — STOPPING</h3>
+                <XCircle className="w-12 h-12 mx-auto mb-3" style={{ color: "var(--red)" }} />
+                <h3 className="font-mono text-lg mb-2" style={{ color: "var(--red)" }}>TURBINE #3 — STOPPING</h3>
                 <div className="bg-gray-800 rounded-lg p-4 font-mono text-xs text-left space-y-2 mb-4">
-                  <div >▶ Fuel supply cut off</div>
-                  <div >▶ Generator disconnected from grid</div>
-                  <div >▶ Load transferred to Turbine #1, #2</div>
-                  <div >○ Cooldown sequence in progress...</div>
-                  <div >○ Supervisor notified</div>
-                  <div >○ Incident logged: ESD-2026-0320-001</div>
+                  <div style={{ color: "var(--green)" }}>▶ Fuel supply cut off</div>
+                  <div style={{ color: "var(--green)" }}>▶ Generator disconnected from grid</div>
+                  <div style={{ color: "var(--green)" }}>▶ Load transferred to Turbine #1, #2</div>
+                  <div style={{ color: "var(--amber)" }}>○ Cooldown sequence in progress...</div>
+                  <div style={{ color: "var(--text-dim)" }}>○ Supervisor notified</div>
+                  <div style={{ color: "var(--text-dim)" }}>○ Incident logged: ESD-2026-0320-001</div>
                 </div>
 
                 <div className="bg-blue-900/50 border border-blue-700 rounded-lg p-3 text-left">
@@ -165,7 +166,7 @@ function SafetyCriticalDemo() {
 
           <div className="p-8">
             <div className="flex items-start gap-3 mb-4">
-              <Shield className="w-8 h-8 shrink-0" />
+              <Shield className="w-8 h-8 shrink-0" style={{ color: "var(--amber)" }} />
               <div>
                 <h3 className="font-mono text-sm text-white">Override: High Pressure Alarm — Vessel P-301</h3>
                 <p className="font-mono text-xs mt-1">Current pressure: 42 bar (limit: 40 bar)</p>
@@ -225,11 +226,11 @@ function SafetyCriticalDemo() {
               </div>
               <div className="flex items-center justify-between mb-3">
                 <span className="font-mono text-xs">Requested value</span>
-                <span className="font-mono text-lg">180 RPM</span>
+                <span className="font-mono text-lg" style={{ color: "var(--amber)" }}>180 RPM</span>
               </div>
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs">Change</span>
-                <span className="font-mono text-sm">+50% increase</span>
+                <span className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>Change</span>
+                <span className="font-mono text-sm" style={{ color: "var(--amber)" }}>+50% increase</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs">Safe range</span>
@@ -250,18 +251,18 @@ function SafetyCriticalDemo() {
                 <div className="absolute top-0 bottom-0 right-0 w-[15%] bg-amber-900/30 rounded-r-full" />
                 <div className="absolute top-0 bottom-0 left-0 w-[10%] bg-amber-900/30 rounded-l-full" />
                 {/* Current */}
-                <div className="absolute top-0 bottom-0 w-1" style={{ left: "43%" }}>
+                <div className="absolute top-0 bottom-0 w-1" style={{ left: "43%", background: "var(--green)" }}>
                   <div className="absolute -top-4 -translate-x-1/2 text-xs font-mono text-white whitespace-nowrap">120</div>
                 </div>
                 {/* Target */}
-                <div className="absolute top-0 bottom-0 w-1 bg-amber-400" style={{ left: "86%" }}>
-                  <div className="absolute -top-4 -translate-x-1/2 text-xs font-mono whitespace-nowrap">180</div>
+                <div className="absolute top-0 bottom-0 w-1" style={{ left: "86%", background: "var(--amber)" }}>
+                  <div className="absolute -top-4 -translate-x-1/2 text-xs font-mono whitespace-nowrap" style={{ color: "var(--amber)" }}>180</div>
                 </div>
               </div>
               <div className="flex justify-between font-mono text-xs mt-1">
-                <span >caution</span>
-                <span >safe range</span>
-                <span >caution</span>
+                <span style={{ color: "var(--amber)" }}>caution</span>
+                <span style={{ color: "var(--green)" }}>safe range</span>
+                <span style={{ color: "var(--amber)" }}>caution</span>
               </div>
             </div>
 
