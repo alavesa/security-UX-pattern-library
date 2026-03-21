@@ -181,7 +181,7 @@ export function HomePage() {
           </div>
 
           {/* Terminal prompt — all links clickable */}
-          <div className="mt-12 font-mono text-xs text-left max-w-lg mx-auto p-4 rounded" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <div className="mt-12 font-mono text-xs text-left max-w-lg mx-auto p-3 sm:p-4 rounded overflow-x-auto" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <div style={{ color: "#444" }}>$ ls ./patterns</div>
             <div className="mt-1" style={{ color: "var(--green)" }}>🔒 auth/ (7)</div>
             {[
@@ -194,7 +194,7 @@ export function HomePage() {
               { path: "/patterns/auth/oauth-consent", name: "oauth_consent", ref: "OAuth 2.0, CWE-250" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
               </Link>
             ))}
 
@@ -205,7 +205,7 @@ export function HomePage() {
               { path: "/patterns/threat/suspicious-activity", name: "suspicious_activity", ref: "OWASP A07, CWE-778" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
               </Link>
             ))}
 
@@ -219,7 +219,7 @@ export function HomePage() {
               { path: "/patterns/dark/forced-continuity", name: "forced_continuity", ref: "FTC Neg. Option" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
               </Link>
             ))}
 
@@ -231,7 +231,7 @@ export function HomePage() {
               { path: "/patterns/data/activity-log", name: "activity_log", ref: "GDPR Art. 15, CWE-778" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
               </Link>
             ))}
 
@@ -242,7 +242,7 @@ export function HomePage() {
               { path: "/patterns/owasp/logging-monitoring", name: "A09_logging", ref: "CWE-778" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
               </Link>
             ))}
 
@@ -253,11 +253,11 @@ export function HomePage() {
               { path: "/patterns/ai/decision-explanation", name: "decision_explanation", ref: "GDPR Art. 22" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
               </Link>
             ))}
 
-            <div className="mt-2" style={{ color: "#f97316" }}>🏭 industrial/ (3)</div>
+            <div className="mt-2" style={{ color: "#f97316" }}>🏭 industrial/ (4)</div>
             {[
               { path: "/patterns/industrial/operator-auth", name: "operator_auth", ref: "IEC 62443" },
               { path: "/patterns/industrial/safety-critical", name: "safety_critical", ref: "IEC 61511" },
@@ -265,7 +265,16 @@ export function HomePage() {
               { path: "/patterns/industrial/navigation-levels", name: "navigation_levels", ref: "ISA-101" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
-                {name} <span style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span style={{ color: "#555" }}>{ref}</span>
+                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
+              </Link>
+            ))}
+
+            <div className="mt-2" style={{ color: "var(--text-bright)" }}>📋 governance/ (1)</div>
+            {[
+              { path: "/patterns/governance/design-review", name: "security_design_review", ref: "IEC 62443, ISO 27001" },
+            ].map(({ path, name, ref }) => (
+              <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
+                {name} <span className="hidden sm:inline" style={{ color: "#333" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#555" }}>{ref}</span>
               </Link>
             ))}
 
@@ -283,7 +292,7 @@ export function HomePage() {
       </section>
 
       {/* Pattern Cards */}
-      <section className="px-6 py-16 max-w-5xl mx-auto">
+      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto">
         <h2 className="text-xl font-mono mb-2 glow-text">./auth/</h2>
         <p className="mb-8" style={{ color: "var(--text)" }}>Authentication patterns — the front door of security.</p>
 
@@ -581,7 +590,7 @@ export function HomePage() {
       </section>
 
       {/* Recent Enforcement */}
-      <section className="px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
+      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
         <h2 className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>./recent_enforcement/</h2>
         <p className="text-xs mb-6" style={{ color: "var(--text)" }}>Real fines for dark patterns and security failures — this is why these patterns matter.</p>
 
@@ -625,7 +634,7 @@ export function HomePage() {
       </section>
 
       {/* Sources & References */}
-      <section className="px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
+      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
         <h2 className="text-xl font-mono mb-6" style={{ color: "var(--text-bright)" }}>./sources/</h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
