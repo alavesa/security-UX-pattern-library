@@ -35,38 +35,42 @@ function PhishingWarningDemo() {
 
       {/* Interstitial warning */}
       {scenario === "interstitial" && !proceeded && (
-        <div className="bg-red-50 border-2 border-red-300 rounded-2xl p-8 text-center">
-          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <AlertTriangle className="w-8 h-8 text-red-600" />
+        <div className="rounded-2xl p-6 sm:p-8 text-center" style={{ background: "rgba(255,51,51,0.08)", border: "2px solid rgba(255,51,51,0.3)" }}>
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(255,51,51,0.15)" }}>
+            <AlertTriangle className="w-8 h-8" style={{ color: "var(--red)" }} />
           </div>
-          <h2 className="text-xl font-bold text-red-900 mb-2">Deceptive site ahead</h2>
-          <p className="text-sm text-red-700 mb-2">
-            <strong>login-examp1e.com</strong> may be trying to steal your information.
+          <h2 className="text-xl font-bold font-mono mb-2" style={{ color: "var(--red)" }}>Deceptive site ahead</h2>
+          <p className="text-sm font-mono mb-2" style={{ color: "var(--text-bright)" }}>
+            <strong style={{ color: "var(--red)" }}>login-examp1e.com</strong> may be trying to steal your information.
           </p>
-          <p className="text-xs text-red-600 mb-6">
-            This site has been reported for impersonating <strong>example.com</strong>. Attackers may trick you into entering your password, personal information, or financial details.
+          <p className="text-xs font-mono mb-6" style={{ color: "var(--text)" }}>
+            This site has been reported for impersonating <strong style={{ color: "var(--text-bright)" }}>example.com</strong>. Attackers may trick you into entering your password, personal information, or financial details.
           </p>
 
-          <div className="bg-white border border-red-200 rounded-lg p-4 text-left mb-6">
-            <h3 className="text-xs font-semibold text-red-800 mb-2">Why was this blocked?</h3>
-            <ul className="text-xs text-red-700 space-y-1">
-              <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0 text-red-400" /> Domain registered 2 days ago</li>
-              <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0 text-red-400" /> Mimics login page of example.com</li>
-              <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0 text-red-400" /> SSL certificate from free provider (not organization-validated)</li>
-              <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0 text-red-400" /> Reported by 47 users in the last 24 hours</li>
+          <div className="rounded-lg p-4 text-left mb-6" style={{ background: "var(--bg-card)", border: "1px solid rgba(255,51,51,0.2)" }}>
+            <h3 className="text-xs font-semibold font-mono mb-2" style={{ color: "var(--red)" }}>Why was this blocked?</h3>
+            <ul className="text-xs font-mono space-y-1" style={{ color: "var(--text)" }}>
+              <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} /> Domain registered 2 days ago</li>
+              <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} /> Mimics login page of example.com</li>
+              <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} /> SSL certificate from free provider (not org-validated)</li>
+              <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} /> Reported by 47 users in the last 24 hours</li>
             </ul>
           </div>
 
           <div className="flex flex-col gap-2">
             <button
+              type="button"
               onClick={() => window.history.back}
-              className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors border-none cursor-pointer"
+              className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer"
+              style={{ background: "var(--green)", color: "var(--bg)" }}
             >
               Go back to safety
             </button>
             <button
+              type="button"
               onClick={() => setProceeded(true)}
-              className="w-full text-xs text-red-400 py-2 bg-transparent border-none cursor-pointer"
+              className="w-full text-xs py-2 bg-transparent border-none cursor-pointer font-mono"
+              style={{ color: "var(--text-dim)" }}
             >
               I understand the risk, proceed anyway (not recommended)
             </button>
@@ -75,19 +79,19 @@ function PhishingWarningDemo() {
       )}
 
       {scenario === "interstitial" && proceeded && (
-        <div className="bg-white rounded-2xl shadow-lg border-2 border-red-300 p-6">
-          <div className="bg-red-600 text-white text-xs font-mono px-3 py-1.5 rounded mb-4 flex items-center gap-2">
+        <div className="rounded-2xl p-4 sm:p-6" style={{ background: "var(--bg-card)", border: "2px solid rgba(255,51,51,0.3)" }}>
+          <div className="text-xs font-mono px-3 py-1.5 rounded mb-4 flex items-center gap-2" style={{ background: "var(--red)", color: "white" }}>
             <AlertTriangle className="w-3.5 h-3.5" />
             WARNING: You are viewing a potentially dangerous site
           </div>
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <div className="h-4 bg-gray-200 rounded w-1/2 mb-3" />
-            <div className="h-3 bg-gray-200 rounded w-full mb-2" />
-            <div className="h-8 bg-gray-200 rounded w-full mb-2" />
-            <div className="h-8 bg-gray-200 rounded w-full mb-2" />
-            <div className="h-10 bg-red-200 rounded w-full" />
+          <div className="p-4 rounded-lg" style={{ background: "var(--bg)" }}>
+            <div className="h-4 rounded w-1/2 mb-3" style={{ background: "var(--border)" }} />
+            <div className="h-3 rounded w-full mb-2" style={{ background: "var(--border)" }} />
+            <div className="h-8 rounded w-full mb-2" style={{ background: "var(--border)" }} />
+            <div className="h-8 rounded w-full mb-2" style={{ background: "var(--border)" }} />
+            <div className="h-10 rounded w-full" style={{ background: "rgba(255,51,51,0.15)" }} />
           </div>
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-4 text-xs text-amber-800">
+          <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "rgba(255,170,0,0.05)", border: "1px solid rgba(255,170,0,0.2)", color: "var(--amber)" }}>
             <strong>UX note:</strong> The persistent red banner ensures the user never forgets this is a flagged site. The page content is rendered but all form submissions should be blocked.
           </div>
         </div>
@@ -95,24 +99,26 @@ function PhishingWarningDemo() {
 
       {/* Email phishing indicators */}
       {scenario === "email" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div className="rounded-2xl overflow-hidden" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           {/* Warning banner */}
-          <div className="bg-amber-50 border-b border-amber-200 px-4 py-3 flex items-start gap-3">
-            <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5 shrink-0" />
+          <div className="px-4 py-3 flex items-start gap-3" style={{ background: "rgba(255,170,0,0.1)", borderBottom: "1px solid rgba(255,170,0,0.2)" }}>
+            <AlertTriangle className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--amber)" }} />
             <div className="flex-1">
-              <p className="text-sm font-semibold text-amber-800">This message looks suspicious</p>
-              <p className="text-xs text-amber-700 mt-1">
-                This email claims to be from Example Corp but was sent from <strong>noreply@examp1e-corp.biz</strong> — a domain not associated with Example Corp.
+              <p className="text-sm font-semibold font-mono" style={{ color: "var(--amber)" }}>This message looks suspicious</p>
+              <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>
+                This email claims to be from Example Corp but was sent from <strong style={{ color: "var(--red)" }}>noreply@examp1e-corp.biz</strong> — a domain not associated with Example Corp.
               </p>
               <div className="flex gap-3 mt-2">
                 <button
+                  type="button"
                   onClick={() => setReported(true)}
                   disabled={reported}
-                  className="text-xs font-medium text-amber-800 bg-amber-200 px-3 py-1 rounded border-none cursor-pointer hover:bg-amber-300 disabled:opacity-50"
+                  className="text-xs font-mono px-3 py-1 rounded border-none cursor-pointer disabled:opacity-50"
+                  style={{ background: "rgba(255,170,0,0.2)", color: "var(--amber)" }}
                 >
                   {reported ? "Reported ✓" : "Report phishing"}
                 </button>
-                <button className="text-xs text-amber-600 bg-transparent border-none cursor-pointer">
+                <button type="button" className="text-xs font-mono bg-transparent border-none cursor-pointer" style={{ color: "var(--text)" }}>
                   Not phishing
                 </button>
               </div>
@@ -120,32 +126,32 @@ function PhishingWarningDemo() {
           </div>
 
           {/* Email content with annotations */}
-          <div className="p-6 text-sm text-gray-700 space-y-3">
-            <div className="flex items-center gap-2 text-xs text-gray-400">
+          <div className="p-4 sm:p-6 text-sm font-mono space-y-3" style={{ color: "var(--text)" }}>
+            <div className="flex flex-wrap items-center gap-2 text-xs" style={{ color: "var(--text-dim)" }}>
               <span>From: "Example Corp Security" &lt;noreply@examp1e-corp.biz&gt;</span>
-              <span className="bg-red-100 text-red-600 px-1.5 py-0.5 rounded text-xs font-mono">SUSPICIOUS DOMAIN</span>
+              <span className="px-1.5 py-0.5 rounded text-xs font-mono" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>SUSPICIOUS DOMAIN</span>
             </div>
 
-            <p>Dear Valued Customer,</p>
-            <p>We have detected unusual activity on your account. Please verify your identity immediately to avoid account suspension.</p>
+            <p style={{ color: "var(--text-bright)" }}>Dear Valued Customer,</p>
+            <p style={{ color: "var(--text-bright)" }}>We have detected unusual activity on your account. Please verify your identity immediately to avoid account suspension.</p>
 
-            <div className="relative">
-              <a href="#" onClick={e => e.preventDefault()} className="inline-flex items-center gap-1 bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium no-underline">
+            <div className="relative inline-block">
+              <a href="#" onClick={e => e.preventDefault()} className="inline-flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium font-mono no-underline" style={{ background: "var(--red)", color: "white" }}>
                 Verify Now <ExternalLink className="w-3.5 h-3.5" />
               </a>
-              <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded font-mono">
+              <div className="absolute -top-1 -right-1 text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "var(--red)", color: "white" }}>
                 BLOCKED
               </div>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mt-4">
-              <h4 className="text-xs font-semibold text-gray-700 mb-2 flex items-center gap-1"><Eye className="w-3.5 h-3.5" /> Phishing indicators detected:</h4>
-              <ul className="text-xs text-gray-600 space-y-1.5">
-                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 text-red-400 mt-0.5 shrink-0" /> Sender domain doesn't match claimed organization</li>
-                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 text-red-400 mt-0.5 shrink-0" /> Creates false urgency ("account suspension")</li>
-                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 text-red-400 mt-0.5 shrink-0" /> Generic greeting ("Dear Valued Customer")</li>
-                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 text-red-400 mt-0.5 shrink-0" /> Link URL doesn't match button text</li>
-                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 text-red-400 mt-0.5 shrink-0" /> No DKIM signature</li>
+            <div className="rounded-lg p-3 mt-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+              <h4 className="text-xs font-semibold font-mono mb-2 flex items-center gap-1" style={{ color: "var(--text-bright)" }}><Eye className="w-3.5 h-3.5" /> Phishing indicators detected:</h4>
+              <ul className="text-xs font-mono space-y-1.5" style={{ color: "var(--text)" }}>
+                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} /> Sender domain doesn't match claimed organization</li>
+                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} /> Creates false urgency ("account suspension")</li>
+                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} /> Generic greeting ("Dear Valued Customer")</li>
+                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} /> Link URL doesn't match button text</li>
+                <li className="flex items-start gap-2"><XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--red)" }} /> No DKIM signature</li>
               </ul>
             </div>
           </div>
@@ -154,44 +160,44 @@ function PhishingWarningDemo() {
 
       {/* Suspicious link preview */}
       {scenario === "link" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-          <h3 className="text-sm font-semibold text-gray-900 mb-4">Link safety check</h3>
+        <div className="rounded-2xl p-4 sm:p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h3 className="text-sm font-semibold font-mono mb-4" style={{ color: "var(--text-bright)" }}>Link safety check</h3>
 
           <div className="space-y-3">
             {/* Safe link */}
-            <div className="border border-green-200 rounded-lg p-3">
+            <div className="rounded-lg p-3" style={{ border: "1px solid rgba(0,255,65,0.3)", background: "rgba(0,255,65,0.05)" }}>
               <div className="flex items-center gap-2 mb-1">
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span className="text-sm font-medium text-green-800">Safe</span>
+                <CheckCircle2 className="w-4 h-4" style={{ color: "var(--green)" }} />
+                <span className="text-sm font-medium font-mono" style={{ color: "var(--green)" }}>Safe</span>
               </div>
-              <p className="text-xs font-mono text-gray-600 mb-1">https://example.com/account/settings</p>
-              <p className="text-xs text-green-600">Domain verified • HTTPS • Known organization</p>
+              <p className="text-xs font-mono mb-1" style={{ color: "var(--text)" }}>https://example.com/account/settings</p>
+              <p className="text-xs font-mono" style={{ color: "var(--green)" }}>Domain verified · HTTPS · Known organization</p>
             </div>
 
             {/* Suspicious link */}
-            <div className="border border-amber-200 rounded-lg p-3">
+            <div className="rounded-lg p-3" style={{ border: "1px solid rgba(255,170,0,0.3)", background: "rgba(255,170,0,0.05)" }}>
               <div className="flex items-center gap-2 mb-1">
-                <AlertTriangle className="w-4 h-4 text-amber-500" />
-                <span className="text-sm font-medium text-amber-800">Suspicious</span>
+                <AlertTriangle className="w-4 h-4" style={{ color: "var(--amber)" }} />
+                <span className="text-sm font-medium font-mono" style={{ color: "var(--amber)" }}>Suspicious</span>
               </div>
-              <p className="text-xs font-mono text-gray-600 mb-1">
-                https://examp<span className="text-red-600 font-bold">1</span>e.com/login?redirect=...
+              <p className="text-xs font-mono mb-1" style={{ color: "var(--text)" }}>
+                https://examp<span style={{ color: "var(--red)", fontWeight: "bold" }}>1</span>e.com/login?redirect=...
               </p>
-              <p className="text-xs text-amber-600">Lookalike domain • Registered 3 days ago • Contains redirect parameter</p>
+              <p className="text-xs font-mono" style={{ color: "var(--amber)" }}>Lookalike domain · Registered 3 days ago · Contains redirect</p>
             </div>
 
             {/* Dangerous link */}
-            <div className="border border-red-200 rounded-lg p-3">
+            <div className="rounded-lg p-3" style={{ border: "1px solid rgba(255,51,51,0.3)", background: "rgba(255,51,51,0.05)" }}>
               <div className="flex items-center gap-2 mb-1">
-                <XCircle className="w-4 h-4 text-red-500" />
-                <span className="text-sm font-medium text-red-800">Dangerous</span>
+                <XCircle className="w-4 h-4" style={{ color: "var(--red)" }} />
+                <span className="text-sm font-medium font-mono" style={{ color: "var(--red)" }}>Dangerous</span>
               </div>
-              <p className="text-xs font-mono text-gray-600 mb-1">http://192.168.1.100/login.php</p>
-              <p className="text-xs text-red-600">Raw IP address • No HTTPS • Known phishing page</p>
+              <p className="text-xs font-mono mb-1" style={{ color: "var(--text)" }}>http://192.168.1.100/login.php</p>
+              <p className="text-xs font-mono" style={{ color: "var(--red)" }}>Raw IP address · No HTTPS · Known phishing page</p>
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-xs text-blue-800">
+          <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "rgba(0,229,255,0.05)", border: "1px solid rgba(0,229,255,0.2)", color: "var(--cyan)" }}>
             <strong>Pattern:</strong> Show link safety before the user clicks — preview the destination, highlight red flags (lookalike chars, raw IPs, missing HTTPS), and give a clear safe/suspicious/dangerous verdict.
           </div>
         </div>
