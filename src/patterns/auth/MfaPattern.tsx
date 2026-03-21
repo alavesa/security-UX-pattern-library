@@ -125,44 +125,43 @@ function MfaDemo() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="rounded-2xl border p-8 text-center">
+      <div className="rounded-2xl p-8 text-center" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
         {status === "success" ? (
           <>
-            <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle2 className="w-7 h-7" />
+            <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(0,255,65,0.1)" }}>
+              <CheckCircle2 className="w-7 h-7" style={{ color: "var(--green)" }} />
             </div>
-            <h2 className="text-xl font-bold mb-1">Verified!</h2>
-            <p className="text-sm mb-4">Two-factor authentication complete. Redirecting to your account...</p>
-            <div className="border rounded-lg p-3 text-left">
-              <p className="text-xs">
-                <strong>Security note:</strong> After MFA success, log the verification method and timestamp for audit trails. If a backup code was used, remind the user to generate new ones.
+            <h2 className="text-xl font-bold font-mono mb-1" style={{ color: "var(--green)" }}>Verified!</h2>
+            <p className="text-sm font-mono mb-4" style={{ color: "var(--text)" }}>Two-factor authentication complete. Redirecting to your account...</p>
+            <div className="rounded-lg p-3 text-left" style={{ background: "rgba(0,229,255,0.05)", border: "1px solid rgba(0,229,255,0.2)" }}>
+              <p className="text-xs font-mono" style={{ color: "var(--text)" }}>
+                <strong style={{ color: "var(--cyan)" }}>Security note:</strong> After MFA success, log the verification method and timestamp for audit trails. If a backup code was used, remind the user to generate new ones.
               </p>
             </div>
           </>
         ) : (
           <>
-            <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-              {method === "totp" ? <Shield className="w-6 h-6" /> :
-               method === "sms" ? <Smartphone className="w-6 h-6" /> :
-               <KeyRound className="w-6 h-6" />}
+            <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(0,255,65,0.1)" }}>
+              {method === "totp" ? <Shield className="w-6 h-6" style={{ color: "var(--green)" }} /> :
+               method === "sms" ? <Smartphone className="w-6 h-6" style={{ color: "var(--green)" }} /> :
+               <KeyRound className="w-6 h-6" style={{ color: "var(--green)" }} />}
             </div>
 
-            <h2 className="text-xl font-bold mb-1">Two-factor authentication</h2>
-            <p className="text-sm mb-6">
+            <h2 className="text-xl font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Two-factor authentication</h2>
+            <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>
               {method === "totp" ? "Enter the 6-digit code from your authenticator app" :
                method === "sms" ? "Enter the code sent to +358 •••• ••42" :
                "Enter one of your backup codes"}
             </p>
 
             {/* Method toggle */}
-            <div className="flex gap-1 mb-6 rounded-lg p-1">
+            <div className="flex gap-1 mb-6 rounded-lg p-1" style={{ background: "var(--bg)" }}>
               {(["totp", "sms", "backup"] as const).map(m => (
                 <button
                   key={m}
                   onClick={() => { setMethod(m); reset(); }}
-                  className={`flex-1 text-xs py-1.5 rounded-md transition-colors border-none cursor-pointer ${
-                    method === m ? " shadow-sm  font-medium" : " bg-transparent"
-                  }`}
+                  className="flex-1 text-xs font-mono py-1.5 rounded-md transition-colors border-none cursor-pointer"
+                  style={{ background: method === m ? "var(--green-glow)" : "transparent", color: method === m ? "var(--green)" : "var(--text)", fontWeight: method === m ? 600 : 400 }}
                 >
                   {m === "totp" ? "Auth App" : m === "sms" ? "SMS" : "Backup"}
                 </button>
@@ -178,18 +177,20 @@ function MfaDemo() {
                   value={backupCode}
                   onChange={e => setBackupCode(e.target.value)}
                   placeholder="XXXX-XXXX-XXXX"
-                  className="w-full px-3 py-3 text-center font-mono text-lg border rounded-lg mb-4 focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-3 text-center font-mono text-lg rounded-lg mb-4 focus:outline-none"
+                  style={{ background: "var(--bg)", color: "var(--text-bright)", border: "1px solid var(--border)" }}
                   disabled={status === "loading"}
                   autoComplete="off"
                 />
                 <button
                   type="submit"
                   disabled={status === "loading" || !backupCode}
-                  className="w-full text-white py-2.5 rounded-lg font-medium text-sm disabled:opacity-50 transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded-lg font-medium font-mono text-sm disabled:opacity-50 transition-colors flex items-center justify-center gap-2 border-none cursor-pointer"
+                  style={{ background: "var(--green)", color: "var(--bg)" }}
                 >
                   {status === "loading" ? <><Loader2 className="w-4 h-4 animate-spin" /> Verifying...</> : "Use backup code"}
                 </button>
-                <p className="text-xs mt-3">
+                <p className="text-xs font-mono mt-3" style={{ color: "var(--text-dim)" }}>
                   {/* TODO: fetch remaining count from server — never hardcode this value */}
                   Each backup code can only be used once. You have 7 remaining.
                 </p>
@@ -210,9 +211,8 @@ function MfaDemo() {
                       onKeyDown={e => handleKeyDown(i, e)}
                       autoComplete="one-time-code"
                       disabled={status === "loading"}
-                      className={`w-9 h-11 sm:w-11 sm:h-14 text-center text-base sm:text-lg font-mono border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
-                        status === "error" ? "  " : " "
-                      }`}
+                      className="w-9 h-11 sm:w-11 sm:h-14 text-center text-base sm:text-lg font-mono rounded-lg focus:outline-none transition-colors"
+                      style={{ background: "var(--bg)", color: "var(--text-bright)", border: `1px solid ${status === "error" ? "var(--red)" : "var(--border)"}` }}
                       aria-label={`Digit ${i + 1}`}
                     />
                   ))}
@@ -220,12 +220,12 @@ function MfaDemo() {
 
                 {/* Status messages */}
                 {status === "loading" && (
-                  <div className="flex items-center justify-center gap-2 text-sm">
+                  <div className="flex items-center justify-center gap-2 text-sm font-mono" style={{ color: "var(--text)" }}>
                     <Loader2 className="w-4 h-4 animate-spin" /> Verifying...
                   </div>
                 )}
                 {status === "error" && (
-                  <p className="text-sm" role="alert">
+                  <p className="text-sm font-mono" role="alert" style={{ color: "var(--red)" }}>
                     Invalid code. {failCount >= 3 ? "Too many attempts. Try a backup code." : "Please try again."}
                   </p>
                 )}
@@ -235,8 +235,8 @@ function MfaDemo() {
                   <button
                     onClick={handleResend}
                     disabled={resendCooldown > 0}
-                    className="flex items-center gap-1.5 text-sm mx-auto mt-4 bg-transparent border-none cursor-pointer disabled:cursor-not-allowed transition-colors"
-                    style={{ color: resendCooldown > 0 ? "#999" : "#2563eb" }}
+                    className="flex items-center gap-1.5 text-sm font-mono mx-auto mt-4 bg-transparent border-none cursor-pointer disabled:cursor-not-allowed transition-colors"
+                    style={{ color: resendCooldown > 0 ? "var(--text-dim)" : "var(--green)" }}
                   >
                     <RefreshCw className="w-3.5 h-3.5" />
                     {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend code"}
@@ -247,8 +247,8 @@ function MfaDemo() {
 
             {/* Fail count hint */}
             {failCount >= 2 && method !== "backup" && (
-              <p className="text-xs mt-3">
-                Having trouble? Try using a <button onClick={() => setMethod("backup")} className="underline bg-transparent border-none cursor-pointer">backup code</button> instead.
+              <p className="text-xs font-mono mt-3" style={{ color: "var(--text)" }}>
+                Having trouble? Try using a <button onClick={() => setMethod("backup")} className="underline bg-transparent border-none cursor-pointer font-mono" style={{ color: "var(--green)" }}>backup code</button> instead.
               </p>
             )}
           </>
