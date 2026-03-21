@@ -211,15 +211,15 @@ function AIDecisionExplanationDemo() {
               { area: "Experience relevance", score: 72, detail: "4 years relevant; preferred: 5+" },
               { area: "Education alignment", score: 90, detail: "M.Sc. matches requirements" },
             ].map(({ area, score, detail }) => (
-              <div key={area} className="p-3 rounded-lg">
+              <div key={area} className="p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-medium">{area}</span>
-                  <span className={`text-xs font-mono ${score >= 80 ? "" : ""}`}>{score}%</span>
+                  <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>{area}</span>
+                  <span className="text-xs font-mono" style={{ color: score >= 80 ? "var(--green)" : "var(--amber)" }}>{score}%</span>
                 </div>
-                <div className="h-1.5 rounded-full">
-                  <div role="progressbar" aria-valuenow={score} aria-valuemin={0} aria-valuemax={100} aria-label={`${area} score`} className={`h-full rounded-full ${score >= 80 ? "bg-green-500" : "bg-amber-500"}`} style={{ width: `${score}%` }} />
+                <div className="h-1.5 rounded-full" style={{ background: "var(--bg-elevated)" }}>
+                  <div role="progressbar" aria-valuenow={score} aria-valuemin={0} aria-valuemax={100} aria-label={`${area} score`} className="h-full rounded-full" style={{ width: `${score}%`, background: score >= 80 ? "var(--green)" : "var(--amber)" }} />
                 </div>
-                <p className="text-xs mt-1">{detail}</p>
+                <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>{detail}</p>
               </div>
             ))}
           </div>
