@@ -1,5 +1,80 @@
 import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers } from "lucide-react";
+
+function MatrixRain() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+
+    const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン{}[]<>/\\|=+-*&^%$#@!?.,:;";
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops: number[] = Array.from({ length: columns }, () => Math.random() * -50);
+
+    let animationId: number;
+    let frame = 0;
+
+    const draw = () => {
+      frame++;
+      // Only draw every 3rd frame for performance + slower rain
+      if (frame % 3 !== 0) {
+        animationId = requestAnimationFrame(draw);
+        return;
+      }
+
+      ctx.fillStyle = "rgba(10, 10, 10, 0.08)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        // Head of the drop is brighter
+        const isHead = Math.random() > 0.95;
+        ctx.fillStyle = isHead ? "#00ff41" : "rgba(0, 255, 65, 0.15)";
+        ctx.font = `${fontSize}px monospace`;
+        ctx.fillText(char, x, y);
+
+        if (y > canvas.height && Math.random() > 0.98) {
+          drops[i] = 0;
+        }
+        drops[i] += 0.5;
+      }
+
+      animationId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      ro.disconnect();
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ opacity: 0.4 }}
+    />
+  );
+}
 
 const AUTH_PATTERNS = [
   {
@@ -38,8 +113,9 @@ export function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="px-6 py-24 text-center border-b" style={{ borderColor: "var(--border)" }}>
-        <div className="max-w-3xl mx-auto">
+      <section className="px-6 py-24 text-center border-b relative overflow-hidden" style={{ borderColor: "var(--border)" }}>
+        <MatrixRain />
+        <div className="max-w-3xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 text-sm font-mono px-4 py-1.5 rounded mb-6"
             style={{ background: "var(--green-glow)", color: "var(--green)", border: "1px solid var(--green-border)" }}>
             <Terminal className="w-4 h-4" />
