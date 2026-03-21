@@ -30,8 +30,8 @@ function MatrixRain() {
       "alarm", "safety", "override", "confirm", "revoke", "session",
     ];
     const fontSize = 12;
-    const columnWidth = 50;
-    const columns = Math.floor(canvas.width / columnWidth) * 2;
+    const columnWidth = 80;
+    const columns = Math.floor(canvas.width / columnWidth);
 
     interface Drop {
       word: string;
@@ -43,7 +43,7 @@ function MatrixRain() {
 
     const drops: Drop[] = Array.from({ length: columns }, (_, i) => ({
       word: words[Math.floor(Math.random() * words.length)],
-      x: (i * columnWidth / 2) + Math.random() * 30,
+      x: i * columnWidth + Math.random() * 20,
       y: Math.random() * -canvas.height,
       speed: 0.3 + Math.random() * 0.7,
       bright: Math.random() > 0.85,
@@ -72,7 +72,7 @@ function MatrixRain() {
         if (drop.y > canvas.height + 20) {
           drop.word = words[Math.floor(Math.random() * words.length)];
           drop.y = Math.random() * -100;
-          drop.x = Math.random() * canvas.width;
+          drop.x = Math.floor(Math.random() * columns) * columnWidth + Math.random() * 20;
           drop.speed = 0.3 + Math.random() * 0.7;
           drop.bright = Math.random() > 0.85;
         }
