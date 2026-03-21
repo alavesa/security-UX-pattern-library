@@ -133,10 +133,10 @@ export function HomePage() {
           </h1>
 
           <p className="text-lg leading-relaxed mb-4 max-w-xl mx-auto" style={{ color: "var(--text-bright)" }}>
-            Interactive patterns for designing secure user experiences.
+            Security is a design decision.<br />Bad UX is a vulnerability.
           </p>
           <p className="text-sm leading-relaxed mb-8 max-w-lg mx-auto" style={{ color: "var(--text)" }}>
-            Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
+            34 interactive patterns that turn regulatory requirements into working UI. From GDPR consent to EU AI Act compliance — each pattern is a live demo with do/don't guidelines, enforcement context, and accessibility notes.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -168,10 +168,10 @@ export function HomePage() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
-              { value: "34", label: "patterns", color: "var(--green)" },
-              { value: "8", label: "categories", color: "var(--cyan)" },
-              { value: "17", label: "regulations", color: "var(--amber)" },
-              { value: "4", label: "tools", color: "#c084fc" },
+              { value: "34", label: "interactive patterns", color: "var(--green)" },
+              { value: "17", label: "regulations covered", color: "var(--amber)" },
+              { value: "38", label: "cited sources", color: "var(--cyan)" },
+              { value: "4", label: "strategic tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
                 <div className="text-3xl font-bold" style={{ color }}>{value}</div>
@@ -288,6 +288,60 @@ export function HomePage() {
 
             <div className="cursor-blink mt-1" style={{ color: "#999" }}>$</div>
           </div>
+        </div>
+      </section>
+
+      {/* The cost of getting it wrong */}
+      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
+        <h2 className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>$ cat ./cost_of_failure</h2>
+        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>Security UX failures have real consequences — regulatory, financial, and reputational.</p>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {[
+            { stat: "€1.86B+", label: "in dark pattern fines since 2023", color: "var(--red)" },
+            { stat: "204 days", label: "average breach detection time", color: "var(--amber)" },
+            { stat: "Aug 2026", label: "EU AI Act Art. 50 deadline", color: "var(--ai-color)" },
+            { stat: "94%", label: "of apps have broken access control", color: "var(--cyan)" },
+          ].map(({ stat, label, color }) => (
+            <div key={label} className="rounded-lg p-4 text-center" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+              <p className="text-2xl font-bold font-mono" style={{ color }}>{stat}</p>
+              <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>{label}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.2)" }}>
+          <p className="text-xs font-mono" style={{ color: "var(--text)" }}>
+            <strong style={{ color: "var(--red)" }}>The pattern:</strong> Companies invest in back-end security but leave the front door wide open. A login form without rate limiting, a consent screen that manipulates, an AI chatbot pretending to be human — these aren't just bad UX. They're compliance violations, attack vectors, and trust destroyers. Every pattern in this library exists because someone got fined, breached, or lost users by ignoring it.
+          </p>
+        </div>
+      </section>
+
+      {/* Strategic Tools */}
+      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
+        <h2 className="text-xl font-mono mb-2" style={{ color: "var(--ai-color)" }}>$ get --strategic-tools</h2>
+        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>Don't start with patterns — start with where you stand. These tools help you assess, prioritize, and report.</p>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[
+            { path: "/score", label: "Security UX Score", desc: "Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. Know your baseline before you start fixing.", color: "var(--green)", cmd: "$ get --score" },
+            { path: "/compliance", label: "Compliance Mapper", desc: "Select from 17 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, IEC 62443, WCAG 2.2...) → see exactly which patterns you need for each.", color: "var(--cyan)", cmd: "$ get --compliance" },
+            { path: "/maturity", label: "Maturity Model", desc: "10-question assessment → your current level (1-4), priority areas, and a concrete roadmap to the next level. Strategic design is about knowing what to do next.", color: "var(--amber)", cmd: "$ get --maturity" },
+            { path: "/report", label: "Report Generator", desc: "Answer 6 questions about your product → downloadable .md report with prioritized patterns, compliance gaps, and implementation order. Take this to your stakeholders.", color: "var(--ai-color)", cmd: "$ get --report" },
+          ].map(({ path, label, desc, color, cmd }) => (
+            <Link
+              key={path}
+              to={path}
+              className="rounded-lg p-6 no-underline transition-all"
+              style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = color; (e.currentTarget as HTMLElement).style.boxShadow = `0 0 20px ${color}22`; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
+            >
+              <p className="font-mono text-xs mb-2" style={{ color }}>{cmd}</p>
+              <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
+              <p className="text-xs font-mono leading-relaxed" style={{ color: "var(--text)" }}>{desc}</p>
+            </Link>
+          ))}
         </div>
       </section>
 
