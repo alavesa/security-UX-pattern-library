@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { AlertTriangle, Shield, CheckCircle2, XCircle, Clock, Zap } from "lucide-react";
+import { AlertTriangle, Shield, CheckCircle2, XCircle, Clock } from "lucide-react";
 
 type ShutdownStep = 'idle' | 'confirm' | 'executing';
 

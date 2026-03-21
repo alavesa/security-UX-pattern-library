@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Bell, BellOff, AlertTriangle, CheckCircle2, XCircle, Volume2, VolumeX } from "lucide-react";
+import { Bell, BellOff, AlertTriangle, CheckCircle2, Volume2, VolumeX } from "lucide-react";
 
 interface Alarm {
   id: number;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { CheckCircle2, XCircle, Clock, AlertTriangle, Shield } from "lucide-react";
+import { CheckCircle2, Clock, Shield } from "lucide-react";
 
 const REVIEW_ITEMS = [
   { id: "auth", label: "Authentication pattern reviewed", category: "Auth", critical: true },

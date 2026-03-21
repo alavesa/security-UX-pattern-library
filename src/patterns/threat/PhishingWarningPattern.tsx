@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { AlertTriangle, Shield, ExternalLink, XCircle, CheckCircle2, Eye } from "lucide-react";
+import { AlertTriangle, ExternalLink, XCircle, CheckCircle2, Eye } from "lucide-react";
 
 function PhishingWarningDemo() {
   const [scenario, setScenario] = useState<"interstitial" | "email" | "link">("interstitial");

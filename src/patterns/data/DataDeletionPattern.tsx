@@ -10,8 +10,8 @@ function DataDeletionDemo() {
   const [confirmText, setConfirmText] = useState("");
   const [returnToConfirm, setReturnToConfirm] = useState(false);
   const [deletionRef] = useState(() => `DEL-${Date.now()}`);
-  const exportTimerRef = useRef<ReturnType<typeof setTimeout>>();
-  const deleteTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const exportTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const deleteTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
     return () => {

@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { Shield, ShieldOff, CreditCard, AlertTriangle, CheckCircle2, Clock } from "lucide-react";
+import { Shield, ShieldOff, CreditCard, CheckCircle2, Clock } from "lucide-react";
 
 function ForcedContinuityDemo() {
   const [view, setView] = useState<"dark" | "ethical">("dark");
