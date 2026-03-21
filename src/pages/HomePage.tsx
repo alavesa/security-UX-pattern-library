@@ -700,7 +700,7 @@ export function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t px-6 py-12 max-w-5xl mx-auto" style={{ borderColor: "var(--border)" }}>
+      <footer className="border-t px-4 sm:px-6 py-12 max-w-5xl mx-auto" style={{ borderColor: "var(--border)" }}>
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4" style={{ color: "var(--green)" }} />

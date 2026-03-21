@@ -159,7 +159,7 @@ export function Layout() {
     <div className="min-h-screen" style={{ background: "var(--bg)" }}>
       {/* Header */}
       <header className="border-b sticky top-0 z-50" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 h-14 flex items-center justify-between">
           <Link
             to="/"
             className="flex items-center gap-2.5 no-underline"
@@ -316,7 +316,7 @@ export function Layout() {
         )}
 
         {/* Main content */}
-        <main className={`flex-1 ${isHome ? "" : "p-8"}`}>
+        <main className={`flex-1 min-w-0 ${isHome ? "" : "p-4 sm:p-6 lg:p-8"}`}>
           <Outlet />
         </main>
       </div>
