@@ -280,10 +280,7 @@ export function HomePage() {
 
             <div className="mt-2" style={{ color: "#444" }}>$ cat ./CONTRIBUTING.md</div>
             <div style={{ color: "var(--green)" }}>🤝 contribute/ (16 wanted)</div>
-            <div style={{ color: "#555" }}>   permissions · oauth_scopes · privacy_dashboard</div>
-            <div style={{ color: "#555" }}>   age_verification · captcha · biometric_enrollment</div>
-            <div style={{ color: "#555" }}>   magic_links · mobile_permissions · api_key_mgmt</div>
-            <div style={{ color: "#555" }}>   secret_rotation · consent_audit · gdpr_requests ...</div>
+            <div className="break-words" style={{ color: "#555" }}>   permissions · oauth_scopes · privacy_dashboard · age_verification · captcha · biometric_enrollment · magic_links · mobile_permissions · api_key_mgmt · secret_rotation · consent_audit · gdpr_requests ...</div>
             <div style={{ color: "#444" }}>   → <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "var(--green)" }}>fork & build a pattern</a></div>
 
             <div className="cursor-blink mt-1" style={{ color: "#444" }}>$</div>
