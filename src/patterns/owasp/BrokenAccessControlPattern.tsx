@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
-import { ShieldAlert, Lock, Users, Eye, CheckCircle2 } from "lucide-react";
+import { ShieldAlert, Lock, Users, Eye, CheckCircle2, Shield } from "lucide-react";
 
 type Role = "viewer" | "editor" | "admin";
 
@@ -18,8 +18,21 @@ function BrokenAccessControlDemo() {
   const [idorId, setIdorId] = useState("12345");
   const [elevationAttempted, setElevationAttempted] = useState(false);
   const [idorSubmitted, setIdorSubmitted] = useState(false);
+  const [roleTransition, setRoleTransition] = useState<{ from: Role; to: Role } | null>(null);
 
   const perms = PERMISSIONS[currentRole];
+
+  const switchRole = (newRole: Role) => {
+    if (newRole === currentRole) return;
+    setRoleTransition({ from: currentRole, to: newRole });
+    setCurrentRole(newRole);
+  };
+
+  useEffect(() => {
+    if (!roleTransition) return;
+    const timer = setTimeout(() => setRoleTransition(null), 2000);
+    return () => clearTimeout(timer);
+  }, [roleTransition]);
 
   const reset = () => {
     setCurrentRole("viewer");
@@ -42,22 +55,38 @@ function BrokenAccessControlDemo() {
       {/* RBAC demo */}
       {scenario === "rbac" && (
         <div role="tabpanel" id="panel-rbac" className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
             <h3 className="font-bold font-mono text-sm" style={{ color: "var(--text-bright)" }}>Document: Q4 Report</h3>
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4" style={{ color: "var(--text)" }} />
-              <select
-                value={currentRole}
-                onChange={e => setCurrentRole(e.target.value as Role)}
-                className="text-xs font-mono rounded px-2 py-1"
-                style={{ background: "var(--bg)", color: "var(--text-bright)", border: "1px solid var(--border)" }}
-              >
-                <option value="viewer">Viewer</option>
-                <option value="editor">Editor</option>
-                <option value="admin">Admin</option>
-              </select>
+            <div className="flex items-center gap-1 p-1 rounded-lg" style={{ background: "var(--bg)" }}>
+              {(["viewer", "editor", "admin"] as const).map(r => (
+                <button
+                  key={r}
+                  onClick={() => switchRole(r)}
+                  className="px-3 py-1 rounded text-xs font-mono border-none cursor-pointer flex items-center gap-1.5"
+                  style={{
+                    background: currentRole === r ? "var(--amber-glow)" : "transparent",
+                    color: currentRole === r ? "var(--amber)" : "var(--text-dim)",
+                    border: currentRole === r ? "1px solid var(--amber-border)" : "1px solid transparent",
+                  }}
+                >
+                  {r === "admin" && <Shield className="w-3 h-3" />}
+                  {r === "editor" && <Eye className="w-3 h-3" />}
+                  {r === "viewer" && <Users className="w-3 h-3" />}
+                  {r}
+                </button>
+              ))}
             </div>
           </div>
+
+          {/* Role transition toast */}
+          {roleTransition && (
+            <div className="mb-4 px-4 py-2.5 rounded-lg flex items-center gap-2 text-xs font-mono" style={{ background: "var(--amber-glow)", border: "1px solid var(--amber-border)" }}>
+              <Shield className="w-3.5 h-3.5 shrink-0" style={{ color: "var(--amber)" }} />
+              <span style={{ color: "var(--text)" }}>
+                Role changed: <span style={{ color: "var(--text-dim)" }}>{roleTransition.from}</span> <span style={{ color: "var(--text-dim)" }}>→</span> <strong style={{ color: "var(--amber)" }}>{roleTransition.to}</strong> — UI updated
+              </span>
+            </div>
+          )}
 
           {/* Permission indicators */}
           <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
