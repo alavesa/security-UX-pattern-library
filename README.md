@@ -177,6 +177,68 @@ npm install
 npm run dev
 ```
 
+## Adding a new pattern
+
+Each pattern is a single React component. Follow these steps:
+
+**1. Create the component**
+```
+src/patterns/<category>/MyPattern.tsx
+```
+
+Use the standard structure:
+```tsx
+import { PatternHeader } from "../../components/PatternHeader";
+import { DemoContainer } from "../../components/DemoContainer";
+import { GuidelineSection } from "../../components/GuidelineSection";
+
+function MyPatternDemo() {
+  // Interactive demo with inline styles using CSS variables
+  // Use category color for tabs/accents (see color system below)
+  return <div>...</div>;
+}
+
+export function MyPattern() {
+  return (
+    <div>
+      <PatternHeader
+        title="My Pattern"
+        description="What this pattern demonstrates"
+        severity="high"          // critical | high | medium
+        tags={["Category", "OWASP A01", "CWE-XXX"]}
+      />
+      <DemoContainer label="my pattern (N variants)">
+        <MyPatternDemo />
+      </DemoContainer>
+      <GuidelineSection
+        dos={["Do this", "And this"]}
+        donts={["Don't do this"]}
+        securityRationale="Why this matters..."
+        accessibilityNotes={["a11y consideration"]}
+      />
+    </div>
+  );
+}
+```
+
+**2. Wire it up** — add to these files:
+- `src/App.tsx` — add a `<Route>`
+- `src/layouts/Layout.tsx` — add to sidebar navigation
+- `src/pages/HomePage.tsx` — add to terminal listing + pattern cards
+- `src/data/patterns.ts` — add metadata
+- `src/pages/CompliancePage.tsx` — map to relevant regulations
+- `src/pages/ScorePage.tsx` — add a scoring item if applicable
+
+**3. Styling rules** — critical for the hacker terminal aesthetic:
+- All colors via inline `style={{ }}` with CSS variables — **no Tailwind color classes**
+- Use `font-mono` on all text
+- Cards: `background: "var(--bg-card)"`, `border: "1px solid var(--border)"`
+- Inputs: `background: "var(--bg)"`, `color: "var(--text-bright)"`
+- Primary buttons: `background: "var(--green)"` (or your category color)
+- Text: `var(--text-bright)` headings, `var(--text)` body, `var(--text-dim)` metadata
+- Icons: always set explicit color — don't rely on inheritance
+- Test on mobile — add `flex-wrap`, `break-words`, `min-w-0` where needed
+
 ## Tech stack
 
 - React + TypeScript + Vite
