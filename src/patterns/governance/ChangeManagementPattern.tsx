@@ -105,18 +105,16 @@ function ChangeManagementDemo() {
             <h3 className="text-sm font-mono font-semibold" style={{ color: "var(--text-bright)" }}>{SAMPLE_CHANGE.title}</h3>
 
             <div className="space-y-2 text-xs font-mono">
-              <div className="flex justify-between p-2 rounded" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
-                <span style={{ color: "var(--text-dim)" }}>Requester</span>
-                <span style={{ color: "var(--text)" }}>{SAMPLE_CHANGE.requester}</span>
-              </div>
-              <div className="flex justify-between p-2 rounded" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
-                <span style={{ color: "var(--text-dim)" }}>Affected users</span>
-                <span style={{ color: "var(--amber)" }}>{SAMPLE_CHANGE.affectedUsers}</span>
-              </div>
-              <div className="flex justify-between p-2 rounded" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
-                <span style={{ color: "var(--text-dim)" }}>Rollback plan</span>
-                <span style={{ color: "var(--green)" }}>{SAMPLE_CHANGE.rollbackPlan}</span>
-              </div>
+              {[
+                { label: "Requester", value: SAMPLE_CHANGE.requester, color: "var(--text)" },
+                { label: "Affected users", value: SAMPLE_CHANGE.affectedUsers, color: "var(--amber)" },
+                { label: "Rollback plan", value: SAMPLE_CHANGE.rollbackPlan, color: "var(--green)" },
+              ].map(({ label, value, color }) => (
+                <div key={label} className="p-2 rounded" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                  <p className="mb-0.5" style={{ color: "var(--text-dim)" }}>{label}</p>
+                  <p style={{ color }}>{value}</p>
+                </div>
+              ))}
             </div>
 
             <button
@@ -139,25 +137,25 @@ function ChangeManagementDemo() {
             {SAMPLE_CHANGE.reviewers.map(reviewer => {
               const isApproved = approved.has(reviewer);
               return (
-                <div key={reviewer} className="flex items-center justify-between p-3 rounded-lg" style={{ background: isApproved ? "rgba(0,255,65,0.05)" : "var(--bg)", border: `1px solid ${isApproved ? "var(--green-border)" : "var(--border)"}` }}>
-                  <div className="flex items-center gap-2 text-xs font-mono">
+                <div key={reviewer} className="flex flex-wrap items-center justify-between gap-2 p-3 rounded-lg" style={{ background: isApproved ? "rgba(0,255,65,0.05)" : "var(--bg)", border: `1px solid ${isApproved ? "var(--green-border)" : "var(--border)"}` }}>
+                  <div className="flex items-center gap-2 text-xs font-mono min-w-0">
                     {isApproved
-                      ? <CheckCircle2 className="w-4 h-4" style={{ color: "var(--green)" }} />
-                      : <Clock className="w-4 h-4" style={{ color: "var(--text-dim)" }} />
+                      ? <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: "var(--green)" }} />
+                      : <Clock className="w-4 h-4 shrink-0" style={{ color: "var(--text-dim)" }} />
                     }
-                    <span style={{ color: isApproved ? "var(--green)" : "var(--text)" }}>{reviewer}</span>
+                    <span className="truncate" style={{ color: isApproved ? "var(--green)" : "var(--text)" }}>{reviewer}</span>
                   </div>
                   {!isApproved && (
                     <button
                       onClick={() => approveReviewer(reviewer)}
-                      className="px-3 py-1 rounded text-xs font-mono border-none cursor-pointer"
+                      className="px-3 py-1 rounded text-xs font-mono border-none cursor-pointer shrink-0"
                       style={{ background: "var(--green-glow)", color: "var(--green)", border: "1px solid var(--green-border)" }}
                     >
                       Approve
                     </button>
                   )}
                   {isApproved && (
-                    <span className="text-xs font-mono" style={{ color: "var(--green)" }}>✓ Approved</span>
+                    <span className="text-xs font-mono shrink-0" style={{ color: "var(--green)" }}>✓ Approved</span>
                   )}
                 </div>
               );
@@ -215,18 +213,16 @@ function ChangeManagementDemo() {
             </div>
 
             <div className="space-y-1 text-xs font-mono">
-              <div className="flex justify-between p-2 rounded" style={{ background: "var(--bg)" }}>
-                <span style={{ color: "var(--text-dim)" }}>Deploy time</span>
-                <span style={{ color: "var(--text)" }}>14:23 UTC</span>
-              </div>
-              <div className="flex justify-between p-2 rounded" style={{ background: "var(--bg)" }}>
-                <span style={{ color: "var(--text-dim)" }}>Feature flag</span>
-                <span style={{ color: "var(--green)" }}>passkey-first: ON</span>
-              </div>
-              <div className="flex justify-between p-2 rounded" style={{ background: "var(--bg)" }}>
-                <span style={{ color: "var(--text-dim)" }}>Monitoring</span>
-                <span style={{ color: "var(--green)" }}>Active — 72h observation window</span>
-              </div>
+              {[
+                { label: "Deploy time", value: "14:23 UTC", color: "var(--text)" },
+                { label: "Feature flag", value: "passkey-first: ON", color: "var(--green)" },
+                { label: "Monitoring", value: "Active — 72h observation window", color: "var(--green)" },
+              ].map(({ label, value, color }) => (
+                <div key={label} className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0 p-2 rounded" style={{ background: "var(--bg)" }}>
+                  <span style={{ color: "var(--text-dim)" }}>{label}</span>
+                  <span className="text-right" style={{ color }}>{value}</span>
+                </div>
+              ))}
             </div>
 
             <button
