@@ -312,24 +312,24 @@ export function CompliancePage() {
   }, [selected]);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold font-mono mb-3 glow-text">Compliance Mapper</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold font-mono mb-3 glow-text">Compliance Mapper</h1>
         <p className="text-base" style={{ color: "var(--text-bright)" }}>
           Select your compliance requirements — see which patterns you need.
         </p>
       </div>
 
       {/* Regulation selector */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mb-8">
         {ALL_REGULATIONS.map(reg => (
           <button
             key={reg.id}
             type="button"
             onClick={() => toggle(reg.id)}
             aria-pressed={selected.has(reg.id)}
-            className="border rounded-xl p-4 text-left transition-all cursor-pointer"
+            className="border rounded-xl p-3 sm:p-4 text-left transition-all cursor-pointer"
             style={{
               borderColor: selected.has(reg.id) ? reg.color : "var(--border)",
               background: selected.has(reg.id) ? `${reg.color}15` : "var(--bg-card)",
@@ -360,14 +360,16 @@ export function CompliancePage() {
       {selected.size > 0 && (
         <>
           {/* Summary */}
-          <div className="border rounded-xl p-6 mb-6" style={{ borderColor: "var(--green-border)", background: "var(--green-glow)" }}>
-            <div className="flex items-center gap-3 mb-3">
-              <Shield className="w-6 h-6" style={{ color: "var(--green)" }} />
-              <div>
+          <div className="border rounded-xl p-4 sm:p-6 mb-6" style={{ borderColor: "var(--green-border)", background: "var(--green-glow)" }}>
+            <div className="flex items-start gap-3 mb-3">
+              <Shield className="w-6 h-6 shrink-0 mt-0.5" style={{ color: "var(--green)" }} />
+              <div className="min-w-0">
                 <p className="font-mono font-bold text-lg" style={{ color: "var(--green)" }}>{filteredPatterns.length} patterns needed</p>
-                <p className="text-xs" style={{ color: "var(--text)" }}>
-                  For: {ALL_REGULATIONS.filter(r => selected.has(r.id)).map(r => r.name).join(", ")}
-                </p>
+                <div className="flex flex-wrap gap-1 mt-1">
+                  {ALL_REGULATIONS.filter(r => selected.has(r.id)).map(r => (
+                    <span key={r.id} className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: `${r.color}20`, color: r.color }}>{r.name}</span>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -392,25 +394,25 @@ export function CompliancePage() {
               <Link
                 key={pattern.path}
                 to={pattern.path}
-                className="flex items-center justify-between p-4 border rounded-lg no-underline transition-all"
+                className="flex flex-wrap items-center justify-between gap-2 p-3 sm:p-4 border rounded-lg no-underline transition-all"
                 style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--green-border)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
               >
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-4 h-4" style={{ color: "var(--green)" }} />
-                  <div>
-                    <p className="font-mono text-sm" style={{ color: "var(--text-bright)" }}>{pattern.label}</p>
+                <div className="flex items-center gap-3 min-w-0">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: "var(--green)" }} />
+                  <div className="min-w-0">
+                    <p className="font-mono text-sm truncate" style={{ color: "var(--text-bright)" }}>{pattern.label}</p>
                     <p className="text-xs" style={{ color: "var(--text)" }}>{pattern.category}</p>
                   </div>
                 </div>
-                <div className="flex gap-1.5">
+                <div className="flex flex-wrap gap-1 ml-auto">
                   {regs.map(reg => {
                     const color = REG_BY_NAME.get(reg)?.color ?? '#888';
                     return (
                       <span
                         key={reg}
-                        className="text-xs font-mono px-2 py-0.5 rounded"
+                        className="text-xs font-mono px-1.5 py-0.5 rounded"
                         style={{ background: `${color}20`, color: color, border: `1px solid ${color}40` }}
                       >
                         {reg}
