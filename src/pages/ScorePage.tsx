@@ -152,17 +152,17 @@ export function ScorePage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold font-mono mb-3 glow-text">Security UX Score</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold font-mono mb-3 glow-text">Security UX Score</h1>
         <p className="text-base" style={{ color: "var(--text-bright)" }}>
           Rate your app's security UX. Check what applies, get your score, share it.
         </p>
       </div>
 
       {/* Score card */}
-      <div className="border rounded-2xl p-8 mb-8 text-center" style={{ borderColor: color, background: bg }}>
+      <div className="border rounded-2xl p-4 sm:p-8 mb-8 text-center" style={{ borderColor: color, background: bg }}>
         <div className="text-7xl font-mono font-bold mb-2" style={{ color }}>{grade}</div>
         <div className="text-lg font-mono" style={{ color }}>{label}</div>
         <div className="text-sm mt-2" style={{ color: "var(--text)" }}>{score} / {activeMaxScore} points ({pct}%){skippedCategories.size > 0 && <span style={{ color: "var(--text-dim)" }}> · {skippedCategories.size} skipped</span>}</div>
@@ -173,10 +173,10 @@ export function ScorePage() {
         </div>
 
         {/* Per-category breakdown */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
           {Array.from(categories.entries()).map(([name, { total, earned, skipped }]) => (
-            <div key={name} style={{ opacity: skipped ? 0.35 : 1 }}>
-              <div className="text-xs font-mono mb-1" style={{ color: "var(--text)" }}>{name}</div>
+            <div key={name} className="p-2 rounded" style={{ opacity: skipped ? 0.35 : 1, background: "var(--bg-card)" }}>
+              <div className="text-xs font-mono mb-1 truncate" style={{ color: "var(--text)" }}>{name}</div>
               <div className="text-lg font-mono font-bold" style={{ color: skipped ? "var(--text-dim)" : earned === total ? "var(--green)" : earned > 0 ? "var(--amber)" : "var(--text)" }}>
                 {skipped ? "N/A" : `${earned}/${total}`}
               </div>
@@ -197,14 +197,14 @@ export function ScorePage() {
       {/* Checklist */}
       {Array.from(categories.entries()).map(([categoryName, { items, skipped }]) => (
         <div key={categoryName} className="mb-8" style={{ opacity: skipped ? 0.4 : 1 }}>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
             <h2 className="text-lg font-mono font-bold" style={{ color: skipped ? "var(--text-dim)" : "var(--text-bright)" }}>
               {categoryName} {skipped && <span className="text-xs font-normal" style={{ color: "var(--text-dim)" }}>(skipped)</span>}
             </h2>
             {OPTIONAL_CATEGORIES.has(categoryName) && (
               <button
                 onClick={() => toggleSkip(categoryName)}
-                className="text-xs font-mono px-3 py-1 rounded border-none cursor-pointer"
+                className="text-xs font-mono px-3 py-1 rounded border-none cursor-pointer shrink-0"
                 style={{
                   background: skipped ? "var(--green-glow)" : "rgba(255,51,51,0.1)",
                   color: skipped ? "var(--green)" : "var(--red)",
@@ -219,7 +219,7 @@ export function ScorePage() {
             {items.map(item => (
               <label
                 key={item.id}
-                className="flex items-start gap-3 p-4 rounded-lg cursor-pointer transition-colors border"
+                className="flex items-start gap-3 p-3 sm:p-4 rounded-lg cursor-pointer transition-colors border"
                 style={{
                   background: checked.has(item.id) ? "rgba(0,255,65,0.05)" : "var(--bg-card)",
                   borderColor: checked.has(item.id) ? "rgba(0,255,65,0.2)" : "var(--border)",
