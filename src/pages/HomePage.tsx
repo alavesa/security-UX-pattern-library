@@ -372,7 +372,7 @@ export function HomePage() {
             },
             {
               title: "Use the React components",
-              desc: "MIT licensed. Clone the repo, each pattern is a self-contained file in src/patterns/. Copy the demo logic, adapt the styling to your design system.",
+              desc: "MIT licensed. Clone the repo — each pattern is a self-contained file in src/patterns/. Copy the demo logic, adapt the styling to your design system.",
               color: "var(--ai-color)",
               cmd: "git clone →",
             },
