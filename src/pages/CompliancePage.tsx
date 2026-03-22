@@ -321,6 +321,20 @@ export function CompliancePage() {
         </p>
       </div>
 
+      {/* How it works */}
+      <div className="rounded-2xl p-4 sm:p-6 mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <h2 className="text-sm font-mono font-bold mb-3" style={{ color: "var(--text-bright)" }}>How it works</h2>
+        <div className="space-y-2 text-xs font-mono" style={{ color: "var(--text)" }}>
+          <p><span style={{ color: "var(--green)" }}>1.</span> Select the regulations your product must comply with</p>
+          <p><span style={{ color: "var(--green)" }}>2.</span> The mapper cross-references each regulation against the 34 patterns</p>
+          <p><span style={{ color: "var(--green)" }}>3.</span> Results are sorted by impact — patterns satisfying multiple regulations appear first</p>
+          <p><span style={{ color: "var(--green)" }}>4.</span> Click any pattern to see its interactive demo, guidelines, and implementation notes</p>
+        </div>
+        <p className="text-xs font-mono mt-3" style={{ color: "var(--text-dim)" }}>
+          17 regulations mapped · Each mapping is based on the regulation's specific articles, not general themes
+        </p>
+      </div>
+
       {/* Regulation selector */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mb-8">
         {ALL_REGULATIONS.map(reg => (
@@ -440,6 +454,38 @@ export function CompliancePage() {
           )}
         </>
       )}
+
+      {/* Sources & methodology */}
+      <div className="rounded-2xl p-4 sm:p-6 mt-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <h2 className="text-sm font-mono font-bold mb-2" style={{ color: "var(--text-bright)" }}>Mapping methodology</h2>
+        <p className="text-xs font-mono mb-3" style={{ color: "var(--text)" }}>
+          Each regulation-to-pattern mapping references specific articles and requirements — not general themes. For example, GDPR Art. 17 maps to Data Deletion (right to erasure), not broadly to "all data patterns." The goal is actionable: select your regulations, get the exact patterns you need to implement.
+        </p>
+        <p className="text-xs font-mono mb-3" style={{ color: "var(--text-dim)" }}>
+          Inspired by compliance mapping approaches in ISO 27001 Annex A control mapping, NIST CSF crosswalks, and the EDPB's consistency mechanism for GDPR interpretation across member states.
+        </p>
+        <div className="flex flex-wrap gap-1.5 text-xs font-mono">
+          {[
+            { label: "GDPR", url: "https://gdpr-info.eu/" },
+            { label: "NIS2", url: "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive" },
+            { label: "DORA", url: "https://www.digital-operational-resilience-act.com/" },
+            { label: "EU AI Act", url: "https://artificialintelligenceact.eu/" },
+            { label: "CRA", url: "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" },
+            { label: "OWASP", url: "https://owasp.org/www-project-top-ten/" },
+            { label: "WCAG 2.2", url: "https://www.w3.org/WAI/WCAG22/quickref/" },
+            { label: "ISO 27001", url: "https://www.iso.org/standard/27001" },
+            { label: "SOC 2", url: "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" },
+            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },
+            { label: "CCPA", url: "https://oag.ca.gov/privacy/ccpa" },
+            { label: "FTC", url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" },
+            { label: "ePrivacy", url: "https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation" },
+          ].map(({ label, url }) => (
+            <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
