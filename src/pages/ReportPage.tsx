@@ -171,11 +171,25 @@ export function ReportPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold font-mono mb-3 glow-text">Security UX Report</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold font-mono mb-3 glow-text">Security UX Report</h1>
         <p className="text-base" style={{ color: "var(--text-bright)" }}>
           Answer 6 questions. Get a custom report with prioritized patterns for your product.
+        </p>
+      </div>
+
+      {/* How it works */}
+      <div className="rounded-2xl p-4 sm:p-6 mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <h2 className="text-sm font-mono font-bold mb-3" style={{ color: "var(--text-bright)" }}>How the report works</h2>
+        <div className="space-y-2 text-xs font-mono" style={{ color: "var(--text)" }}>
+          <p><span style={{ color: "var(--green)" }}>1.</span> Answer 6 questions about your product — data type, region, AI usage, auth needs, team maturity, environment</p>
+          <p><span style={{ color: "var(--green)" }}>2.</span> Each answer maps to specific patterns based on risk level and regulatory requirements</p>
+          <p><span style={{ color: "var(--green)" }}>3.</span> The report generates a prioritized list grouped by category with an overall risk assessment</p>
+          <p><span style={{ color: "var(--green)" }}>4.</span> Download as .md or copy to clipboard — take it to your stakeholders or add it to your project docs</p>
+        </div>
+        <p className="text-xs font-mono mt-3" style={{ color: "var(--text-dim)" }}>
+          6 questions · Risk-based pattern selection · Exportable as Markdown · Includes implementation priorities
         </p>
       </div>
 
@@ -303,6 +317,31 @@ export function ReportPage() {
           </div>
         </div>
       )}
+      {/* Report methodology & sources */}
+      <div className="rounded-2xl p-4 sm:p-6 mt-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <h2 className="text-sm font-mono font-bold mb-2" style={{ color: "var(--text-bright)" }}>Report methodology</h2>
+        <p className="text-xs font-mono mb-3" style={{ color: "var(--text)" }}>
+          The report uses risk-based pattern selection: your answers determine the regulatory scope (GDPR, FTC, EU AI Act) and threat profile (data sensitivity, auth criticality), then maps those to the minimum set of patterns needed. Higher risk answers trigger more patterns — a product handling sensitive EU user data with AI gets a different report than an internal tool with anonymous usage.
+        </p>
+        <p className="text-xs font-mono mb-3" style={{ color: "var(--text-dim)" }}>
+          Inspired by risk assessment methodologies in ISO 27005 (information security risk management), NIST SP 800-30 (risk assessment guide), and the OWASP Risk Rating Methodology. The question-to-pattern mapping follows the principle of proportionate security — invest where the risk is highest.
+        </p>
+        <div className="flex flex-wrap gap-1.5 text-xs font-mono">
+          {[
+            { label: "ISO 27005", url: "https://www.iso.org/standard/80585.html" },
+            { label: "NIST SP 800-30", url: "https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final" },
+            { label: "OWASP Risk Rating", url: "https://owasp.org/www-community/OWASP_Risk_Rating_Methodology" },
+            { label: "GDPR", url: "https://gdpr-info.eu/" },
+            { label: "EU AI Act", url: "https://artificialintelligenceact.eu/" },
+            { label: "FTC", url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" },
+            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },
+          ].map(({ label, url }) => (
+            <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
