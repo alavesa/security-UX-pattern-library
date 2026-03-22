@@ -271,47 +271,77 @@ function NavigationDemo() {
         )}
 
         {/* Level 4: Detail View */}
-        {level === 4 && currentUnit && (
+        {level === 4 && currentUnit && (() => {
+          const deviation = Math.abs(currentUnit.value - currentUnit.setpoint);
+          const devPct = ((deviation / currentUnit.setpoint) * 100).toFixed(1);
+          const isAbnormal = currentUnit.status !== "normal";
+          return (
           <div className="space-y-3">
             <p className="text-xs font-mono mb-1" style={{ color: "var(--text-dim)" }}>
               L4 — {currentUnit.name} · Diagnostic Detail
             </p>
 
+            {/* Live value + status */}
+            <div className="flex items-center justify-between p-3 rounded-lg" style={{ background: "var(--bg)", border: `1px solid ${statusColor(currentUnit.status)}33` }}>
+              <div>
+                <p className="text-2xl font-mono font-bold" style={{ color: statusColor(currentUnit.status) }}>
+                  {currentUnit.value} {currentUnit.unit}
+                </p>
+                <p className="text-xs font-mono mt-0.5" style={{ color: "var(--text-dim)" }}>
+                  Setpoint: {currentUnit.setpoint} {currentUnit.unit} · Dev: {isAbnormal ? <span style={{ color: statusColor(currentUnit.status) }}>{devPct}%</span> : <span>{devPct}%</span>}
+                </p>
+              </div>
+              <div className="text-right">
+                <span className="text-xs font-mono px-2 py-1 rounded" style={{ background: statusBg(currentUnit.status), color: statusColor(currentUnit.status) }}>
+                  {currentUnit.status.toUpperCase()}
+                </span>
+                <p className="text-xs font-mono mt-1" style={{ color: "var(--text-dim)" }}>Live</p>
+              </div>
+            </div>
+
             {/* Trend */}
             <div className="p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
               <p className="text-xs font-mono mb-2" style={{ color: "var(--text-dim)" }}>
-                <Activity className="w-3 h-3 inline mr-1" /> 24h Trend
+                <Activity className="w-3 h-3 inline mr-1" /> 24h Trend — {currentUnit.name}
               </p>
-              <div className="flex items-end gap-1 h-16">
-                {Array.from({ length: 24 }, (_, i) => {
-                  const base = currentUnit.setpoint;
-                  const noise = Math.sin(i * 0.5) * (currentUnit.value - currentUnit.setpoint) * (i / 24);
-                  const val = base + noise;
-                  const height = Math.max(10, Math.min(100, ((val - base * 0.8) / (base * 0.4)) * 100));
-                  const isHigh = val > currentUnit.setpoint * 1.05;
-                  return (
-                    <div
-                      key={i}
-                      className="flex-1 rounded-t"
-                      style={{
-                        height: `${height}%`,
-                        background: isHigh ? "var(--red)" : "var(--green)",
-                        opacity: 0.6 + (i / 24) * 0.4,
-                      }}
-                    />
-                  );
-                })}
+              <div className="relative">
+                <div className="flex items-end gap-0.5 h-20">
+                  {Array.from({ length: 24 }, (_, i) => {
+                    const base = currentUnit.setpoint;
+                    const noise = Math.sin(i * 0.5) * (currentUnit.value - currentUnit.setpoint) * (i / 24);
+                    const val = base + noise;
+                    const height = Math.max(8, Math.min(100, ((val - base * 0.8) / (base * 0.4)) * 100));
+                    const isHigh = val > currentUnit.setpoint * 1.05;
+                    return (
+                      <div
+                        key={i}
+                        className="flex-1 rounded-t"
+                        style={{
+                          height: `${height}%`,
+                          background: isHigh ? "var(--red)" : "var(--green)",
+                          opacity: 0.5 + (i / 24) * 0.5,
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+                {/* Setpoint line */}
+                <div className="absolute left-0 right-0 border-t border-dashed" style={{ bottom: "50%", borderColor: "var(--amber)" }} />
               </div>
               <div className="flex justify-between text-xs font-mono mt-1" style={{ color: "var(--text-dim)" }}>
                 <span>-24h</span>
-                <span style={{ color: "var(--amber)" }}>— setpoint: {currentUnit.setpoint} {currentUnit.unit}</span>
+                <span style={{ color: "var(--amber)" }}>--- setpoint: {currentUnit.setpoint} {currentUnit.unit}</span>
                 <span>now</span>
               </div>
             </div>
 
             {/* All parameters */}
             <div className="space-y-1">
-              <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>All Parameters</p>
+              <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>Process Parameters</p>
+              <div className="flex items-center justify-between p-2 rounded text-xs font-mono" style={{ background: statusBg(currentUnit.status), border: `1px solid ${statusColor(currentUnit.status)}33` }}>
+                <span style={{ color: statusColor(currentUnit.status) }}>Primary value</span>
+                <span className="font-medium" style={{ color: statusColor(currentUnit.status) }}>{currentUnit.value} {currentUnit.unit}</span>
+              </div>
               {currentUnit.details.map((d, i) => (
                 <div key={i} className="flex items-center justify-between p-2 rounded text-xs font-mono" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
                   <span style={{ color: "var(--text-dim)" }}>{d.label}</span>
@@ -320,28 +350,54 @@ function NavigationDemo() {
               ))}
             </div>
 
-            {/* Alarm history */}
-            <div className="p-3 rounded-lg" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.15)" }}>
-              <p className="text-xs font-mono mb-2" style={{ color: "var(--red)" }}>
-                <AlertTriangle className="w-3 h-3 inline mr-1" /> Recent Alarms
-              </p>
-              <div className="space-y-1 text-xs font-mono">
-                <div className="flex justify-between" style={{ color: "var(--text)" }}>
-                  <span>High value exceeded</span>
-                  <span style={{ color: "var(--text-dim)" }}>14:23</span>
+            {/* Maintenance info */}
+            <div className="p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+              <p className="text-xs font-mono mb-2" style={{ color: "var(--text-dim)" }}>Maintenance</p>
+              <div className="space-y-1.5 text-xs font-mono">
+                <div className="flex items-center justify-between">
+                  <span style={{ color: "var(--text-dim)" }}>Last service</span>
+                  <span style={{ color: "var(--text)" }}>2026-02-14</span>
                 </div>
-                <div className="flex justify-between" style={{ color: "var(--text)" }}>
-                  <span>Rate of change alarm</span>
-                  <span style={{ color: "var(--text-dim)" }}>14:18</span>
+                <div className="flex items-center justify-between">
+                  <span style={{ color: "var(--text-dim)" }}>Next scheduled</span>
+                  <span style={{ color: isAbnormal ? "var(--amber)" : "var(--text)" }}>{isAbnormal ? "Overdue — 2026-03-10" : "2026-04-15"}</span>
                 </div>
-                <div className="flex justify-between" style={{ color: "var(--text)" }}>
-                  <span>Setpoint deviation &gt;5%</span>
-                  <span style={{ color: "var(--text-dim)" }}>14:02</span>
+                <div className="flex items-center justify-between">
+                  <span style={{ color: "var(--text-dim)" }}>Run hours</span>
+                  <span style={{ color: "var(--text)" }}>4,218 h</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span style={{ color: "var(--text-dim)" }}>Work orders</span>
+                  <span style={{ color: isAbnormal ? "var(--amber)" : "var(--text)" }}>{isAbnormal ? "WO-2026-0847 open" : "None open"}</span>
                 </div>
               </div>
             </div>
+
+            {/* Alarm history */}
+            <div className="p-3 rounded-lg" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.15)" }}>
+              <p className="text-xs font-mono mb-2" style={{ color: "var(--red)" }}>
+                <AlertTriangle className="w-3 h-3 inline mr-1" /> Alarm History — {currentUnit.name}
+              </p>
+              <div className="space-y-1.5 text-xs font-mono">
+                {(isAbnormal ? [
+                  { alarm: "HH — High-high limit exceeded", time: "14:23", severity: "var(--red)" },
+                  { alarm: "H — High limit exceeded", time: "14:18", severity: "var(--amber)" },
+                  { alarm: "ROC — Rate of change >5%/min", time: "14:15", severity: "var(--amber)" },
+                  { alarm: "DEV — Setpoint deviation >5%", time: "14:02", severity: "var(--amber)" },
+                ] : [
+                  { alarm: "DEV — Setpoint deviation >2%", time: "09:15", severity: "var(--amber)" },
+                  { alarm: "Returned to normal", time: "09:22", severity: "var(--green)" },
+                ]).map(({ alarm, time, severity }) => (
+                  <div key={alarm} className="flex items-start justify-between gap-2">
+                    <span style={{ color: severity }}>{alarm}</span>
+                    <span className="shrink-0" style={{ color: "var(--text-dim)" }}>{time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        )}
+          );
+        })()}
       </div>
       </div>
     </div>
