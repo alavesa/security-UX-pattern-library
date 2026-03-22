@@ -84,7 +84,7 @@ function SafetyCriticalDemo() {
                       { label: "Temp", value: "1,104°C", valueColor: "var(--text-bright)" },
                       { label: "RPM", value: "3,600", valueColor: "var(--text-bright)" },
                     ].map(({ label, value, valueColor }) => (
-                      <div key={label} className="flex items-center justify-between">
+                      <div key={label} className="flex items-center gap-2">
                         <span style={{ color: "var(--text-dim)" }}>{label}</span>
                         <span className="font-medium" style={{ color: valueColor }}>{value}</span>
                       </div>
