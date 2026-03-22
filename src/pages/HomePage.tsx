@@ -224,7 +224,7 @@ export function HomePage() {
               </Link>
             ))}
 
-            <div className="mt-2" style={{ color: "var(--cyan)" }}>🔐 data/ (3)</div>
+            <div className="mt-2" style={{ color: "var(--cyan)" }}>🔐 data/ (4)</div>
             {[
               { path: "/patterns/data/encryption", name: "encryption", ref: "OWASP A02, CWE-311" },
               { path: "/patterns/data/file-upload", name: "file_upload", ref: "OWASP A03, CWE-434" },
