@@ -345,6 +345,47 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* How to use */}
+      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
+        <h2 className="text-xl font-mono mb-2" style={{ color: "var(--green)" }}>$ cat ./how_to_use</h2>
+        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>This library works for any team, any stack, any level of security maturity.</p>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[
+            {
+              title: "As a design reference",
+              desc: "Browse patterns, interact with demos, use the do/don't guidelines as a checklist when designing security flows. No code needed — the patterns are the value.",
+              color: "var(--green)",
+              cmd: "browse →",
+            },
+            {
+              title: "Assess your product",
+              desc: "Use the 4 strategic tools: Score your current state, map compliance requirements, assess maturity level, generate a prioritized report for stakeholders.",
+              color: "var(--cyan)",
+              cmd: "assess →",
+            },
+            {
+              title: "Implement in any stack",
+              desc: "Each pattern documents what to build, why it matters, and what to avoid. The logic transfers to any framework — React, Vue, Swift, Flutter, or vanilla HTML.",
+              color: "var(--amber)",
+              cmd: "implement →",
+            },
+            {
+              title: "Use the React components",
+              desc: "MIT licensed. Clone the repo, each pattern is a self-contained file in src/patterns/. Copy the demo logic, adapt the styling to your design system.",
+              color: "var(--ai-color)",
+              cmd: "git clone →",
+            },
+          ].map(({ title, desc, color, cmd }) => (
+            <div key={title} className="rounded-lg p-4 sm:p-5" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+              <p className="font-mono text-xs mb-2" style={{ color }}>{cmd}</p>
+              <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{title}</h3>
+              <p className="text-xs font-mono leading-relaxed" style={{ color: "var(--text)" }}>{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Pattern Cards */}
       <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto">
         <h2 className="text-xl font-mono mb-2 glow-text">./auth/</h2>
