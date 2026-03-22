@@ -57,21 +57,21 @@ function BrokenAccessControlDemo() {
         <div role="tabpanel" id="panel-rbac" className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
             <h3 className="font-bold font-mono text-sm" style={{ color: "var(--text-bright)" }}>Document: Q4 Report</h3>
-            <div className="flex items-center gap-1 p-1 rounded-lg" style={{ background: "var(--bg)" }}>
+            <div className="flex items-center gap-1 p-1 rounded-lg flex-wrap" style={{ background: "var(--bg)" }}>
               {(["viewer", "editor", "admin"] as const).map(r => (
                 <button
                   key={r}
                   onClick={() => switchRole(r)}
-                  className="px-3 py-1 rounded text-xs font-mono border-none cursor-pointer flex items-center gap-1.5"
+                  className="px-2 sm:px-3 py-1 rounded text-xs font-mono border-none cursor-pointer flex items-center gap-1"
                   style={{
                     background: currentRole === r ? "var(--amber-glow)" : "transparent",
                     color: currentRole === r ? "var(--amber)" : "var(--text-dim)",
                     border: currentRole === r ? "1px solid var(--amber-border)" : "1px solid transparent",
                   }}
                 >
-                  {r === "admin" && <Shield className="w-3 h-3" />}
-                  {r === "editor" && <Eye className="w-3 h-3" />}
-                  {r === "viewer" && <Users className="w-3 h-3" />}
+                  {r === "admin" && <Shield className="w-3 h-3 shrink-0" />}
+                  {r === "editor" && <Eye className="w-3 h-3 shrink-0" />}
+                  {r === "viewer" && <Users className="w-3 h-3 shrink-0" />}
                   {r}
                 </button>
               ))}
@@ -80,9 +80,9 @@ function BrokenAccessControlDemo() {
 
           {/* Role transition toast */}
           {roleTransition && (
-            <div className="mb-4 px-4 py-2.5 rounded-lg flex items-center gap-2 text-xs font-mono" style={{ background: "var(--amber-glow)", border: "1px solid var(--amber-border)" }}>
-              <Shield className="w-3.5 h-3.5 shrink-0" style={{ color: "var(--amber)" }} />
-              <span style={{ color: "var(--text)" }}>
+            <div className="mb-4 px-3 sm:px-4 py-2.5 rounded-lg flex items-start gap-2 text-xs font-mono" style={{ background: "var(--amber-glow)", border: "1px solid var(--amber-border)" }}>
+              <Shield className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "var(--amber)" }} />
+              <span className="break-words" style={{ color: "var(--text)" }}>
                 Role changed: <span style={{ color: "var(--text-dim)" }}>{roleTransition.from}</span> <span style={{ color: "var(--text-dim)" }}>→</span> <strong style={{ color: "var(--amber)" }}>{roleTransition.to}</strong> — UI updated
               </span>
             </div>
@@ -91,7 +91,7 @@ function BrokenAccessControlDemo() {
           {/* Permission indicators */}
           <div className="rounded-lg p-4 mb-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
             <p className="text-xs font-medium font-mono mb-3" style={{ color: "var(--text)" }}>Your permissions as <strong style={{ color: "var(--amber)" }}>{currentRole}</strong>:</p>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {[
                 { label: "View document", allowed: perms.canView },
                 { label: "Edit document", allowed: perms.canEdit },
