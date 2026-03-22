@@ -50,6 +50,11 @@ function SecureFileUploadDemo() {
   return (
     <div className="w-full max-w-lg">
       <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        {/* Demo simulation button — above drop zone for mobile accessibility */}
+        <button onClick={handleDemoFiles} disabled={files.some(f => f.status === "scanning")} className="w-full mb-4 py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" style={{ background: "var(--cyan)", color: "var(--bg)" }}>
+          Simulate uploading 4 files
+        </button>
+
         {/* Drop zone */}
         <div
           className="border-2 border-dashed rounded-xl p-8 text-center transition-colors cursor-pointer"
@@ -77,10 +82,6 @@ function SecureFileUploadDemo() {
           <AlertTriangle className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--amber)" }} />
           <span style={{ color: "var(--text)" }}>Executable files (.exe, .bat, .cmd, .scr, .ps1, .vbs) are blocked for security.</span>
         </div>
-
-        <button onClick={handleDemoFiles} disabled={files.some(f => f.status === "scanning")} className="w-full mt-4 py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" style={{ background: "var(--cyan)", color: "var(--bg)" }}>
-          Simulate uploading 4 files
-        </button>
 
         {/* File list */}
         {files.length > 0 && (
