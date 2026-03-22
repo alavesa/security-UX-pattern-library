@@ -148,14 +148,14 @@ function ChangeManagementDemo() {
                   {!isApproved && (
                     <button
                       onClick={() => approveReviewer(reviewer)}
-                      className="px-3 py-1 rounded text-xs font-mono border-none cursor-pointer shrink-0"
+                      className="px-3 py-1 rounded text-xs font-mono border-none cursor-pointer shrink-0 ml-auto"
                       style={{ background: "var(--green-glow)", color: "var(--green)", border: "1px solid var(--green-border)" }}
                     >
                       Approve
                     </button>
                   )}
                   {isApproved && (
-                    <span className="text-xs font-mono shrink-0" style={{ color: "var(--green)" }}>✓ Approved</span>
+                    <span className="text-xs font-mono shrink-0 ml-auto" style={{ color: "var(--green)" }}>✓ Approved</span>
                   )}
                 </div>
               );
