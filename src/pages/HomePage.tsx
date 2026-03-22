@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers, ClipboardCheck, GitBranch, FileText } from "lucide-react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers, ClipboardCheck, GitBranch, FileText, ChevronUp } from "lucide-react";
 
 function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -114,6 +114,32 @@ const AUTH_PATTERNS = [
     description: "Secure recovery flows that balance usability with identity verification",
   },
 ];
+
+function BackToTop() {
+  const [visible, setVisible] = useState(false);
+
+  const handleScroll = useCallback(() => {
+    setVisible(window.scrollY > 600);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  if (!visible) return null;
+
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Back to top"
+      className="fixed bottom-6 right-6 w-10 h-10 rounded-full flex items-center justify-center font-mono text-xs border-none cursor-pointer transition-all z-50"
+      style={{ background: "var(--bg-card)", color: "var(--green)", border: "1px solid var(--green-border)", boxShadow: "0 0 15px var(--green-glow)" }}
+    >
+      <ChevronUp className="w-5 h-5" />
+    </button>
+  );
+}
 
 export function HomePage() {
   return (
@@ -932,6 +958,8 @@ export function HomePage() {
           </div>
         </div>
       </footer>
+
+      <BackToTop />
     </div>
   );
 }
