@@ -277,6 +277,24 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "Industrial" },
     ],
   },
+  {
+    id: "eaa",
+    name: "EAA",
+    fullName: "European Accessibility Act (EU — Directive 2019/882)",
+    color: "#06b6d4",
+    patterns: [
+      { path: "/patterns/auth/accessible-auth", label: "Accessible Authentication", category: "Auth" },
+      { path: "/patterns/auth/login", label: "Login Flow", category: "Auth" },
+      { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
+      { path: "/patterns/auth/passkeys", label: "Passkeys", category: "Auth" },
+      { path: "/patterns/auth/account-recovery", label: "Account Recovery", category: "Auth" },
+      { path: "/patterns/dark/cookie-consent", label: "Cookie Consent", category: "Dark Patterns" },
+      { path: "/patterns/dark/confirmshaming", label: "Confirmshaming", category: "Dark Patterns" },
+      { path: "/patterns/data/deletion", label: "Data Deletion", category: "Data" },
+      { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "Data" },
+      { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
+    ],
+  },
 ];
 
 const REG_BY_NAME = new Map(ALL_REGULATIONS.map(r => [r.name, r]));
@@ -331,7 +349,7 @@ export function CompliancePage() {
           <p><span style={{ color: "var(--green)" }}>4.</span> Click any pattern to see its interactive demo, guidelines, and implementation notes</p>
         </div>
         <p className="text-xs font-mono mt-3" style={{ color: "var(--text-dim)" }}>
-          17 regulations mapped · Each mapping is based on the regulation's specific articles, not general themes
+          18 regulations mapped · Each mapping is based on the regulation's specific articles, not general themes
         </p>
       </div>
 
@@ -479,6 +497,7 @@ export function CompliancePage() {
             { label: "CCPA", url: "https://oag.ca.gov/privacy/ccpa" },
             { label: "FTC", url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" },
             { label: "ePrivacy", url: "https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation" },
+            { label: "EAA", url: "https://ec.europa.eu/social/main.jsp?catId=1202" },
           ].map(({ label, url }) => (
             <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
               {label}

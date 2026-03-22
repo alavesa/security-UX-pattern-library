@@ -169,7 +169,7 @@ export function HomePage() {
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
               { value: "34", label: "interactive patterns", color: "var(--green)" },
-              { value: "17", label: "regulations covered", color: "var(--amber)" },
+              { value: "18", label: "regulations covered", color: "var(--amber)" },
               { value: "38", label: "cited sources", color: "var(--cyan)" },
               { value: "4", label: "strategic tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
@@ -325,7 +325,7 @@ export function HomePage() {
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             { path: "/score", label: "Security UX Score", desc: "Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. Know your baseline before you start fixing.", color: "var(--green)", cmd: "$ get --score" },
-            { path: "/compliance", label: "Compliance Mapper", desc: "Select from 17 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, IEC 62443, WCAG 2.2...) → see exactly which patterns you need for each.", color: "var(--cyan)", cmd: "$ get --compliance" },
+            { path: "/compliance", label: "Compliance Mapper", desc: "Select from 18 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443, WCAG 2.2...) → see exactly which patterns you need for each.", color: "var(--cyan)", cmd: "$ get --compliance" },
             { path: "/maturity", label: "Maturity Model", desc: "10-question assessment → your current level (1-4), priority areas, and a concrete roadmap to the next level. Strategic design is about knowing what to do next.", color: "var(--amber)", cmd: "$ get --maturity" },
             { path: "/report", label: "Report Generator", desc: "Answer 6 questions about your product → downloadable .md report with prioritized patterns, compliance gaps, and implementation order. Take this to your stakeholders.", color: "var(--ai-color)", cmd: "$ get --report" },
           ].map(({ path, label, desc, color, cmd }) => (
