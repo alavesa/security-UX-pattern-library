@@ -103,7 +103,7 @@ function ActivityLogDemo() {
       {scenario === "activity" && (
         <div className="rounded-xl p-4 sm:p-5 space-y-3" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           {/* Filter bar */}
-          <div className="flex items-center gap-2 text-xs font-mono">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
             <span style={{ color: "var(--text-dim)" }}>filter:</span>
             {(["all", "warning", "critical"] as const).map(f => (
               <button
@@ -134,11 +134,11 @@ function ActivityLogDemo() {
                 >
                   <Icon className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: severityColor(entry.severity) }} />
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <span style={{ color: "var(--text-bright)" }}>{entry.action}</span>
-                      <span style={{ color: "var(--text-dim)" }}>{entry.time}</span>
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0">
+                      <span className="break-words" style={{ color: "var(--text-bright)" }}>{entry.action}</span>
+                      <span className="shrink-0" style={{ color: "var(--text-dim)" }}>{entry.time}</span>
                     </div>
-                    <p className="mt-0.5" style={{ color: "var(--text)" }}>{entry.detail}</p>
+                    <p className="mt-0.5 break-words" style={{ color: "var(--text)" }}>{entry.detail}</p>
                     <p className="mt-0.5" style={{ color: "var(--text-dim)" }}>IP: {entry.ip}</p>
                   </div>
                 </div>
@@ -170,21 +170,21 @@ function ActivityLogDemo() {
             return (
               <div
                 key={device.id}
-                className="flex items-center gap-3 p-3 rounded-lg text-xs font-mono"
+                className="flex items-start gap-3 p-3 rounded-lg text-xs font-mono"
                 style={{
                   background: revoked ? "rgba(255,51,51,0.05)" : isUnknown ? "rgba(255,170,0,0.08)" : "var(--bg)",
                   border: `1px solid ${isUnknown && !revoked ? "rgba(255,170,0,0.3)" : "var(--border)"}`,
                   opacity: revoked ? 0.5 : 1,
                 }}
               >
-                <Icon className="w-5 h-5 shrink-0" style={{ color: device.current ? "var(--cyan)" : isUnknown ? "var(--amber)" : "var(--text)" }} />
+                <Icon className="w-5 h-5 shrink-0 mt-0.5" style={{ color: device.current ? "var(--cyan)" : isUnknown ? "var(--amber)" : "var(--text)" }} />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-1.5">
                     <span style={{ color: "var(--text-bright)" }}>{device.name}</span>
-                    {device.current && <span className="px-1.5 py-0.5 rounded text-xs" style={{ background: "var(--cyan-glow)", color: "var(--cyan)", border: "1px solid var(--cyan-border)" }}>current</span>}
-                    {isUnknown && !revoked && <span className="px-1.5 py-0.5 rounded text-xs" style={{ background: "rgba(255,170,0,0.15)", color: "var(--amber)" }}>⚠ review</span>}
+                    {device.current && <span className="px-1.5 py-0.5 rounded text-xs shrink-0" style={{ background: "var(--cyan-glow)", color: "var(--cyan)", border: "1px solid var(--cyan-border)" }}>current</span>}
+                    {isUnknown && !revoked && <span className="px-1.5 py-0.5 rounded text-xs shrink-0" style={{ background: "rgba(255,170,0,0.15)", color: "var(--amber)" }}>⚠ review</span>}
                   </div>
-                  <p style={{ color: "var(--text-dim)" }}>{device.browser} · {device.location}</p>
+                  <p className="mt-0.5" style={{ color: "var(--text-dim)" }}>{device.browser} · {device.location}</p>
                   <p style={{ color: "var(--text-dim)" }}>Last active: {device.lastActive}</p>
                 </div>
                 {!device.current && !revoked && (
@@ -197,7 +197,7 @@ function ActivityLogDemo() {
                   </button>
                 )}
                 {revoked && (
-                  <span className="text-xs font-mono" style={{ color: "var(--red)" }}>Revoked</span>
+                  <span className="text-xs font-mono shrink-0" style={{ color: "var(--red)" }}>Revoked</span>
                 )}
               </div>
             );
