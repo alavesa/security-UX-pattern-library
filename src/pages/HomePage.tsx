@@ -762,77 +762,154 @@ export function HomePage() {
 
       {/* Sources & References */}
       <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
-        <h2 className="text-xl font-mono mb-6" style={{ color: "var(--text-bright)" }}>./sources/</h2>
+        <h2 className="text-xl font-mono mb-2" style={{ color: "var(--text-bright)" }}>./sources/</h2>
+        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>45 cited sources across 7 categories. Every claim in the library links back to a primary source.</p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div>
-            <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "#3b82f6" }}>EU Regulation</h3>
-            <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
-              <li><a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>GDPR</a> — Articles 5, 7, 15, 17, 20, 22, 33, 34</li>
-              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/nis2-directive" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>NIS2 Directive</a> — Cybersecurity for essential & important entities</li>
-              <li><a href="https://www.digital-operational-resilience-act.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>DORA</a> — Digital Operational Resilience (financial sector, Jan 2025)</li>
-              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>CRA</a> — Cyber Resilience Act (digital products, 2027)</li>
-              <li><a href="https://artificialintelligenceact.eu/article/50/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU AI Act Art. 50</a> — AI transparency obligations (Aug 2026)</li>
-              <li><a href="https://artificialintelligenceact.eu/high-level-summary/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU AI Act Overview</a> — High-level summary</li>
-              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU Digital Services Act</a> — Platform transparency + dark patterns</li>
-              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ePrivacy Directive</a> — Cookie consent rules</li>
-              <li><a href="https://commission.europa.eu/law/law-topic/consumer-protection-law_en" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU Consumer Rights Directive</a> — Cancellation + unfair practices</li>
-              <li><a href="https://ec.europa.eu/social/main.jsp?catId=1202" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>European Accessibility Act</a> — Directive 2019/882 (enforceable June 2025)</li>
+        <div className="grid md:grid-cols-2 gap-6">
+
+          {/* EU Regulation */}
+          <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "#3b82f6" }}>
+              <span className="w-2 h-2 rounded-full" style={{ background: "#3b82f6" }} /> EU Regulation
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>10 sources</span>
+            </h3>
+            <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
+              {[
+                { url: "https://gdpr-info.eu/", label: "GDPR", desc: "Art. 5, 7, 15, 17, 20, 22, 33, 34" },
+                { url: "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive", label: "NIS2", desc: "Cybersecurity for essential entities" },
+                { url: "https://www.digital-operational-resilience-act.com/", label: "DORA", desc: "Financial sector resilience (Jan 2025)" },
+                { url: "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act", label: "CRA", desc: "Digital products (2027)" },
+                { url: "https://artificialintelligenceact.eu/article/50/", label: "EU AI Act Art. 50", desc: "AI transparency (Aug 2026)" },
+                { url: "https://artificialintelligenceact.eu/high-level-summary/", label: "EU AI Act Overview", desc: "High-level summary" },
+                { url: "https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package", label: "EU DSA", desc: "Platform transparency + dark patterns" },
+                { url: "https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation", label: "ePrivacy", desc: "Cookie consent rules" },
+                { url: "https://commission.europa.eu/law/law-topic/consumer-protection-law_en", label: "Consumer Rights Dir.", desc: "Cancellation + unfair practices" },
+                { url: "https://ec.europa.eu/social/main.jsp?catId=1202", label: "EAA", desc: "Accessibility Act (June 2025)" },
+              ].map(({ url, label, desc }) => (
+                <li key={label}><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--green)" }}>Standards & Compliance</h3>
-            <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
-              <li><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>OWASP Top 10 (2021)</a> — Web application security risks</li>
-              <li><a href="https://cwe.mitre.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>MITRE CWE</a> — Common Weakness Enumeration</li>
-              <li><a href="https://pages.nist.gov/800-63-3/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>NIST SP 800-63B</a> — Digital Identity Guidelines</li>
-              <li><a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>WCAG 2.2</a> — Web Content Accessibility Guidelines (SC 3.3.8 Accessible Auth)</li>
-              <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ISO 27001</a> — Information Security Management</li>
-              <li><a href="https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>SOC 2</a> — Service organization security controls</li>
-              <li><a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>PCI DSS</a> — Payment Card Industry Data Security</li>
-              <li><a href="https://www.w3.org/TR/webauthn-2/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>WebAuthn Level 2</a> — Passkey / FIDO2 standard</li>
-              <li><a href="https://datatracker.ietf.org/doc/html/rfc6749" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>RFC 6749 (OAuth 2.0)</a> — Authorization framework</li>
-              <li><a href="https://datatracker.ietf.org/doc/html/rfc6238" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>RFC 6238</a> — TOTP Algorithm</li>
-              <li><a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>CCPA</a> — California Consumer Privacy Act</li>
-              <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> — Consumer protection</li>
-              <li><a href="https://c2pa.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>C2PA Standard</a> — Content provenance and authenticity</li>
-              <li><a href="https://www.twobirds.com/en/insights/2026/taking-the-eu-ai-act-to-practice-understanding-the-draft-transparency-code-of-practice" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>AI Transparency Code of Practice</a> — Implementation guidance</li>
-              <li><a href="https://www.iab.com/guidelines/ai-transparency-and-disclosure-framework/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>IAB AI Transparency Framework</a> — Risk-based disclosure</li>
-              <li><a href="https://drata.com/blog/artificial-intelligence-regulations-state-and-federal-ai-laws-2026" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>US State AI Laws 2026</a> — Colorado, California, Illinois</li>
-              <li><a href="https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Illinois AI Video Interview Act</a> — AI consent in hiring</li>
-              <li><a href="https://cmmiinstitute.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>CMMI</a> — Capability Maturity Model Integration</li>
-              <li><a href="https://owaspsamm.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>OWASP SAMM</a> — Software Assurance Maturity Model</li>
-              <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>NIST Cybersecurity Framework</a> — CSF tiers + risk management</li>
-              <li><a href="https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>NIST SP 800-30</a> — Guide for conducting risk assessments</li>
-              <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ISO 27005</a> — Information security risk management</li>
-              <li><a href="https://owasp.org/www-community/OWASP_Risk_Rating_Methodology" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>OWASP Risk Rating</a> — Risk rating methodology</li>
+          {/* Security Standards */}
+          <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--green)" }}>
+              <span className="w-2 h-2 rounded-full" style={{ background: "var(--green)" }} /> Security Standards
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>10 sources</span>
+            </h3>
+            <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
+              {[
+                { url: "https://owasp.org/www-project-top-ten/", label: "OWASP Top 10", desc: "Web security risks (2021)" },
+                { url: "https://cwe.mitre.org/", label: "MITRE CWE", desc: "Weakness enumeration" },
+                { url: "https://pages.nist.gov/800-63-3/", label: "NIST 800-63B", desc: "Digital identity guidelines" },
+                { url: "https://www.nist.gov/cyberframework", label: "NIST CSF", desc: "Cybersecurity framework tiers" },
+                { url: "https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final", label: "NIST 800-30", desc: "Risk assessment guide" },
+                { url: "https://www.w3.org/WAI/WCAG22/quickref/", label: "WCAG 2.2", desc: "SC 3.3.8 Accessible Auth" },
+                { url: "https://www.iso.org/standard/27001", label: "ISO 27001", desc: "Information security management" },
+                { url: "https://www.iso.org/standard/80585.html", label: "ISO 27005", desc: "Security risk management" },
+                { url: "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2", label: "SOC 2", desc: "Service org security controls" },
+                { url: "https://www.pcisecuritystandards.org/", label: "PCI DSS", desc: "Payment card security" },
+              ].map(({ url, label, desc }) => (
+                <li key={label}><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "#f97316" }}>Industrial Standards</h3>
-            <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
-              <li><a href="https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>IEC 62443</a> — Industrial automation security</li>
-              <li><a href="https://www.iec.ch/functionalsafety" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>IEC 61511</a> — Safety instrumented systems</li>
-              <li><a href="https://www.isa.org/products/ansi-isa-18-2-2016-management-of-alarm-systems-fo" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ISA-18.2 / IEC 62682</a> — Alarm management</li>
-              <li><a href="https://www.eemua.org/Products/Publications/Print/EEMUA-Publication-191.aspx" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EEMUA 191</a> — Alarm systems guide</li>
-              <li><a href="https://www.isa.org/products/isa-101-01-2015-human-machine-interfaces-for-proce" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ISA-101</a> — HMI design for process industries</li>
+          {/* Protocols & Technical Standards */}
+          <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--amber)" }}>
+              <span className="w-2 h-2 rounded-full" style={{ background: "var(--amber)" }} /> Protocols & Specs
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>4 sources</span>
+            </h3>
+            <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
+              {[
+                { url: "https://www.w3.org/TR/webauthn-2/", label: "WebAuthn L2", desc: "Passkey / FIDO2 standard" },
+                { url: "https://datatracker.ietf.org/doc/html/rfc6749", label: "RFC 6749", desc: "OAuth 2.0 authorization" },
+                { url: "https://datatracker.ietf.org/doc/html/rfc6238", label: "RFC 6238", desc: "TOTP algorithm" },
+                { url: "https://c2pa.org/", label: "C2PA", desc: "Content provenance standard" },
+              ].map(({ url, label, desc }) => (
+                <li key={label}><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--cyan)" }}>Research & Data</h3>
-            <ul className="space-y-2 text-xs" style={{ color: "var(--text)" }}>
-              <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Verizon DBIR 2024</a> — Data Breach Investigations Report</li>
-              <li><a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>IBM Cost of a Data Breach 2023</a> — 204-day average detection time</li>
-              <li><a href="https://www.microsoft.com/en-us/security/blog/2019/08/20/one-simple-action-you-can-take-to-prevent-99-9-percent-of-account-attacks/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Microsoft MFA Study</a> — MFA prevents 99.9% of attacks</li>
-              <li><a href="https://arxiv.org/html/2601.13342v1" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Privacy Starts with UI (USEC 2026)</a> — Privacy patterns in UI/UX</li>
-              <li><a href="https://www.deceptive.design/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Deceptive Design</a> — Dark patterns by Harry Brignull</li>
-              <li><a href="https://www.deceptive.design/enforcement" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Dark Patterns Enforcement</a> — Global enforcement database</li>
-              <li><a href="https://sharkstriker.com/blog/march-data-breaches-today-2026/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Data Breaches March 2026</a> — Current breach tracker</li>
+          {/* Industrial Standards */}
+          <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--industrial-color)" }}>
+              <span className="w-2 h-2 rounded-full" style={{ background: "var(--industrial-color)" }} /> Industrial Standards
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>5 sources</span>
+            </h3>
+            <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
+              {[
+                { url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series", label: "IEC 62443", desc: "Industrial automation security" },
+                { url: "https://www.iec.ch/functionalsafety", label: "IEC 61511", desc: "Safety instrumented systems" },
+                { url: "https://www.isa.org/products/ansi-isa-18-2-2016-management-of-alarm-systems-fo", label: "ISA-18.2", desc: "Alarm management" },
+                { url: "https://www.eemua.org/Products/Publications/Print/EEMUA-Publication-191.aspx", label: "EEMUA 191", desc: "Alarm systems guide" },
+                { url: "https://www.isa.org/products/isa-101-01-2015-human-machine-interfaces-for-proce", label: "ISA-101", desc: "HMI design for process industries" },
+              ].map(({ url, label, desc }) => (
+                <li key={label}><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></li>
+              ))}
             </ul>
           </div>
+
+          {/* US Regulation */}
+          <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--ai-color)" }}>
+              <span className="w-2 h-2 rounded-full" style={{ background: "var(--ai-color)" }} /> US Regulation & AI
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>7 sources</span>
+            </h3>
+            <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
+              {[
+                { url: "https://oag.ca.gov/privacy/ccpa", label: "CCPA", desc: "California Consumer Privacy Act" },
+                { url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule", label: "FTC Neg. Option", desc: "Subscription consumer protection" },
+                { url: "https://www.twobirds.com/en/insights/2026/taking-the-eu-ai-act-to-practice-understanding-the-draft-transparency-code-of-practice", label: "AI Transparency Code", desc: "Implementation guidance" },
+                { url: "https://www.iab.com/guidelines/ai-transparency-and-disclosure-framework/", label: "IAB AI Framework", desc: "Risk-based disclosure" },
+                { url: "https://drata.com/blog/artificial-intelligence-regulations-state-and-federal-ai-laws-2026", label: "US State AI Laws", desc: "CO, CA, IL (2026)" },
+                { url: "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015", label: "IL AI Interview Act", desc: "AI consent in hiring" },
+                { url: "https://owasp.org/www-community/OWASP_Risk_Rating_Methodology", label: "OWASP Risk Rating", desc: "Risk rating methodology" },
+              ].map(({ url, label, desc }) => (
+                <li key={label}><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Maturity Frameworks */}
+          <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--cyan)" }}>
+              <span className="w-2 h-2 rounded-full" style={{ background: "var(--cyan)" }} /> Maturity Frameworks
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>2 sources</span>
+            </h3>
+            <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
+              {[
+                { url: "https://cmmiinstitute.com/", label: "CMMI", desc: "Capability Maturity Model" },
+                { url: "https://owaspsamm.org/", label: "OWASP SAMM", desc: "Software Assurance Maturity" },
+              ].map(({ url, label, desc }) => (
+                <li key={label}><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Research & Data — full width */}
+          <div className="rounded-lg p-4 md:col-span-2" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--red)" }}>
+              <span className="w-2 h-2 rounded-full" style={{ background: "var(--red)" }} /> Research & Breach Data
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>7 sources</span>
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
+              {[
+                { url: "https://www.verizon.com/business/resources/reports/dbir/", label: "Verizon DBIR 2024", desc: "Breach investigations report" },
+                { url: "https://www.ibm.com/reports/data-breach", label: "IBM Breach Report", desc: "204-day detection average" },
+                { url: "https://www.microsoft.com/en-us/security/blog/2019/08/20/one-simple-action-you-can-take-to-prevent-99-9-percent-of-account-attacks/", label: "Microsoft MFA Study", desc: "MFA prevents 99.9% of attacks" },
+                { url: "https://arxiv.org/html/2601.13342v1", label: "USEC 2026", desc: "Privacy Starts with UI" },
+                { url: "https://www.deceptive.design/", label: "Deceptive Design", desc: "Dark patterns taxonomy" },
+                { url: "https://www.deceptive.design/enforcement", label: "Enforcement DB", desc: "Global dark pattern fines" },
+                { url: "https://sharkstriker.com/blog/march-data-breaches-today-2026/", label: "Breach Tracker 2026", desc: "Current breach data" },
+              ].map(({ url, label, desc }) => (
+                <p key={label} className="text-xs"><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></p>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 
