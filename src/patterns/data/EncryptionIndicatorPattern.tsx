@@ -111,15 +111,15 @@ function EncryptionIndicatorDemo() {
           <h3 className="font-semibold font-mono text-sm" style={{ color: "var(--text-bright)" }}>Connection security indicators</h3>
 
           {/* Secure */}
-          <div className="rounded-lg p-4" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
-            <div className="flex items-center gap-3 mb-2">
-              <Lock className="w-5 h-5" style={{ color: "var(--green)" }} />
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>https://bank.example.com</span>
-                  <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(0,255,65,0.15)", color: "var(--green)" }}>EV Certificate</span>
+          <div className="rounded-lg p-4 overflow-hidden" style={{ background: "rgba(0,255,65,0.05)", border: "1px solid var(--green-border)" }}>
+            <div className="flex items-start gap-3 mb-2">
+              <Lock className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "var(--green)" }} />
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-sm font-medium font-mono break-all" style={{ color: "var(--text-bright)" }}>https://bank.example.com</span>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0" style={{ background: "rgba(0,255,65,0.15)", color: "var(--green)" }}>EV Certificate</span>
                 </div>
-                <p className="text-xs font-mono" style={{ color: "var(--green)" }}>Connection is secure • TLS 1.3 • Bank Corp, Inc.</p>
+                <p className="text-xs font-mono mt-0.5" style={{ color: "var(--green)" }}>Connection is secure • TLS 1.3 • Bank Corp, Inc.</p>
               </div>
             </div>
             <div className="rounded p-2 text-xs font-mono" style={{ background: "var(--bg)", color: "var(--text)" }}>
@@ -128,15 +128,15 @@ function EncryptionIndicatorDemo() {
           </div>
 
           {/* Mixed content */}
-          <div className="rounded-lg p-4" style={{ background: "rgba(255,170,0,0.05)", border: "1px solid rgba(255,170,0,0.25)" }}>
-            <div className="flex items-center gap-3 mb-2">
-              <ShieldAlert className="w-5 h-5" style={{ color: "var(--amber)" }} />
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>https://shop.example.com</span>
-                  <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(255,170,0,0.15)", color: "var(--amber)" }}>Mixed Content</span>
+          <div className="rounded-lg p-4 overflow-hidden" style={{ background: "rgba(255,170,0,0.05)", border: "1px solid rgba(255,170,0,0.25)" }}>
+            <div className="flex items-start gap-3 mb-2">
+              <ShieldAlert className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "var(--amber)" }} />
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-sm font-medium font-mono break-all" style={{ color: "var(--text-bright)" }}>https://shop.example.com</span>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0" style={{ background: "rgba(255,170,0,0.15)", color: "var(--amber)" }}>Mixed Content</span>
                 </div>
-                <p className="text-xs font-mono" style={{ color: "var(--amber)" }}>Connection partially secure • Some resources loaded over HTTP</p>
+                <p className="text-xs font-mono mt-0.5" style={{ color: "var(--amber)" }}>Connection partially secure • Some resources loaded over HTTP</p>
               </div>
             </div>
             <div className="rounded p-2 text-xs font-mono" style={{ background: "var(--bg)", color: "var(--text)" }}>
@@ -145,15 +145,15 @@ function EncryptionIndicatorDemo() {
           </div>
 
           {/* Insecure */}
-          <div className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.25)" }}>
-            <div className="flex items-center gap-3 mb-2">
-              <Unlock className="w-5 h-5" style={{ color: "var(--red)" }} />
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>http://old.example.com</span>
-                  <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>Not Secure</span>
+          <div className="rounded-lg p-4 overflow-hidden" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.25)" }}>
+            <div className="flex items-start gap-3 mb-2">
+              <Unlock className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "var(--red)" }} />
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-sm font-medium font-mono break-all" style={{ color: "var(--text-bright)" }}>http://old.example.com</span>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>Not Secure</span>
                 </div>
-                <p className="text-xs font-mono" style={{ color: "var(--red)" }}>Connection is not encrypted</p>
+                <p className="text-xs font-mono mt-0.5" style={{ color: "var(--red)" }}>Connection is not encrypted</p>
               </div>
             </div>
             <div className="rounded p-2 text-xs font-mono" style={{ background: "var(--bg)", color: "var(--text)" }}>
