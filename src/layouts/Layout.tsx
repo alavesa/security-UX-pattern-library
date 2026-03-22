@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch, Users } from "lucide-react";
 import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
@@ -92,6 +92,7 @@ const ASSESS_TOOLS = [
   { path: "/compliance", label: "compliance", icon: ClipboardCheck, color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", icon: BarChart3, color: "var(--amber)" },
   { path: "/report", label: "report", icon: FileText, color: "#c084fc" },
+  { path: "/convince", label: "convince_team", icon: Users, color: "var(--red)" },
 ];
 
 const ALL_TOOLS = [...ASSESS_TOOLS];
@@ -102,6 +103,7 @@ const HEADER_NAV: { path: string; label: string; color: string; matchPrefix?: st
   { path: "/compliance", label: "compliance", color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", color: "var(--amber)" },
   { path: "/report", label: "report", color: "#c084fc" },
+  { path: "/convince", label: "convince", color: "var(--red)" },
 ];
 
 const bgTint = (color: string, hex: string) => {

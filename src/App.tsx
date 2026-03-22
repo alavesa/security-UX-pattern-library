@@ -14,6 +14,7 @@ import { CompliancePage } from "./pages/CompliancePage";
 import { MaturityPage } from "./pages/MaturityPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ReportPage } from "./pages/ReportPage";
+import { ConvincePage } from "./pages/ConvincePage";
 import { SecurityDesignReviewPattern } from "./patterns/governance/SecurityDesignReviewPattern";
 import { ChangeManagementPattern } from "./patterns/governance/ChangeManagementPattern";
 import { ComplianceAuditPattern } from "./patterns/governance/ComplianceAuditPattern";
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="compliance" element={<CompliancePage />} />
           <Route path="maturity" element={<MaturityPage />} />
           <Route path="report" element={<ReportPage />} />
+          <Route path="convince" element={<ConvincePage />} />
           <Route path="patterns/governance/design-review" element={<PatternPage><SecurityDesignReviewPattern /></PatternPage>} />
           <Route path="patterns/governance/change-management" element={<PatternPage><ChangeManagementPattern /></PatternPage>} />
           <Route path="patterns/governance/compliance-audit" element={<PatternPage><ComplianceAuditPattern /></PatternPage>} />
