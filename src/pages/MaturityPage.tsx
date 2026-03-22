@@ -185,12 +185,26 @@ export function MaturityPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold font-mono mb-3 glow-text">Security UX Maturity</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold font-mono mb-3 glow-text">Security UX Maturity</h1>
         <p className="text-base" style={{ color: "var(--text-bright)" }}>
           Assess where your product is today. Get a roadmap to the next level.
+        </p>
+      </div>
+
+      {/* How it works */}
+      <div className="rounded-2xl p-4 sm:p-6 mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <h2 className="text-sm font-mono font-bold mb-3" style={{ color: "var(--text-bright)" }}>How the assessment works</h2>
+        <div className="space-y-2 text-xs font-mono" style={{ color: "var(--text)" }}>
+          <p><span style={{ color: "var(--green)" }}>1.</span> Answer 10 questions about your product's current security UX practices</p>
+          <p><span style={{ color: "var(--green)" }}>2.</span> For each question, select which level (1–4) best describes your current state</p>
+          <p><span style={{ color: "var(--green)" }}>3.</span> Your overall maturity level is calculated as the average across all areas</p>
+          <p><span style={{ color: "var(--green)" }}>4.</span> You'll get: your weakest areas, specific patterns to implement next, and a roadmap to the next level</p>
+        </div>
+        <p className="text-xs font-mono mt-3" style={{ color: "var(--text-dim)" }}>
+          10 areas · 4 maturity levels · Industrial OT is optional · Results include prioritized pattern recommendations
         </p>
       </div>
 
@@ -367,6 +381,33 @@ export function MaturityPage() {
           </button>
         </>
       )}
+
+      {/* Model inspiration & sources */}
+      <div className="rounded-2xl p-4 sm:p-6 mt-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <h2 className="text-sm font-mono font-bold mb-2" style={{ color: "var(--text-bright)" }}>Model design</h2>
+        <p className="text-xs font-mono mb-3" style={{ color: "var(--text)" }}>
+          This maturity model follows the 4-level progression common in capability maturity frameworks: reactive → standardized → proactive → optimized. Each level builds on the previous — you can't skip levels because the higher practices depend on foundations built below.
+        </p>
+        <p className="text-xs font-mono mb-3" style={{ color: "var(--text-dim)" }}>
+          Inspired by CMMI (Capability Maturity Model Integration), OWASP SAMM (Software Assurance Maturity Model), NIST Cybersecurity Framework tiers, and the ISA/IEC 62443 security level concept for industrial systems. Adapted specifically for security UX — where the maturity of the user-facing layer is distinct from back-end security maturity.
+        </p>
+        <div className="flex flex-wrap gap-1.5 text-xs font-mono">
+          {[
+            { label: "CMMI", url: "https://cmmiinstitute.com/" },
+            { label: "OWASP SAMM", url: "https://owaspsamm.org/" },
+            { label: "NIST CSF", url: "https://www.nist.gov/cyberframework" },
+            { label: "IEC 62443 SL", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },
+            { label: "ISO 27001", url: "https://www.iso.org/standard/27001" },
+            { label: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
+            { label: "EU AI Act", url: "https://artificialintelligenceact.eu/" },
+            { label: "GDPR", url: "https://gdpr-info.eu/" },
+          ].map(({ label, url }) => (
+            <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
