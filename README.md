@@ -18,7 +18,7 @@ $ ls ./patterns
    accessible_auth ....... WCAG 2.2, SC 3.3.8
 
 🔒 threat/ (3)
-   breach_notification ... GDPR Art. 33, CWE-200
+   breach_notification ... GDPR Art. 33/34, CWE-200
    phishing_warning ...... OWASP A07, CWE-601
    suspicious_activity ... OWASP A07, CWE-778
 
@@ -60,7 +60,7 @@ $ ls ./patterns
 $ get --score
 🛡 Security UX Score: rate your app → A+ through F
 $ get --compliance
-📋 Compliance Mapper: 17 regulations including NIS2 + DORA + WCAG 2.2 + EU AI Act + IEC 62443
+📋 Compliance Mapper: 18 regulations including NIS2 + DORA + WCAG 2.2 + EU AI Act + EAA + IEC 62443
 $ get --maturity
 📊 Maturity Model: assess your security UX → Level 1-4
 $ get --report
@@ -79,7 +79,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 | Tool | What it does |
 |------|-------------|
 | **Security UX Score** | Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. |
-| **Compliance Mapper** | Select from 16 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, IEC 62443...) → see which patterns you need |
+| **Compliance Mapper** | Select from 18 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
 | **Report Generator** | Answer 6 questions → downloadable .md report with prioritized patterns |
 

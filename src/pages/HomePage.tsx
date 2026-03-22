@@ -201,7 +201,7 @@ export function HomePage() {
 
             <div className="mt-2" style={{ color: "var(--green)" }}>🔒 threat/ (3)</div>
             {[
-              { path: "/patterns/threat/breach-notification", name: "breach_notification", ref: "GDPR Art. 33, CWE-200" },
+              { path: "/patterns/threat/breach-notification", name: "breach_notification", ref: "GDPR Art. 33/34, CWE-200" },
               { path: "/patterns/threat/phishing-warning", name: "phishing_warning", ref: "OWASP A07, CWE-601" },
               { path: "/patterns/threat/suspicious-activity", name: "suspicious_activity", ref: "OWASP A07, CWE-778" },
             ].map(({ path, name, ref }) => (
@@ -228,8 +228,8 @@ export function HomePage() {
             {[
               { path: "/patterns/data/encryption", name: "encryption", ref: "OWASP A02, CWE-311" },
               { path: "/patterns/data/file-upload", name: "file_upload", ref: "OWASP A03, CWE-434" },
-              { path: "/patterns/data/deletion", name: "data_deletion", ref: "GDPR Art. 17" },
-              { path: "/patterns/data/activity-log", name: "activity_log", ref: "GDPR Art. 15, CWE-778" },
+              { path: "/patterns/data/deletion", name: "data_deletion", ref: "GDPR Art. 17, CWE-212" },
+              { path: "/patterns/data/activity-log", name: "activity_log", ref: "GDPR Art. 15, OWASP A09" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
                 {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
@@ -238,9 +238,9 @@ export function HomePage() {
 
             <div className="mt-2" style={{ color: "var(--amber)" }}>🛡 owasp/ (3)</div>
             {[
-              { path: "/patterns/owasp/broken-access-control", name: "A01_access_control", ref: "CWE-284" },
-              { path: "/patterns/owasp/security-misconfiguration", name: "A05_misconfiguration", ref: "CWE-16" },
-              { path: "/patterns/owasp/logging-monitoring", name: "A09_logging", ref: "CWE-778" },
+              { path: "/patterns/owasp/broken-access-control", name: "A01_access_control", ref: "CWE-284, CWE-639" },
+              { path: "/patterns/owasp/security-misconfiguration", name: "A05_misconfiguration", ref: "CWE-16, CWE-209" },
+              { path: "/patterns/owasp/logging-monitoring", name: "A09_logging", ref: "CWE-778, CWE-223" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
                 {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
