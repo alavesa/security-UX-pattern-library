@@ -52,9 +52,9 @@ function EncryptionIndicatorDemo() {
                 <div>
                   <p className="text-xs font-semibold font-mono" style={{ color: "var(--cyan)" }}>Encryption verified</p>
                   <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>Messages are end-to-end encrypted using Signal Protocol. Only you and Alice can read them — not even we can.</p>
-                  <div className="mt-2 p-2 rounded" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                  <div className="mt-2 p-2 rounded overflow-hidden" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
                     <p className="text-xs font-mono mb-1" style={{ color: "var(--text-dim)" }}>Safety number</p>
-                    <p className="font-mono text-xs tracking-wider" style={{ color: "var(--text-bright)" }}>38472 91056 73829 10384 72910 56738</p>
+                    <p className="font-mono text-xs tracking-wider break-all" style={{ color: "var(--text-bright)" }}>38472 91056 73829 10384 72910 56738</p>
                     <p className="text-xs font-mono mt-1" style={{ color: "var(--text-dim)" }}>Compare this number with Alice to verify encryption.</p>
                   </div>
                 </div>
@@ -178,16 +178,16 @@ function EncryptionIndicatorDemo() {
               const color = status === "e2e" ? "var(--cyan)" : status === "encrypted" ? "var(--green)" : "var(--amber)";
               const bg = status === "e2e" ? "var(--cyan-glow)" : status === "encrypted" ? "rgba(0,255,65,0.1)" : "rgba(255,170,0,0.1)";
               return (
-                <div key={name} className="flex items-start gap-3 p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                <div key={name} className="flex items-start gap-3 p-3 rounded-lg overflow-hidden" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
                   <Icon className="w-5 h-5 mt-0.5 shrink-0" style={{ color }} />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                       <span className="text-sm font-medium font-mono" style={{ color: "var(--text-bright)" }}>{name}</span>
-                      <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: bg, color }}>
+                      <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0 ml-auto" style={{ background: bg, color }}>
                         {status === "e2e" ? "E2E Encrypted" : status === "encrypted" ? "Encrypted" : "Not encrypted"}
                       </span>
                     </div>
-                    <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>{detail}</p>
+                    <p className="text-xs font-mono mt-1 break-words" style={{ color: "var(--text)" }}>{detail}</p>
                   </div>
                 </div>
               );
