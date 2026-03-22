@@ -36,7 +36,7 @@ function AIDisclosureDemo() {
   const sendMessage = () => {
     if (typing) return;
     if (!input.trim()) return;
-    const userMsg: Message = { id: crypto.randomUUID(), role: "user", text: input };
+    const userMsg: Message = { id: (typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`), role: "user", text: input };
     setMessages(prev => [...prev, userMsg]);
     setInput("");
     setTyping(true);
@@ -46,7 +46,7 @@ function AIDisclosureDemo() {
     setTimeout(() => {
       setMessages(prev => {
         const responseIndex = Math.min(prev.filter(m => m.role === "ai").length, responses.length - 1);
-        return [...prev, { id: crypto.randomUUID(), role: "ai", text: responses[responseIndex] }];
+        return [...prev, { id: (typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`), role: "ai", text: responses[responseIndex] }];
       });
       setTyping(false);
     }, 1500);

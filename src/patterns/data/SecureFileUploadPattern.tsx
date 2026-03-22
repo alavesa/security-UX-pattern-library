@@ -18,7 +18,7 @@ function SecureFileUploadDemo() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const simulateUpload = useCallback((fileName: string) => {
-    const id = crypto.randomUUID();
+    const id = typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const ext = fileName.split(".").pop()?.toLowerCase() ?? "";
     const dangerousExts = ["exe", "bat", "cmd", "scr", "ps1", "vbs"];
     const size = `${(Math.random() * 5 + 0.1).toFixed(1)} MB`;
