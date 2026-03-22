@@ -77,11 +77,18 @@ function SafetyCriticalDemo() {
                 <h3 className="font-mono text-sm mb-6" style={{ color: "var(--text-bright)" }}>TURBINE #3 — EMERGENCY SHUTDOWN</h3>
 
                 <div className="rounded-lg p-4 mb-6 text-left" style={{ background: "var(--bg-elevated)", border: "1px solid var(--border)" }}>
-                  <div className="grid grid-cols-2 gap-3 font-mono text-xs">
-                    <div><span style={{ color: "var(--text-dim)" }}>Status:</span> <span style={{ color: "var(--green)" }}>Running</span></div>
-                    <div><span style={{ color: "var(--text-dim)" }}>Output:</span> <span style={{ color: "var(--text-bright)" }}>340 MW</span></div>
-                    <div><span style={{ color: "var(--text-dim)" }}>Temp:</span> <span style={{ color: "var(--text-bright)" }}>1,104°C</span></div>
-                    <div><span style={{ color: "var(--text-dim)" }}>RPM:</span> <span style={{ color: "var(--text-bright)" }}>3,600</span></div>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2 font-mono text-xs">
+                    {[
+                      { label: "Status", value: "Running", valueColor: "var(--green)" },
+                      { label: "Output", value: "340 MW", valueColor: "var(--text-bright)" },
+                      { label: "Temp", value: "1,104°C", valueColor: "var(--text-bright)" },
+                      { label: "RPM", value: "3,600", valueColor: "var(--text-bright)" },
+                    ].map(({ label, value, valueColor }) => (
+                      <div key={label} className="flex items-center justify-between">
+                        <span style={{ color: "var(--text-dim)" }}>{label}</span>
+                        <span className="font-medium" style={{ color: valueColor }}>{value}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
