@@ -34,6 +34,8 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/data/deletion", label: "Data Deletion", category: "Data" },
       { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
       { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
+      { path: "/patterns/auth/oauth-consent", label: "OAuth Consent", category: "Auth" },
+      { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
     ],
   },
   {
@@ -47,6 +49,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/dark/hidden-unsubscribe", label: "Hidden Unsubscribe", category: "Dark Patterns" },
       { path: "/patterns/data/deletion", label: "Data Deletion", category: "Data" },
       { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "Data" },
+      { path: "/patterns/auth/oauth-consent", label: "OAuth Consent", category: "Auth" },
     ],
   },
   {
@@ -87,6 +90,9 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
       { path: "/patterns/threat/suspicious-activity", label: "Suspicious Activity", category: "Threat" },
       { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
+      { path: "/patterns/governance/design-review", label: "Security Design Review", category: "Governance" },
+      { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
+      { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
     ],
   },
   {
@@ -156,6 +162,8 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/auth/session-timeout", label: "Session Timeout", category: "Auth" },
       { path: "/patterns/owasp/broken-access-control", label: "Access Control", category: "OWASP" },
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
+      { path: "/patterns/governance/design-review", label: "Security Design Review", category: "Governance" },
+      { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
     ],
   },
   {
@@ -238,6 +246,10 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "Industrial" },
       { path: "/patterns/industrial/alarm-fatigue", label: "Alarm Fatigue", category: "Industrial" },
       { path: "/patterns/industrial/navigation-levels", label: "Navigation Levels", category: "Industrial" },
+      { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "Threat" },
+      { path: "/patterns/governance/design-review", label: "Security Design Review", category: "Governance" },
+      { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
+      { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
     ],
   },
   {
@@ -256,6 +268,9 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/owasp/broken-access-control", label: "Access Control", category: "OWASP" },
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
       { path: "/patterns/owasp/security-misconfiguration", label: "Security Config", category: "OWASP" },
+      { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "Threat" },
+      { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
+      { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
     ],
   },
   {
@@ -275,6 +290,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
       { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "Industrial" },
       { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "Industrial" },
+      { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "Threat" },
     ],
   },
   {
