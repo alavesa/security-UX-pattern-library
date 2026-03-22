@@ -86,7 +86,7 @@ function SuspiciousActivityDemo() {
             <button
               type="button"
               onClick={() => setSecured(true)}
-              className="w-full py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer flex items-center justify-center gap-2"
+              className="w-full px-4 py-2.5 rounded-lg font-medium font-mono text-sm border-none cursor-pointer flex items-center justify-center gap-2"
               style={{ background: "var(--red)", color: "white" }}
             >
               <Shield className="w-4 h-4 shrink-0" /> <span>This wasn't me — secure account</span>
