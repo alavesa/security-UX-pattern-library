@@ -201,11 +201,11 @@ Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scan
 
 Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity border) variants for consistent tinted containers. Semantic colors (red for errors, green for success, amber for warnings) are used across all categories regardless of accent color.
 
-## Sources (38)
+## Sources (45)
 
-**EU Regulation:** GDPR, NIS2, DORA, CRA, EU AI Act, EU DSA, ePrivacy, EU Consumer Rights Directive
+**EU Regulation:** GDPR, NIS2, DORA, CRA, EU AI Act, EU DSA, ePrivacy, EU Consumer Rights Directive, European Accessibility Act (EAA)
 
-**Standards & Compliance:** OWASP, CWE, NIST, WCAG 2.2 (SC 3.3.8 Accessible Auth), ISO 27001, SOC 2, PCI DSS, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act
+**Standards & Compliance:** OWASP, CWE, NIST SP 800-63B, NIST CSF, NIST SP 800-30, WCAG 2.2 (SC 3.3.8 Accessible Auth), ISO 27001, ISO 27005, SOC 2, PCI DSS, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act, CMMI, OWASP SAMM, OWASP Risk Rating
 
 **Industrial:** IEC 62443, IEC 61511, ISA-18.2, ISA-101, EEMUA 191
 

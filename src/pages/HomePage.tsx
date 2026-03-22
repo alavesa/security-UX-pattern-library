@@ -170,7 +170,7 @@ export function HomePage() {
             {[
               { value: "34", label: "interactive patterns", color: "var(--green)" },
               { value: "18", label: "regulations covered", color: "var(--amber)" },
-              { value: "38", label: "cited sources", color: "var(--cyan)" },
+              { value: "45", label: "cited sources", color: "var(--cyan)" },
               { value: "4", label: "strategic tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
@@ -736,6 +736,7 @@ export function HomePage() {
               <li><a href="https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU Digital Services Act</a> — Platform transparency + dark patterns</li>
               <li><a href="https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ePrivacy Directive</a> — Cookie consent rules</li>
               <li><a href="https://commission.europa.eu/law/law-topic/consumer-protection-law_en" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>EU Consumer Rights Directive</a> — Cancellation + unfair practices</li>
+              <li><a href="https://ec.europa.eu/social/main.jsp?catId=1202" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>European Accessibility Act</a> — Directive 2019/882 (enforceable June 2025)</li>
             </ul>
           </div>
 
@@ -759,6 +760,12 @@ export function HomePage() {
               <li><a href="https://www.iab.com/guidelines/ai-transparency-and-disclosure-framework/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>IAB AI Transparency Framework</a> — Risk-based disclosure</li>
               <li><a href="https://drata.com/blog/artificial-intelligence-regulations-state-and-federal-ai-laws-2026" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>US State AI Laws 2026</a> — Colorado, California, Illinois</li>
               <li><a href="https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>Illinois AI Video Interview Act</a> — AI consent in hiring</li>
+              <li><a href="https://cmmiinstitute.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>CMMI</a> — Capability Maturity Model Integration</li>
+              <li><a href="https://owaspsamm.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>OWASP SAMM</a> — Software Assurance Maturity Model</li>
+              <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>NIST Cybersecurity Framework</a> — CSF tiers + risk management</li>
+              <li><a href="https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>NIST SP 800-30</a> — Guide for conducting risk assessments</li>
+              <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>ISO 27005</a> — Information security risk management</li>
+              <li><a href="https://owasp.org/www-community/OWASP_Risk_Rating_Methodology" target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 hover:decoration-current/80" style={{ color: "var(--text-bright)" }}>OWASP Risk Rating</a> — Risk rating methodology</li>
             </ul>
           </div>
 
