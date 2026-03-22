@@ -292,23 +292,23 @@ export function ScorePage() {
         <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>
           This scoring model is inspired by industry-standard security assessment frameworks — adapted for UX-specific concerns that traditional security audits miss.
         </p>
-        <div className="space-y-2 text-xs font-mono">
+        <div className="flex flex-wrap gap-1.5 text-xs font-mono">
           {[
-            { label: "OWASP Top 10 (2021)", url: "https://owasp.org/www-project-top-ten/", desc: "Web application security risk categories — basis for Authentication, OWASP, and Data Protection scoring weights" },
-            { label: "NIST SP 800-63B", url: "https://pages.nist.gov/800-63-3/", desc: "Digital identity guidelines — informs password strength, MFA, and session management items" },
-            { label: "WCAG 2.2 SC 3.3.8", url: "https://www.w3.org/WAI/WCAG22/quickref/#accessible-authentication-minimum", desc: "Accessible authentication requirements — no cognitive function tests as sole auth method" },
-            { label: "EU AI Act Art. 50", url: "https://artificialintelligenceact.eu/article/50/", desc: "AI transparency obligations effective August 2026 — basis for the AI Transparency category" },
-            { label: "GDPR Articles 5, 7, 15, 17, 20, 22", url: "https://gdpr-info.eu/", desc: "Data protection rights — informs consent, deletion, portability, and AI decision items" },
-            { label: "FTC Negative Option Rule", url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule", desc: "Consumer protection against subscription dark patterns — basis for Ethical Design scoring" },
-            { label: "IEC 62443 / ISA-18.2 / ISA-101", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series", desc: "Industrial automation security, alarm management, and HMI standards — basis for Industrial category" },
-            { label: "Verizon DBIR 2024", url: "https://www.verizon.com/business/resources/reports/dbir/", desc: "Phishing is #1 initial attack vector — informs threat response and awareness weights" },
-            { label: "IBM Cost of a Data Breach 2023", url: "https://www.ibm.com/reports/data-breach", desc: "204-day average detection time — why logging & monitoring is weighted high" },
-            { label: "Deceptive Design", url: "https://www.deceptive.design/", desc: "Harry Brignull's dark pattern taxonomy — foundation for the Ethical Design category" },
-          ].map(({ label, url, desc }) => (
-            <div key={label} className="p-2 rounded" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
-              <a href={url} target="_blank" rel="noopener noreferrer" className="hover:underline no-underline font-medium" style={{ color: "var(--green)" }}>{label}</a>
-              <p className="mt-0.5" style={{ color: "var(--text-dim)" }}>{desc}</p>
-            </div>
+            { label: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
+            { label: "NIST 800-63B", url: "https://pages.nist.gov/800-63-3/" },
+            { label: "WCAG 2.2", url: "https://www.w3.org/WAI/WCAG22/quickref/#accessible-authentication-minimum" },
+            { label: "EU AI Act Art. 50", url: "https://artificialintelligenceact.eu/article/50/" },
+            { label: "GDPR", url: "https://gdpr-info.eu/" },
+            { label: "FTC Neg. Option Rule", url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" },
+            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },
+            { label: "ISA-18.2", url: "https://www.isa.org/products/ansi-isa-18-2-2016-management-of-alarm-systems-fo" },
+            { label: "Verizon DBIR", url: "https://www.verizon.com/business/resources/reports/dbir/" },
+            { label: "IBM Breach Report", url: "https://www.ibm.com/reports/data-breach" },
+            { label: "Deceptive Design", url: "https://www.deceptive.design/" },
+          ].map(({ label, url }) => (
+            <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
+              {label}
+            </a>
           ))}
         </div>
       </div>
