@@ -139,9 +139,9 @@ function OperatorAuthDemo() {
                 { method: "Facial recognition", status: "Degraded (low light)", color: "var(--amber)" },
                 { method: "Voice recognition", status: "Unavailable (engine noise)", color: "var(--red)" },
               ].map(({ method, status, color }) => (
-                <div key={method} className="flex items-center justify-between">
+                <div key={method} className="flex items-center justify-between gap-3">
                   <span className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>{method}</span>
-                  <span className="font-mono text-xs" style={{ color }}>{status}</span>
+                  <span className="font-mono text-xs text-right shrink-0" style={{ color }}>{status}</span>
                 </div>
               ))}
             </div>
