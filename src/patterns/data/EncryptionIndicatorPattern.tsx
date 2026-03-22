@@ -117,7 +117,7 @@ function EncryptionIndicatorDemo() {
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-sm font-medium font-mono break-all" style={{ color: "var(--text-bright)" }}>https://bank.example.com</span>
-                  <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0" style={{ background: "rgba(0,255,65,0.15)", color: "var(--green)" }}>EV Certificate</span>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0 ml-auto" style={{ background: "rgba(0,255,65,0.15)", color: "var(--green)" }}>EV Certificate</span>
                 </div>
                 <p className="text-xs font-mono mt-0.5" style={{ color: "var(--green)" }}>Connection is secure • TLS 1.3 • Bank Corp, Inc.</p>
               </div>
@@ -134,7 +134,7 @@ function EncryptionIndicatorDemo() {
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-sm font-medium font-mono break-all" style={{ color: "var(--text-bright)" }}>https://shop.example.com</span>
-                  <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0" style={{ background: "rgba(255,170,0,0.15)", color: "var(--amber)" }}>Mixed Content</span>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0 ml-auto" style={{ background: "rgba(255,170,0,0.15)", color: "var(--amber)" }}>Mixed Content</span>
                 </div>
                 <p className="text-xs font-mono mt-0.5" style={{ color: "var(--amber)" }}>Connection partially secure • Some resources loaded over HTTP</p>
               </div>
@@ -151,7 +151,7 @@ function EncryptionIndicatorDemo() {
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-sm font-medium font-mono break-all" style={{ color: "var(--text-bright)" }}>http://old.example.com</span>
-                  <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>Not Secure</span>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0 ml-auto" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>Not Secure</span>
                 </div>
                 <p className="text-xs font-mono mt-0.5" style={{ color: "var(--red)" }}>Connection is not encrypted</p>
               </div>
