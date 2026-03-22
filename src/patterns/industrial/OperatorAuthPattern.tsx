@@ -134,14 +134,17 @@ function OperatorAuthDemo() {
 
             <div className="space-y-3 text-left rounded-lg p-4 mb-4" style={{ background: "var(--bg-elevated)", border: "1px solid var(--border)" }}>
               {[
-                { method: "Fingerprint scan", status: "Available", color: "var(--green)" },
-                { method: "Retina scan", status: "Available", color: "var(--green)" },
-                { method: "Facial recognition", status: "Degraded (low light)", color: "var(--amber)" },
-                { method: "Voice recognition", status: "Unavailable (engine noise)", color: "var(--red)" },
-              ].map(({ method, status, color }) => (
+                { method: "Fingerprint scan", status: "Available", detail: null, color: "var(--green)" },
+                { method: "Retina scan", status: "Available", detail: null, color: "var(--green)" },
+                { method: "Facial recognition", status: "Degraded", detail: "low light", color: "var(--amber)" },
+                { method: "Voice recognition", status: "Unavailable", detail: "engine noise", color: "var(--red)" },
+              ].map(({ method, status, detail, color }) => (
                 <div key={method} className="flex items-start justify-between gap-2">
-                  <span className="font-mono text-xs shrink-0" style={{ color: "var(--text-bright)" }}>{method}</span>
-                  <span className="font-mono text-xs text-right" style={{ color }}>{status}</span>
+                  <span className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>{method}</span>
+                  <span className="font-mono text-xs text-right shrink-0" style={{ color }}>
+                    {status}
+                    {detail && <><br className="sm:hidden" /><span className="hidden sm:inline"> </span><span style={{ color: "var(--text-dim)" }}>({detail})</span></>}
+                  </span>
                 </div>
               ))}
             </div>
