@@ -426,13 +426,13 @@ export function CompliancePage() {
 
           {/* Multi-regulation patterns */}
           {filteredPatterns.some(p => p.regs.length > 1) && (
-            <div className="border rounded-xl p-4 mt-6" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
-              <h3 className="font-mono text-sm font-semibold mb-3" style={{ color: "var(--amber)" }}>High-impact patterns (satisfy multiple regulations)</h3>
+            <div className="border rounded-xl p-3 sm:p-4 mt-6" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
+              <h3 className="font-mono text-xs sm:text-sm font-semibold mb-3" style={{ color: "var(--amber)" }}>High-impact patterns</h3>
               <div className="space-y-2">
                 {filteredPatterns.filter(p => p.regs.length > 1).map(({ pattern, regs }) => (
-                  <div key={pattern.path} className="flex items-center justify-between text-xs">
+                  <div key={pattern.path} className="flex flex-wrap items-center justify-between gap-1 text-xs">
                     <span className="font-mono" style={{ color: "var(--text-bright)" }}>{pattern.label}</span>
-                    <span style={{ color: "var(--amber)" }}>satisfies {regs.length} regulations</span>
+                    <span className="font-mono shrink-0 ml-auto" style={{ color: "var(--amber)" }}>{regs.length} regs</span>
                   </div>
                 ))}
               </div>
