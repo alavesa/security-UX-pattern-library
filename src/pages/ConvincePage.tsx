@@ -189,6 +189,52 @@ Source: uxsec.dev — 34 interactive patterns, 18 regulations, 45 cited sources`
         </div>
       </div>
 
+      {/* Sources — every claim linked */}
+      <div className="rounded-2xl p-4 sm:p-6 mb-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+        <h2 className="text-sm font-mono font-bold mb-4 flex items-center gap-2" style={{ color: "var(--text-bright)" }}>
+          <Shield className="w-4 h-4" style={{ color: "var(--green)" }} /> Sources cited on this page
+        </h2>
+        <p className="text-xs font-mono mb-4" style={{ color: "var(--text-dim)" }}>
+          Every number, fine, and deadline above links to a primary source. Share these with your team for credibility.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <p className="text-xs font-mono font-semibold mb-2" style={{ color: "var(--red)" }}>Enforcement &amp; fines</p>
+            <ul className="space-y-1.5 text-xs font-mono" style={{ color: "var(--text)" }}>
+              <li><a href="https://www.deceptive.design/enforcement" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Deceptive Design Enforcement DB</a> <span style={{ color: "var(--text-dim)" }}>— Meta, TikTok, Epic fines</span></li>
+              <li><a href="https://www.ketch.com/blog/posts/dark-patterns-are-they-illegal" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Ketch — Dark Patterns Legality</a> <span style={{ color: "var(--text-dim)" }}>— Amazon FTC action</span></li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-xs font-mono font-semibold mb-2" style={{ color: "var(--amber)" }}>Breach &amp; risk data</p>
+            <ul className="space-y-1.5 text-xs font-mono" style={{ color: "var(--text)" }}>
+              <li><a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>IBM Cost of a Data Breach 2023</a> <span style={{ color: "var(--text-dim)" }}>— 204-day detection</span></li>
+              <li><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>OWASP Top 10 (2021)</a> <span style={{ color: "var(--text-dim)" }}>— 94% broken access control</span></li>
+              <li><a href="https://www.microsoft.com/en-us/security/blog/2019/08/20/one-simple-action-you-can-take-to-prevent-99-9-percent-of-account-attacks/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Microsoft MFA Study</a> <span style={{ color: "var(--text-dim)" }}>— 99.9% prevention</span></li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-xs font-mono font-semibold mb-2" style={{ color: "var(--ai-color)" }}>Regulations</p>
+            <ul className="space-y-1.5 text-xs font-mono" style={{ color: "var(--text)" }}>
+              <li><a href="https://gdpr-info.eu/art-7-gdpr/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>GDPR Art. 7</a> <span style={{ color: "var(--text-dim)" }}>— Conditions for consent</span></li>
+              <li><a href="https://gdpr-info.eu/art-33-gdpr/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>GDPR Art. 33</a> <span style={{ color: "var(--text-dim)" }}>— 72h breach notification</span></li>
+              <li><a href="https://artificialintelligenceact.eu/article/50/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>EU AI Act Art. 50</a> <span style={{ color: "var(--text-dim)" }}>— AI transparency (Aug 2026)</span></li>
+              <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> <span style={{ color: "var(--text-dim)" }}>— Cancellation ease</span></li>
+              <li><a href="https://ec.europa.eu/social/main.jsp?catId=1202" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>European Accessibility Act</a> <span style={{ color: "var(--text-dim)" }}>— June 2025</span></li>
+              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Cyber Resilience Act</a> <span style={{ color: "var(--text-dim)" }}>— 2027</span></li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-xs font-mono font-semibold mb-2" style={{ color: "var(--green)" }}>ROI references</p>
+            <ul className="space-y-1.5 text-xs font-mono" style={{ color: "var(--text)" }}>
+              <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Verizon DBIR 2024</a> <span style={{ color: "var(--text-dim)" }}>— Phishing #1 vector</span></li>
+              <li><a href="https://blog.google/technology/safety-security/the-beginning-of-the-end-of-the-password/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Google Passkey Report</a> <span style={{ color: "var(--text-dim)" }}>— 50% faster sign-in</span></li>
+              <li><a href="https://www.deceptive.design/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Deceptive Design</a> <span style={{ color: "var(--text-dim)" }}>— Dark pattern taxonomy</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       {/* Shareable quote */}
       <div className="rounded-2xl p-6 sm:p-8 text-center" style={{ background: "var(--green-glow)", border: "1px solid var(--green-border)" }}>
         <Shield className="w-8 h-8 mx-auto mb-3" style={{ color: "var(--green)" }} />
