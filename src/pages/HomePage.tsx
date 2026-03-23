@@ -207,7 +207,7 @@ export function HomePage() {
               { value: "34", label: "interactive patterns", color: "var(--green)" },
               { value: "18", label: "regulations covered", color: "var(--amber)" },
               { value: "45", label: "cited sources", color: "var(--cyan)" },
-              { value: "4", label: "strategic tools", color: "#c084fc" },
+              { value: "5", label: "strategic tools", color: "#c084fc" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
                 <div className="text-3xl font-bold" style={{ color }}>{value}</div>
@@ -364,6 +364,7 @@ export function HomePage() {
             { path: "/compliance", label: "Compliance Mapper", desc: "Select from 18 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443, WCAG 2.2...) → see exactly which patterns you need for each.", color: "var(--cyan)", cmd: "$ get --compliance" },
             { path: "/maturity", label: "Maturity Model", desc: "10-question assessment → your current level (1-4), priority areas, and a concrete roadmap to the next level. Strategic design is about knowing what to do next.", color: "var(--amber)", cmd: "$ get --maturity" },
             { path: "/report", label: "Report Generator", desc: "Answer 6 questions about your product → downloadable .md report with prioritized patterns, compliance gaps, and implementation order. Take this to your stakeholders.", color: "var(--ai-color)", cmd: "$ get --report" },
+            { path: "/convince", label: "Convince Your Team", desc: "Enforcement data, ROI arguments, regulatory deadlines, and next steps — one page designed to share with stakeholders who need the business case.", color: "var(--red)", cmd: "$ get --convince" },
           ].map(({ path, label, desc, color, cmd }) => (
             <Link
               key={path}
@@ -396,7 +397,7 @@ export function HomePage() {
             },
             {
               title: "Assess your product",
-              desc: "Use the 4 strategic tools: Score your current state, map compliance requirements, assess maturity level, generate a prioritized report for stakeholders.",
+              desc: "Use the 5 strategic tools: Score your current state, map compliance, assess maturity, generate a report, or build the business case for your team.",
               color: "var(--cyan)",
               cmd: "assess →",
             },
