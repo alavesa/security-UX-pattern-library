@@ -115,6 +115,8 @@ const AUTH_PATTERNS = [
   },
 ];
 
+const BUILD_DATE = new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" }).toLowerCase();
+
 function BackToTop() {
   const [visible, setVisible] = useState(false);
 
@@ -955,6 +957,8 @@ export function HomePage() {
             <a href="https://github.com/alavesa/security-UX-pattern-library" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--text)" }}>github</a>
             <span style={{ color: "#777" }}>·</span>
             <span className="flex items-center gap-1">built with <a href="https://claude.ai" target="_blank" rel="noopener" className="hover:underline no-underline" style={{ color: "var(--cyan)" }}>claude</a></span>
+            <span style={{ color: "#777" }}>·</span>
+            <span style={{ color: "var(--text-dim)" }}>updated {BUILD_DATE}</span>
           </div>
         </div>
       </footer>
