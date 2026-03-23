@@ -84,6 +84,8 @@ const statusColor = (s: string) =>
 const statusBg = (s: string) =>
   s === "critical" ? "rgba(255,51,51,0.1)" : s === "warning" ? "rgba(255,170,0,0.1)" : "rgba(0,255,65,0.05)";
 
+const statusOrder: Record<string, number> = { critical: 0, warning: 1, normal: 2 };
+
 function NavigationDemo() {
   const [level, setLevel] = useState<Level>(1);
   const [selectedArea, setSelectedArea] = useState<number | null>(null);
@@ -180,10 +182,12 @@ function NavigationDemo() {
             <p className="text-xs font-mono mb-3" style={{ color: "var(--text-dim)" }}>
               L1 — Plant Overview · {PLANT_DATA.filter(a => a.status === "critical").length} critical · {PLANT_DATA.filter(a => a.status === "warning").length} warning
             </p>
-            {PLANT_DATA.map((area, i) => (
+            {[...PLANT_DATA].sort((a, b) => (statusOrder[a.status] ?? 2) - (statusOrder[b.status] ?? 2)).map((area) => {
+              const originalIndex = PLANT_DATA.indexOf(area);
+              return (
               <button
-                key={i}
-                onClick={() => goToArea(i)}
+                key={originalIndex}
+                onClick={() => goToArea(originalIndex)}
                 className="w-full flex items-center justify-between p-3 rounded-lg border-none cursor-pointer font-mono text-xs text-left"
                 style={{ background: statusBg(area.status), border: `1px solid ${statusColor(area.status)}33` }}
               >
@@ -196,7 +200,8 @@ function NavigationDemo() {
                   <ChevronRight className="w-3 h-3" style={{ color: "var(--text-dim)" }} />
                 </div>
               </button>
-            ))}
+              );
+            })}
           </div>
         )}
 
@@ -206,10 +211,12 @@ function NavigationDemo() {
             <p className="text-xs font-mono mb-3" style={{ color: "var(--text-dim)" }}>
               L2 — {PLANT_DATA[selectedArea].name} · {PLANT_DATA[selectedArea].units.length} units
             </p>
-            {PLANT_DATA[selectedArea].units.map((unit, i) => (
+            {[...PLANT_DATA[selectedArea].units].sort((a, b) => (statusOrder[a.status] ?? 2) - (statusOrder[b.status] ?? 2)).map((unit) => {
+              const originalIndex = PLANT_DATA[selectedArea].units.indexOf(unit);
+              return (
               <button
-                key={i}
-                onClick={() => goToUnit(i)}
+                key={originalIndex}
+                onClick={() => goToUnit(originalIndex)}
                 className="w-full flex items-center justify-between p-3 rounded-lg border-none cursor-pointer font-mono text-xs text-left"
                 style={{ background: statusBg(unit.status), border: `1px solid ${statusColor(unit.status)}33` }}
               >
@@ -224,7 +231,8 @@ function NavigationDemo() {
                   <ChevronRight className="w-3 h-3" style={{ color: "var(--text-dim)" }} />
                 </div>
               </button>
-            ))}
+              );
+            })}
           </div>
         )}
 
