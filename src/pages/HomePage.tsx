@@ -147,7 +147,7 @@ export function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 text-center border-b relative overflow-hidden" style={{ borderColor: "var(--border)" }}>
+      <section id="hero" className="px-4 sm:px-6 py-16 sm:py-24 text-center border-b relative overflow-hidden" style={{ borderColor: "var(--border)" }}>
         <MatrixRain />
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 text-sm font-mono px-4 py-1.5 rounded mb-6"
@@ -320,7 +320,7 @@ export function HomePage() {
       </section>
 
       {/* The cost of getting it wrong */}
-      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
+      <section id="cost" className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
         <h2 className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>$ cat ./cost_of_failure</h2>
         <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>Security UX failures have real consequences — regulatory, financial, and reputational.</p>
 
@@ -346,7 +346,7 @@ export function HomePage() {
       </section>
 
       {/* Strategic Tools */}
-      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
+      <section id="tools" className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
         <h2 className="text-xl font-mono mb-2" style={{ color: "var(--ai-color)" }}>$ get --strategic-tools</h2>
         <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>Don't start with patterns — start with where you stand. These tools help you assess, prioritize, and report.</p>
 
@@ -374,7 +374,7 @@ export function HomePage() {
       </section>
 
       {/* How to use */}
-      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
+      <section id="how-to-use" className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
         <h2 className="text-xl font-mono mb-2" style={{ color: "var(--green)" }}>$ cat ./how_to_use</h2>
         <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>This library works for any team, any stack, any level of security maturity.</p>
 
@@ -415,8 +415,8 @@ export function HomePage() {
       </section>
 
       {/* Pattern Cards */}
-      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto">
-        <h2 className="text-xl font-mono mb-2 glow-text">./auth/</h2>
+      <section id="patterns" className="px-4 sm:px-6 py-16 max-w-5xl mx-auto">
+        <h2 id="auth" className="text-xl font-mono mb-2 glow-text">./auth/</h2>
         <p className="mb-8" style={{ color: "var(--text)" }}>Authentication patterns — the front door of security.</p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -444,7 +444,7 @@ export function HomePage() {
 
         {/* Threat Response */}
         <div className="mt-16">
-          <h2 className="text-xl font-mono mb-2 glow-text">./threat/</h2>
+          <h2 id="threat" className="text-xl font-mono mb-2 glow-text">./threat/</h2>
           <p className="mb-8" style={{ color: "var(--text)" }}>Threat response patterns — when things go wrong.</p>
 
           <div className="grid md:grid-cols-3 gap-4">
@@ -477,7 +477,7 @@ export function HomePage() {
 
         {/* Dark Patterns */}
         <div className="mt-16">
-          <h2 className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>./dark_patterns/</h2>
+          <h2 id="dark-patterns" className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>./dark_patterns/</h2>
           <p className="mb-8" style={{ color: "var(--text)" }}>Anti-patterns — what NOT to do, and why. Each includes the ethical alternative.</p>
 
           <div className="grid md:grid-cols-3 gap-4">
@@ -513,7 +513,7 @@ export function HomePage() {
 
         {/* Data Protection */}
         <div className="mt-16">
-          <h2 className="text-xl font-mono mb-2" style={{ color: "var(--cyan)" }}>./data/</h2>
+          <h2 id="data" className="text-xl font-mono mb-2" style={{ color: "var(--cyan)" }}>./data/</h2>
           <p className="mb-8" style={{ color: "var(--text)" }}>Data protection patterns — keeping data safe at rest, in transit, and on deletion.</p>
 
           <div className="grid md:grid-cols-3 gap-4">
@@ -547,7 +547,7 @@ export function HomePage() {
 
         {/* OWASP Top 10 */}
         <div className="mt-16">
-          <h2 className="text-xl font-mono mb-2" style={{ color: "var(--amber)" }}>./owasp/</h2>
+          <h2 id="owasp" className="text-xl font-mono mb-2" style={{ color: "var(--amber)" }}>./owasp/</h2>
           <p className="mb-8" style={{ color: "var(--text)" }}>OWASP Top 10 patterns — the most critical web application security risks.</p>
 
           <div className="grid md:grid-cols-3 gap-4">
@@ -580,7 +580,7 @@ export function HomePage() {
 
         {/* AI Transparency */}
         <div className="mt-16">
-          <h2 className="text-xl font-mono mb-2" style={{ color: "#c084fc" }}>./ai/</h2>
+          <h2 id="ai" className="text-xl font-mono mb-2" style={{ color: "#c084fc" }}>./ai/</h2>
           <p className="mb-2" style={{ color: "var(--text)" }}>AI transparency patterns — EU AI Act compliance, effective August 2026.</p>
           <p className="text-xs mb-8" style={{ color: "var(--red)" }}>Deadline: August 2026 — 5 months away</p>
 
@@ -614,7 +614,7 @@ export function HomePage() {
 
         {/* Industrial */}
         <div className="mt-16">
-          <h2 className="text-xl font-mono mb-2" style={{ color: "#f97316" }}>./industrial/</h2>
+          <h2 id="industrial" className="text-xl font-mono mb-2" style={{ color: "#f97316" }}>./industrial/</h2>
           <p className="mb-2" style={{ color: "var(--text)" }}>Industrial security UX — where IT security meets operational technology. Designed for control rooms, not offices.</p>
           <p className="text-xs mb-8" style={{ color: "#f97316" }}>From 20 years of industrial UX design leadership</p>
 
@@ -649,7 +649,7 @@ export function HomePage() {
 
         {/* Governance */}
         <div className="mt-16">
-          <h2 className="text-xl font-mono mb-2" style={{ color: "var(--text-bright)" }}>./governance/</h2>
+          <h2 id="governance" className="text-xl font-mono mb-2" style={{ color: "var(--text-bright)" }}>./governance/</h2>
           <p className="mb-6" style={{ color: "var(--text)" }}>Process patterns for managing security UX at scale. From industrial change management to compliance audits.</p>
           <div className="grid md:grid-cols-3 gap-4">
             {[
@@ -681,7 +681,7 @@ export function HomePage() {
 
         {/* Contribute */}
         <div className="mt-16">
-          <h2 className="text-xl font-mono mb-2 glow-text">./contribute/</h2>
+          <h2 id="contribute" className="text-xl font-mono mb-2 glow-text">./contribute/</h2>
           <p className="mb-8" style={{ color: "var(--text)" }}>This is open source. Help make security UX better for everyone.</p>
 
           <div className="grid md:grid-cols-3 gap-4 mb-8">
@@ -745,7 +745,7 @@ export function HomePage() {
       </section>
 
       {/* Recent Enforcement */}
-      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
+      <section id="enforcement" className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
         <h2 className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>./recent_enforcement/</h2>
         <p className="text-xs mb-6" style={{ color: "var(--text)" }}>Real fines for dark patterns and security failures — this is why these patterns matter.</p>
 
@@ -789,7 +789,7 @@ export function HomePage() {
       </section>
 
       {/* Sources & References */}
-      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
+      <section id="sources" className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
         <h2 className="text-xl font-mono mb-2" style={{ color: "var(--text-bright)" }}>./sources/</h2>
         <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>45 cited sources across 7 categories. Every claim in the library links back to a primary source.</p>
 
