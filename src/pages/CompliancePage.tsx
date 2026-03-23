@@ -133,8 +133,9 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/ai/disclosure", label: "AI Disclosure", category: "AI" },
       { path: "/patterns/ai/content-labeling", label: "Content Labeling", category: "AI" },
       { path: "/patterns/ai/decision-explanation", label: "Decision Explanation", category: "AI" },
-      { path: "/patterns/dark/confirmshaming", label: "Confirmshaming", category: "Dark Patterns" },
-      { path: "/patterns/dark/privacy-zuckering", label: "Privacy Zuckering", category: "Dark Patterns" },
+      { path: "/patterns/auth/accessible-auth", label: "Accessible Authentication", category: "Auth" },
+      { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
+      { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
     ],
   },
   {
