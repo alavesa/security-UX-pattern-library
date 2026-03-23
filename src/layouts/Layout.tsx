@@ -61,7 +61,7 @@ const CATEGORIES: NavCategory[] = [
     ],
   },
   {
-    id: "ai", label: "ai", color: "#c084fc",
+    id: "ai", label: "ai", color: "var(--ai-color)",
     items: [
       { path: "/patterns/ai/disclosure", label: "disclosure", icon: Bot },
       { path: "/patterns/ai/content-labeling", label: "labeling", icon: Sparkles },
@@ -69,7 +69,7 @@ const CATEGORIES: NavCategory[] = [
     ],
   },
   {
-    id: "industrial", label: "industrial", color: "#f97316",
+    id: "industrial", label: "industrial", color: "var(--industrial-color)",
     items: [
       { path: "/patterns/industrial/operator-auth", label: "operator_auth", icon: Fingerprint },
       { path: "/patterns/industrial/safety-critical", label: "safety_critical", icon: Zap },
@@ -91,7 +91,7 @@ const ASSESS_TOOLS = [
   { path: "/score", label: "score", icon: Target, color: "var(--green)" },
   { path: "/compliance", label: "compliance", icon: ClipboardCheck, color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", icon: BarChart3, color: "var(--amber)" },
-  { path: "/report", label: "report", icon: FileText, color: "#c084fc" },
+  { path: "/report", label: "report", icon: FileText, color: "var(--ai-color)" },
   { path: "/convince", label: "convince_team", icon: Users, color: "var(--red)" },
 ];
 
@@ -102,7 +102,7 @@ const HEADER_NAV: { path: string; label: string; color: string; matchPrefix?: st
   { path: "/score", label: "score", color: "var(--green)" },
   { path: "/compliance", label: "compliance", color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", color: "var(--amber)" },
-  { path: "/report", label: "report", color: "#c084fc" },
+  { path: "/report", label: "report", color: "var(--ai-color)" },
   { path: "/convince", label: "convince", color: "var(--red)" },
 ];
 

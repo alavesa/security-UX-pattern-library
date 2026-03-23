@@ -311,14 +311,15 @@ function NavigationDemo() {
                     const noise = Math.sin(i * 0.5) * (currentUnit.value - currentUnit.setpoint) * (i / 24);
                     const val = base + noise;
                     const height = Math.max(8, Math.min(100, ((val - base * 0.8) / (base * 0.4)) * 100));
-                    const isHigh = val > currentUnit.setpoint * 1.05;
+                    const devFromSetpoint = Math.abs(val - base) / base;
+                    const barColor = devFromSetpoint > 0.1 ? "var(--red)" : devFromSetpoint > 0.03 ? "var(--amber)" : "var(--green)";
                     return (
                       <div
                         key={i}
                         className="flex-1 rounded-t"
                         style={{
                           height: `${height}%`,
-                          background: isHigh ? "var(--red)" : "var(--green)",
+                          background: barColor,
                           opacity: 0.5 + (i / 24) * 0.5,
                         }}
                       />

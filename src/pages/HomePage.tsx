@@ -207,7 +207,7 @@ export function HomePage() {
               { value: "34", label: "interactive patterns", color: "var(--green)" },
               { value: "18", label: "regulations covered", color: "var(--amber)" },
               { value: "45", label: "cited sources", color: "var(--cyan)" },
-              { value: "5", label: "strategic tools", color: "#c084fc" },
+              { value: "5", label: "strategic tools", color: "var(--ai-color)" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
                 <div className="text-3xl font-bold" style={{ color }}>{value}</div>
@@ -283,7 +283,7 @@ export function HomePage() {
               </Link>
             ))}
 
-            <div className="mt-2" style={{ color: "#c084fc" }}>🤖 ai/ (3)</div>
+            <div className="mt-2" style={{ color: "var(--ai-color)" }}>🤖 ai/ (3)</div>
             {[
               { path: "/patterns/ai/disclosure", name: "ai_disclosure", ref: "EU AI Act Art. 50" },
               { path: "/patterns/ai/content-labeling", name: "content_labeling", ref: "Art. 50, C2PA" },
@@ -294,7 +294,7 @@ export function HomePage() {
               </Link>
             ))}
 
-            <div className="mt-2" style={{ color: "#f97316" }}>🏭 industrial/ (4)</div>
+            <div className="mt-2" style={{ color: "var(--industrial-color)" }}>🏭 industrial/ (4)</div>
             {[
               { path: "/patterns/industrial/operator-auth", name: "operator_auth", ref: "IEC 62443" },
               { path: "/patterns/industrial/safety-critical", name: "safety_critical", ref: "IEC 61511" },
@@ -589,7 +589,7 @@ export function HomePage() {
 
         {/* AI Transparency */}
         <div className="mt-16">
-          <AnchorHeading id="ai" className="text-xl font-mono mb-2" style={{ color: "#c084fc" }}>./ai/</AnchorHeading>
+          <AnchorHeading id="ai" className="text-xl font-mono mb-2" style={{ color: "var(--ai-color)" }}>./ai/</AnchorHeading>
           <p className="mb-2" style={{ color: "var(--text)" }}>AI transparency patterns — EU AI Act compliance, effective August 2026.</p>
           <p className="text-xs mb-8" style={{ color: "var(--red)" }}>Deadline: August 2026 — 5 months away</p>
 
@@ -605,15 +605,15 @@ export function HomePage() {
                 className="group border rounded-lg p-6 no-underline transition-all"
                 style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(192,132,252,0.3)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(192,132,252,0.1)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--ai-border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px var(--ai-glow)";
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
                   (e.currentTarget as HTMLElement).style.boxShadow = "none";
                 }}
               >
-                <Icon className="w-6 h-6 mb-3" style={{ color: "#c084fc" }} />
+                <Icon className="w-6 h-6 mb-3" style={{ color: "var(--ai-color)" }} />
                 <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
               </Link>
@@ -623,9 +623,9 @@ export function HomePage() {
 
         {/* Industrial */}
         <div className="mt-16">
-          <AnchorHeading id="industrial" className="text-xl font-mono mb-2" style={{ color: "#f97316" }}>./industrial/</AnchorHeading>
+          <AnchorHeading id="industrial" className="text-xl font-mono mb-2" style={{ color: "var(--industrial-color)" }}>./industrial/</AnchorHeading>
           <p className="mb-2" style={{ color: "var(--text)" }}>Industrial security UX — where IT security meets operational technology. Designed for control rooms, not offices.</p>
-          <p className="text-xs mb-8" style={{ color: "#f97316" }}>From 20 years of industrial UX design leadership</p>
+          <p className="text-xs mb-8" style={{ color: "var(--industrial-color)" }}>From 20 years of industrial UX design leadership</p>
 
           <div className="grid md:grid-cols-3 gap-4">
             {[
@@ -640,15 +640,15 @@ export function HomePage() {
                 className="group border rounded-lg p-6 no-underline transition-all"
                 style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(249,115,22,0.3)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(249,115,22,0.1)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--industrial-border)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px var(--industrial-glow)";
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
                   (e.currentTarget as HTMLElement).style.boxShadow = "none";
                 }}
               >
-                <Icon className="w-6 h-6 mb-3" style={{ color: "#f97316" }} />
+                <Icon className="w-6 h-6 mb-3" style={{ color: "var(--industrial-color)" }} />
                 <h3 className="font-mono font-semibold text-sm mb-2" style={{ color: "var(--text-bright)" }}>{label}</h3>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--text)" }}>{description}</p>
               </Link>
