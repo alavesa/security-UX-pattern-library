@@ -113,7 +113,7 @@ function AIDecisionExplanationDemo() {
               <li>You can provide additional information and request reconsideration</li>
             </ul>
             {!appealStarted ? (
-              <button type="button" onClick={() => setAppealStarted(true)} className="text-xs font-mono px-4 py-2 rounded border-none cursor-pointer" style={{ background: "var(--ai-color)", color: "var(--bg)" }}>
+              <button type="button" onClick={() => setAppealStarted(true)} className="w-full text-xs font-mono px-4 py-2 rounded border-none cursor-pointer" style={{ background: "var(--ai-color)", color: "var(--bg)" }}>
                 Request human review
               </button>
             ) : (
