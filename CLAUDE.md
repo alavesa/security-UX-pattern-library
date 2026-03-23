@@ -2,7 +2,7 @@
 
 ## Project overview
 
-Interactive security UX pattern library with 34 patterns across 8 categories, plus 4 strategic tools. Hacker terminal aesthetic. Domain: uxsec.dev
+Interactive security UX pattern library with 34 patterns across 8 categories, plus 5 strategic tools. Hacker terminal aesthetic. Domain: uxsec.dev
 
 ## Commands
 
@@ -23,7 +23,7 @@ npm run preview  # Preview production build
   - `ai/` — AI Transparency / EU AI Act (3 patterns, purple)
   - `industrial/` — Industrial Security (4 patterns, orange)
   - `governance/` — Governance (3 patterns, gray)
-- `src/pages/` — Tool pages (ScorePage, CompliancePage, MaturityPage, ReportPage, HomePage)
+- `src/pages/` — Tool pages (ScorePage, CompliancePage, MaturityPage, ReportPage, ConvincePage, HomePage)
 - `src/components/` — Shared components (PatternHeader, DemoContainer, GuidelineSection)
 - `src/layouts/Layout.tsx` — Main layout with header, sidebar, mobile menu
 - `src/data/patterns.ts` — Pattern metadata for search and compliance mapping
@@ -83,7 +83,7 @@ Each category has its own color with glow and border variants:
 - **Real enforcement data** — fines and regulations, not hypothetical examples
 - **EU AI Act patterns** — ahead of August 2026 deadline
 - **Industrial patterns** — from real control room design, not consumer UX adapted
-- **Strategic tools** — Score, Compliance Mapper, Maturity Model, Report Generator
+- **Strategic tools** — Score, Compliance Mapper, Maturity Model, Report Generator, Convince Your Team
 - **Mobile-first** — all demos must work on mobile with proper overflow handling
 
 ## Important files

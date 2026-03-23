@@ -65,12 +65,14 @@ $ get --maturity
 📊 Maturity Model: assess your security UX → Level 1-4
 $ get --report
 📄 Report Generator: 6 questions → exportable .md report
+$ get --convince
+🎯 Convince Your Team: enforcement data + ROI arguments for stakeholders
 $█
 ```
 
 Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
 
-## 34 Interactive Patterns + 4 Strategic Tools
+## 34 Interactive Patterns + 5 Strategic Tools
 
 The most comprehensive interactive security UX pattern library. Each pattern has a live demo, do/don't guidelines, security rationale with OWASP/CWE/GDPR references, and accessibility notes.
 
@@ -82,6 +84,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 | **Compliance Mapper** | Select from 18 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
 | **Report Generator** | Answer 6 questions → downloadable .md report with prioritized patterns |
+| **Convince Your Team** | Enforcement data, ROI arguments, regulatory deadlines, and next steps — designed to share with stakeholders |
 
 ## Authentication (8)
 
