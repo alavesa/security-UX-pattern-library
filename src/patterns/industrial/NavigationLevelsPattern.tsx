@@ -380,22 +380,23 @@ function NavigationDemo() {
             </div>
 
             {/* Alarm history */}
-            <div className="p-3 rounded-lg" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.15)" }}>
-              <p className="text-xs font-mono mb-2" style={{ color: "var(--red)" }}>
-                <AlertTriangle className="w-3 h-3 inline mr-1" /> Alarm History — {currentUnit.name}
+            <div className="p-3 rounded-lg" style={{ background: isAbnormal ? "rgba(255,51,51,0.05)" : "var(--bg)", border: isAbnormal ? "1px solid rgba(255,51,51,0.15)" : "1px solid var(--border)" }}>
+              <p className="text-xs font-mono mb-2" style={{ color: isAbnormal ? "var(--red)" : "var(--text-dim)" }}>
+                <AlertTriangle className="w-3 h-3 inline mr-1" /> {isAbnormal ? "Active Alarms" : "Alarm History"} — {currentUnit.name}
               </p>
               <div className="space-y-1.5 text-xs font-mono">
                 {(isAbnormal ? [
-                  { alarm: "HH — High-high limit exceeded", time: "14:23", severity: "var(--red)" },
-                  { alarm: "H — High limit exceeded", time: "14:18", severity: "var(--amber)" },
-                  { alarm: "ROC — Rate of change >5%/min", time: "14:15", severity: "var(--amber)" },
-                  { alarm: "DEV — Setpoint deviation >5%", time: "14:02", severity: "var(--amber)" },
+                  { tag: "HH", alarm: "High-high limit exceeded", time: "14:23 today", severity: "var(--red)" },
+                  { tag: "H", alarm: "High limit exceeded", time: "14:18 today", severity: "var(--amber)" },
+                  { tag: "ROC", alarm: "Rate of change >5%/min", time: "14:15 today", severity: "var(--amber)" },
+                  { tag: "DEV", alarm: "Setpoint deviation >5%", time: "14:02 today", severity: "var(--amber)" },
                 ] : [
-                  { alarm: "DEV — Setpoint deviation >2%", time: "09:15", severity: "var(--amber)" },
-                  { alarm: "Returned to normal", time: "09:22", severity: "var(--green)" },
-                ]).map(({ alarm, time, severity }) => (
-                  <div key={alarm} className="flex items-start justify-between gap-2">
-                    <span style={{ color: severity }}>{alarm}</span>
+                  { tag: "DEV", alarm: "Setpoint deviation >2%", time: "3 days ago", severity: "var(--text-dim)" },
+                  { tag: "OK", alarm: "Returned to normal", time: "3 days ago", severity: "var(--text-dim)" },
+                ]).map(({ tag, alarm, time, severity }) => (
+                  <div key={alarm} className="flex items-center gap-2">
+                    <span className="shrink-0 w-8 font-bold" style={{ color: severity }}>{tag}</span>
+                    <span className="flex-1 min-w-0 truncate" style={{ color: "var(--text)" }}>{alarm}</span>
                     <span className="shrink-0" style={{ color: "var(--text-dim)" }}>{time}</span>
                   </div>
                 ))}
