@@ -312,7 +312,12 @@ function NavigationDemo() {
                     const val = base + noise;
                     const height = Math.max(8, Math.min(100, ((val - base * 0.8) / (base * 0.4)) * 100));
                     const devFromSetpoint = Math.abs(val - base) / base;
-                    const barColor = devFromSetpoint > 0.1 ? "var(--red)" : devFromSetpoint > 0.03 ? "var(--amber)" : "var(--green)";
+                    // Bar color matches the unit's status — green at setpoint,
+                    // then the unit's status color as deviation grows
+                    let barColor = "var(--green)";
+                    if (devFromSetpoint > 0.03) {
+                      barColor = statusColor(currentUnit.status);
+                    }
                     return (
                       <div
                         key={i}
