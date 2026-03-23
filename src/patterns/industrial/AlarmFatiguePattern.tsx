@@ -154,7 +154,7 @@ function AlarmFatigueDemo() {
                   <div className="flex items-center gap-2">
                     <span className="font-bold uppercase" style={{ color: style.text }}>{alarm.priority}</span>
                     <span style={{ color: "var(--text-dim)" }}>{alarm.tag}</span>
-                    <span style={{ color: "var(--border)" }}>{alarm.time}</span>
+                    <span style={{ color: "var(--text-dim)" }}>{alarm.time}</span>
                   </div>
                   <p className="mt-0.5" style={{ color: alarm.acknowledged ? "var(--text-dim)" : "var(--text-bright)" }}>{alarm.message}</p>
                 </div>
