@@ -305,6 +305,7 @@ export function ScorePage() {
             { label: "Verizon DBIR", url: "https://www.verizon.com/business/resources/reports/dbir/" },
             { label: "IBM Breach Report", url: "https://www.ibm.com/reports/data-breach" },
             { label: "Deceptive Design", url: "https://www.deceptive.design/" },
+            { label: "PCI DSS 4.0", url: "https://www.pcisecuritystandards.org/document_library/" },
           ].map(({ label, url }) => (
             <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
               {label}

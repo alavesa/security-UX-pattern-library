@@ -845,7 +845,7 @@ export function HomePage() {
                 { url: "https://www.iso.org/standard/27001", label: "ISO 27001", desc: "Information security management" },
                 { url: "https://www.iso.org/standard/80585.html", label: "ISO 27005", desc: "Security risk management" },
                 { url: "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2", label: "SOC 2", desc: "Service org security controls" },
-                { url: "https://www.pcisecuritystandards.org/", label: "PCI DSS", desc: "Payment card security" },
+                { url: "https://www.pcisecuritystandards.org/document_library/", label: "PCI DSS 4.0", desc: "Payment card security (March 2025)" },
               ].map(({ url, label, desc }) => (
                 <li key={label}><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></li>
               ))}

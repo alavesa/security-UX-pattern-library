@@ -97,17 +97,21 @@ const ALL_REGULATIONS: Regulation[] = [
   },
   {
     id: "pci",
-    name: "PCI DSS",
-    fullName: "Payment Card Industry Data Security Standard",
+    name: "PCI DSS 4.0",
+    fullName: "Payment Card Industry Data Security Standard v4.0 — March 2025",
     color: "#ef4444",
     patterns: [
       { path: "/patterns/auth/login", label: "Login Flow", category: "Auth" },
       { path: "/patterns/auth/mfa", label: "Multi-Factor Auth", category: "Auth" },
       { path: "/patterns/auth/password-strength", label: "Password Strength", category: "Auth" },
       { path: "/patterns/auth/session-timeout", label: "Session Timeout", category: "Auth" },
+      { path: "/patterns/auth/passkeys", label: "Passkeys (WebAuthn)", category: "Auth" },
       { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "Data" },
+      { path: "/patterns/data/secure-file-upload", label: "Secure File Upload", category: "Data" },
+      { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
       { path: "/patterns/owasp/broken-access-control", label: "Access Control", category: "OWASP" },
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
+      { path: "/patterns/owasp/security-misconfig", label: "Security Misconfiguration", category: "OWASP" },
     ],
   },
   {
@@ -515,6 +519,7 @@ export function CompliancePage() {
             { label: "FTC", url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" },
             { label: "ePrivacy", url: "https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation" },
             { label: "EAA", url: "https://ec.europa.eu/social/main.jsp?catId=1202" },
+            { label: "PCI DSS 4.0", url: "https://www.pcisecuritystandards.org/document_library/" },
           ].map(({ label, url }) => (
             <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
               {label}

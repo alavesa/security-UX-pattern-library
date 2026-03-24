@@ -270,7 +270,7 @@ Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity
 
 **EU Regulation:** GDPR, NIS2, DORA, CRA, EU AI Act, EU DSA, ePrivacy, EU Consumer Rights Directive, European Accessibility Act (EAA)
 
-**Standards & Compliance:** OWASP, CWE, NIST SP 800-63B, NIST CSF, NIST SP 800-30, WCAG 2.2 (SC 3.3.8 Accessible Auth), ISO 27001, ISO 27005, SOC 2, PCI DSS, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act, CMMI, OWASP SAMM, OWASP Risk Rating
+**Standards & Compliance:** OWASP, CWE, NIST SP 800-63B, NIST CSF, NIST SP 800-30, WCAG 2.2 (SC 3.3.8 Accessible Auth), ISO 27001, ISO 27005, SOC 2, PCI DSS 4.0, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act, CMMI, OWASP SAMM, OWASP Risk Rating
 
 **Industrial:** IEC 62443, IEC 61511, ISA-18.2, ISA-101, EEMUA 191
 

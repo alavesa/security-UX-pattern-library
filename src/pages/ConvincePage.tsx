@@ -18,6 +18,7 @@ Key regulations:
 - EU AI Act Art. 50: AI interactions must be disclosed (Aug 2026)
 - FTC Negative Option Rule: cancellation must equal signup ease
 - European Accessibility Act: digital services must be accessible (enforced since June 2025)
+- PCI DSS 4.0: MFA required for all cardholder data access (enforced since March 2025)
 
 What to do:
 1. Audit current security UX → uxsec.dev/score
@@ -124,6 +125,7 @@ Source: uxsec.dev — 34 interactive patterns, 18 regulations, 45 cited sources`
             { date: "Now", reg: "GDPR Art. 7", req: "Consent as easy to withdraw as to give — no dark patterns in cookie banners", penalty: "Up to 4% of global annual turnover" },
             { date: "Now", reg: "FTC Neg. Option Rule", req: "Cancellation must be as easy as signup — no retention mazes", penalty: "Up to $50,000 per incident" },
             { date: "Now", reg: "European Accessibility Act", req: "Digital services must be accessible — auth flows, consent, notifications (enforced since June 2025)", penalty: "Varies by member state" },
+            { date: "Now", reg: "PCI DSS 4.0", req: "MFA required for all access to cardholder data — phishing-resistant auth, secure session management (enforced since March 2025)", penalty: "Fines $5,000–$100,000/month + loss of card processing" },
             { date: "Aug 2026", reg: "EU AI Act Art. 50", req: "AI interactions must be disclosed — chatbots can't pretend to be human", penalty: "Up to €15M or 3% of global turnover" },
             { date: "2027", reg: "Cyber Resilience Act", req: "Products with digital elements must meet security requirements", penalty: "Up to €15M or 2.5% of global turnover" },
           ].map(({ date, reg, req, penalty }) => (
@@ -222,6 +224,7 @@ Source: uxsec.dev — 34 interactive patterns, 18 regulations, 45 cited sources`
               <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> <span style={{ color: "var(--text-dim)" }}>— Cancellation ease</span></li>
               <li><a href="https://ec.europa.eu/social/main.jsp?catId=1202" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>European Accessibility Act</a> <span style={{ color: "var(--text-dim)" }}>— June 2025</span></li>
               <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Cyber Resilience Act</a> <span style={{ color: "var(--text-dim)" }}>— 2027</span></li>
+              <li><a href="https://www.pcisecuritystandards.org/document_library/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>PCI DSS 4.0</a> <span style={{ color: "var(--text-dim)" }}>— March 2025</span></li>
             </ul>
           </div>
           <div>
