@@ -195,7 +195,7 @@ export function HomePage() {
 
           <TerminalTyping text="Security is a design decision. Bad UX is a vulnerability." className="text-lg leading-relaxed mb-4 max-w-xl mx-auto" />
           <p className="text-sm leading-relaxed mb-8 max-w-lg mx-auto" style={{ color: "var(--text)" }}>
-            34 interactive patterns that turn regulatory requirements into working UI. From GDPR consent to EU AI Act compliance — each pattern is a live demo with do/don't guidelines, enforcement context, and accessibility notes.
+            Companies spend millions on back-end security but lose millions more to front-door failures. GDPR consent violations. EU AI Act transparency deadlines. NIS2 incident reporting requirements. PCI DSS 4.0 authentication mandates. Cyber Resilience Act product security obligations. Dark patterns that trigger FTC enforcement. 94% of tested apps fail OWASP access control. 34 patterns that turn compliance risk into working UI.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
