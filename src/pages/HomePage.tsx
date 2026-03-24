@@ -82,6 +82,31 @@ function MatrixRain() {
   );
 }
 
+function TerminalTyping({ text, className }: { text: string; className?: string }) {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setDisplayed(text.slice(0, i));
+      if (i >= text.length) {
+        clearInterval(id);
+        setDone(true);
+      }
+    }, 40);
+    return () => clearInterval(id);
+  }, [text]);
+
+  return (
+    <p className={className} style={{ color: "var(--text-bright)" }}>
+      {displayed}
+      {!done && <span className="animate-pulse" style={{ color: "var(--green)" }}>▌</span>}
+    </p>
+  );
+}
+
 const AUTH_PATTERNS = [
   {
     path: "/patterns/auth/login",
@@ -168,9 +193,7 @@ export function HomePage() {
             Security UX<br />Patterns
           </h1>
 
-          <p className="text-lg leading-relaxed mb-4 max-w-xl mx-auto" style={{ color: "var(--text-bright)" }}>
-            Security is a design decision.<br />Bad UX is a vulnerability.
-          </p>
+          <TerminalTyping text="Security is a design decision. Bad UX is a vulnerability." className="text-lg leading-relaxed mb-4 max-w-xl mx-auto" />
           <p className="text-sm leading-relaxed mb-8 max-w-lg mx-auto" style={{ color: "var(--text)" }}>
             34 interactive patterns that turn regulatory requirements into working UI. From GDPR consent to EU AI Act compliance — each pattern is a live demo with do/don't guidelines, enforcement context, and accessibility notes.
           </p>
