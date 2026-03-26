@@ -75,7 +75,7 @@ function LoggingMonitoringDemo() {
             <span className="text-xs font-mono flex items-center gap-2" style={{ color: "var(--text-bright)" }}>
               <Activity className="w-3.5 h-3.5" style={{ color: "var(--amber)" }} /> Security Event Log
             </span>
-            <div className="flex gap-1">
+            <div className="flex flex-wrap gap-1">
               {(["all", "warning", "critical"] as const).map(f => (
                 <button key={f} onClick={() => setFilter(f)} className="text-xs px-2 py-0.5 rounded font-mono border-none cursor-pointer" style={{ background: filter === f ? "var(--amber-glow)" : "transparent", color: filter === f ? "var(--amber)" : "var(--text-dim)" }}>
                   {f === "warning" ? "≥ warning" : f}
@@ -122,9 +122,9 @@ function LoggingMonitoringDemo() {
                   <p className="text-xs font-mono" style={{ color: "var(--text)" }}>user42 exported 15,000 records in 2 minutes — normal is &lt;100/day</p>
                 </div>
               </div>
-              <div className="flex gap-2 mt-2">
-                <button className="text-xs font-mono px-3 py-1 rounded border-none cursor-pointer" style={{ background: "var(--red)", color: "white" }}>Block user</button>
-                <button className="text-xs font-mono px-3 py-1 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>Investigate</button>
+              <div className="flex flex-wrap gap-2 mt-2">
+                <button className="text-xs font-mono px-3 py-1.5 rounded border-none cursor-pointer" style={{ background: "var(--red)", color: "white" }}>Block user</button>
+                <button className="text-xs font-mono px-3 py-1.5 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>Investigate</button>
               </div>
             </div>
 
@@ -136,9 +136,9 @@ function LoggingMonitoringDemo() {
                   <p className="text-xs font-mono" style={{ color: "var(--text)" }}>3 failed login attempts for admin@example.com from Lagos, NG in 4 seconds</p>
                 </div>
               </div>
-              <div className="flex gap-2 mt-2">
-                <button className="text-xs font-mono px-3 py-1 rounded border-none cursor-pointer" style={{ background: "var(--red)", color: "white" }}>Block IP</button>
-                <button className="text-xs font-mono px-3 py-1 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>View logs</button>
+              <div className="flex flex-wrap gap-2 mt-2">
+                <button className="text-xs font-mono px-3 py-1.5 rounded border-none cursor-pointer" style={{ background: "var(--red)", color: "white" }}>Block IP</button>
+                <button className="text-xs font-mono px-3 py-1.5 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>View logs</button>
               </div>
             </div>
 
@@ -150,9 +150,9 @@ function LoggingMonitoringDemo() {
                   <p className="text-xs font-mono" style={{ color: "var(--text)" }}>alex@example.com signed in from Brazil — usually signs in from Germany</p>
                 </div>
               </div>
-              <div className="flex gap-2 mt-2">
-                <button className="text-xs font-mono px-3 py-1 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>Notify user</button>
-                <button className="text-xs font-mono px-3 py-1 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>Mark as safe</button>
+              <div className="flex flex-wrap gap-2 mt-2">
+                <button className="text-xs font-mono px-3 py-1.5 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>Notify user</button>
+                <button className="text-xs font-mono px-3 py-1.5 rounded cursor-pointer" style={{ background: "transparent", color: "var(--text-bright)", border: "1px solid var(--border)" }}>Mark as safe</button>
               </div>
             </div>
           </div>
@@ -166,13 +166,13 @@ function LoggingMonitoringDemo() {
       {/* Audit trail */}
       {scenario === "audit" && (
         <div className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
             <h3 className="font-bold font-mono text-sm flex items-center gap-2" style={{ color: "var(--text-bright)" }}>
               <Eye className="w-4 h-4" style={{ color: "var(--amber)" }} /> Audit Trail
             </h3>
             <div className="flex items-center gap-2">
               <Filter className="w-3.5 h-3.5" style={{ color: "var(--text-dim)" }} />
-              <span className="text-xs font-mono" style={{ color: "var(--text)" }}>user42@example.com</span>
+              <span className="text-xs font-mono truncate" style={{ color: "var(--text)" }}>user42@example.com</span>
             </div>
           </div>
 

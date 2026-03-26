@@ -2,7 +2,7 @@
 
 [![Reviewed by PatchPilots](https://img.shields.io/badge/reviewed%20by-PatchPilots-blue)](https://github.com/alavesa/patchpilots)
 
-**Live site: [uxsec.dev](https://uxsec.dev)**
+**Live site: [uxsec.dev](https://uxsec.dev)** — 34 interactive patterns for designing secure user experiences.
 
 Interactive patterns for designing secure user experiences.
 
