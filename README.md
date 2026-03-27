@@ -286,6 +286,18 @@ Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity
 - 20 years building design organisations for complex industrial systems
 - [neversay.no](https://www.neversay.no) | [LinkedIn](https://www.linkedin.com/in/piia-alavesa/)
 
+## Roadmap
+
+### Accessibility & reach
+- [ ] **Add `<noscript>` fallback content** — site renders a blank black page for users with JavaScript disabled. Target audience includes security professionals who use [NoScript](https://noscript.net) by default. Add a short description of the site content inside `<noscript>` so they know what's there and can choose to enable JS. *(User feedback)*
+
+### Patterns to add
+- [ ] More OWASP Top 10 coverage (currently A01, A05, A09)
+- [ ] API security UX patterns
+
+### Site improvements
+- [ ] Offline/PWA support for use without network
+
 ## License
 
 MIT
