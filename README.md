@@ -1,6 +1,6 @@
 # Security UX Pattern Library
 
-[![Reviewed by PatchPilots](https://img.shields.io/badge/reviewed%20by-PatchPilots-blue)](https://github.com/alavesa/patchpilots)
+[![Reviewed by PatchPilots](https://img.shields.io/badge/reviewed%20by-PatchPilots%20🎯-blueviolet)](https://github.com/alavesa/patchpilots)
 
 **Live site: [uxsec.dev](https://uxsec.dev)** — 34 interactive patterns for designing secure user experiences.
 
