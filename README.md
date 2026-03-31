@@ -62,7 +62,7 @@ $ ls ./patterns
 $ get --score
 🛡 Security UX Score: rate your app → A+ through F
 $ get --compliance
-📋 Compliance Mapper: 18 regulations including NIS2 + DORA + WCAG 2.2 + EU AI Act + EAA + IEC 62443
+📋 Compliance Mapper: 19 regulations including NIS2 + DORA + WCAG 2.2 + EU AI Act + EAA + IEC 62443
 $ get --maturity
 📊 Maturity Model: assess your security UX → Level 1-4
 $ get --report
@@ -83,7 +83,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 | Tool | What it does |
 |------|-------------|
 | **Security UX Score** | Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. |
-| **Compliance Mapper** | Select from 18 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443...) → see which patterns you need |
+| **Compliance Mapper** | Select from 19 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
 | **Report Generator** | Answer 6 questions → downloadable .md report with prioritized patterns |
 | **Convince Your Team** | Enforcement data, ROI arguments, regulatory deadlines, and next steps — designed to share with stakeholders |
@@ -289,7 +289,7 @@ Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity
 ## Roadmap
 
 ### Accessibility & reach
-- [ ] **Add `<noscript>` fallback content** — site renders a blank black page for users with JavaScript disabled. Target audience includes security professionals who use [NoScript](https://noscript.net) by default. Add a short description of the site content inside `<noscript>` so they know what's there and can choose to enable JS. *(User feedback)*
+- [x] **Add `<noscript>` fallback content** — terminal-styled static HTML fallback for NoScript users. Shows site description, pattern count, tool list, and GitHub link. "No tracking. No cookies. No analytics." *(User feedback — shipped)*
 
 ### Patterns to add
 - [ ] More OWASP Top 10 coverage (currently A01, A05, A09)
