@@ -62,7 +62,7 @@ $ ls ./patterns
 $ get --score
 🛡 Security UX Score: rate your app → A+ through F
 $ get --compliance
-📋 Compliance Mapper: 19 regulations including NIS2 + DORA + WCAG 2.2 + EU AI Act + EAA + IEC 62443
+📋 Compliance Mapper: 18 regulations including NIS2 + DORA + WCAG 2.2 + EU AI Act + EAA + IEC 62443
 $ get --maturity
 📊 Maturity Model: assess your security UX → Level 1-4
 $ get --report
@@ -83,7 +83,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 | Tool | What it does |
 |------|-------------|
 | **Security UX Score** | Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. |
-| **Compliance Mapper** | Select from 19 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443...) → see which patterns you need |
+| **Compliance Mapper** | Select from 18 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
 | **Report Generator** | Answer 6 questions → downloadable .md report with prioritized patterns |
 | **Convince Your Team** | Enforcement data, ROI arguments, regulatory deadlines, and next steps — designed to share with stakeholders |
