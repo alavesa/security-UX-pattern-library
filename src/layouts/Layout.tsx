@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch, Users } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch, Users, Waves } from "lucide-react";
 import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
@@ -87,6 +87,10 @@ const CATEGORIES: NavCategory[] = [
   },
 ];
 
+const LIVE_TOOLS = [
+  { path: "/ripple", label: "ripple", icon: Waves, color: "var(--cyan)" },
+];
+
 const ASSESS_TOOLS = [
   { path: "/score", label: "score", icon: Target, color: "var(--green)" },
   { path: "/compliance", label: "compliance", icon: ClipboardCheck, color: "var(--cyan)" },
@@ -95,10 +99,11 @@ const ASSESS_TOOLS = [
   { path: "/convince", label: "convince_team", icon: Users, color: "var(--red)" },
 ];
 
-const ALL_TOOLS = [...ASSESS_TOOLS];
+const ALL_TOOLS = [...LIVE_TOOLS, ...ASSESS_TOOLS];
 
 const HEADER_NAV: { path: string; label: string; color: string; matchPrefix?: string }[] = [
   { path: "/patterns/auth/login", label: "patterns", color: "var(--text)", matchPrefix: "/patterns" },
+  { path: "/ripple", label: "ripple", color: "var(--cyan)" },
   { path: "/score", label: "score", color: "var(--green)" },
   { path: "/compliance", label: "compliance", color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", color: "var(--amber)" },
@@ -249,6 +254,26 @@ export function Layout() {
         {/* Sidebar — collapsible categories */}
         {!isHome && (
           <aside className="w-56 shrink-0 border-r min-h-[calc(100vh-3.5rem)] py-4 px-3 hidden lg:block overflow-y-auto" style={{ borderColor: "var(--border)" }}>
+            {/* Live tools */}
+            <div className="mb-3">
+              <p className="text-xs font-mono px-2 mb-2" style={{ color: "var(--cyan)" }}>live</p>
+              {LIVE_TOOLS.map(({ path, label, icon: Icon, color }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className="flex items-center gap-2 px-2 py-1.5 rounded text-xs no-underline font-mono transition-colors"
+                  style={{
+                    color: headerActive(path) ? color : "var(--text)",
+                    background: headerActive(path) ? bgTint(color, "15") : "transparent",
+                  }}
+                >
+                  <Icon className="w-3.5 h-3.5" /> {label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="border-t my-3" style={{ borderColor: "var(--border)" }} />
+
             {/* Assess tools */}
             <div className="mb-3">
               <p className="text-xs font-mono px-2 mb-2" style={{ color: "#777" }}>assess</p>

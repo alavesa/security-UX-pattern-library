@@ -295,6 +295,7 @@ export function ReportPage() {
               <li><Link to="/score" className="underline" style={{ color: "var(--green)" }}>Run the Security UX Score</Link> to benchmark your current state</li>
               <li><Link to="/compliance" className="underline" style={{ color: "var(--cyan)" }}>Check the Compliance Mapper</Link> for your specific regulations</li>
               <li><Link to="/maturity" className="underline" style={{ color: "var(--amber)" }}>Assess your maturity</Link> and create a roadmap</li>
+              <li><Link to="/ripple" className="underline" style={{ color: "var(--cyan)" }}>Use Ripple</Link> to trace news events through your pattern gaps</li>
             </ol>
           </div>
 

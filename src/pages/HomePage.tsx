@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers, ClipboardCheck, GitBranch, FileText, ChevronUp } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers, ClipboardCheck, GitBranch, FileText, ChevronUp, Waves, ArrowRight } from "lucide-react";
 
 function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -230,7 +230,7 @@ export function HomePage() {
               { value: "34", label: "interactive patterns", color: "var(--green)" },
               { value: "18", label: "regulations covered", color: "var(--amber)" },
               { value: "45", label: "cited sources", color: "var(--cyan)" },
-              { value: "5", label: "strategic tools", color: "var(--ai-color)" },
+              { value: "6", label: "strategic tools", color: "var(--ai-color)" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
                 <div className="text-3xl font-bold" style={{ color }}>{value}</div>
@@ -376,6 +376,46 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Ripple — Live Intelligence */}
+      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
+        <div className="flex items-center gap-2 mb-2">
+          <AnchorHeading id="ripple" className="text-xl font-mono" style={{ color: "var(--cyan)" }}>$ live --ripple</AnchorHeading>
+          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded" style={{ background: "var(--cyan-glow)", color: "var(--cyan)", border: "1px solid var(--cyan-border)" }}>new</span>
+        </div>
+        <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>
+          Paste any headline. Trace the ripple through UX, security, and compliance — powered by 34 patterns.
+        </p>
+
+        <Link
+          to="/ripple"
+          className="block rounded-lg p-6 no-underline transition-all"
+          style={{ background: "var(--bg-card)", border: "1px solid var(--cyan-border)" }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--cyan)"; e.currentTarget.style.boxShadow = "0 0 30px var(--cyan-glow)"; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--cyan-border)"; e.currentTarget.style.boxShadow = "none"; }}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <Waves className="w-5 h-5" style={{ color: "var(--cyan)" }} />
+                <span className="font-mono font-semibold text-sm" style={{ color: "var(--text-bright)" }}>Ripple</span>
+              </div>
+              <p className="text-xs font-mono leading-relaxed mb-4" style={{ color: "var(--text)" }}>
+                News moves fast. Regulations follow. Design decisions get made before anyone traces the second-order effects.
+                Ripple takes any headline and analyzes it through three lenses — UX & Design Systems, Security & NIS2, AI Act Compliance — using the full uxsec.dev pattern library as context.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {["supply chain attack", "AI regulation", "data breach", "critical infrastructure"].map((chip) => (
+                  <span key={chip} className="text-[10px] font-mono px-2 py-1 rounded" style={{ background: "var(--bg)", color: "var(--text-dim)", border: "1px solid var(--border)" }}>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <ArrowRight className="w-5 h-5 shrink-0 mt-1" style={{ color: "var(--cyan)" }} />
+          </div>
+        </Link>
+      </section>
+
       {/* Strategic Tools */}
       <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
         <AnchorHeading id="tools" className="text-xl font-mono mb-2" style={{ color: "var(--ai-color)" }}>$ get --strategic-tools</AnchorHeading>
@@ -420,7 +460,7 @@ export function HomePage() {
             },
             {
               title: "Assess your product",
-              desc: "Use the 5 strategic tools: Score your current state, map compliance, assess maturity, generate a report, or build the business case for your team.",
+              desc: "Use the 6 strategic tools: Score your current state, map compliance, assess maturity, generate a report, build the business case, or trace headline implications with Ripple.",
               color: "var(--cyan)",
               cmd: "assess →",
             },

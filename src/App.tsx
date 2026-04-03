@@ -49,6 +49,7 @@ import { OperatorAuthPattern } from "./patterns/industrial/OperatorAuthPattern";
 import { SafetyCriticalPattern } from "./patterns/industrial/SafetyCriticalPattern";
 import { AlarmFatiguePattern } from "./patterns/industrial/AlarmFatiguePattern";
 import { NavigationLevelsPattern } from "./patterns/industrial/NavigationLevelsPattern";
+import { RipplePage } from "./pages/RipplePage";
 
 export default function App() {
   return (
@@ -62,6 +63,7 @@ export default function App() {
           <Route path="maturity" element={<MaturityPage />} />
           <Route path="report" element={<ReportPage />} />
           <Route path="convince" element={<ConvincePage />} />
+          <Route path="ripple" element={<RipplePage />} />
           <Route path="patterns/governance/design-review" element={<PatternPage><SecurityDesignReviewPattern /></PatternPage>} />
           <Route path="patterns/governance/change-management" element={<PatternPage><ChangeManagementPattern /></PatternPage>} />
           <Route path="patterns/governance/compliance-audit" element={<PatternPage><ComplianceAuditPattern /></PatternPage>} />
