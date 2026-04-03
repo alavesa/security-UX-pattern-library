@@ -69,12 +69,14 @@ $ get --report
 📄 Report Generator: 6 questions → exportable .md report
 $ get --convince
 🎯 Convince Your Team: enforcement data + ROI arguments for stakeholders
+$ live --ripple
+🌊 Ripple: paste a headline → structured analysis prompt through 3 lenses
 $█
 ```
 
 Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
 
-## 34 Interactive Patterns + 5 Strategic Tools
+## 34 Interactive Patterns + 6 Strategic Tools
 
 The most comprehensive interactive security UX pattern library. Each pattern has a live demo, do/don't guidelines, security rationale with OWASP/CWE/GDPR references, and accessibility notes.
 
@@ -82,6 +84,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 
 | Tool | What it does |
 |------|-------------|
+| **[Ripple](https://uxsec.dev/ripple)** | Paste any headline → structured analysis prompt through 3 lenses: UX & Design Systems, Security & Compliance, AI & Emerging Risk. Powered by all 34 patterns. |
 | **Security UX Score** | Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. |
 | **Compliance Mapper** | Select from 18 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
@@ -288,8 +291,15 @@ Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity
 
 ## Roadmap
 
+### Ripple — live intelligence tool
+- [x] **Phase 1: Prompt generator** — paste a headline, get a structured prompt with all 34 patterns as context, copy into Claude or ChatGPT *(shipped)*
+- [ ] **Phase 2: Claude API integration** — inline analysis via a thin proxy (Cloudflare Worker), no user API keys needed. Three-lens results rendered directly on the page with pattern links.
+- [ ] **Phase 3: Adaptive lenses** — LLM picks the most relevant third lens per headline instead of fixed three. Could surface supply chain risk, industrial safety, dark patterns, or AI governance depending on context.
+- [ ] **Related patterns from LLM output** — parse the API response for pattern URLs and replace keyword matching with LLM-referenced patterns
+- [ ] **Weekly digest** — subscribe to a topic (e.g., "NIS2 updates") and receive a weekly Ripple analysis email
+
 ### Accessibility & reach
-- [x] **Add `<noscript>` fallback content** — terminal-styled static HTML fallback for NoScript users. Shows site description, pattern count, tool list, and GitHub link. "No tracking. No cookies. No analytics." *(User feedback — shipped)*
+- [x] **Add `<noscript>` fallback content** — terminal-styled static HTML fallback for NoScript users. Shows site description, pattern count, tool list, and GitHub link. "No tracking. No cookies. No analytics." *(shipped)*
 
 ### Patterns to add
 - [ ] More OWASP Top 10 coverage (currently A01, A05, A09)
