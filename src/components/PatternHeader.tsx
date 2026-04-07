@@ -47,7 +47,7 @@ export function PatternHeader({ title, description, severity, tags }: PatternHea
           onClick={copyLink}
           className="text-xs font-mono px-2.5 py-1 rounded flex items-center gap-1.5 border-none cursor-pointer ml-auto shrink-0"
           style={{ background: copied ? "rgba(0,255,65,0.15)" : "var(--bg-elevated)", color: copied ? "var(--green)" : "var(--text)", border: copied ? "1px solid var(--green-border)" : "1px solid var(--border)" }}
-          aria-label="Copy link to this pattern"
+          aria-label={copied ? "Link copied to clipboard" : "Copy link to this pattern"}
         >
           {copied ? <><Check className="w-3 h-3" /> Copied</> : <><Link2 className="w-3 h-3" /> Copy link</>}
         </button>

@@ -126,7 +126,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
             aria-activedescendant={results[selectedIndex] ? `search-result-${selectedIndex}` : undefined}
             aria-label="Search patterns"
           />
-          <button type="button" onClick={handleClose} aria-label="Close search" className="bg-transparent border-none cursor-pointer p-0.5" style={{ color: "#555" }}>
+          <button type="button" onClick={handleClose} aria-label="Close search" className="bg-transparent border-none cursor-pointer p-0.5" style={{ color: "var(--text-dim)" }}>
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -137,7 +137,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
         </div>
         <div id="search-results-list" role="listbox" className="max-h-[50vh] overflow-y-auto py-2">
           {results.length === 0 && (
-            <p className="text-center text-xs font-mono py-8" style={{ color: "#555" }}>No patterns found for "{query}"</p>
+            <p className="text-center text-xs font-mono py-8" style={{ color: "var(--text-dim)" }}>No patterns found for "{query}"</p>
           )}
           {results.map((pattern, i) => (
             <div
@@ -157,7 +157,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                 <span className="block font-mono text-sm" style={{ color: i === selectedIndex ? "var(--text-bright)" : "var(--text)" }}>
                   {pattern.label}
                 </span>
-                <span className="block text-xs" style={{ color: "#555" }}>
+                <span className="block text-xs" style={{ color: "var(--text-dim)" }}>
                   {pattern.category}/
                 </span>
               </div>
@@ -169,7 +169,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
         </div>
 
         {/* Footer hint */}
-        <div className="border-t px-4 py-2 flex items-center gap-4 text-xs font-mono" style={{ borderColor: "var(--border)", color: "#444" }}>
+        <div className="border-t px-4 py-2 flex items-center gap-4 text-xs font-mono" style={{ borderColor: "var(--border)", color: "var(--text-dim)" }}>
           <span>↑↓ navigate</span>
           <span>↵ open</span>
           <span>esc close</span>
