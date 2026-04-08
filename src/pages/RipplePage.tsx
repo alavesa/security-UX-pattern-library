@@ -260,12 +260,13 @@ export function RipplePage() {
           The three-lens model is informed by how second-order effects propagate through interconnected systems — a news event triggers regulatory responses, which create design requirements, which surface security trade-offs. This thinking is rooted in systems theory and the regulatory feedback loops documented across EU digital policy.
         </p>
         <p className="text-xs font-mono mb-4" style={{ color: "var(--text-dim)" }}>
-          The pattern taxonomy draws from OWASP (web security), IEC 62443 (industrial security), ENISA threat landscape reports (EU threat intelligence), and the EU AI Act / NIS2 directive texts. Prompt engineering approach inspired by chain-of-thought reasoning and domain-specific knowledge injection techniques.
+          The pattern taxonomy draws from OWASP (web security), IEC 62443 (industrial security), ENISA threat landscape reports (EU threat intelligence), EU AI Act / NIS2 directive texts, and ISO/IEC 42001 (AI management systems). Prompt engineering approach inspired by chain-of-thought reasoning and domain-specific knowledge injection techniques.
         </p>
         <div className="flex flex-wrap gap-1.5 text-xs font-mono">
           {[
             { label: "NIS2 Directive", url: "https://eur-lex.europa.eu/eli/dir/2022/2555" },
             { label: "EU AI Act", url: "https://artificialintelligenceact.eu/" },
+            { label: "ISO/IEC 42001", url: "https://www.iso.org/standard/42001" },
             { label: "GDPR", url: "https://gdpr-info.eu/" },
             { label: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
             { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },

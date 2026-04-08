@@ -62,7 +62,7 @@ $ ls ./patterns
 $ get --score
 🛡 Security UX Score: rate your app → A+ through F
 $ get --compliance
-📋 Compliance Mapper: 18 regulations including NIS2 + DORA + WCAG 2.2 + EU AI Act + EAA + IEC 62443
+📋 Compliance Mapper: 19 regulations including NIS2 + DORA + WCAG 2.2 + EU AI Act + ISO 42001 + EAA + IEC 62443
 $ get --maturity
 📊 Maturity Model: assess your security UX → Level 1-4
 $ get --report
@@ -86,7 +86,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 |------|-------------|
 | **[Ripple](https://uxsec.dev/ripple)** | Paste any headline → structured analysis prompt through 3 lenses: UX & Design Systems, Security & Compliance, AI & Emerging Risk. Powered by all 34 patterns. |
 | **Security UX Score** | Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. |
-| **Compliance Mapper** | Select from 18 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443...) → see which patterns you need |
+| **Compliance Mapper** | Select from 19 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, ISO 42001, EAA, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
 | **Report Generator** | Answer 6 questions → downloadable .md report with prioritized patterns |
 | **Convince Your Team** | Enforcement data, ROI arguments, regulatory deadlines, and next steps — designed to share with stakeholders |
@@ -275,7 +275,7 @@ Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity
 
 **EU Regulation:** GDPR, NIS2, DORA, CRA, EU AI Act, EU DSA, ePrivacy, EU Consumer Rights Directive, European Accessibility Act (EAA)
 
-**Standards & Compliance:** OWASP, CWE, NIST SP 800-63B, NIST CSF, NIST SP 800-30, WCAG 2.2 (SC 3.3.8 Accessible Auth), ISO 27001, ISO 27005, SOC 2, PCI DSS 4.0, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act, CMMI, OWASP SAMM, OWASP Risk Rating
+**Standards & Compliance:** OWASP, CWE, NIST SP 800-63B, NIST CSF, NIST SP 800-30, WCAG 2.2 (SC 3.3.8 Accessible Auth), ISO 27001, ISO 27005, ISO/IEC 42001, SOC 2, PCI DSS 4.0, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act, CMMI, OWASP SAMM, OWASP Risk Rating
 
 **Industrial:** IEC 62443, IEC 61511, ISA-18.2, ISA-101, EEMUA 191
 

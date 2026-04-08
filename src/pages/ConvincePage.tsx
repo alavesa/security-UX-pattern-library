@@ -27,7 +27,7 @@ What to do:
 4. Generate prioritized report → uxsec.dev/report
 5. Trace headline implications → uxsec.dev/ripple
 
-Source: uxsec.dev — 34 interactive patterns, 18 regulations, 45 cited sources`;
+Source: uxsec.dev — 34 interactive patterns, 19 regulations, 45 cited sources`;
 
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
@@ -227,6 +227,7 @@ Source: uxsec.dev — 34 interactive patterns, 18 regulations, 45 cited sources`
               <li><a href="https://ec.europa.eu/social/main.jsp?catId=1202" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>European Accessibility Act</a> <span style={{ color: "var(--text-dim)" }}>— June 2025</span></li>
               <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Cyber Resilience Act</a> <span style={{ color: "var(--text-dim)" }}>— 2027</span></li>
               <li><a href="https://www.pcisecuritystandards.org/document_library/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>PCI DSS 4.0</a> <span style={{ color: "var(--text-dim)" }}>— March 2025</span></li>
+              <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>ISO/IEC 42001</a> <span style={{ color: "var(--text-dim)" }}>— AI management system (2023)</span></li>
             </ul>
           </div>
           <div>
@@ -247,7 +248,7 @@ Source: uxsec.dev — 34 interactive patterns, 18 regulations, 45 cited sources`
           "Security is a design decision.<br />Bad UX is a vulnerability."
         </blockquote>
         <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>
-          34 interactive patterns · 18 regulations · 45 cited sources · Open source
+          34 interactive patterns · 19 regulations · 45 cited sources · Open source
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button

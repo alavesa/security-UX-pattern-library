@@ -316,6 +316,23 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
     ],
   },
+  {
+    id: "iso42001",
+    name: "ISO/IEC 42001",
+    fullName: "AI Management System — Responsible AI Governance (2023)",
+    color: "#c084fc",
+    patterns: [
+      { path: "/patterns/ai/disclosure", label: "AI Disclosure", category: "AI" },
+      { path: "/patterns/ai/content-labeling", label: "Content Labeling", category: "AI" },
+      { path: "/patterns/ai/decision-explanation", label: "Decision Explanation", category: "AI" },
+      { path: "/patterns/governance/design-review", label: "Security Design Review", category: "Governance" },
+      { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
+      { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
+      { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
+      { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
+      { path: "/patterns/owasp/security-misconfiguration", label: "Security Misconfiguration", category: "OWASP" },
+    ],
+  },
 ];
 
 const REG_BY_NAME = new Map(ALL_REGULATIONS.map(r => [r.name, r]));
@@ -370,7 +387,7 @@ export function CompliancePage() {
           <p><span style={{ color: "var(--green)" }}>4.</span> Click any pattern to see its interactive demo, guidelines, and implementation notes</p>
         </div>
         <p className="text-xs font-mono mt-3" style={{ color: "var(--text-dim)" }}>
-          18 regulations mapped · Each mapping is based on the regulation's specific articles, not general themes
+          19 regulations mapped · Each mapping is based on the regulation's specific articles, not general themes
         </p>
       </div>
 

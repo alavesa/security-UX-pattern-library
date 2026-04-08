@@ -54,11 +54,11 @@ How does this event change what interfaces need to do? Which design tokens, comp
 Reference specific uxsec.dev patterns that become more critical.
 
 ### 2. Security & Compliance
-What are the cybersecurity implications? Which regulatory frameworks are most relevant — pick from NIS2, GDPR, DORA, PCI DSS, IEC 62443, Cyber Resilience Act, or others as appropriate. Don't force NIS2 if another framework fits better.
+What are the cybersecurity implications? Which regulatory frameworks are most relevant — pick from NIS2, GDPR, DORA, PCI DSS, IEC 62443, ISO/IEC 42001, Cyber Resilience Act, or others as appropriate. Don't force NIS2 if another framework fits better.
 Reference specific uxsec.dev patterns that address these concerns.
 
 ### 3. AI & Emerging Risk
-What are the implications for AI governance, automated decision-making, generative UI, or supply chain trust? Consider the EU AI Act where relevant, but also broader emerging risks: AI-generated content, model supply chain integrity, agentic AI access patterns, or dark patterns enabled by AI.
+What are the implications for AI governance, automated decision-making, generative UI, or supply chain trust? Consider the EU AI Act and ISO/IEC 42001 (AI management systems) where relevant, but also broader emerging risks: AI-generated content, model supply chain integrity, agentic AI access patterns, or dark patterns enabled by AI.
 Reference specific uxsec.dev patterns where applicable. If the headline has no AI angle, say so briefly.
 
 ## Rules

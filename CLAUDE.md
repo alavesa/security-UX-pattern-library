@@ -2,7 +2,7 @@
 
 ## Project overview
 
-Interactive security UX pattern library with 34 patterns across 8 categories, plus 5 strategic tools. Hacker terminal aesthetic. Domain: uxsec.dev
+Interactive security UX pattern library with 34 patterns across 8 categories, plus 6 strategic tools (including Ripple). 19 regulations mapped. Hacker terminal aesthetic. Domain: uxsec.dev
 
 ## Commands
 

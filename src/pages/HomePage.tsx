@@ -228,7 +228,7 @@ export function HomePage() {
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
               { value: "34", label: "interactive patterns", color: "var(--green)" },
-              { value: "18", label: "regulations covered", color: "var(--amber)" },
+              { value: "19", label: "regulations covered", color: "var(--amber)" },
               { value: "45", label: "cited sources", color: "var(--cyan)" },
               { value: "6", label: "strategic tools", color: "var(--ai-color)" },
             ].map(({ value, label, color }) => (
@@ -424,7 +424,7 @@ export function HomePage() {
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             { path: "/score", label: "Security UX Score", desc: "Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. Know your baseline before you start fixing.", color: "var(--green)", cmd: "$ get --score" },
-            { path: "/compliance", label: "Compliance Mapper", desc: "Select from 18 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, EAA, IEC 62443, WCAG 2.2...) → see exactly which patterns you need for each.", color: "var(--cyan)", cmd: "$ get --compliance" },
+            { path: "/compliance", label: "Compliance Mapper", desc: "Select from 19 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, ISO 42001, EAA, IEC 62443, WCAG 2.2...) → see exactly which patterns you need for each.", color: "var(--cyan)", cmd: "$ get --compliance" },
             { path: "/maturity", label: "Maturity Model", desc: "10-question assessment → your current level (1-4), priority areas, and a concrete roadmap to the next level. Strategic design is about knowing what to do next.", color: "var(--amber)", cmd: "$ get --maturity" },
             { path: "/report", label: "Report Generator", desc: "Answer 6 questions about your product → downloadable .md report with prioritized patterns, compliance gaps, and implementation order. Take this to your stakeholders.", color: "var(--ai-color)", cmd: "$ get --report" },
             { path: "/convince", label: "Convince Your Team", desc: "Enforcement data, ROI arguments, regulatory deadlines, and next steps — one page designed to share with stakeholders who need the business case.", color: "var(--red)", cmd: "$ get --convince" },
