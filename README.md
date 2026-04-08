@@ -271,7 +271,7 @@ Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scan
 
 Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity border) variants for consistent tinted containers. Semantic colors (red for errors, green for success, amber for warnings) are used across all categories regardless of accent color.
 
-## Sources (45)
+## Sources (46)
 
 **EU Regulation:** GDPR, NIS2, DORA, CRA, EU AI Act, EU DSA, ePrivacy, EU Consumer Rights Directive, European Accessibility Act (EAA)
 

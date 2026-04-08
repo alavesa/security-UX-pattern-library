@@ -229,7 +229,7 @@ export function HomePage() {
             {[
               { value: "34", label: "interactive patterns", color: "var(--green)" },
               { value: "19", label: "regulations covered", color: "var(--amber)" },
-              { value: "45", label: "cited sources", color: "var(--cyan)" },
+              { value: "46", label: "cited sources", color: "var(--cyan)" },
               { value: "6", label: "strategic tools", color: "var(--ai-color)" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
@@ -863,7 +863,7 @@ export function HomePage() {
       {/* Sources & References */}
       <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
         <AnchorHeading id="sources" className="text-xl font-mono mb-2" style={{ color: "var(--text-bright)" }}>./sources/</AnchorHeading>
-        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>45 cited sources across 7 categories. Every claim in the library links back to a primary source.</p>
+        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>46 cited sources across 7 categories. Every claim in the library links back to a primary source.</p>
 
         <div className="grid md:grid-cols-2 gap-6">
 
@@ -895,7 +895,7 @@ export function HomePage() {
           <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--green)" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "var(--green)" }} /> Security Standards
-              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>10 sources</span>
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>11 sources</span>
             </h3>
             <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
               {[
@@ -907,6 +907,7 @@ export function HomePage() {
                 { url: "https://www.w3.org/WAI/WCAG22/quickref/", label: "WCAG 2.2", desc: "SC 3.3.8 Accessible Auth" },
                 { url: "https://www.iso.org/standard/27001", label: "ISO 27001", desc: "Information security management" },
                 { url: "https://www.iso.org/standard/80585.html", label: "ISO 27005", desc: "Security risk management" },
+                { url: "https://www.iso.org/standard/42001", label: "ISO/IEC 42001", desc: "AI management system (2023)" },
                 { url: "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2", label: "SOC 2", desc: "Service org security controls" },
                 { url: "https://www.pcisecuritystandards.org/document_library/", label: "PCI DSS 4.0", desc: "Payment card security (March 2025)" },
               ].map(({ url, label, desc }) => (

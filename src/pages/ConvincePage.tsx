@@ -27,7 +27,7 @@ What to do:
 4. Generate prioritized report → uxsec.dev/report
 5. Trace headline implications → uxsec.dev/ripple
 
-Source: uxsec.dev — 34 interactive patterns, 19 regulations, 45 cited sources`;
+Source: uxsec.dev — 34 interactive patterns, 19 regulations, 46 cited sources`;
 
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
@@ -248,7 +248,7 @@ Source: uxsec.dev — 34 interactive patterns, 19 regulations, 45 cited sources`
           "Security is a design decision.<br />Bad UX is a vulnerability."
         </blockquote>
         <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>
-          34 interactive patterns · 19 regulations · 45 cited sources · Open source
+          34 interactive patterns · 19 regulations · 46 cited sources · Open source
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button
