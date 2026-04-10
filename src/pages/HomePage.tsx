@@ -230,7 +230,7 @@ export function HomePage() {
               { value: "34", label: "interactive patterns", color: "var(--green)" },
               { value: "19", label: "regulations covered", color: "var(--amber)" },
               { value: "46", label: "cited sources", color: "var(--cyan)" },
-              { value: "6", label: "strategic tools", color: "var(--ai-color)" },
+              { value: "5", label: "strategic tools", color: "var(--ai-color)" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
                 <div className="text-3xl font-bold" style={{ color }}>{value}</div>
@@ -468,7 +468,6 @@ export function HomePage() {
             { path: "/maturity", label: "Maturity Model", desc: "10-question assessment → your current level (1-4), priority areas, and a concrete roadmap to the next level. Strategic design is about knowing what to do next.", color: "var(--amber)", cmd: "$ get --maturity" },
             { path: "/report", label: "Report Generator", desc: "Answer 6 questions about your product → downloadable .md report with prioritized patterns, compliance gaps, and implementation order. Take this to your stakeholders.", color: "var(--ai-color)", cmd: "$ get --report" },
             { path: "/convince", label: "Convince Your Team", desc: "Enforcement data, ROI arguments, regulatory deadlines, and next steps — one page designed to share with stakeholders who need the business case.", color: "var(--red)", cmd: "$ get --convince" },
-            { path: "/redsketch", label: "RedSketch", desc: "Threat-model your Figma designs before writing code. Drop a Figma URL → get STRIDE threats, pattern matches, and compliance gaps. CLI tool powered by Claude AI.", color: "var(--red)", cmd: "$ redsketch scan" },
           ].map(({ path, label, desc, color, cmd }) => (
             <Link
               key={path}
@@ -501,7 +500,7 @@ export function HomePage() {
             },
             {
               title: "Assess your product",
-              desc: "Use the 7 strategic tools: Score your current state, map compliance, assess maturity, generate a report, build the business case, trace headline implications with Ripple, or threat-model Figma designs with RedSketch.",
+              desc: "Use the 5 strategic tools to assess, prioritize, and report. Then go operational with Ripple and RedSketch — trace headline implications or threat-model Figma designs from the CLI.",
               color: "var(--cyan)",
               cmd: "assess →",
             },

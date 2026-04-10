@@ -21,7 +21,7 @@
   <!-- Text -->
   <text x="600" y="350" font-family="monospace" font-size="72" font-weight="bold" fill="#00ff41" text-anchor="middle">uxsec.dev</text>
   <text x="600" y="410" font-family="monospace" font-size="24" fill="#888888" text-anchor="middle">Security UX Pattern Library</text>
-  <text x="600" y="460" font-family="monospace" font-size="18" fill="#555555" text-anchor="middle">23 interactive patterns · 3 strategic tools · 8 regulations</text>
+  <text x="600" y="460" font-family="monospace" font-size="18" fill="#555555" text-anchor="middle">34 interactive patterns · 5 strategic tools · 19 regulations</text>
 
   <!-- Bottom bar -->
   <text x="600" y="560" font-family="monospace" font-size="14" fill="#444444" text-anchor="middle">by Piia Alavesa — M.Sc. Cyber Security + M.Sc. Information Systems</text>
