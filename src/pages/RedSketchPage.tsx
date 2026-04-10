@@ -79,7 +79,7 @@ export function RedSketchPage() {
           Threat-model your Figma designs before writing a single line of code
         </p>
         <p className="text-sm mt-3 font-mono" style={{ color: "var(--text)" }}>
-          A CLI tool that reads Figma files and generates STRIDE-based security threat models from the UI layer.
+          A CLI tool that reads Figma files and generates security threat models using STRIDE — the industry-standard framework covering Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.
           <br />
           Powered by Claude AI and the 34 patterns from this library.
         </p>
