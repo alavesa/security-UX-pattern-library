@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers, ClipboardCheck, GitBranch, FileText, ChevronUp, Waves, ArrowRight } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers, ClipboardCheck, GitBranch, FileText, ChevronUp, Waves, ArrowRight, Crosshair } from "lucide-react";
 
 function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -416,6 +416,46 @@ export function HomePage() {
         </Link>
       </section>
 
+      {/* RedSketch — Figma Threat Modeling */}
+      <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
+        <div className="flex items-center gap-2 mb-2">
+          <AnchorHeading id="redsketch" className="text-xl font-mono" style={{ color: "var(--red)" }}>$ live --redsketch</AnchorHeading>
+          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(255,51,51,0.1)", color: "var(--red)", border: "1px solid rgba(255,51,51,0.3)" }}>new</span>
+        </div>
+        <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>
+          Drop a Figma URL. Get a STRIDE threat model — before writing a single line of code.
+        </p>
+
+        <Link
+          to="/redsketch"
+          className="block rounded-lg p-6 no-underline transition-all"
+          style={{ background: "var(--bg-card)", border: "1px solid rgba(255,51,51,0.3)" }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--red)"; e.currentTarget.style.boxShadow = "0 0 30px rgba(255,51,51,0.15)"; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,51,51,0.3)"; e.currentTarget.style.boxShadow = "none"; }}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <Crosshair className="w-5 h-5" style={{ color: "var(--red)" }} />
+                <span className="font-mono font-semibold text-sm" style={{ color: "var(--text-bright)" }}>RedSketch</span>
+              </div>
+              <p className="text-xs font-mono leading-relaxed mb-4" style={{ color: "var(--text)" }}>
+                Security teams threat-model architecture diagrams. Nobody threat-models the design file.
+                RedSketch reads your Figma designs and generates STRIDE-based threat models — identifying assets, threats, pattern matches from this library, and compliance gaps across 19 regulations. CLI tool powered by Claude AI.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {["STRIDE analysis", "34 patterns", "19 regulations", "~$0.15–0.50/scan"].map((chip) => (
+                  <span key={chip} className="text-[10px] font-mono px-2 py-1 rounded" style={{ background: "var(--bg)", color: "var(--text-dim)", border: "1px solid var(--border)" }}>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <ArrowRight className="w-5 h-5 shrink-0 mt-1" style={{ color: "var(--red)" }} />
+          </div>
+        </Link>
+      </section>
+
       {/* Strategic Tools */}
       <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-b" style={{ borderColor: "var(--border)" }}>
         <AnchorHeading id="tools" className="text-xl font-mono mb-2" style={{ color: "var(--ai-color)" }}>$ get --strategic-tools</AnchorHeading>
@@ -428,6 +468,7 @@ export function HomePage() {
             { path: "/maturity", label: "Maturity Model", desc: "10-question assessment → your current level (1-4), priority areas, and a concrete roadmap to the next level. Strategic design is about knowing what to do next.", color: "var(--amber)", cmd: "$ get --maturity" },
             { path: "/report", label: "Report Generator", desc: "Answer 6 questions about your product → downloadable .md report with prioritized patterns, compliance gaps, and implementation order. Take this to your stakeholders.", color: "var(--ai-color)", cmd: "$ get --report" },
             { path: "/convince", label: "Convince Your Team", desc: "Enforcement data, ROI arguments, regulatory deadlines, and next steps — one page designed to share with stakeholders who need the business case.", color: "var(--red)", cmd: "$ get --convince" },
+            { path: "/redsketch", label: "RedSketch", desc: "Threat-model your Figma designs before writing code. Drop a Figma URL → get STRIDE threats, pattern matches, and compliance gaps. CLI tool powered by Claude AI.", color: "var(--red)", cmd: "$ redsketch scan" },
           ].map(({ path, label, desc, color, cmd }) => (
             <Link
               key={path}
@@ -460,7 +501,7 @@ export function HomePage() {
             },
             {
               title: "Assess your product",
-              desc: "Use the 6 strategic tools: Score your current state, map compliance, assess maturity, generate a report, build the business case, or trace headline implications with Ripple.",
+              desc: "Use the 7 strategic tools: Score your current state, map compliance, assess maturity, generate a report, build the business case, trace headline implications with Ripple, or threat-model Figma designs with RedSketch.",
               color: "var(--cyan)",
               cmd: "assess →",
             },

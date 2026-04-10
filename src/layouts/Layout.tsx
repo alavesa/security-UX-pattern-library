@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch, Users, Waves } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch, Users, Waves, Crosshair } from "lucide-react";
 import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
@@ -89,6 +89,7 @@ const CATEGORIES: NavCategory[] = [
 
 const LIVE_TOOLS = [
   { path: "/ripple", label: "ripple", icon: Waves, color: "var(--cyan)" },
+  { path: "/redsketch", label: "redsketch", icon: Crosshair, color: "var(--red)" },
 ];
 
 const ASSESS_TOOLS = [
@@ -104,6 +105,7 @@ const ALL_TOOLS = [...LIVE_TOOLS, ...ASSESS_TOOLS];
 const HEADER_NAV: { path: string; label: string; color: string; matchPrefix?: string }[] = [
   { path: "/patterns/auth/login", label: "patterns", color: "var(--text)", matchPrefix: "/patterns" },
   { path: "/ripple", label: "ripple", color: "var(--cyan)" },
+  { path: "/redsketch", label: "redsketch", color: "var(--red)" },
   { path: "/score", label: "score", color: "var(--green)" },
   { path: "/compliance", label: "compliance", color: "var(--cyan)" },
   { path: "/maturity", label: "maturity", color: "var(--amber)" },
