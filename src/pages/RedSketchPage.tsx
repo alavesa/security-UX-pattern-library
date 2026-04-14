@@ -88,7 +88,7 @@ export function RedSketchPage() {
       {/* Stats bar */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
         {[
-          { value: "34", label: "Patterns", color: "var(--green)" },
+          { value: "35", label: "Patterns", color: "var(--green)" },
           { value: "19", label: "Regulations", color: "var(--cyan)" },
           { value: "6", label: "STRIDE categories", color: "var(--amber)" },
           { value: "~$0.15–0.50", label: "Per scan", color: "var(--ai-color)" },
@@ -114,7 +114,7 @@ export function RedSketchPage() {
             { icon: FileSearch, step: "1", title: "Reads your Figma design", desc: "Parses the node hierarchy, component names, and text content via the Figma REST API", color: "var(--cyan)" },
             { icon: Crosshair, step: "2", title: "Identifies security-relevant assets", desc: "Login forms, data inputs, file uploads, payment flows, consent screens, admin panels, AI features", color: "var(--red, #ff3333)" },
             { icon: Shield, step: "3", title: "Generates STRIDE threat analysis", desc: "Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege", color: "var(--amber)" },
-            { icon: AlertTriangle, step: "4", title: "Maps to patterns and regulations", desc: "Matches findings against 34 Security UX patterns from this library and flags compliance gaps across 19 regulations", color: "var(--green)" },
+            { icon: AlertTriangle, step: "4", title: "Maps to patterns and regulations", desc: "Matches findings against 35 Security UX patterns from this library and flags compliance gaps across 19 regulations", color: "var(--green)" },
           ].map(({ icon: Icon, step, title, desc, color }) => (
             <div
               key={step}
