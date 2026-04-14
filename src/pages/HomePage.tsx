@@ -195,7 +195,7 @@ export function HomePage() {
 
           <TerminalTyping text="Security is a design decision. Bad UX is a vulnerability." className="text-lg leading-relaxed mb-4 max-w-xl mx-auto" />
           <p className="text-sm leading-relaxed mb-8 max-w-lg mx-auto" style={{ color: "var(--text)" }}>
-            Companies spend millions on back-end security but lose millions more to front-door failures. GDPR consent violations. EU AI Act transparency deadlines. NIS2 incident reporting requirements. PCI DSS 4.0 authentication mandates. Cyber Resilience Act product security obligations. Dark patterns that trigger FTC enforcement. 94% of tested apps fail OWASP access control. 35 patterns that turn compliance risk into working UI.
+            Companies spend millions on back-end security but lose millions more to front-door failures. GDPR consent violations. EU AI Act transparency deadlines. NIS2 incident reporting requirements. PCI DSS 4.0 authentication mandates. Cyber Resilience Act product security obligations. Dark patterns that trigger FTC enforcement. 94% of tested apps fail OWASP access control. 36 patterns that turn compliance risk into working UI.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -227,7 +227,7 @@ export function HomePage() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
-              { value: "35", label: "interactive patterns", color: "var(--green)" },
+              { value: "36", label: "interactive patterns", color: "var(--green)" },
               { value: "19", label: "regulations covered", color: "var(--amber)" },
               { value: "46", label: "cited sources", color: "var(--cyan)" },
               { value: "5", label: "strategic tools", color: "var(--ai-color)" },
@@ -312,6 +312,7 @@ export function HomePage() {
               { path: "/patterns/ai/content-labeling", name: "content_labeling", ref: "Art. 50, C2PA" },
               { path: "/patterns/ai/decision-explanation", name: "decision_explanation", ref: "GDPR Art. 22" },
               { path: "/patterns/ai/input-safety", name: "input_safety", ref: "OWASP LLM01, CWE-77" },
+              { path: "/patterns/ai/human-override", name: "human_override", ref: "EU AI Act Art. 14" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
                 {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
@@ -384,7 +385,7 @@ export function HomePage() {
           <span className="text-[10px] font-mono px-1.5 py-0.5 rounded" style={{ background: "var(--cyan-glow)", color: "var(--cyan)", border: "1px solid var(--cyan-border)" }}>new</span>
         </div>
         <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>
-          Paste any headline. Trace the ripple through UX, security, and compliance — powered by 35 patterns.
+          Paste any headline. Trace the ripple through UX, security, and compliance — powered by 36 patterns.
         </p>
 
         <Link
@@ -445,7 +446,7 @@ export function HomePage() {
                 RedSketch reads your Figma designs and generates STRIDE-based threat models — identifying assets, threats, pattern matches from this library, and compliance gaps across 19 regulations. CLI tool powered by Claude AI.
               </p>
               <div className="flex flex-wrap gap-2">
-                {["STRIDE analysis", "35 patterns", "19 regulations", "~$0.15–0.50/scan"].map((chip) => (
+                {["STRIDE analysis", "36 patterns", "19 regulations", "~$0.15–0.50/scan"].map((chip) => (
                   <span key={chip} className="text-[10px] font-mono px-2 py-1 rounded" style={{ background: "var(--bg)", color: "var(--text-dim)", border: "1px solid var(--border)" }}>
                     {chip}
                   </span>
@@ -703,6 +704,7 @@ export function HomePage() {
               { path: "/patterns/ai/content-labeling", label: "content_labeling", icon: Sparkles, description: "AI-generated content labels for social feeds, articles, and images (C2PA)" },
               { path: "/patterns/ai/decision-explanation", label: "decision_explanation", icon: Brain, description: "When AI decides about people — loans, moderation, hiring — explain why" },
               { path: "/patterns/ai/input-safety", label: "input_safety", icon: ShieldAlert, description: "Prompt injection defense, rate limiting, attachment safety for AI chat inputs" },
+              { path: "/patterns/ai/human-override", label: "human_override", icon: UserCheck, description: "Emergency stop, human review queue, and override controls for high-risk AI decisions" },
             ].map(({ path, label, icon: Icon, description }) => (
               <Link
                 key={path}

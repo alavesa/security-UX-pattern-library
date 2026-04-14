@@ -36,6 +36,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "Threat" },
       { path: "/patterns/auth/oauth-consent", label: "OAuth Consent", category: "Auth" },
       { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
+      { path: "/patterns/ai/human-override", label: "Human Override & AI Kill Switch", category: "AI" },
     ],
   },
   {
@@ -138,6 +139,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/ai/content-labeling", label: "Content Labeling", category: "AI" },
       { path: "/patterns/ai/decision-explanation", label: "Decision Explanation", category: "AI" },
       { path: "/patterns/ai/input-safety", label: "AI Input Safety", category: "AI" },
+      { path: "/patterns/ai/human-override", label: "Human Override & AI Kill Switch", category: "AI" },
       { path: "/patterns/auth/accessible-auth", label: "Accessible Authentication", category: "Auth" },
       { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
@@ -153,6 +155,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/ai/content-labeling", label: "Content Labeling", category: "AI" },
       { path: "/patterns/ai/decision-explanation", label: "Decision Explanation", category: "AI" },
       { path: "/patterns/ai/input-safety", label: "AI Input Safety", category: "AI" },
+      { path: "/patterns/ai/human-override", label: "Human Override & AI Kill Switch", category: "AI" },
     ],
   },
   {
@@ -328,6 +331,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/ai/content-labeling", label: "Content Labeling", category: "AI" },
       { path: "/patterns/ai/decision-explanation", label: "Decision Explanation", category: "AI" },
       { path: "/patterns/ai/input-safety", label: "AI Input Safety", category: "AI" },
+      { path: "/patterns/ai/human-override", label: "Human Override & AI Kill Switch", category: "AI" },
       { path: "/patterns/governance/design-review", label: "Security Design Review", category: "Governance" },
       { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
       { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
@@ -385,7 +389,7 @@ export function CompliancePage() {
         <h2 className="text-sm font-mono font-bold mb-3" style={{ color: "var(--text-bright)" }}>How it works</h2>
         <div className="space-y-2 text-xs font-mono" style={{ color: "var(--text)" }}>
           <p><span style={{ color: "var(--green)" }}>1.</span> Select the regulations your product must comply with</p>
-          <p><span style={{ color: "var(--green)" }}>2.</span> The mapper cross-references each regulation against the 35 patterns</p>
+          <p><span style={{ color: "var(--green)" }}>2.</span> The mapper cross-references each regulation against the 36 patterns</p>
           <p><span style={{ color: "var(--green)" }}>3.</span> Results are sorted by impact — patterns satisfying multiple regulations appear first</p>
           <p><span style={{ color: "var(--green)" }}>4.</span> Click any pattern to see its interactive demo, guidelines, and implementation notes</p>
         </div>

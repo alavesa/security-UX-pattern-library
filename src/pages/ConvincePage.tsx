@@ -27,7 +27,7 @@ What to do:
 4. Generate prioritized report → uxsec.dev/report
 5. Trace headline implications → uxsec.dev/ripple
 
-Source: uxsec.dev — 35 interactive patterns, 19 regulations, 46 cited sources`;
+Source: uxsec.dev — 36 interactive patterns, 19 regulations, 46 cited sources`;
 
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
@@ -176,7 +176,7 @@ Source: uxsec.dev — 35 interactive patterns, 19 regulations, 46 cited sources`
             { step: "2", action: "Map your compliance requirements", desc: "Select your applicable regulations — get the exact patterns you need to implement.", link: "/compliance", cmd: "$ get --compliance" },
             { step: "3", action: "Assess your maturity level", desc: "10 questions → your current level (1-4), weakest areas, and a roadmap to the next level.", link: "/maturity", cmd: "$ get --maturity" },
             { step: "4", action: "Generate a stakeholder report", desc: "Answer 6 questions about your product → downloadable .md report with prioritized patterns.", link: "/report", cmd: "$ get --report" },
-            { step: "5", action: "Trace headline implications", desc: "Paste any news event into Ripple → get UX, security, and compliance implications through 35 patterns.", link: "/ripple", cmd: "$ live --ripple" },
+            { step: "5", action: "Trace headline implications", desc: "Paste any news event into Ripple → get UX, security, and compliance implications through 36 patterns.", link: "/ripple", cmd: "$ live --ripple" },
           ].map(({ step, action, desc, link, cmd }) => (
             <Link key={step} to={link} className="flex items-start gap-3 p-3 rounded-lg no-underline transition-all" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--cyan-border)"; }}
@@ -248,7 +248,7 @@ Source: uxsec.dev — 35 interactive patterns, 19 regulations, 46 cited sources`
           "Security is a design decision.<br />Bad UX is a vulnerability."
         </blockquote>
         <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>
-          35 interactive patterns · 19 regulations · 46 cited sources · Open source
+          36 interactive patterns · 19 regulations · 46 cited sources · Open source
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button

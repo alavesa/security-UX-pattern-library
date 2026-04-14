@@ -46,6 +46,7 @@ import { AIDisclosurePattern } from "./patterns/ai/AIDisclosurePattern";
 import { AIContentLabelingPattern } from "./patterns/ai/AIContentLabelingPattern";
 import { AIDecisionExplanationPattern } from "./patterns/ai/AIDecisionExplanationPattern";
 import { AIInputSafetyPattern } from "./patterns/ai/AIInputSafetyPattern";
+import { AIHumanOverridePattern } from "./patterns/ai/AIHumanOverridePattern";
 import { OperatorAuthPattern } from "./patterns/industrial/OperatorAuthPattern";
 import { SafetyCriticalPattern } from "./patterns/industrial/SafetyCriticalPattern";
 import { AlarmFatiguePattern } from "./patterns/industrial/AlarmFatiguePattern";
@@ -98,6 +99,7 @@ export default function App() {
           <Route path="patterns/ai/content-labeling" element={<PatternPage><AIContentLabelingPattern /></PatternPage>} />
           <Route path="patterns/ai/decision-explanation" element={<PatternPage><AIDecisionExplanationPattern /></PatternPage>} />
           <Route path="patterns/ai/input-safety" element={<PatternPage><AIInputSafetyPattern /></PatternPage>} />
+          <Route path="patterns/ai/human-override" element={<PatternPage><AIHumanOverridePattern /></PatternPage>} />
           <Route path="patterns/industrial/operator-auth" element={<PatternPage><OperatorAuthPattern /></PatternPage>} />
           <Route path="patterns/industrial/safety-critical" element={<PatternPage><SafetyCriticalPattern /></PatternPage>} />
           <Route path="patterns/industrial/alarm-fatigue" element={<PatternPage><AlarmFatiguePattern /></PatternPage>} />

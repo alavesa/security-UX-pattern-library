@@ -75,7 +75,7 @@ export function RipplePage() {
         <div className="grid sm:grid-cols-3 gap-3 mb-5">
           {[
             { step: "01", label: "Paste a headline", desc: "Any news event, breach report, or regulation update" },
-            { step: "02", label: "Copy the prompt", desc: "Ripple builds a structured prompt with all 35 patterns as context" },
+            { step: "02", label: "Copy the prompt", desc: "Ripple builds a structured prompt with all 36 patterns as context" },
             { step: "03", label: "Paste into an LLM", desc: "Claude or ChatGPT analyzes through three lenses" },
           ].map(({ step, label, desc }) => (
             <div key={step} className="flex gap-3">
