@@ -126,7 +126,7 @@ function AIHumanOverrideDemo() {
                         background: overridden === "approved" ? "rgba(0,255,65,0.15)" : "rgba(255,51,51,0.15)",
                         color: overridden === "approved" ? "var(--green)" : "var(--red)",
                       }}>
-                        {overridden === "approved" ? "OVERRIDDEN" : "UPHELD"}
+                        {overridden === "approved" ? "APPROVED" : "DENIED"}
                       </span>
                     </div>
                   ) : expandedId === decision.id ? (
@@ -136,14 +136,14 @@ function AIHumanOverrideDemo() {
                         className="text-xs font-mono px-2 py-1 rounded border-none cursor-pointer flex items-center gap-1"
                         style={{ background: "rgba(0,255,65,0.15)", color: "var(--green)" }}
                       >
-                        <CheckCircle2 className="w-3 h-3" /> Override
+                        <CheckCircle2 className="w-3 h-3" /> Approve
                       </button>
                       <button
                         onClick={() => handleOverride(decision.id, "rejected")}
                         className="text-xs font-mono px-2 py-1 rounded border-none cursor-pointer flex items-center gap-1"
                         style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}
                       >
-                        <XCircle className="w-3 h-3" /> Uphold
+                        <XCircle className="w-3 h-3" /> Deny
                       </button>
                       <button
                         onClick={() => setExpandedId(null)}
