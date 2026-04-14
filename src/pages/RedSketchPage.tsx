@@ -81,7 +81,7 @@ export function RedSketchPage() {
         <p className="text-sm mt-3 font-mono" style={{ color: "var(--text)" }}>
           A CLI tool that reads Figma files and generates security threat models using STRIDE — the industry-standard framework covering Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.
           <br />
-          Powered by Claude AI and the 34 patterns from this library.
+          Powered by Claude AI and the 35 patterns from this library.
         </p>
       </div>
 

@@ -66,6 +66,7 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/ai/disclosure", label: "disclosure", icon: Bot },
       { path: "/patterns/ai/content-labeling", label: "labeling", icon: Sparkles },
       { path: "/patterns/ai/decision-explanation", label: "decisions", icon: Brain },
+      { path: "/patterns/ai/input-safety", label: "input_safety", icon: ShieldAlert },
     ],
   },
   {
