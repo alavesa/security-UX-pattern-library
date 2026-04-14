@@ -88,92 +88,81 @@ function AIHumanOverrideDemo() {
             const overridden = overrides[decision.id];
             return (
               <div key={decision.id} className="px-4 py-3" style={{ background: "var(--bg)" }}>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs font-mono font-semibold" style={{ color: "var(--text-bright)" }}>{decision.type}</span>
-                      <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{
-                        background: decision.risk === "high" ? "rgba(255,51,51,0.15)" : "rgba(255,170,0,0.15)",
-                        color: decision.risk === "high" ? "var(--red)" : "var(--amber)",
-                      }}>
-                        {decision.risk} risk
-                      </span>
-                    </div>
-                    <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{decision.subject}</p>
-
-                    {view === "with-override" && (
-                      <div className="flex items-center gap-2 mt-1">
-                        <div className="flex items-center gap-1">
-                          <Bot className="w-3 h-3" style={{ color: "var(--ai-color)" }} />
-                          <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>
-                            AI: {decision.aiDecision} ({decision.confidence}% confidence)
-                          </span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    {view === "no-override" ? (
-                      /* No override — just shows final decision, no recourse */
-                      <span className="text-xs font-mono px-2 py-1 rounded" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <span className="text-xs font-mono font-semibold" style={{ color: "var(--text-bright)" }}>{decision.type}</span>
+                    <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{
+                      background: decision.risk === "high" ? "rgba(255,51,51,0.15)" : "rgba(255,170,0,0.15)",
+                      color: decision.risk === "high" ? "var(--red)" : "var(--amber)",
+                    }}>
+                      {decision.risk} risk
+                    </span>
+                    {view === "no-override" && (
+                      <span className="text-xs font-mono px-2 py-0.5 rounded" style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}>
                         {decision.aiDecision}
                       </span>
-                    ) : overridden ? (
-                      /* Overridden state */
-                      <div className="flex items-center gap-1">
-                        <User className="w-3 h-3" style={{ color: "var(--green)" }} />
-                        <span className="text-xs font-mono px-2 py-1 rounded" style={{
-                          background: overridden === "approved" ? "rgba(0,255,65,0.15)" : "rgba(255,51,51,0.15)",
-                          color: overridden === "approved" ? "var(--green)" : "var(--red)",
-                        }}>
-                          {overridden === "approved" ? "OVERRIDDEN → APPROVED" : "DENIAL UPHELD"} by human
-                        </span>
-                      </div>
-                    ) : expandedId === decision.id ? (
-                      /* Override actions expanded */
-                      <div className="flex items-center gap-1">
-                        <button
-                          onClick={() => handleOverride(decision.id, "approved")}
-                          className="text-xs font-mono px-2 py-1 rounded border-none cursor-pointer flex items-center gap-1"
-                          style={{ background: "rgba(0,255,65,0.15)", color: "var(--green)" }}
-                        >
-                          <CheckCircle2 className="w-3 h-3" /> Override → Approve
-                        </button>
-                        <button
-                          onClick={() => handleOverride(decision.id, "rejected")}
-                          className="text-xs font-mono px-2 py-1 rounded border-none cursor-pointer flex items-center gap-1"
-                          style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}
-                        >
-                          <XCircle className="w-3 h-3" /> Uphold Denial
-                        </button>
-                        <button
-                          onClick={() => setExpandedId(null)}
-                          className="text-xs font-mono px-1 py-1 rounded border-none cursor-pointer"
-                          style={{ background: "transparent", color: "var(--text-dim)" }}
-                        >
-                          ×
-                        </button>
-                      </div>
-                    ) : (
-                      /* Review button */
-                      <button
-                        onClick={() => setExpandedId(decision.id)}
-                        className="text-xs font-mono px-2 py-1 rounded border-none cursor-pointer flex items-center gap-1"
-                        style={{ background: "var(--ai-glow)", color: "var(--ai-color)" }}
-                      >
-                        <User className="w-3 h-3" /> Review
-                      </button>
                     )}
                   </div>
-                </div>
+                  <p className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>{decision.subject}</p>
 
-                {/* No override: no explanation, no recourse */}
-                {view === "no-override" && (
-                  <p className="text-xs font-mono mt-2" style={{ color: "var(--text-dim)" }}>
-                    Decision final. No review available.
-                  </p>
-                )}
+                  {view === "with-override" && (
+                    <div className="flex items-center gap-1 mt-1">
+                      <Bot className="w-3 h-3" style={{ color: "var(--ai-color)" }} />
+                      <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>
+                        AI: {decision.aiDecision} ({decision.confidence}%)
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Action buttons */}
+                  {view === "no-override" ? (
+                    <p className="text-xs font-mono mt-2" style={{ color: "var(--text-dim)" }}>
+                      Decision final. No review available.
+                    </p>
+                  ) : overridden ? (
+                    <div className="flex items-center gap-1 mt-2">
+                      <User className="w-3 h-3" style={{ color: "var(--green)" }} />
+                      <span className="text-xs font-mono px-2 py-1 rounded" style={{
+                        background: overridden === "approved" ? "rgba(0,255,65,0.15)" : "rgba(255,51,51,0.15)",
+                        color: overridden === "approved" ? "var(--green)" : "var(--red)",
+                      }}>
+                        {overridden === "approved" ? "OVERRIDDEN" : "UPHELD"}
+                      </span>
+                    </div>
+                  ) : expandedId === decision.id ? (
+                    <div className="flex flex-wrap gap-1 mt-2">
+                      <button
+                        onClick={() => handleOverride(decision.id, "approved")}
+                        className="text-xs font-mono px-2 py-1 rounded border-none cursor-pointer flex items-center gap-1"
+                        style={{ background: "rgba(0,255,65,0.15)", color: "var(--green)" }}
+                      >
+                        <CheckCircle2 className="w-3 h-3" /> Override
+                      </button>
+                      <button
+                        onClick={() => handleOverride(decision.id, "rejected")}
+                        className="text-xs font-mono px-2 py-1 rounded border-none cursor-pointer flex items-center gap-1"
+                        style={{ background: "rgba(255,51,51,0.15)", color: "var(--red)" }}
+                      >
+                        <XCircle className="w-3 h-3" /> Uphold
+                      </button>
+                      <button
+                        onClick={() => setExpandedId(null)}
+                        className="text-xs font-mono px-1 py-1 rounded border-none cursor-pointer"
+                        style={{ background: "transparent", color: "var(--text-dim)" }}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => setExpandedId(decision.id)}
+                      className="text-xs font-mono px-2 py-1 rounded border-none cursor-pointer flex items-center gap-1 mt-2"
+                      style={{ background: "var(--ai-glow)", color: "var(--ai-color)" }}
+                    >
+                      <User className="w-3 h-3" /> Review
+                    </button>
+                  )}
+                </div>
               </div>
             );
           })}
