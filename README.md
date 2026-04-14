@@ -43,10 +43,12 @@ $ ls ./patterns
    A05_misconfiguration .. CWE-16, CWE-209
    A09_logging ........... CWE-778, CWE-223
 
-🤖 ai/ (3)
+🤖 ai/ (5)
    ai_disclosure ......... EU AI Act Art. 50
    content_labeling ...... EU AI Act Art. 50, C2PA
    decision_explanation .. GDPR Art. 22
+   input_safety .......... OWASP LLM01, CWE-77
+   human_override ........ EU AI Act Art. 14
 
 🏭 industrial/ (4)
    operator_auth ......... IEC 62443
