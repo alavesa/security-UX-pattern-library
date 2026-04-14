@@ -306,7 +306,7 @@ export function HomePage() {
               </Link>
             ))}
 
-            <div className="mt-2" style={{ color: "var(--ai-color)" }}>🤖 ai/ (3)</div>
+            <div className="mt-2" style={{ color: "var(--ai-color)" }}>🤖 ai/ (5)</div>
             {[
               { path: "/patterns/ai/disclosure", name: "ai_disclosure", ref: "EU AI Act Art. 50" },
               { path: "/patterns/ai/content-labeling", name: "content_labeling", ref: "Art. 50, C2PA" },
