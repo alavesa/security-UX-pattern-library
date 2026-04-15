@@ -166,7 +166,7 @@ function AIContentLabelingDemo() {
             <div className="rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,170,0,0.3)" }}>
               <div className="h-32 flex items-center justify-center text-xs font-mono relative" style={{ background: "rgba(255,170,0,0.1)", color: "var(--text-dim)" }}>
                 [AI-modified photograph]
-                <span className="absolute bottom-2 left-2 text-xs text-white px-2 py-0.5 rounded flex items-center gap-1 font-mono" style={{ background: "var(--amber)" }}>
+                <span className="absolute bottom-2 left-2 text-xs px-2 py-0.5 rounded flex items-center gap-1 font-mono" style={{ background: "var(--amber)", color: "var(--bg)" }}>
                   <AlertTriangle className="w-3 h-3" /> AI Modified
                 </span>
               </div>
