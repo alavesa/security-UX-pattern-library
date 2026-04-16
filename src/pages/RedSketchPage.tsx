@@ -247,6 +247,41 @@ export function RedSketchPage() {
         </div>
       </div>
 
+      {/* Figma Plugin */}
+      <div className="mb-12">
+        <h2 className="text-lg font-bold font-mono mb-4" style={{ color: "var(--text-bright)" }}>
+          Figma Plugin
+        </h2>
+        <div
+          className="rounded-lg p-6"
+          style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+        >
+          <p className="font-mono text-sm mb-4" style={{ color: "var(--text)" }}>
+            RedSketch also runs directly inside Figma as a plugin. Select a frame, choose the scan scope, and get a threat model without leaving your design tool.
+          </p>
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            {[
+              { label: "Full screen", desc: "Auth, navigation, compliance" },
+              { label: "User flow", desc: "Flow integrity, data handling" },
+              { label: "Component", desc: "Input safety, error states" },
+              { label: "Dialog", desc: "Action clarity, destructive design" },
+            ].map(({ label, desc }) => (
+              <div key={label} className="rounded p-3" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                <div className="font-mono text-xs font-semibold mb-1" style={{ color: "var(--text-bright)" }}>{label}</div>
+                <div className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>{desc}</div>
+              </div>
+            ))}
+          </div>
+          <div className="font-mono text-xs mb-4" style={{ color: "var(--text)" }}>
+            Features: scope-aware analysis, collapsible results, copy for AI or human, cancel scan, live selection detection, AI-generated disclosure on all results.
+          </div>
+          <div className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>
+            Your API key is stored locally. Design data sent to Claude API over HTTPS only. No images sent. No tracking.
+            Per <a href="https://www.anthropic.com/policies/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--green)" }}>Anthropic's API terms</a>, inputs are not used for training.
+          </div>
+        </div>
+      </div>
+
       {/* CTA */}
       <div
         className="rounded-lg p-8 text-center"
@@ -257,17 +292,26 @@ export function RedSketchPage() {
           Get RedSketch
         </h2>
         <p className="font-mono text-sm mb-6" style={{ color: "var(--text)" }}>
-          Open source. MIT licensed. One command to install.
+          Open source. MIT licensed. CLI + Figma plugin.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
-            href="https://github.com/alavesa/RedSketch"
+            href="https://github.com/alavesa/redsketch-figma"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-mono text-sm no-underline border-none cursor-pointer"
             style={{ background: "var(--red, #ff3333)", color: "var(--bg)" }}
           >
-            <Github className="w-4 h-4" /> View on GitHub <ExternalLink className="w-3 h-3" />
+            <Github className="w-4 h-4" /> Figma Plugin <ExternalLink className="w-3 h-3" />
+          </a>
+          <a
+            href="https://github.com/alavesa/RedSketch"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-mono text-sm no-underline cursor-pointer"
+            style={{ background: "transparent", border: "1px solid var(--border)", color: "var(--text-bright)" }}
+          >
+            <Github className="w-4 h-4" /> CLI on GitHub <ExternalLink className="w-3 h-3" />
           </a>
           <a
             href="https://www.npmjs.com/package/redsketch"
