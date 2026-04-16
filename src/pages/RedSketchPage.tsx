@@ -276,8 +276,8 @@ export function RedSketchPage() {
             Features: scope-aware analysis, collapsible results, copy for AI or human, cancel scan, live selection detection, AI-generated disclosure on all results.
           </div>
           <div className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>
-            Your API key is stored locally. Design data sent to Claude API over HTTPS only. No images sent. No tracking.
-            Per <a href="https://www.anthropic.com/policies/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--green)" }}>Anthropic's API terms</a>, inputs are not used for training.
+            Your API key is stored locally. Design data sent to Claude API over HTTPS only. No images sent. RedSketch collects no analytics or telemetry.
+            Per <a href="https://www.anthropic.com/policies/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--green)" }}>Anthropic's API terms</a>, inputs are not used for training. Review their policy directly.
           </div>
         </div>
       </div>
