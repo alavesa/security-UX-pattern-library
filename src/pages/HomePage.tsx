@@ -370,11 +370,11 @@ export function HomePage() {
         <AnchorHeading id="cost" className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>$ cat ./cost_of_failure</AnchorHeading>
         <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>Security UX failures have real consequences — regulatory, financial, and reputational.</p>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {[
             { stat: "€1.86B+", label: "in dark pattern fines since 2023", color: "var(--red)" },
             { stat: "204 days", label: "average breach detection time", color: "var(--amber)" },
-            { stat: "Aug/Dec 2026", label: "EU AI Act Art. 50 — disclosure / watermarking", color: "var(--ai-color)" },
+            { stat: "€35M / 7%", label: "max AI Act fine for prohibited systems", color: "var(--ai-color)" },
             { stat: "94%", label: "of apps have broken access control", color: "var(--cyan)" },
           ].map(({ stat, label, color }) => (
             <div key={label} className="rounded-lg p-4 text-center" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
@@ -382,6 +382,31 @@ export function HomePage() {
               <p className="text-xs font-mono mt-1" style={{ color: "var(--text)" }}>{label}</p>
             </div>
           ))}
+        </div>
+
+        {/* Upcoming compliance deadlines */}
+        <div className="rounded-lg mb-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <div className="px-4 py-2 font-mono text-[11px]" style={{ color: "var(--text-dim)", borderBottom: "1px solid var(--border)" }}>
+            $ deadlines --upcoming
+          </div>
+          <ul className="font-mono text-xs">
+            {[
+              { date: "Aug 2, 2026", label: "EU AI Act Art. 50(1) — chatbot disclosure", penalty: "€15M / 3%", color: "var(--ai-color)" },
+              { date: "Sep 11, 2026", label: "CRA — vulnerability reporting (24h early warning)", penalty: "€15M / 2.5%", color: "var(--green)" },
+              { date: "Dec 2, 2026", label: "EU AI Act Art. 50(2) watermarking + nudifier/CSAM ban", penalty: "€35M / 7%", color: "var(--ai-color)" },
+              { date: "Dec 11, 2027", label: "CRA — full product security obligations", penalty: "€15M / 2.5%", color: "var(--green)" },
+            ].map(({ date, label, penalty, color }, i, arr) => (
+              <li
+                key={date + label}
+                className="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-4 py-2"
+                style={i < arr.length - 1 ? { borderBottom: "1px solid var(--border)" } : undefined}
+              >
+                <span className="shrink-0 w-24" style={{ color }}>{date}</span>
+                <span className="flex-1 min-w-[200px]" style={{ color: "var(--text)" }}>{label}</span>
+                <span className="shrink-0 sm:text-right" style={{ color: "var(--red)" }}>{penalty}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="rounded-lg p-4" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.2)" }}>

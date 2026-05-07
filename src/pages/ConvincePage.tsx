@@ -15,7 +15,8 @@ export function ConvincePage() {
 
 Key regulations:
 - GDPR Art. 7: consent must be as easy to withdraw as to give
-- EU AI Act Art. 50: AI interactions must be disclosed (Aug 2026)
+- EU AI Act Art. 50(1): chatbot disclosure (Aug 2, 2026); Art. 50(2) watermarking + nudifier/CSAM ban (Dec 2, 2026)
+- Cyber Resilience Act: vulnerability reporting (Sep 11, 2026); full obligations (Dec 11, 2027)
 - FTC Negative Option Rule: cancellation must equal signup ease
 - European Accessibility Act: digital services must be accessible (enforced since June 2025)
 - PCI DSS 4.0: MFA required for all cardholder data access (enforced since March 2025)
@@ -127,8 +128,10 @@ Source: uxsec.dev — 36 interactive patterns, 19 regulations, 46 cited sources`
             { date: "Now", reg: "FTC Neg. Option Rule", req: "Cancellation must be as easy as signup — no retention mazes", penalty: "Up to $50,000 per incident" },
             { date: "Now", reg: "European Accessibility Act", req: "Digital services must be accessible — auth flows, consent, notifications (enforced since June 2025)", penalty: "Varies by member state" },
             { date: "Now", reg: "PCI DSS 4.0", req: "MFA required for all access to cardholder data — phishing-resistant auth, secure session management (enforced since March 2025)", penalty: "Fines $5,000–$100,000/month + loss of card processing" },
-            { date: "Aug 2026", reg: "EU AI Act Art. 50", req: "AI interactions must be disclosed — chatbots can't pretend to be human", penalty: "Up to €15M or 3% of global turnover" },
-            { date: "2027", reg: "Cyber Resilience Act", req: "Products with digital elements must meet security requirements", penalty: "Up to €15M or 2.5% of global turnover" },
+            { date: "Aug 2, 2026", reg: "EU AI Act Art. 50(1)", req: "Chatbots must disclose they are AI — no pretending to be human", penalty: "Up to €15M or 3% of global turnover" },
+            { date: "Sep 11, 2026", reg: "Cyber Resilience Act", req: "Vulnerability reporting — 24h early warning, 72h notification, for products already on the EU market", penalty: "Up to €15M or 2.5% of global turnover" },
+            { date: "Dec 2, 2026", reg: "EU AI Act Art. 50(2) + prohibited", req: "AI watermarking obligations · ban on nudifier and CSAM-generating AI (postponed Apr 2026)", penalty: "Up to €35M or 7% of global turnover (prohibited systems)" },
+            { date: "Dec 11, 2027", reg: "Cyber Resilience Act", req: "Full product security obligations for products with digital elements", penalty: "Up to €15M or 2.5% of global turnover" },
           ].map(({ date, reg, req, penalty }) => (
             <div key={reg} className="flex flex-wrap items-start gap-3 p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
               <span className="font-mono text-xs font-bold px-2 py-0.5 rounded shrink-0" style={{ background: date === "Now" ? "rgba(255,51,51,0.15)" : "var(--ai-glow)", color: date === "Now" ? "var(--red)" : "var(--ai-color)" }}>{date}</span>
@@ -222,10 +225,10 @@ Source: uxsec.dev — 36 interactive patterns, 19 regulations, 46 cited sources`
             <ul className="space-y-1.5 text-xs font-mono" style={{ color: "var(--text)" }}>
               <li><a href="https://gdpr-info.eu/art-7-gdpr/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>GDPR Art. 7</a> <span style={{ color: "var(--text-dim)" }}>— Conditions for consent</span></li>
               <li><a href="https://gdpr-info.eu/art-33-gdpr/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>GDPR Art. 33</a> <span style={{ color: "var(--text-dim)" }}>— 72h breach notification</span></li>
-              <li><a href="https://artificialintelligenceact.eu/article/50/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>EU AI Act Art. 50</a> <span style={{ color: "var(--text-dim)" }}>— AI transparency (Aug 2026)</span></li>
+              <li><a href="https://artificialintelligenceact.eu/article/50/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>EU AI Act Art. 50</a> <span style={{ color: "var(--text-dim)" }}>— AI transparency (Aug/Dec 2026)</span></li>
               <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> <span style={{ color: "var(--text-dim)" }}>— Cancellation ease</span></li>
               <li><a href="https://ec.europa.eu/social/main.jsp?catId=1202" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>European Accessibility Act</a> <span style={{ color: "var(--text-dim)" }}>— June 2025</span></li>
-              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Cyber Resilience Act</a> <span style={{ color: "var(--text-dim)" }}>— 2027</span></li>
+              <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Cyber Resilience Act</a> <span style={{ color: "var(--text-dim)" }}>— reporting Sep 2026, full Dec 2027</span></li>
               <li><a href="https://www.pcisecuritystandards.org/document_library/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>PCI DSS 4.0</a> <span style={{ color: "var(--text-dim)" }}>— March 2025</span></li>
               <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>ISO/IEC 42001</a> <span style={{ color: "var(--text-dim)" }}>— AI management system (2023)</span></li>
             </ul>
