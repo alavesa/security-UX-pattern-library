@@ -179,6 +179,19 @@ function BackToTop() {
 export function HomePage() {
   return (
     <div>
+      {/* News strip */}
+      <a
+        href="https://www.europarl.europa.eu/news/en/press-room/20260427IPR42011/ai-act-deal-on-simplification-measures-ban-on-nudifier-apps"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block px-4 sm:px-6 py-1.5 no-underline font-mono text-[11px] text-center"
+        style={{ background: "var(--bg)", borderBottom: "1px solid var(--border)", color: "var(--text-dim)" }}
+        onMouseEnter={e => { e.currentTarget.style.color = "var(--text)"; }}
+        onMouseLeave={e => { e.currentTarget.style.color = "var(--text-dim)"; }}
+      >
+        <span style={{ color: "var(--ai-color)" }}>news</span> 2026-04-27 — EU AI Act watermarking postponed to Dec 2, 2026; nudifier &amp; CSAM AI banned. <span className="underline" style={{ color: "var(--text)" }}>read &rarr;</span>
+      </a>
+
       {/* Hero */}
       <section id="hero" className="px-4 sm:px-6 py-16 sm:py-24 text-center border-b relative overflow-hidden" style={{ borderColor: "var(--border)" }}>
         <MatrixRain />
@@ -361,7 +374,7 @@ export function HomePage() {
           {[
             { stat: "€1.86B+", label: "in dark pattern fines since 2023", color: "var(--red)" },
             { stat: "204 days", label: "average breach detection time", color: "var(--amber)" },
-            { stat: "Aug 2026", label: "EU AI Act Art. 50 deadline", color: "var(--ai-color)" },
+            { stat: "Aug/Dec 2026", label: "EU AI Act Art. 50 — disclosure / watermarking", color: "var(--ai-color)" },
             { stat: "94%", label: "of apps have broken access control", color: "var(--cyan)" },
           ].map(({ stat, label, color }) => (
             <div key={label} className="rounded-lg p-4 text-center" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
@@ -695,8 +708,10 @@ export function HomePage() {
         {/* AI Transparency */}
         <div className="mt-16">
           <AnchorHeading id="ai" className="text-xl font-mono mb-2" style={{ color: "var(--ai-color)" }}>./ai/</AnchorHeading>
-          <p className="mb-2" style={{ color: "var(--text)" }}>AI transparency patterns — EU AI Act compliance, effective August 2026.</p>
-          <p className="text-xs mb-8" style={{ color: "var(--red)" }}>Deadline: August 2026 — 5 months away</p>
+          <p className="mb-2" style={{ color: "var(--text)" }}>AI transparency patterns — EU AI Act compliance.</p>
+          <p className="text-xs mb-8" style={{ color: "var(--text-dim)" }}>
+            Chatbot disclosure (Art. 50(1)): <span style={{ color: "var(--red)" }}>Aug 2, 2026</span> · Watermarking (Art. 50(2)): <span style={{ color: "var(--ai-color)" }}>Dec 2, 2026</span> <span style={{ color: "var(--text-dim)" }}>(postponed Apr 2026)</span>
+          </p>
 
           <div className="grid md:grid-cols-3 gap-4">
             {[

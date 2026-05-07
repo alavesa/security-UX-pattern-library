@@ -219,7 +219,7 @@ export function AIContentLabelingPattern() {
           "Don't present AI-generated content as photojournalism without explicit disclosure",
           "Don't use AI deepfakes without disclosure — this is specifically called out in Art. 50(3)",
         ]}
-        securityRationale="EU AI Act Article 50(2)-(4) requires providers to mark AI-generated content in machine-readable format and ensure detectable watermarking. Article 50(4) specifically addresses AI-generated text published to inform the public — it must be labeled unless human-reviewed. The C2PA (Coalition for Content Provenance and Authenticity) standard, backed by Adobe, Microsoft, and BBC, provides the technical framework. Non-compliance faces fines up to 15M EUR. Deadline: August 2026."
+        securityRationale="EU AI Act Article 50(2)-(4) requires providers to mark AI-generated content in machine-readable format and ensure detectable watermarking. Article 50(4) specifically addresses AI-generated text published to inform the public — it must be labeled unless human-reviewed. The C2PA (Coalition for Content Provenance and Authenticity) standard, backed by Adobe, Microsoft, and BBC, provides the technical framework. Non-compliance faces fines up to 15M EUR. Deadline: December 2, 2026 (postponed from August 2026 by the April 2026 simplification amendments)."
         accessibilityNotes={[
           "AI labels must be in text, not just icons — screen readers can't interpret icon-only labels",
           "Overlay badges on images need sufficient contrast against varied backgrounds",
