@@ -181,7 +181,7 @@ export function HomePage() {
     <div>
       {/* News strip */}
       <a
-        href="https://www.europarl.europa.eu/news/en/press-room/20260427IPR42011/ai-act-deal-on-simplification-measures-ban-on-nudifier-apps"
+        href="https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content"
         target="_blank"
         rel="noopener noreferrer"
         className="block px-4 sm:px-6 py-1.5 no-underline font-mono text-[11px] text-center"
@@ -189,7 +189,7 @@ export function HomePage() {
         onMouseEnter={e => { e.currentTarget.style.color = "var(--text)"; }}
         onMouseLeave={e => { e.currentTarget.style.color = "var(--text-dim)"; }}
       >
-        <span style={{ color: "var(--ai-color)" }}>news</span> 2026-04-27 — EU AI Act watermarking postponed to Dec 2, 2026; nudifier &amp; CSAM AI banned. <span className="underline" style={{ color: "var(--text)" }}>read &rarr;</span>
+        <span style={{ color: "var(--ai-color)" }}>news</span> 2026-06-10 — EU Commission publishes final Code of Practice on AI-content transparency; Art. 50 obligations apply Aug 2, 2026. <span className="underline" style={{ color: "var(--text)" }}>read &rarr;</span>
       </a>
 
       {/* Hero */}
