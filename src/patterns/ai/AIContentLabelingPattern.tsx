@@ -281,6 +281,17 @@ function AIContentLabelingDemo() {
                 </p>
               </div>
 
+              {/* Black variant on light content */}
+              <div className="rounded-lg overflow-hidden" style={{ border: "1px solid var(--border)" }}>
+                <div className="h-28 relative flex items-center justify-center text-xs font-mono" style={{ background: "linear-gradient(135deg, #e9e5da, #f8f5ee)", color: "#8a8578" }}>
+                  [Bright AI-generated image]
+                  <img src={aiGeneratedBlack} alt="AI GENERATED — official EU label, black variant on light content" className="absolute bottom-2 left-2 h-7 w-auto" />
+                </div>
+                <p className="px-3 py-2 text-[10px] font-mono" style={{ background: "var(--bg)", color: "var(--text-dim)" }}>
+                  Light content — use the black variant for contrast; pick the variant by background, not by brand palette
+                </p>
+              </div>
+
               {/* Published AI-generated text */}
               <div className="rounded-lg p-3" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
                 <div className="flex items-center gap-2 mb-1">
