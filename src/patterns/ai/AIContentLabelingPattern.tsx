@@ -223,9 +223,14 @@ function AIContentLabelingDemo() {
           <p className="text-xs font-mono mb-2" style={{ color: "var(--text)" }}>
             Published by the EU AI Office as an integral part of the Code of Practice on transparency of AI-generated content (Section 2). Free to use (SVG/PNG, no attribution). Voluntary — the icons alone don't establish Art. 50 compliance, but they give users one recognisable visual language across platforms.
           </p>
-          <p className="text-xs font-mono mb-4" style={{ color: "var(--text-dim)" }}>
+          <p className="text-xs font-mono mb-3" style={{ color: "var(--text-dim)" }}>
             Scope: the icons support the Art. 50(4) disclosure duty — deepfakes and AI-generated text informing the public. Not all AI content needs a label: evidently artistic/satirical works and text under human editorial responsibility are exempt.
           </p>
+          <div className="rounded-lg p-3 mb-4" style={{ background: "rgba(192,132,252,0.06)", border: "1px solid var(--ai-border)" }}>
+            <p className="text-xs font-mono" style={{ color: "var(--text)" }}>
+              <strong style={{ color: "var(--ai-color)" }}>Why the narrow scope matters:</strong> over-labelling destroys the signal. If every AI-touched asset carried a badge, users would learn to ignore it — the way they ignore cookie banners. The obligation targets content that deceives and has no accountable human behind it; a label there still means something. Label the risk, not the tool.
+            </p>
+          </div>
 
           <div className="space-y-4">
             {EU_ICONS.map(({ name, use, tall, variants }) => (
@@ -365,6 +370,7 @@ export function AIContentLabelingPattern() {
           "Don't hide AI labels behind clicks or tooltips — they must be immediately visible",
           "Don't present AI-generated content as photojournalism without explicit disclosure",
           "Don't use AI deepfakes without disclosure — this is specifically called out in Art. 50(3)",
+          "Don't over-label: badging every AI-assisted asset teaches users to ignore the label — reserve it for content that could mislead",
         ]}
         securityRationale="EU AI Act Article 50(2)-(4) requires providers to mark AI-generated content in machine-readable format and ensure detectable watermarking. Article 50(4) specifically addresses AI-generated text published to inform the public — it must be labeled unless human-reviewed. Core Art. 50 transparency and disclosure obligations are in force since August 2, 2026 (fines up to €15M or 3% of worldwide turnover); the Art. 50(2) machine-readable watermarking deadline is December 2, 2026 (postponed from August 2026 by the April 2026 simplification amendments). The EU AI Office published official labelling icons (June 10, 2026, final set August 10, 2026) — voluntary, but a common visual language across platforms. The C2PA (Coalition for Content Provenance and Authenticity) standard, backed by Adobe, Microsoft, and BBC, provides the machine-readable technical framework."
         accessibilityNotes={[
