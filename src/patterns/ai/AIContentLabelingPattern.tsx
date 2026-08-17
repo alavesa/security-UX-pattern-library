@@ -220,8 +220,11 @@ function AIContentLabelingDemo() {
       {scenario === "euicons" && (
         <div role="tabpanel" id="tabpanel-euicons" aria-labelledby="tab-euicons" className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           <h3 className="font-bold font-mono text-sm mb-2" style={{ color: "var(--text-bright)" }}>Official EU labelling icons</h3>
-          <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>
-            Published by the EU AI Office with the Code of Practice on transparency of AI-generated content. Free to use (SVG/PNG, no attribution). Voluntary — the icons alone don't establish Art. 50 compliance, but they give users one recognisable visual language across platforms.
+          <p className="text-xs font-mono mb-2" style={{ color: "var(--text)" }}>
+            Published by the EU AI Office as an integral part of the Code of Practice on transparency of AI-generated content (Section 2). Free to use (SVG/PNG, no attribution). Voluntary — the icons alone don't establish Art. 50 compliance, but they give users one recognisable visual language across platforms.
+          </p>
+          <p className="text-xs font-mono mb-4" style={{ color: "var(--text-dim)" }}>
+            Scope: the icons support the Art. 50(4) disclosure duty — deepfakes and AI-generated text informing the public. Not all AI content needs a label: evidently artistic/satirical works and text under human editorial responsibility are exempt.
           </p>
 
           <div className="space-y-4">
@@ -315,11 +318,13 @@ function AIContentLabelingDemo() {
               <li>— Embedded directly into the deepfake or published text, not just nearby UI</li>
               <li>— Must survive resharing and downloading of the content</li>
               <li>— Pair with a plain-language text label for accessibility</li>
+              <li>— User-tested by the EU: the basic icon performed better on all measures when accompanied by a text label</li>
+              <li>— Make the icon readable by assistive tech (alt text / ARIA); timed disclosures must stay visible long enough to be read</li>
             </ul>
           </div>
 
           <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "var(--ai-glow)", border: "1px solid var(--ai-border)", color: "var(--ai-color)" }}>
-            <strong>Status:</strong> <span style={{ color: "var(--text)" }}>Art. 50 transparency obligations are in force since Aug 2, 2026 and enforceable by national market surveillance authorities — fines up to €15M or 3% of worldwide turnover. Icons published Jun 10, 2026; final icon set updated Aug 10, 2026.</span>
+            <strong>Status:</strong> <span style={{ color: "var(--text)" }}>Art. 50 transparency obligations are in force since Aug 2, 2026 and enforceable by national market surveillance authorities — fines up to €15M or 3% of worldwide turnover. Icons published as part of the Code of Practice (Jun 10, 2026); icons page updated Aug 10, 2026.</span>
           </div>
         </div>
       )}
