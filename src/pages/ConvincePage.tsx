@@ -15,7 +15,7 @@ export function ConvincePage() {
 
 Key regulations:
 - GDPR Art. 7: consent must be as easy to withdraw as to give
-- EU AI Act Art. 50(1): chatbot disclosure (Aug 2, 2026); Art. 50(2) watermarking + nudifier/CSAM ban (Dec 2, 2026)
+- EU AI Act Art. 50(1): chatbot disclosure (in force since Aug 2, 2026); Art. 50(2) watermarking + nudifier/CSAM ban (Dec 2, 2026)
 - Cyber Resilience Act: vulnerability reporting (Sep 11, 2026); full obligations (Dec 11, 2027)
 - FTC Negative Option Rule: cancellation must equal signup ease
 - European Accessibility Act: digital services must be accessible (enforced since June 2025)
@@ -28,7 +28,7 @@ What to do:
 4. Generate prioritized report → uxsec.dev/report
 5. Trace headline implications → uxsec.dev/ripple
 
-Source: uxsec.dev — 36 interactive patterns, 19 regulations, 46 cited sources`;
+Source: uxsec.dev — 36 interactive patterns, 19 regulations, 52 cited sources`;
 
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
@@ -128,7 +128,7 @@ Source: uxsec.dev — 36 interactive patterns, 19 regulations, 46 cited sources`
             { date: "Now", reg: "FTC Neg. Option Rule", req: "Cancellation must be as easy as signup — no retention mazes", penalty: "Up to $50,000 per incident" },
             { date: "Now", reg: "European Accessibility Act", req: "Digital services must be accessible — auth flows, consent, notifications (enforced since June 2025)", penalty: "Varies by member state" },
             { date: "Now", reg: "PCI DSS 4.0", req: "MFA required for all access to cardholder data — phishing-resistant auth, secure session management (enforced since March 2025)", penalty: "Fines $5,000–$100,000/month + loss of card processing" },
-            { date: "Aug 2, 2026", reg: "EU AI Act Art. 50(1)", req: "Chatbots must disclose they are AI — no pretending to be human", penalty: "Up to €15M or 3% of global turnover" },
+            { date: "Now", reg: "EU AI Act Art. 50(1)", req: "Chatbots must disclose they are AI — no pretending to be human (in force since Aug 2, 2026; official EU labelling icons available)", penalty: "Up to €15M or 3% of global turnover" },
             { date: "Sep 11, 2026", reg: "Cyber Resilience Act", req: "Vulnerability reporting — 24h early warning, 72h notification, for products already on the EU market", penalty: "Up to €15M or 2.5% of global turnover" },
             { date: "Dec 2, 2026", reg: "EU AI Act Art. 50(2) + prohibited", req: "AI watermarking obligations · ban on nudifier and CSAM-generating AI (postponed Apr 2026)", penalty: "Up to €35M or 7% of global turnover (prohibited systems)" },
             { date: "Dec 11, 2027", reg: "Cyber Resilience Act", req: "Full product security obligations for products with digital elements", penalty: "Up to €15M or 2.5% of global turnover" },
@@ -251,7 +251,7 @@ Source: uxsec.dev — 36 interactive patterns, 19 regulations, 46 cited sources`
           "Security is a design decision.<br />Bad UX is a vulnerability."
         </blockquote>
         <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>
-          36 interactive patterns · 19 regulations · 46 cited sources · Open source
+          36 interactive patterns · 19 regulations · 52 cited sources · Open source
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button

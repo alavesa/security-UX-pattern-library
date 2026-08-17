@@ -181,7 +181,7 @@ export function HomePage() {
     <div>
       {/* News strip */}
       <a
-        href="https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content"
+        href="https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content"
         target="_blank"
         rel="noopener noreferrer"
         className="block px-4 sm:px-6 py-1.5 no-underline font-mono text-[11px] text-center"
@@ -189,7 +189,7 @@ export function HomePage() {
         onMouseEnter={e => { e.currentTarget.style.color = "var(--text)"; }}
         onMouseLeave={e => { e.currentTarget.style.color = "var(--text-dim)"; }}
       >
-        <span style={{ color: "var(--ai-color)" }}>news</span> 2026-06-10 — EU Commission publishes final Code of Practice on AI-content transparency; Art. 50 obligations apply Aug 2, 2026. <span className="underline" style={{ color: "var(--text)" }}>read &rarr;</span>
+        <span style={{ color: "var(--ai-color)" }}>news</span> 2026-08-10 — EU publishes official icons for labelling AI-generated content; Art. 50 transparency obligations in force since Aug 2. <span className="underline" style={{ color: "var(--text)" }}>read &rarr;</span>
       </a>
 
       {/* Hero */}
@@ -242,7 +242,7 @@ export function HomePage() {
             {[
               { value: "36", label: "interactive patterns", color: "var(--green)" },
               { value: "19", label: "regulations covered", color: "var(--amber)" },
-              { value: "46", label: "cited sources", color: "var(--cyan)" },
+              { value: "52", label: "cited sources", color: "var(--cyan)" },
               { value: "5", label: "strategic tools", color: "var(--ai-color)" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
@@ -391,18 +391,30 @@ export function HomePage() {
           </div>
           <ul className="font-mono text-xs">
             {[
-              { date: "Aug 2, 2026", label: "EU AI Act Art. 50(1) — chatbot disclosure", penalty: "€15M / 3%", color: "var(--ai-color)" },
-              { date: "Sep 11, 2026", label: "CRA — vulnerability reporting (24h early warning)", penalty: "€15M / 2.5%", color: "var(--green)" },
-              { date: "Dec 2, 2026", label: "EU AI Act Art. 50(2) watermarking + nudifier/CSAM ban", penalty: "€35M / 7%", color: "var(--ai-color)" },
-              { date: "Dec 11, 2027", label: "CRA — full product security obligations", penalty: "€15M / 2.5%", color: "var(--green)" },
-            ].map(({ date, label, penalty, color }, i, arr) => (
+              { date: "Aug 2, 2026", label: "EU AI Act Art. 50(1) — chatbot disclosure", penalty: "€15M / 3%", color: "var(--ai-color)", live: true, next: false },
+              { date: "Sep 11, 2026", label: "CRA — vulnerability reporting (24h early warning, Single Reporting Platform)", penalty: "€15M / 2.5%", color: "var(--green)", live: false, next: true },
+              { date: "Dec 2, 2026", label: "EU AI Act Art. 50(2) watermarking + nudifier/CSAM ban", penalty: "€35M / 7%", color: "var(--ai-color)", live: false, next: false },
+              { date: "Dec 11, 2027", label: "CRA — full product security obligations", penalty: "€15M / 2.5%", color: "var(--green)", live: false, next: false },
+            ].map(({ date, label, penalty, color, live, next }, i, arr) => (
               <li
                 key={date + label}
                 className="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-4 py-2"
                 style={i < arr.length - 1 ? { borderBottom: "1px solid var(--border)" } : undefined}
               >
                 <span className="shrink-0 w-24" style={{ color }}>{date}</span>
-                <span className="flex-1 min-w-[200px]" style={{ color: "var(--text)" }}>{label}</span>
+                <span className="flex-1 min-w-[200px]" style={{ color: "var(--text)" }}>
+                  {label}
+                  {live && (
+                    <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded" style={{ background: "rgba(255,51,51,0.12)", color: "var(--red)", border: "1px solid rgba(255,51,51,0.3)" }}>
+                      IN FORCE
+                    </span>
+                  )}
+                  {next && (
+                    <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded" style={{ background: "rgba(255,170,0,0.12)", color: "var(--amber)", border: "1px solid rgba(255,170,0,0.3)" }}>
+                      NEXT
+                    </span>
+                  )}
+                </span>
                 <span className="shrink-0 sm:text-right" style={{ color: "var(--red)" }}>{penalty}</span>
               </li>
             ))}
@@ -569,7 +581,10 @@ export function HomePage() {
       {/* Pattern Cards */}
       <section id="patterns" className="px-4 sm:px-6 py-16 max-w-5xl mx-auto">
         <AnchorHeading id="auth" className="text-xl font-mono mb-2 glow-text">./auth/</AnchorHeading>
-        <p className="mb-8" style={{ color: "var(--text)" }}>Authentication patterns — the front door of security.</p>
+        <p className="mb-2" style={{ color: "var(--text)" }}>Authentication patterns — the front door of security.</p>
+        <p className="text-xs mb-8" style={{ color: "var(--text-dim)" }}>
+          Passkeys are mainstream: <span style={{ color: "var(--green)" }}>5 billion active</span> (FIDO Alliance, 2026) · Microsoft Entra ID defaults to passkeys from Sep 1, 2026 · regulators phasing out SMS-OTP
+        </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {AUTH_PATTERNS.map(({ path, label, icon: Icon, description }) => (
@@ -630,7 +645,10 @@ export function HomePage() {
         {/* Dark Patterns */}
         <div className="mt-16">
           <AnchorHeading id="dark-patterns" className="text-xl font-mono mb-2" style={{ color: "var(--red)" }}>./dark_patterns/</AnchorHeading>
-          <p className="mb-8" style={{ color: "var(--text)" }}>Anti-patterns — what NOT to do, and why. Each includes the ethical alternative.</p>
+          <p className="mb-2" style={{ color: "var(--text)" }}>Anti-patterns — what NOT to do, and why. Each includes the ethical alternative.</p>
+          <p className="text-xs mb-8" style={{ color: "var(--text-dim)" }}>
+            Next up: <span style={{ color: "var(--red)" }}>EU Digital Fairness Act</span> — proposal expected Q4 2026, targeting dark patterns, addictive design, drip pricing, and unfair personalisation
+          </p>
 
           <div className="grid md:grid-cols-3 gap-4">
             {[
@@ -735,13 +753,13 @@ export function HomePage() {
           <AnchorHeading id="ai" className="text-xl font-mono mb-2" style={{ color: "var(--ai-color)" }}>./ai/</AnchorHeading>
           <p className="mb-2" style={{ color: "var(--text)" }}>AI transparency patterns — EU AI Act compliance.</p>
           <p className="text-xs mb-8" style={{ color: "var(--text-dim)" }}>
-            Chatbot disclosure (Art. 50(1)): <span style={{ color: "var(--red)" }}>Aug 2, 2026</span> · Watermarking (Art. 50(2)): <span style={{ color: "var(--ai-color)" }}>Dec 2, 2026</span> <span style={{ color: "var(--text-dim)" }}>(postponed Apr 2026)</span>
+            Chatbot disclosure (Art. 50(1)): <span style={{ color: "var(--red)" }}>in force since Aug 2, 2026</span> · Watermarking (Art. 50(2)): <span style={{ color: "var(--ai-color)" }}>Dec 2, 2026</span> <span style={{ color: "var(--text-dim)" }}>(postponed Apr 2026)</span>
           </p>
 
           <div className="grid md:grid-cols-3 gap-4">
             {[
               { path: "/patterns/ai/disclosure", label: "ai_disclosure", icon: Bot, description: "Chatbot transparency — compliant vs non-compliant AI interaction disclosure" },
-              { path: "/patterns/ai/content-labeling", label: "content_labeling", icon: Sparkles, description: "AI-generated content labels for social feeds, articles, and images (C2PA)" },
+              { path: "/patterns/ai/content-labeling", label: "content_labeling", icon: Sparkles, description: "AI-generated content labels for social feeds, articles, and images (EU icons, C2PA)" },
               { path: "/patterns/ai/decision-explanation", label: "decision_explanation", icon: Brain, description: "When AI decides about people — loans, moderation, hiring — explain why" },
               { path: "/patterns/ai/input-safety", label: "input_safety", icon: ShieldAlert, description: "Prompt injection defense, rate limiting, attachment safety for AI chat inputs" },
               { path: "/patterns/ai/human-override", label: "human_override", icon: UserCheck, description: "Emergency stop, human review queue, and override controls for high-risk AI decisions" },
@@ -939,7 +957,9 @@ export function HomePage() {
             <li><span style={{ color: "var(--amber)" }}>20 US states</span> now enforce consumer privacy statutes (Kentucky, Rhode Island, Indiana joined Jan 2026)</li>
             <li><span style={{ color: "var(--amber)" }}>EU AI-powered enforcement</span> — ML models scanning millions of websites for dark patterns</li>
             <li><span style={{ color: "var(--amber)" }}>Breach response focus</span> — enforcement now judges HOW you responded, not just that it happened</li>
-            <li><span style={{ color: "var(--amber)" }}>EU AI Act Art. 50</span> — transparency obligations go live August 2026</li>
+            <li><span style={{ color: "var(--amber)" }}>EU AI Act Art. 50</span> — transparency obligations in force since August 2, 2026; official EU labelling icons published</li>
+            <li><span style={{ color: "var(--amber)" }}>CRA reporting</span> — actively exploited vulnerabilities + severe incidents reportable from September 11, 2026 (24h/72h, Single Reporting Platform)</li>
+            <li><span style={{ color: "var(--amber)" }}>EU Digital Fairness Act</span> — dark patterns / addictive design proposal expected Q4 2026</li>
           </ul>
         </div>
       </section>
@@ -947,7 +967,7 @@ export function HomePage() {
       {/* Sources & References */}
       <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
         <AnchorHeading id="sources" className="text-xl font-mono mb-2" style={{ color: "var(--text-bright)" }}>./sources/</AnchorHeading>
-        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>46 cited sources across 7 categories. Every claim in the library links back to a primary source.</p>
+        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>52 cited sources across 7 categories. Every claim in the library links back to a primary source.</p>
 
         <div className="grid md:grid-cols-2 gap-6">
 
@@ -955,16 +975,20 @@ export function HomePage() {
           <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "#3b82f6" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "#3b82f6" }} /> EU Regulation
-              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>10 sources</span>
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>14 sources</span>
             </h3>
             <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
               {[
                 { url: "https://gdpr-info.eu/", label: "GDPR", desc: "Art. 5, 7, 15, 17, 20, 22, 33, 34" },
                 { url: "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive", label: "NIS2", desc: "Cybersecurity for essential entities" },
                 { url: "https://www.digital-operational-resilience-act.com/", label: "DORA", desc: "Financial sector resilience (Jan 2025)" },
-                { url: "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act", label: "CRA", desc: "Digital products (2027)" },
-                { url: "https://artificialintelligenceact.eu/article/50/", label: "EU AI Act Art. 50", desc: "AI transparency (Aug 2026)" },
+                { url: "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act", label: "CRA", desc: "Digital products (full: Dec 2027)" },
+                { url: "https://digital-strategy.ec.europa.eu/en/policies/cra-reporting", label: "CRA Reporting", desc: "Vulnerability/incident reporting (Sep 2026)" },
+                { url: "https://artificialintelligenceact.eu/article/50/", label: "EU AI Act Art. 50", desc: "AI transparency (in force Aug 2026)" },
                 { url: "https://artificialintelligenceact.eu/high-level-summary/", label: "EU AI Act Overview", desc: "High-level summary" },
+                { url: "https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content", label: "AI-Content CoP", desc: "Transparency Code of Practice (Jun 2026)" },
+                { url: "https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content", label: "EU AI Icons", desc: "Official labelling icons (Aug 2026)" },
+                { url: "https://www.digital-fairness-act.com/", label: "Digital Fairness Act", desc: "Dark patterns proposal (Q4 2026)" },
                 { url: "https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package", label: "EU DSA", desc: "Platform transparency + dark patterns" },
                 { url: "https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation", label: "ePrivacy", desc: "Cookie consent rules" },
                 { url: "https://commission.europa.eu/law/law-topic/consumer-protection-law_en", label: "Consumer Rights Dir.", desc: "Cancellation + unfair practices" },
@@ -1078,7 +1102,7 @@ export function HomePage() {
           <div className="rounded-lg p-4 md:col-span-2" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--red)" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "var(--red)" }} /> Research & Breach Data
-              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>7 sources</span>
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>9 sources</span>
             </h3>
             <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
               {[
@@ -1089,6 +1113,8 @@ export function HomePage() {
                 { url: "https://www.deceptive.design/", label: "Deceptive Design", desc: "Dark patterns taxonomy" },
                 { url: "https://www.deceptive.design/enforcement", label: "Enforcement DB", desc: "Global dark pattern fines" },
                 { url: "https://sharkstriker.com/blog/march-data-breaches-today-2026/", label: "Breach Tracker 2026", desc: "Current breach data" },
+                { url: "https://fidoalliance.org/fido-alliance-reports-accelerating-global-passkey-adoption-on-world-passkey-day-2026/", label: "FIDO Passkey Report", desc: "5 billion active passkeys (2026)" },
+                { url: "https://www.microsoft.com/en-us/security/blog/2026/07/13/microsoft-entra-id-security-updates-passkeys-are-the-default-authentication-method-in-entra-id/", label: "Entra Passkey Default", desc: "Passkeys default from Sep 2026" },
               ].map(({ url, label, desc }) => (
                 <p key={label} className="text-xs"><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></p>
               ))}
