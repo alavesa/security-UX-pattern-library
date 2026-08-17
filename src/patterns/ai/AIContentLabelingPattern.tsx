@@ -3,16 +3,49 @@ import { PatternHeader } from "../../components/PatternHeader";
 import { DemoContainer } from "../../components/DemoContainer";
 import { GuidelineSection } from "../../components/GuidelineSection";
 import { Bot, CheckCircle2, AlertTriangle, Info, Sparkles } from "lucide-react";
+import aiBasicBlack from "../../assets/eu-icons/ai-basic-black.svg";
+import aiBasicBlackT from "../../assets/eu-icons/ai-basic-black-transparent.svg";
+import aiBasicWhite from "../../assets/eu-icons/ai-basic-white.svg";
+import aiBasicWhiteT from "../../assets/eu-icons/ai-basic-white-transparent.svg";
+import aiGeneratedBlack from "../../assets/eu-icons/ai-generated-black.svg";
+import aiGeneratedBlackT from "../../assets/eu-icons/ai-generated-black-transparent.svg";
+import aiGeneratedWhite from "../../assets/eu-icons/ai-generated-white.svg";
+import aiGeneratedWhiteT from "../../assets/eu-icons/ai-generated-white-transparent.svg";
+import aiModifiedBlack from "../../assets/eu-icons/ai-modified-black.svg";
+import aiModifiedBlackT from "../../assets/eu-icons/ai-modified-black-transparent.svg";
+import aiModifiedWhite from "../../assets/eu-icons/ai-modified-white.svg";
+import aiModifiedWhiteT from "../../assets/eu-icons/ai-modified-white-transparent.svg";
+
+const EU_ICONS = [
+  {
+    name: "AI (basic icon)",
+    use: "AI involvement in deepfakes or published text — or alongside a custom label of your own",
+    tall: true,
+    variants: { black: aiBasicBlack, blackT: aiBasicBlackT, white: aiBasicWhite, whiteT: aiBasicWhiteT },
+  },
+  {
+    name: "AI GENERATED",
+    use: "Content entirely created by AI, with no human-made elements beyond prompting",
+    tall: false,
+    variants: { black: aiGeneratedBlack, blackT: aiGeneratedBlackT, white: aiGeneratedWhite, whiteT: aiGeneratedWhiteT },
+  },
+  {
+    name: "AI MODIFIED",
+    use: "Pre-existing human content partially altered with AI (edits, background swaps, voice cloning)",
+    tall: false,
+    variants: { black: aiModifiedBlack, blackT: aiModifiedBlackT, white: aiModifiedWhite, whiteT: aiModifiedWhiteT },
+  },
+];
 
 function AIContentLabelingDemo() {
-  const [scenario, setScenario] = useState<"social" | "article" | "image">("social");
+  const [scenario, setScenario] = useState<"social" | "article" | "image" | "euicons">("social");
 
   return (
     <div className="w-full max-w-lg">
       <div role="tablist" className="flex gap-1 mb-4 p-1 rounded-lg" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
-        {(["social", "article", "image"] as const).map(s => (
+        {(["social", "article", "image", "euicons"] as const).map(s => (
           <button type="button" role="tab" aria-selected={scenario === s} aria-controls={`tabpanel-${s}`} id={`tab-${s}`} key={s} onClick={() => setScenario(s)} className="flex-1 text-xs py-2 rounded-md font-mono border-none cursor-pointer" style={{ background: scenario === s ? "var(--ai-glow)" : "transparent", color: scenario === s ? "var(--ai-color)" : "var(--text)" }}>
-            {s === "social" ? "Social Feed" : s === "article" ? "Article" : "Image/Media"}
+            {s === "social" ? "Social Feed" : s === "article" ? "Article" : s === "image" ? "Image/Media" : "EU Icons"}
           </button>
         ))}
       </div>
@@ -182,6 +215,103 @@ function AIContentLabelingDemo() {
           </div>
         </div>
       )}
+
+      {/* Official EU labelling icons */}
+      {scenario === "euicons" && (
+        <div role="tabpanel" id="tabpanel-euicons" aria-labelledby="tab-euicons" className="rounded-2xl p-6" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <h3 className="font-bold font-mono text-sm mb-2" style={{ color: "var(--text-bright)" }}>Official EU labelling icons</h3>
+          <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>
+            Published by the EU AI Office with the Code of Practice on transparency of AI-generated content. Free to use (SVG/PNG, no attribution). Voluntary — the icons alone don't establish Art. 50 compliance, but they give users one recognisable visual language across platforms.
+          </p>
+
+          <div className="space-y-4">
+            {EU_ICONS.map(({ name, use, tall, variants }) => (
+              <div key={name} className="rounded-lg p-3" style={{ background: "var(--bg)", border: "1px solid var(--ai-border)" }}>
+                <p className="text-xs font-mono font-semibold mb-1" style={{ color: "var(--ai-color)" }}>{name}</p>
+                <p className="text-xs font-mono mb-3" style={{ color: "var(--text)" }}>{use}</p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {[
+                    { src: variants.black, label: "black", light: true },
+                    { src: variants.blackT, label: "black 50%", light: true },
+                    { src: variants.white, label: "white", light: false },
+                    { src: variants.whiteT, label: "white 50%", light: false },
+                  ].map(({ src, label, light }) => (
+                    <div key={label}>
+                      <div
+                        className="rounded flex items-center justify-center p-2"
+                        style={{ background: light ? "linear-gradient(135deg, #cfcfcf, #f2f2f2)" : "linear-gradient(135deg, #14141c, #3d3d4d)", border: "1px solid var(--border)" }}
+                      >
+                        <img src={src} alt={`Official EU icon: ${name}, ${label} variant`} className={tall ? "h-12 w-auto" : "h-10 w-auto max-w-full"} />
+                      </div>
+                      <p className="text-[10px] font-mono text-center mt-1" style={{ color: "var(--text-dim)" }}>{label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-[10px] font-mono mt-2" style={{ color: "var(--text-dim)" }}>
+            Official artwork by the EU AI Office — free to use in SVG/PNG without attribution. Source:{" "}
+            <a href="https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--ai-color)" }}>European Commission</a>.
+          </p>
+
+          <div className="mt-4">
+            <h4 className="text-xs font-semibold font-mono mb-2" style={{ color: "var(--text-bright)" }}>Icons in context</h4>
+            <div className="space-y-3">
+              {/* Fully AI-generated image */}
+              <div className="rounded-lg overflow-hidden" style={{ border: "1px solid var(--border)" }}>
+                <div className="h-28 relative flex items-center justify-center text-xs font-mono" style={{ background: "linear-gradient(135deg, #1c1430, #3a2a5a)", color: "var(--text-dim)" }}>
+                  [AI-generated image]
+                  <img src={aiGeneratedWhite} alt="AI GENERATED — official EU label embedded in the image" className="absolute bottom-2 left-2 h-7 w-auto" />
+                </div>
+                <p className="px-3 py-2 text-[10px] font-mono" style={{ background: "var(--bg)", color: "var(--text-dim)" }}>
+                  Fully AI-generated image — solid white icon embedded in a corner, visible at first exposure and preserved when the file is reshared
+                </p>
+              </div>
+
+              {/* AI-modified photo with transparent variant */}
+              <div className="rounded-lg overflow-hidden" style={{ border: "1px solid var(--border)" }}>
+                <div className="h-28 relative flex items-center justify-center text-xs font-mono" style={{ background: "linear-gradient(135deg, #2a3320, #4d5a3a)", color: "var(--text-dim)" }}>
+                  [AI-modified photograph]
+                  <img src={aiModifiedWhiteT} alt="AI MODIFIED — official EU label, 50% transparency variant" className="absolute bottom-2 left-2 h-7 w-auto" />
+                </div>
+                <p className="px-3 py-2 text-[10px] font-mono" style={{ background: "var(--bg)", color: "var(--text-dim)" }}>
+                  AI-modified photo — the 50%-transparency variant keeps the label legible without covering the underlying content
+                </p>
+              </div>
+
+              {/* Published AI-generated text */}
+              <div className="rounded-lg p-3" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+                <div className="flex items-center gap-2 mb-1">
+                  <img src={aiBasicWhite} alt="AI — official EU basic icon" className="h-6 w-6 shrink-0" />
+                  <p className="text-xs font-mono font-semibold" style={{ color: "var(--text-bright)" }}>Local election results: what changed overnight</p>
+                </div>
+                <p className="text-[11px] font-mono" style={{ color: "var(--text)" }}>This article was generated by AI to inform the public on a matter of public interest…</p>
+                <p className="text-[10px] font-mono mt-2" style={{ color: "var(--text-dim)" }}>
+                  Published text (Art. 50(4)) — the basic icon sits at the start of the text, paired with a plain-language disclosure line
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-lg p-3 mt-4" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+            <h4 className="text-xs font-semibold font-mono mb-2 flex items-center gap-1" style={{ color: "var(--text-bright)" }}>
+              <Info className="w-3.5 h-3.5" style={{ color: "var(--ai-color)" }} /> Placement rules (Code of Practice)
+            </h4>
+            <ul className="text-xs font-mono space-y-1" style={{ color: "var(--text)" }}>
+              <li>— Perceivable at the latest at first exposure to the content</li>
+              <li>— Embedded directly into the deepfake or published text, not just nearby UI</li>
+              <li>— Must survive resharing and downloading of the content</li>
+              <li>— Pair with a plain-language text label for accessibility</li>
+            </ul>
+          </div>
+
+          <div className="rounded-lg p-3 mt-4 text-xs font-mono" style={{ background: "var(--ai-glow)", border: "1px solid var(--ai-border)", color: "var(--ai-color)" }}>
+            <strong>Status:</strong> <span style={{ color: "var(--text)" }}>Art. 50 transparency obligations are in force since Aug 2, 2026 and enforceable by national market surveillance authorities — fines up to €15M or 3% of worldwide turnover. Icons published Jun 10, 2026; final icon set updated Aug 10, 2026.</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -193,10 +323,10 @@ export function AIContentLabelingPattern() {
         title="AI Content Labeling"
         description="How to label AI-generated and AI-modified content — social media feeds, articles, images. Covers EU AI Act Article 50 requirements including machine-readable watermarking."
         severity="critical"
-        tags={["EU AI Act Art. 50", "C2PA", "Content Authenticity"]}
+        tags={["EU AI Act Art. 50", "EU Icons", "C2PA", "Content Authenticity"]}
       />
 
-      <DemoContainer label="AI content labeling (3 variants)">
+      <DemoContainer label="AI content labeling (4 variants)">
         <AIContentLabelingDemo />
       </DemoContainer>
 
@@ -209,6 +339,7 @@ export function AIContentLabelingPattern() {
           "Provide a 'Why am I seeing this?' link for AI-generated content in feeds",
           "Label AI-generated images both visually (overlay badge) and in metadata",
           "Show a transparency notice on AI-generated articles with limitations stated",
+          "Prefer the official EU icons (Basic / Fully AI-Generated / Partially AI-Modified) — free, recognisable, and aligned with the Code of Practice",
         ]}
         donts={[
           "Don't publish AI-generated text on public interest topics without disclosure (Art. 50(4))",
@@ -219,7 +350,7 @@ export function AIContentLabelingPattern() {
           "Don't present AI-generated content as photojournalism without explicit disclosure",
           "Don't use AI deepfakes without disclosure — this is specifically called out in Art. 50(3)",
         ]}
-        securityRationale="EU AI Act Article 50(2)-(4) requires providers to mark AI-generated content in machine-readable format and ensure detectable watermarking. Article 50(4) specifically addresses AI-generated text published to inform the public — it must be labeled unless human-reviewed. The C2PA (Coalition for Content Provenance and Authenticity) standard, backed by Adobe, Microsoft, and BBC, provides the technical framework. Non-compliance faces fines up to 15M EUR. Deadline: December 2, 2026 (postponed from August 2026 by the April 2026 simplification amendments)."
+        securityRationale="EU AI Act Article 50(2)-(4) requires providers to mark AI-generated content in machine-readable format and ensure detectable watermarking. Article 50(4) specifically addresses AI-generated text published to inform the public — it must be labeled unless human-reviewed. Core Art. 50 transparency and disclosure obligations are in force since August 2, 2026 (fines up to €15M or 3% of worldwide turnover); the Art. 50(2) machine-readable watermarking deadline is December 2, 2026 (postponed from August 2026 by the April 2026 simplification amendments). The EU AI Office published official labelling icons (June 10, 2026, final set August 10, 2026) — voluntary, but a common visual language across platforms. The C2PA (Coalition for Content Provenance and Authenticity) standard, backed by Adobe, Microsoft, and BBC, provides the machine-readable technical framework."
         accessibilityNotes={[
           "AI labels must be in text, not just icons — screen readers can't interpret icon-only labels",
           "Overlay badges on images need sufficient contrast against varied backgrounds",

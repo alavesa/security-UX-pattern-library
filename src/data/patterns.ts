@@ -51,7 +51,7 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "owasp", tags: ["OWASP A09", "CWE-778", "CWE-223", "audit", "anomaly"] },
   // AI
   { path: "/patterns/ai/disclosure", label: "AI Disclosure", category: "ai", tags: ["EU AI Act", "Art. 50", "chatbot", "transparency"] },
-  { path: "/patterns/ai/content-labeling", label: "AI Content Labeling", category: "ai", tags: ["EU AI Act", "Art. 50", "C2PA", "watermark", "deepfake"] },
+  { path: "/patterns/ai/content-labeling", label: "AI Content Labeling", category: "ai", tags: ["EU AI Act", "Art. 50", "EU icons", "C2PA", "watermark", "deepfake"] },
   { path: "/patterns/ai/decision-explanation", label: "AI Decision Explanation", category: "ai", tags: ["EU AI Act", "GDPR Art. 22", "high-risk AI", "explainability"] },
   { path: "/patterns/ai/input-safety", label: "AI Input Safety", category: "ai", tags: ["EU AI Act", "OWASP LLM01", "CWE-77", "prompt injection", "rate limiting", "input validation"] },
   { path: "/patterns/ai/human-override", label: "Human Override & AI Kill Switch", category: "ai", tags: ["EU AI Act Art. 14", "GDPR Art. 22", "high-risk AI", "human oversight", "emergency stop"] },
