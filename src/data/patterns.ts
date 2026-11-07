@@ -31,8 +31,8 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/auth/accessible-auth", label: "Accessible Authentication", category: "auth", tags: ["authentication", "WCAG 2.2", "SC 3.3.8", "ARIA", "accessibility", "screen reader", "CAPTCHA alternative"] },
   // Threat
   { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "threat", tags: ["incident response", "GDPR Art. 33", "CWE-200", "breach"] },
-  { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "threat", tags: ["threat response", "OWASP A07", "CWE-601", "phishing"] },
-  { path: "/patterns/threat/suspicious-activity", label: "Suspicious Activity", category: "threat", tags: ["threat response", "OWASP A07", "CWE-778", "session"] },
+  { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "threat", tags: ["threat response", "OWASP A01", "CWE-601", "phishing"] },
+  { path: "/patterns/threat/suspicious-activity", label: "Suspicious Activity", category: "threat", tags: ["threat response", "OWASP A09", "CWE-778", "session"] },
   // Dark patterns
   { path: "/patterns/dark/confirmshaming", label: "Confirmshaming", category: "dark", tags: ["dark pattern", "EU DSA", "deceptive design", "consent"] },
   { path: "/patterns/dark/cookie-consent", label: "Cookie Consent", category: "dark", tags: ["dark pattern", "GDPR Art. 7", "ePrivacy", "consent", "cookies"] },
@@ -41,13 +41,13 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/dark/bait-switch", label: "Bait & Switch", category: "dark", tags: ["dark pattern", "FTC Act", "deceptive design"] },
   { path: "/patterns/dark/forced-continuity", label: "Forced Continuity", category: "dark", tags: ["dark pattern", "FTC", "subscription", "free trial"] },
   // Data
-  { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "data", tags: ["data protection", "OWASP A02", "CWE-311", "encryption", "E2E"] },
-  { path: "/patterns/data/file-upload", label: "Secure File Upload", category: "data", tags: ["data protection", "OWASP A03", "CWE-434", "malware", "upload"] },
+  { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "data", tags: ["data protection", "OWASP A06", "CWE-311", "encryption", "E2E"] },
+  { path: "/patterns/data/file-upload", label: "Secure File Upload", category: "data", tags: ["data protection", "OWASP A06", "CWE-434", "malware", "upload"] },
   { path: "/patterns/data/deletion", label: "Data Deletion", category: "data", tags: ["data protection", "GDPR Art. 17", "CWE-212", "right to erasure"] },
   { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "data", tags: ["data protection", "GDPR Art. 15", "CWE-778", "OWASP A09", "audit trail", "device management"] },
   // OWASP
   { path: "/patterns/owasp/broken-access-control", label: "Broken Access Control", category: "owasp", tags: ["OWASP A01", "CWE-284", "CWE-639", "RBAC", "IDOR"] },
-  { path: "/patterns/owasp/security-misconfiguration", label: "Security Misconfiguration", category: "owasp", tags: ["OWASP A05", "CWE-16", "CWE-209", "headers", "debug"] },
+  { path: "/patterns/owasp/security-misconfiguration", label: "Security Misconfiguration", category: "owasp", tags: ["OWASP A02", "CWE-16", "CWE-209", "headers", "debug"] },
   { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "owasp", tags: ["OWASP A09", "CWE-778", "CWE-223", "audit", "anomaly"] },
   // AI
   { path: "/patterns/ai/disclosure", label: "AI Disclosure", category: "ai", tags: ["EU AI Act", "Art. 50", "chatbot", "transparency"] },
@@ -55,6 +55,7 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/ai/decision-explanation", label: "AI Decision Explanation", category: "ai", tags: ["EU AI Act", "GDPR Art. 22", "high-risk AI", "explainability"] },
   { path: "/patterns/ai/input-safety", label: "AI Input Safety", category: "ai", tags: ["EU AI Act", "OWASP LLM01", "CWE-77", "prompt injection", "rate limiting", "input validation"] },
   { path: "/patterns/ai/human-override", label: "Human Override & AI Kill Switch", category: "ai", tags: ["EU AI Act Art. 14", "GDPR Art. 22", "high-risk AI", "human oversight", "emergency stop"] },
+  { path: "/patterns/ai/agent-consent", label: "AI Agent Action Consent", category: "ai", tags: ["OWASP Agentic ASI01", "OWASP Agentic ASI09", "EU AI Act Art. 14", "agentic AI", "prompt injection", "permissions", "kill switch"] },
   // Industrial
   { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "industrial", tags: ["industrial", "IEC 62443", "OT security", "badge", "biometric", "emergency"] },
   { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "industrial", tags: ["industrial", "IEC 61511", "safety", "emergency shutdown", "override"] },

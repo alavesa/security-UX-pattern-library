@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers, ClipboardCheck, GitBranch, FileText, ChevronUp, Waves, ArrowRight, Crosshair } from "lucide-react";
+import { Shield, Lock, LogIn, KeyRound, Timer, UserCheck, Terminal, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Fingerprint, Zap, Bell, Layers, ClipboardCheck, GitBranch, FileText, ChevronUp, Waves, ArrowRight, Crosshair, Hand } from "lucide-react";
 
 function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -181,7 +181,7 @@ export function HomePage() {
     <div>
       {/* News strip */}
       <a
-        href="https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content"
+        href="https://fidoalliance.org/7-billion-passkeys-and-counting-the-next-chapter-of-passwordless-authentication/"
         target="_blank"
         rel="noopener noreferrer"
         className="block px-4 sm:px-6 py-1.5 no-underline font-mono text-[11px] text-center"
@@ -189,7 +189,7 @@ export function HomePage() {
         onMouseEnter={e => { e.currentTarget.style.color = "var(--text)"; }}
         onMouseLeave={e => { e.currentTarget.style.color = "var(--text-dim)"; }}
       >
-        <span style={{ color: "var(--ai-color)" }}>news</span> 2026-08-10 — EU publishes official icons for labelling AI-generated content; Art. 50 transparency obligations in force since Aug 2. <span className="underline" style={{ color: "var(--text)" }}>read &rarr;</span>
+        <span style={{ color: "var(--ai-color)" }}>news</span> 2026-10-15 — FIDO Passkey Index: 7 billion passkeys, 36% of sign-ins on 15 major services, 93% success vs 78% for passwords · CRA vulnerability reporting live since Sep 11. <span className="underline" style={{ color: "var(--text)" }}>read &rarr;</span>
       </a>
 
       {/* Hero */}
@@ -208,7 +208,7 @@ export function HomePage() {
 
           <TerminalTyping text="Security is a design decision. Bad UX is a vulnerability." className="text-lg leading-relaxed mb-4 max-w-xl mx-auto" />
           <p className="text-sm leading-relaxed mb-8 max-w-lg mx-auto" style={{ color: "var(--text)" }}>
-            Companies spend millions on back-end security but lose millions more to front-door failures. GDPR consent violations. EU AI Act transparency deadlines. NIS2 incident reporting requirements. PCI DSS 4.0 authentication mandates. Cyber Resilience Act product security obligations. Dark patterns that trigger FTC enforcement. 94% of tested apps fail OWASP access control. 36 patterns that turn compliance risk into working UI.
+            Companies spend millions on back-end security but lose millions more to front-door failures. GDPR consent violations. EU AI Act transparency deadlines. NIS2 incident reporting requirements. PCI DSS 4.0 authentication mandates. Cyber Resilience Act product security obligations. Dark patterns that trigger FTC enforcement. 100% of tested apps have some form of broken access control (OWASP Top 10:2025). 37 patterns that turn compliance risk into working UI.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -240,9 +240,9 @@ export function HomePage() {
           {/* Stats */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono">
             {[
-              { value: "36", label: "interactive patterns", color: "var(--green)" },
+              { value: "37", label: "interactive patterns", color: "var(--green)" },
               { value: "19", label: "regulations covered", color: "var(--amber)" },
-              { value: "52", label: "cited sources", color: "var(--cyan)" },
+              { value: "56", label: "cited sources", color: "var(--cyan)" },
               { value: "5", label: "strategic tools", color: "var(--ai-color)" },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center">
@@ -274,8 +274,8 @@ export function HomePage() {
             <div className="mt-2" style={{ color: "var(--green)" }}>🔒 threat/ (3)</div>
             {[
               { path: "/patterns/threat/breach-notification", name: "breach_notification", ref: "GDPR Art. 33/34, CWE-200" },
-              { path: "/patterns/threat/phishing-warning", name: "phishing_warning", ref: "OWASP A07, CWE-601" },
-              { path: "/patterns/threat/suspicious-activity", name: "suspicious_activity", ref: "OWASP A07, CWE-778" },
+              { path: "/patterns/threat/phishing-warning", name: "phishing_warning", ref: "OWASP A01, CWE-601" },
+              { path: "/patterns/threat/suspicious-activity", name: "suspicious_activity", ref: "OWASP A09, CWE-778" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
                 {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
@@ -298,8 +298,8 @@ export function HomePage() {
 
             <div className="mt-2" style={{ color: "var(--cyan)" }}>🔐 data/ (4)</div>
             {[
-              { path: "/patterns/data/encryption", name: "encryption", ref: "OWASP A02, CWE-311" },
-              { path: "/patterns/data/file-upload", name: "file_upload", ref: "OWASP A03, CWE-434" },
+              { path: "/patterns/data/encryption", name: "encryption", ref: "OWASP A06, CWE-311" },
+              { path: "/patterns/data/file-upload", name: "file_upload", ref: "OWASP A06, CWE-434" },
               { path: "/patterns/data/deletion", name: "data_deletion", ref: "GDPR Art. 17, CWE-212" },
               { path: "/patterns/data/activity-log", name: "activity_log", ref: "GDPR Art. 15, OWASP A09" },
             ].map(({ path, name, ref }) => (
@@ -311,7 +311,7 @@ export function HomePage() {
             <div className="mt-2" style={{ color: "var(--amber)" }}>🛡 owasp/ (3)</div>
             {[
               { path: "/patterns/owasp/broken-access-control", name: "A01_access_control", ref: "CWE-284, CWE-639" },
-              { path: "/patterns/owasp/security-misconfiguration", name: "A05_misconfiguration", ref: "CWE-16, CWE-209" },
+              { path: "/patterns/owasp/security-misconfiguration", name: "A02_misconfiguration", ref: "CWE-16, CWE-209" },
               { path: "/patterns/owasp/logging-monitoring", name: "A09_logging", ref: "CWE-778, CWE-223" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
@@ -319,13 +319,14 @@ export function HomePage() {
               </Link>
             ))}
 
-            <div className="mt-2" style={{ color: "var(--ai-color)" }}>🤖 ai/ (5)</div>
+            <div className="mt-2" style={{ color: "var(--ai-color)" }}>🤖 ai/ (6)</div>
             {[
               { path: "/patterns/ai/disclosure", name: "ai_disclosure", ref: "EU AI Act Art. 50" },
               { path: "/patterns/ai/content-labeling", name: "content_labeling", ref: "Art. 50, C2PA" },
               { path: "/patterns/ai/decision-explanation", name: "decision_explanation", ref: "GDPR Art. 22" },
               { path: "/patterns/ai/input-safety", name: "input_safety", ref: "OWASP LLM01, CWE-77" },
               { path: "/patterns/ai/human-override", name: "human_override", ref: "EU AI Act Art. 14" },
+              { path: "/patterns/ai/agent-consent", name: "agent_consent", ref: "OWASP Agentic ASI01" },
             ].map(({ path, name, ref }) => (
               <Link key={path} to={path} className="block no-underline hover:underline py-0.5 pl-3" style={{ color: "var(--text)" }}>
                 {name} <span className="hidden sm:inline" style={{ color: "#777" }}>{'.'}{'.'.repeat(Math.max(1, 22 - name.length))}</span> <span className="hidden sm:inline" style={{ color: "#888" }}>{ref}</span>
@@ -375,7 +376,7 @@ export function HomePage() {
             { stat: "€1.86B+", label: "in dark pattern fines since 2023", color: "var(--red)" },
             { stat: "204 days", label: "average breach detection time", color: "var(--amber)" },
             { stat: "€35M / 7%", label: "max AI Act fine for prohibited systems", color: "var(--ai-color)" },
-            { stat: "94%", label: "of apps have broken access control", color: "var(--cyan)" },
+            { stat: "100%", label: "of tested apps have broken access control (OWASP 2025)", color: "var(--cyan)" },
           ].map(({ stat, label, color }) => (
             <div key={label} className="rounded-lg p-4 text-center" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <p className="text-2xl font-bold font-mono" style={{ color }}>{stat}</p>
@@ -392,9 +393,11 @@ export function HomePage() {
           <ul className="font-mono text-xs">
             {[
               { date: "Aug 2, 2026", label: "EU AI Act Art. 50(1) — chatbot disclosure", penalty: "€15M / 3%", color: "var(--ai-color)", live: true, next: false },
-              { date: "Sep 11, 2026", label: "CRA — vulnerability reporting (24h early warning, Single Reporting Platform)", penalty: "€15M / 2.5%", color: "var(--green)", live: false, next: true },
-              { date: "Dec 2, 2026", label: "EU AI Act Art. 50(2) watermarking + nudifier/CSAM ban", penalty: "€35M / 7%", color: "var(--ai-color)", live: false, next: false },
+              { date: "Sep 11, 2026", label: "CRA — vulnerability reporting (24h early warning, ENISA Single Reporting Platform)", penalty: "€15M / 2.5%", color: "var(--green)", live: true, next: false },
+              { date: "Dec 2, 2026", label: "EU AI Act Art. 50(2) watermarking + nudifier/CSAM ban", penalty: "€35M / 7%", color: "var(--ai-color)", live: false, next: true },
+              { date: "Dec 2, 2027", label: "EU AI Act Annex III high-risk obligations incl. Art. 14 human oversight (postponed by Digital Omnibus)", penalty: "€15M / 3%", color: "var(--ai-color)", live: false, next: false },
               { date: "Dec 11, 2027", label: "CRA — full product security obligations", penalty: "€15M / 2.5%", color: "var(--green)", live: false, next: false },
+              { date: "Aug 2, 2028", label: "EU AI Act Annex I high-risk (AI embedded in regulated products)", penalty: "€15M / 3%", color: "var(--ai-color)", live: false, next: false },
             ].map(({ date, label, penalty, color, live, next }, i, arr) => (
               <li
                 key={date + label}
@@ -435,7 +438,7 @@ export function HomePage() {
           <span className="text-[10px] font-mono px-1.5 py-0.5 rounded" style={{ background: "var(--cyan-glow)", color: "var(--cyan)", border: "1px solid var(--cyan-border)" }}>new</span>
         </div>
         <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>
-          Paste any headline. Trace the ripple through UX, security, and compliance — powered by 36 patterns.
+          Paste any headline. Trace the ripple through UX, security, and compliance — powered by 37 patterns.
         </p>
 
         <Link
@@ -496,7 +499,7 @@ export function HomePage() {
                 RedSketch reads your Figma designs and generates STRIDE-based threat models — identifying assets, threats, pattern matches from this library, and compliance gaps across 19 regulations. CLI tool powered by Claude AI.
               </p>
               <div className="flex flex-wrap gap-2">
-                {["STRIDE analysis", "36 patterns", "19 regulations", "~$0.15–0.50/scan"].map((chip) => (
+                {["STRIDE analysis", "37 patterns", "19 regulations", "~$0.15–0.50/scan"].map((chip) => (
                   <span key={chip} className="text-[10px] font-mono px-2 py-1 rounded" style={{ background: "var(--bg)", color: "var(--text-dim)", border: "1px solid var(--border)" }}>
                     {chip}
                   </span>
@@ -583,7 +586,7 @@ export function HomePage() {
         <AnchorHeading id="auth" className="text-xl font-mono mb-2 glow-text">./auth/</AnchorHeading>
         <p className="mb-2" style={{ color: "var(--text)" }}>Authentication patterns — the front door of security.</p>
         <p className="text-xs mb-8" style={{ color: "var(--text-dim)" }}>
-          Passkeys are mainstream: <span style={{ color: "var(--green)" }}>5 billion active</span> (FIDO Alliance, 2026) · Microsoft Entra ID defaults to passkeys from Sep 1, 2026 · regulators phasing out SMS-OTP
+          Passkeys are mainstream: <span style={{ color: "var(--green)" }}>7 billion active, 36% of sign-ins</span> (FIDO Passkey Index, Oct 2026) · Microsoft Entra ID defaults to passkeys from Sep 1, 2026 · regulators phasing out SMS-OTP
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -718,12 +721,12 @@ export function HomePage() {
         {/* OWASP Top 10 */}
         <div className="mt-16">
           <AnchorHeading id="owasp" className="text-xl font-mono mb-2" style={{ color: "var(--amber)" }}>./owasp/</AnchorHeading>
-          <p className="mb-8" style={{ color: "var(--text)" }}>OWASP Top 10 patterns — the most critical web application security risks.</p>
+          <p className="mb-8" style={{ color: "var(--text)" }}>OWASP Top 10:2025 patterns — the most critical web application security risks. Numbering follows the 2025 edition (Misconfiguration moved from A05 to A02).</p>
 
           <div className="grid md:grid-cols-3 gap-4">
             {[
               { path: "/patterns/owasp/broken-access-control", label: "A01_access_control", icon: Shield, description: "Role-based UI, IDOR prevention, privilege escalation blocking" },
-              { path: "/patterns/owasp/security-misconfiguration", label: "A05_misconfiguration", icon: Settings, description: "Security header dashboard, debug mode detection, default credential forcing" },
+              { path: "/patterns/owasp/security-misconfiguration", label: "A02_misconfiguration", icon: Settings, description: "Security header dashboard, debug mode detection, default credential forcing" },
               { path: "/patterns/owasp/logging-monitoring", label: "A09_logging", icon: Activity, description: "Live event log, anomaly detection, per-user audit trails" },
             ].map(({ path, label, icon: Icon, description }) => (
               <Link
@@ -751,7 +754,7 @@ export function HomePage() {
         {/* AI Transparency */}
         <div className="mt-16">
           <AnchorHeading id="ai" className="text-xl font-mono mb-2" style={{ color: "var(--ai-color)" }}>./ai/</AnchorHeading>
-          <p className="mb-2" style={{ color: "var(--text)" }}>AI transparency patterns — EU AI Act compliance.</p>
+          <p className="mb-2" style={{ color: "var(--text)" }}>AI transparency and agent-safety patterns — EU AI Act compliance, OWASP Agentic Top 10.</p>
           <p className="text-xs mb-8" style={{ color: "var(--text-dim)" }}>
             Chatbot disclosure (Art. 50(1)): <span style={{ color: "var(--red)" }}>in force since Aug 2, 2026</span> · Watermarking (Art. 50(2)): <span style={{ color: "var(--ai-color)" }}>Dec 2, 2026</span> <span style={{ color: "var(--text-dim)" }}>(postponed Apr 2026)</span>
           </p>
@@ -763,6 +766,7 @@ export function HomePage() {
               { path: "/patterns/ai/decision-explanation", label: "decision_explanation", icon: Brain, description: "When AI decides about people — loans, moderation, hiring — explain why" },
               { path: "/patterns/ai/input-safety", label: "input_safety", icon: ShieldAlert, description: "Prompt injection defense, rate limiting, attachment safety for AI chat inputs" },
               { path: "/patterns/ai/human-override", label: "human_override", icon: UserCheck, description: "Emergency stop, human review queue, and override controls for high-risk AI decisions" },
+              { path: "/patterns/ai/agent-consent", label: "agent_consent", icon: Hand, description: "Permission screens for AI agents — risk tiers, instruction origin, revoke-all kill switch" },
             ].map(({ path, label, icon: Icon, description }) => (
               <Link
                 key={path}
@@ -967,7 +971,7 @@ export function HomePage() {
       {/* Sources & References */}
       <section className="px-4 sm:px-6 py-16 max-w-5xl mx-auto border-t" style={{ borderColor: "var(--border)" }}>
         <AnchorHeading id="sources" className="text-xl font-mono mb-2" style={{ color: "var(--text-bright)" }}>./sources/</AnchorHeading>
-        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>52 cited sources across 7 categories. Every claim in the library links back to a primary source.</p>
+        <p className="text-sm font-mono mb-8" style={{ color: "var(--text)" }}>56 cited sources across 7 categories. Every claim in the library links back to a primary source.</p>
 
         <div className="grid md:grid-cols-2 gap-6">
 
@@ -975,7 +979,7 @@ export function HomePage() {
           <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "#3b82f6" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "#3b82f6" }} /> EU Regulation
-              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>14 sources</span>
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>16 sources</span>
             </h3>
             <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
               {[
@@ -983,12 +987,14 @@ export function HomePage() {
                 { url: "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive", label: "NIS2", desc: "Cybersecurity for essential entities" },
                 { url: "https://www.digital-operational-resilience-act.com/", label: "DORA", desc: "Financial sector resilience (Jan 2025)" },
                 { url: "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act", label: "CRA", desc: "Digital products (full: Dec 2027)" },
-                { url: "https://digital-strategy.ec.europa.eu/en/policies/cra-reporting", label: "CRA Reporting", desc: "Vulnerability/incident reporting (Sep 2026)" },
+                { url: "https://digital-strategy.ec.europa.eu/en/policies/cra-reporting", label: "CRA Reporting", desc: "Vulnerability/incident reporting (in force Sep 11, 2026)" },
+                { url: "https://www.enisa.europa.eu/topics/product-security-and-certification/single-reporting-platform-srp", label: "CRA Single Reporting Platform", desc: "ENISA SRP, live since Sep 11, 2026" },
                 { url: "https://artificialintelligenceact.eu/article/50/", label: "EU AI Act Art. 50", desc: "AI transparency (in force Aug 2026)" },
                 { url: "https://artificialintelligenceact.eu/high-level-summary/", label: "EU AI Act Overview", desc: "High-level summary" },
+                { url: "https://eur-lex.europa.eu/eli/reg/2026/1744/oj", label: "Digital Omnibus on AI", desc: "Reg. 2026/1744 — high-risk to Dec 2027 / Aug 2028" },
                 { url: "https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content", label: "AI-Content CoP", desc: "Transparency Code of Practice (Jun 2026)" },
                 { url: "https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content", label: "EU AI Icons", desc: "Official labelling icons (Aug 2026)" },
-                { url: "https://www.digital-fairness-act.com/", label: "Digital Fairness Act", desc: "Dark patterns proposal (Q4 2026)" },
+                { url: "https://www.digital-fairness-act.com/", label: "Digital Fairness Act", desc: "Dark patterns + addictive design proposal (expected Nov 11, 2026)" },
                 { url: "https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package", label: "EU DSA", desc: "Platform transparency + dark patterns" },
                 { url: "https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation", label: "ePrivacy", desc: "Cookie consent rules" },
                 { url: "https://commission.europa.eu/law/law-topic/consumer-protection-law_en", label: "Consumer Rights Dir.", desc: "Cancellation + unfair practices" },
@@ -1003,11 +1009,12 @@ export function HomePage() {
           <div className="rounded-lg p-4" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--green)" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "var(--green)" }} /> Security Standards
-              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>11 sources</span>
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>12 sources</span>
             </h3>
             <ul className="space-y-1.5 text-xs" style={{ color: "var(--text)" }}>
               {[
-                { url: "https://owasp.org/www-project-top-ten/", label: "OWASP Top 10", desc: "Web security risks (2021)" },
+                { url: "https://top10.owasp.org/2025", label: "OWASP Top 10:2025", desc: "Web security risks — 2025 edition (A03 supply chain, A10 exceptional conditions new)" },
+                { url: "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications/", label: "OWASP Agentic Top 10", desc: "ASI01 goal hijack · ASI09 human-agent trust (2026)" },
                 { url: "https://cwe.mitre.org/", label: "MITRE CWE", desc: "Weakness enumeration" },
                 { url: "https://pages.nist.gov/800-63-3/", label: "NIST 800-63B", desc: "Digital identity guidelines" },
                 { url: "https://www.nist.gov/cyberframework", label: "NIST CSF", desc: "Cybersecurity framework tiers" },
@@ -1102,7 +1109,7 @@ export function HomePage() {
           <div className="rounded-lg p-4 md:col-span-2" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
             <h3 className="font-mono text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--red)" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "var(--red)" }} /> Research & Breach Data
-              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>9 sources</span>
+              <span className="text-xs font-normal ml-auto" style={{ color: "var(--text-dim)" }}>10 sources</span>
             </h3>
             <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
               {[
@@ -1113,7 +1120,8 @@ export function HomePage() {
                 { url: "https://www.deceptive.design/", label: "Deceptive Design", desc: "Dark patterns taxonomy" },
                 { url: "https://www.deceptive.design/enforcement", label: "Enforcement DB", desc: "Global dark pattern fines" },
                 { url: "https://sharkstriker.com/blog/march-data-breaches-today-2026/", label: "Breach Tracker 2026", desc: "Current breach data" },
-                { url: "https://fidoalliance.org/fido-alliance-reports-accelerating-global-passkey-adoption-on-world-passkey-day-2026/", label: "FIDO Passkey Report", desc: "5 billion active passkeys (2026)" },
+                { url: "https://fidoalliance.org/fido-alliance-reports-accelerating-global-passkey-adoption-on-world-passkey-day-2026/", label: "FIDO Passkey Report", desc: "5 billion active passkeys (May 2026)" },
+                { url: "https://fidoalliance.org/7-billion-passkeys-and-counting-the-next-chapter-of-passwordless-authentication/", label: "FIDO Passkey Index 2026", desc: "7B passkeys · 36% of sign-ins · 93% success (Oct 2026)" },
                 { url: "https://www.microsoft.com/en-us/security/blog/2026/07/13/microsoft-entra-id-security-updates-passkeys-are-the-default-authentication-method-in-entra-id/", label: "Entra Passkey Default", desc: "Passkeys default from Sep 2026" },
               ].map(({ url, label, desc }) => (
                 <p key={label} className="text-xs"><a href={url} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>{label}</a> <span style={{ color: "var(--text-dim)" }}>— {desc}</span></p>

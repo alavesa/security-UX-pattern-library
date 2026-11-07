@@ -274,7 +274,7 @@ export function ActivityLogPattern() {
           "Don't show other users' data in shared account activity logs",
           "Don't allow revoking the current session without a confirmation",
         ]}
-        securityRationale="Activity logs are the user-facing side of OWASP A09 (Security Logging & Monitoring). Users must be able to detect unauthorized access to their accounts. GDPR Art. 15 gives users the right to know who accessed their data. The data access log demonstrates compliance and builds trust. Device management with session revocation is critical for responding to compromised credentials."
+        securityRationale="Activity logs are the user-facing side of OWASP A09:2025 (Security Logging & Alerting Failures). Users must be able to detect unauthorized access to their accounts. GDPR Art. 15 gives users the right to know who accessed their data. The data access log demonstrates compliance and builds trust. Device management with session revocation is critical for responding to compromised credentials."
         accessibilityNotes={[
           "Log entries use semantic list markup for screen readers",
           "Severity colors are always paired with text labels and icons",

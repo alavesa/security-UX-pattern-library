@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch, Users, Waves, Crosshair } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch, Users, Waves, Crosshair, Hand } from "lucide-react";
 import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
@@ -56,7 +56,7 @@ const CATEGORIES: NavCategory[] = [
     id: "owasp", label: "owasp", color: "var(--amber)",
     items: [
       { path: "/patterns/owasp/broken-access-control", label: "A01_access", icon: Shield },
-      { path: "/patterns/owasp/security-misconfiguration", label: "A05_misconfig", icon: Settings },
+      { path: "/patterns/owasp/security-misconfiguration", label: "A02_misconfig", icon: Settings },
       { path: "/patterns/owasp/logging-monitoring", label: "A09_logging", icon: Activity },
     ],
   },
@@ -68,6 +68,7 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/ai/decision-explanation", label: "decisions", icon: Brain },
       { path: "/patterns/ai/input-safety", label: "input_safety", icon: ShieldAlert },
       { path: "/patterns/ai/human-override", label: "human_override", icon: UserCheck },
+      { path: "/patterns/ai/agent-consent", label: "agent_consent", icon: Hand },
     ],
   },
   {

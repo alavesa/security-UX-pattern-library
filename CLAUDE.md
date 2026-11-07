@@ -2,7 +2,7 @@
 
 ## Project overview
 
-Interactive security UX pattern library with 36 patterns across 8 categories, plus 5 strategic tools and 2 operational CLI tools (Ripple, RedSketch). 19 regulations mapped. Hacker terminal aesthetic. Domain: uxsec.dev
+Interactive security UX pattern library with 37 patterns across 8 categories, plus 5 strategic tools and 2 operational CLI tools (Ripple, RedSketch). 19 regulations mapped. Hacker terminal aesthetic. Domain: uxsec.dev
 
 ## Commands
 
@@ -20,7 +20,7 @@ npm run preview  # Preview production build
   - `darkpatterns/` — Dark Patterns with ethical alternatives (6 patterns, red)
   - `data/` — Data Protection (4 patterns, cyan)
   - `owasp/` — OWASP Top 10 (3 patterns, amber)
-  - `ai/` — AI Transparency / EU AI Act (3 patterns, purple)
+  - `ai/` — AI Transparency / EU AI Act / Agentic (6 patterns, purple)
   - `industrial/` — Industrial Security (4 patterns, orange)
   - `governance/` — Governance (3 patterns, gray)
 - `src/pages/` — Tool pages (ScorePage, CompliancePage, MaturityPage, ReportPage, ConvincePage, HomePage)

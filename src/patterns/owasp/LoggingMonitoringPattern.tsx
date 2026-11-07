@@ -216,7 +216,7 @@ export function LoggingMonitoringPattern() {
   return (
     <div>
       <PatternHeader
-        title="A09: Security Logging & Monitoring"
+        title="A09:2025 Security Logging & Alerting"
         description="How to design security dashboards for administrators — live event logs, anomaly detection, and user audit trails. Making invisible threats visible in real-time."
         severity="high"
         tags={["OWASP A09", "CWE-778", "CWE-223"]}
@@ -246,7 +246,7 @@ export function LoggingMonitoringPattern() {
           "Don't store logs on the same server as the application (if compromised, logs are lost)",
           "Don't forget to monitor the monitoring system itself",
         ]}
-        securityRationale="OWASP A09 (Security Logging & Monitoring Failures) enables all other attacks to succeed undetected. The average time to detect a breach is 204 days (IBM, 2023). CWE-778 (Insufficient Logging) and CWE-223 (Omission of Security-relevant Information) mean that even after a breach is discovered, there's no audit trail to investigate. The UX challenge for security admins: log everything but surface only what matters. The anomaly detection pattern — comparing current behavior to baseline — is the bridge between 'too many logs' and 'missed the attack.'"
+        securityRationale="OWASP A09:2025 (Security Logging & Alerting Failures) enables all other attacks to succeed undetected. The average time to detect a breach is 204 days (IBM, 2023). CWE-778 (Insufficient Logging) and CWE-223 (Omission of Security-relevant Information) mean that even after a breach is discovered, there's no audit trail to investigate. The UX challenge for security admins: log everything but surface only what matters. The anomaly detection pattern — comparing current behavior to baseline — is the bridge between 'too many logs' and 'missed the attack.'"
         accessibilityNotes={[
           "Log entries use both color AND dot indicators for severity",
           "Filter controls are keyboard accessible",

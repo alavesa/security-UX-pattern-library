@@ -214,7 +214,7 @@ export function EncryptionIndicatorPattern() {
         title="Encryption Indicators"
         description="How to communicate encryption status to users — E2E messaging indicators, connection security badges, and at-rest encryption dashboards. Making invisible security visible."
         severity="high"
-        tags={["Data Protection", "OWASP A02", "CWE-311"]}
+        tags={["Data Protection", "OWASP A06", "CWE-311"]}
       />
 
       <DemoContainer label="encryption indicators (3 variants)">
@@ -239,7 +239,7 @@ export function EncryptionIndicatorPattern() {
           "Don't claim E2E encryption if you hold the decryption keys server-side",
           "Don't show encryption as binary (on/off) — there are levels users should understand",
         ]}
-        securityRationale="OWASP A02 (Cryptographic Failures) covers missing or weak encryption of sensitive data. CWE-311 (Missing Encryption) is a critical vulnerability. Users can't verify encryption themselves — they rely entirely on UI indicators. If the indicator is misleading or absent, users assume their data is either always secure (dangerous) or never secure (they stop using the service). Accurate, contextual encryption indicators are both a security feature and a trust feature."
+        securityRationale="OWASP Top 10:2025 maps CWE-311 (Missing Encryption) under A06 Insecure Design — choosing not to encrypt is a design decision — while A04 Cryptographic Failures covers weak algorithms and key handling. Users can't verify encryption themselves — they rely entirely on UI indicators. If the indicator is misleading or absent, users assume their data is either always secure (dangerous) or never secure (they stop using the service). Accurate, contextual encryption indicators are both a security feature and a trust feature."
         accessibilityNotes={[
           "Lock icons need aria-label describing the encryption state",
           "Green/amber/red must be paired with text labels — not color alone",

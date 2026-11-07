@@ -2,7 +2,7 @@
 
 [![Reviewed by PatchPilots](https://img.shields.io/badge/reviewed%20by-PatchPilots%20🎯-blueviolet)](https://github.com/alavesa/patchpilots)
 
-**Live site: [uxsec.dev](https://uxsec.dev)** — 36 interactive patterns for designing secure user experiences.
+**Live site: [uxsec.dev](https://uxsec.dev)** — 37 interactive patterns for designing secure user experiences.
 
 Interactive patterns for designing secure user experiences.
 
@@ -21,8 +21,8 @@ $ ls ./patterns
 
 🔒 threat/ (3)
    breach_notification ... GDPR Art. 33/34, CWE-200
-   phishing_warning ...... OWASP A07, CWE-601
-   suspicious_activity ... OWASP A07, CWE-778
+   phishing_warning ...... OWASP A01, CWE-601
+   suspicious_activity ... OWASP A09, CWE-778
 
 ⚠ dark_patterns/ (6)
    confirmshaming ........ EU DSA, Deceptive Design
@@ -33,22 +33,23 @@ $ ls ./patterns
    forced_continuity ..... FTC Negative Option Rule
 
 🔐 data/ (4)
-   encryption_indicators . OWASP A02, CWE-311
-   secure_file_upload .... OWASP A03, CWE-434
+   encryption_indicators . OWASP A06, CWE-311
+   secure_file_upload .... OWASP A06, CWE-434
    data_deletion ......... GDPR Art. 17, CWE-212
    activity_log .......... GDPR Art. 15, CWE-778
 
 🛡 owasp/ (3)
    A01_access_control .... CWE-284, CWE-639
-   A05_misconfiguration .. CWE-16, CWE-209
+   A02_misconfiguration .. CWE-16, CWE-209
    A09_logging ........... CWE-778, CWE-223
 
-🤖 ai/ (5)
+🤖 ai/ (6)
    ai_disclosure ......... EU AI Act Art. 50
    content_labeling ...... EU AI Act Art. 50, C2PA
    decision_explanation .. GDPR Art. 22
    input_safety .......... OWASP LLM01, CWE-77
    human_override ........ EU AI Act Art. 14
+   agent_consent ......... OWASP Agentic ASI01/ASI09
 
 🏭 industrial/ (4)
    operator_auth ......... IEC 62443
@@ -78,7 +79,7 @@ $█
 
 Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
 
-## 36 Interactive Patterns + 5 Strategic Tools + 2 Operational CLI Tools
+## 37 Interactive Patterns + 5 Strategic Tools + 2 Operational CLI Tools
 
 The most comprehensive interactive security UX pattern library. Each pattern has a live demo, do/don't guidelines, security rationale with OWASP/CWE/GDPR references, and accessibility notes.
 
@@ -86,7 +87,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 
 | Tool | What it does |
 |------|-------------|
-| **[Ripple](https://uxsec.dev/ripple)** | Paste any headline → structured analysis prompt through 3 lenses: UX & Design Systems, Security & Compliance, AI & Emerging Risk. Powered by all 36 patterns. |
+| **[Ripple](https://uxsec.dev/ripple)** | Paste any headline → structured analysis prompt through 3 lenses: UX & Design Systems, Security & Compliance, AI & Emerging Risk. Powered by all 37 patterns. |
 | **Security UX Score** | Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. |
 | **Compliance Mapper** | Select from 19 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, ISO 42001, EAA, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
@@ -136,21 +137,24 @@ Each shows the manipulative version side-by-side with the ethical alternative.
 | Data Deletion | GDPR-compliant deletion with export, confirmation, grace period |
 | Activity & Audit Log | Account activity, active devices with session revoke, data access log (GDPR Art. 15) |
 
-## OWASP Top 10 (3)
+## OWASP Top 10:2025 (3)
 
 | Pattern | What it covers |
 |---------|----------------|
 | A01 Broken Access Control | Role-based UI, IDOR prevention, privilege escalation blocking |
-| A05 Security Misconfiguration | Security headers dashboard, debug mode, default credentials |
-| A09 Logging & Monitoring | Live event log, anomaly detection, per-user audit trails |
+| A02 Security Misconfiguration | Security headers dashboard, debug mode, default credentials |
+| A09 Logging & Alerting | Live event log, anomaly detection, per-user audit trails |
 
-## AI Transparency (3) — EU AI Act (August 2026)
+## AI Transparency & Agent Safety (6) — EU AI Act, OWASP Agentic Top 10
 
 | Pattern | What it covers |
 |---------|----------------|
 | AI Interaction Disclosure | Chatbot as human (non-compliant) vs labeled AI assistant |
-| AI Content Labeling | Social feed labels, article transparency, image authenticity (C2PA) |
+| AI Content Labeling | Social feed labels, article transparency, image authenticity (C2PA, official EU icons) |
 | AI Decision Explanation | Loan decisions, content moderation, hiring AI with human appeal |
+| AI Input Safety | Prompt injection defense, rate limiting, attachment safety |
+| Human Override & AI Kill Switch | Emergency stop, human review queue, override controls (Art. 14) |
+| AI Agent Action Consent | Permission screen vs chat consent, risk tiers, instruction origin, revoke-all (OWASP Agentic ASI01/ASI09) |
 
 ## Industrial Security UX (4)
 
@@ -294,7 +298,7 @@ Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity
 ## Roadmap
 
 ### Ripple — live intelligence tool
-- [x] **Phase 1: Prompt generator** — paste a headline, get a structured prompt with all 36 patterns as context, copy into Claude or ChatGPT *(shipped)*
+- [x] **Phase 1: Prompt generator** — paste a headline, get a structured prompt with all 37 patterns as context, copy into Claude or ChatGPT *(shipped)*
 - [ ] **Phase 2: Claude API integration** — inline analysis via a thin proxy (Cloudflare Worker), no user API keys needed. Three-lens results rendered directly on the page with pattern links.
 - [ ] **Phase 3: Adaptive lenses** — LLM picks the most relevant third lens per headline instead of fixed three. Could surface supply chain risk, industrial safety, dark patterns, or AI governance depending on context.
 - [ ] **Related patterns from LLM output** — parse the API response for pattern URLs and replace keyword matching with LLM-referenced patterns
@@ -304,7 +308,7 @@ Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity
 - [x] **Add `<noscript>` fallback content** — terminal-styled static HTML fallback for NoScript users. Shows site description, pattern count, tool list, and GitHub link. "No tracking. No cookies. No analytics." *(shipped)*
 
 ### Patterns to add
-- [ ] More OWASP Top 10 coverage (currently A01, A05, A09)
+- [ ] More OWASP Top 10:2025 coverage (currently A01, A02, A09; A10 Mishandling of Exceptional Conditions next)
 - [ ] API security UX patterns
 
 ### Site improvements

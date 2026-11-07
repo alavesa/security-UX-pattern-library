@@ -217,7 +217,7 @@ export function PhishingWarningPattern() {
         title="Phishing Warning"
         description="How to warn users about phishing attempts — interstitial pages for blocked sites, email phishing indicators, and link safety previews. Makes invisible threats visible."
         severity="critical"
-        tags={["Threat Response", "OWASP A07", "CWE-601"]}
+        tags={["Threat Response", "OWASP A01", "CWE-601"]}
       />
 
       <DemoContainer label="phishing warning (3 variants)">

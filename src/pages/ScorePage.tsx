@@ -25,7 +25,7 @@ const CHECKS: CheckItem[] = [
   // Data Protection (25 points)
   { id: "data-encryption-indicator", question: "Users can see what data is encrypted", category: "Data Protection", weight: 4, tip: "Transparency about encryption builds trust" },
   { id: "data-https", question: "All pages use HTTPS (no mixed content)", category: "Data Protection", weight: 5, tip: "Mixed content exposes data on secure pages" },
-  { id: "data-file-scanning", question: "Uploaded files are scanned for malware", category: "Data Protection", weight: 4, tip: "Unrestricted file upload is OWASP A03" },
+  { id: "data-file-scanning", question: "Uploaded files are scanned for malware", category: "Data Protection", weight: 4, tip: "Unrestricted file upload (CWE-434) is OWASP A06 Insecure Design (2025)" },
   { id: "data-export", question: "Users can export their data", category: "Data Protection", weight: 4, tip: "GDPR Article 20 — Right to Data Portability" },
   { id: "data-deletion", question: "Users can delete their account in 2 clicks or fewer", category: "Data Protection", weight: 4, tip: "GDPR Article 17 — Right to Erasure" },
   { id: "data-activity-log", question: "Users can view their account activity and active sessions", category: "Data Protection", weight: 4, tip: "GDPR Art. 15 — users have the right to know who accessed their data" },
@@ -49,6 +49,7 @@ const CHECKS: CheckItem[] = [
   { id: "ai-disclosure", question: "AI chatbots/assistants are labeled as AI, not presented as human", category: "AI Transparency", weight: 5, tip: "EU AI Act Article 50 — effective August 2026" },
   { id: "ai-content", question: "AI-generated content is labeled with visible indicators", category: "AI Transparency", weight: 5, tip: "EU AI Act Art. 50(2) requires machine-readable marking" },
   { id: "ai-decisions", question: "AI decisions about users include explanation and human appeal", category: "AI Transparency", weight: 5, tip: "GDPR Art. 22 — right to meaningful explanation" },
+  { id: "ai-agent-consent", question: "AI agents ask for permission on a dedicated screen before irreversible or financial actions, showing where the instruction came from", category: "AI Transparency", weight: 5, tip: "OWASP Agentic Top 10 ASI01/ASI09 — human approval for high-impact actions, never inside the chat" },
 
   // Industrial (15 points — only if applicable)
   { id: "ind-auth", question: "Operator authentication works with PPE/gloves (badge, biometric)", category: "Industrial", weight: 5, tip: "IEC 62443 — password auth fails in industrial environments" },
@@ -57,9 +58,9 @@ const CHECKS: CheckItem[] = [
   { id: "ind-nav", question: "HMI follows ISA-101 navigation hierarchy (overview → area → unit → detail)", category: "Industrial", weight: 5, tip: "Operators must reach any detail within 3 clicks during abnormal situations" },
 
   // OWASP (15 points)
-  { id: "owasp-access", question: "Access control enforced at UI level (role-based views, disabled actions)", category: "OWASP", weight: 5, tip: "A01 Broken Access Control — #1 most common vulnerability" },
-  { id: "owasp-config", question: "Security headers visible to users (HTTPS, CSP status)", category: "OWASP", weight: 5, tip: "A05 Security Misconfiguration — debug mode and default creds exposed" },
-  { id: "owasp-logging", question: "Security events logged and visible to admins/users", category: "OWASP", weight: 5, tip: "A09 Logging — average breach detection is 204 days without monitoring" },
+  { id: "owasp-access", question: "Access control enforced at UI level (role-based views, disabled actions)", category: "OWASP", weight: 5, tip: "A01 Broken Access Control — found in 100% of tested apps (OWASP 2025)" },
+  { id: "owasp-config", question: "Security headers visible to users (HTTPS, CSP status)", category: "OWASP", weight: 5, tip: "A02 Security Misconfiguration (2025) — debug mode and default creds exposed" },
+  { id: "owasp-logging", question: "Security events logged and visible to admins/users", category: "OWASP", weight: 5, tip: "A09 Logging & Alerting — average breach detection is 204 days without monitoring" },
 
   // Governance (15 points — skip if not applicable)
   { id: "gov-review", question: "Security UX changes go through a design review process", category: "Governance", weight: 5, tip: "Without review, each team reinvents security UX differently" },

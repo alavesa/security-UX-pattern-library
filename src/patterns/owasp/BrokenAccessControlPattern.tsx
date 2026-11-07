@@ -263,7 +263,7 @@ export function BrokenAccessControlPattern() {
   return (
     <div>
       <PatternHeader
-        title="A01: Broken Access Control"
+        title="A01:2025 Broken Access Control"
         description="The #1 OWASP vulnerability. How to design role-based UI, prevent IDOR attacks, and block privilege escalation — with server-side enforcement the user can see."
         severity="critical"
         tags={["OWASP A01", "CWE-284", "CWE-639"]}
@@ -293,7 +293,7 @@ export function BrokenAccessControlPattern() {
           "Don't return data in API responses that the user shouldn't see, even if the UI hides it",
           "Don't cache authorization decisions — re-check on every request",
         ]}
-        securityRationale="Broken Access Control is OWASP #1 for a reason — it's found in 94% of tested applications. CWE-284 (Improper Access Control) and CWE-639 (IDOR) are the most exploited web vulnerabilities. The UX challenge: making the access control visible to legitimate users (so they understand the system) while making it impossible for attackers to bypass. The key principle: the UI is a convenience layer, not a security boundary. Every action must be authorized server-side."
+        securityRationale="Broken Access Control is OWASP #1 for a reason — the 2025 edition found some form of it in 100% of tested applications (max incidence 20%). CWE-284 (Improper Access Control) and CWE-639 (IDOR) are the most exploited web vulnerabilities. The UX challenge: making the access control visible to legitimate users (so they understand the system) while making it impossible for attackers to bypass. The key principle: the UI is a convenience layer, not a security boundary. Every action must be authorized server-side."
         accessibilityNotes={[
           "Disabled buttons must have aria-disabled and explain why via aria-label or tooltip",
           "Role/permission information should be available to screen readers",

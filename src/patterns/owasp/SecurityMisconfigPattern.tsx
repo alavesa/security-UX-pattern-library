@@ -208,10 +208,10 @@ export function SecurityMisconfigPattern() {
   return (
     <div>
       <PatternHeader
-        title="A05: Security Misconfiguration"
+        title="A02:2025 Security Misconfiguration"
         description="How to surface misconfigurations to administrators — security header dashboards, debug mode detection, and forced password change on default credentials."
         severity="critical"
-        tags={["OWASP A05", "CWE-16", "CWE-209"]}
+        tags={["OWASP A02", "CWE-16", "CWE-209", "OWASP A10"]}
       />
 
       <DemoContainer label="security misconfiguration (3 variants)">
@@ -237,7 +237,7 @@ export function SecurityMisconfigPattern() {
           "Don't skip security headers because 'it works without them'",
           "Don't let users skip the initial security setup wizard",
         ]}
-        securityRationale="Security misconfiguration (OWASP A05) is found in 90% of tested applications. CWE-16 (Configuration) and CWE-209 (Error Message Information Leak) are among the most common findings. The UX challenge: administrators need to understand what's misconfigured AND how to fix it. A dashboard that shows pass/warn/fail with specific remediation steps turns a security audit into an actionable checklist. Forcing the initial security setup prevents the all-too-common scenario of 'we'll secure it later' turning into 'we got breached.'"
+        securityRationale="Security misconfiguration rose to #2 in OWASP Top 10:2025 (A02) — found in 100% of tested applications. CWE-16 (Configuration) is a core A02 weakness; CWE-209 (Error Message Information Leak) now sits under the new A10 Mishandling of Exceptional Conditions, which is why the debug-mode variant matters twice. The UX challenge: administrators need to understand what's misconfigured AND how to fix it. A dashboard that shows pass/warn/fail with specific remediation steps turns a security audit into an actionable checklist. Forcing the initial security setup prevents the all-too-common scenario of 'we'll secure it later' turning into 'we got breached.'"
         accessibilityNotes={[
           "Dashboard uses icons + color + text for pass/warn/fail status",
           "Error pages are readable and provide clear next steps",

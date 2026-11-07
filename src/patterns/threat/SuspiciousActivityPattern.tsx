@@ -260,7 +260,7 @@ export function SuspiciousActivityPattern() {
         title="Suspicious Activity"
         description="How to alert users about suspicious account activity — sign-in alerts with geolocation context, active session management, and new device approval flows."
         severity="high"
-        tags={["Threat Response", "OWASP A07", "CWE-778"]}
+        tags={["Threat Response", "OWASP A09", "CWE-778"]}
       />
 
       <DemoContainer label="suspicious activity (3 variants)">

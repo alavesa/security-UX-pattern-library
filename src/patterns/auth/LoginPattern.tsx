@@ -348,7 +348,7 @@ export function LoginPattern() {
           "Don't auto-check 'Remember me' — it's a security decision the user should make",
           "Don't skip MFA after social login if the account has it enabled",
         ]}
-        securityRationale="Login forms are the #1 target for credential stuffing and brute force attacks (OWASP A07: Identification and Authentication Failures). Generic error messages prevent account enumeration. Rate limiting with exponential backoff makes automated attacks impractical. Social login delegates authentication to providers with dedicated security teams (Google, GitHub), reducing your attack surface. The 'Remember this device' option trades session duration for convenience — always show the duration so users understand the tradeoff."
+        securityRationale="Login forms are the #1 target for credential stuffing and brute force attacks (OWASP A07:2025 Authentication Failures). Generic error messages prevent account enumeration. Rate limiting with exponential backoff makes automated attacks impractical. Social login delegates authentication to providers with dedicated security teams (Google, GitHub), reducing your attack surface. The 'Remember this device' option trades session duration for convenience — always show the duration so users understand the tradeoff."
         accessibilityNotes={[
           "Error messages use role='alert' for screen reader announcement",
           "Password toggle has descriptive aria-label that changes with state",

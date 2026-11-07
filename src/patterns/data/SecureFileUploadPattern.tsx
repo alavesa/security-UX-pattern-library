@@ -150,7 +150,7 @@ export function SecureFileUploadPattern() {
         title="Secure File Upload"
         description="How to design file uploads that protect users from malware — file type restrictions, real-time scanning, encryption indicators, and clear status feedback."
         severity="high"
-        tags={["Data Protection", "OWASP A03", "CWE-434"]}
+        tags={["Data Protection", "OWASP A06", "CWE-434"]}
       />
 
       <DemoContainer label="secure file upload">
@@ -176,7 +176,7 @@ export function SecureFileUploadPattern() {
           "Don't store uploaded files in a publicly accessible directory",
           "Don't execute or render uploaded files without sandboxing",
         ]}
-        securityRationale="Unrestricted file upload (CWE-434) is OWASP A03 (Injection). Uploaded files are the #1 vector for malware delivery to internal systems. The UX must make security measures visible: show the scan happening (builds confidence), block dangerous types upfront (prevents wasted time), and confirm encryption (builds trust). The key insight: if the security process is invisible, users either assume it's not there or try to bypass visible restrictions."
+        securityRationale="Unrestricted file upload (CWE-434) maps to OWASP A06:2025 Insecure Design. Uploaded files are the #1 vector for malware delivery to internal systems. The UX must make security measures visible: show the scan happening (builds confidence), block dangerous types upfront (prevents wasted time), and confirm encryption (builds trust). The key insight: if the security process is invisible, users either assume it's not there or try to bypass visible restrictions."
         accessibilityNotes={[
           "File status changes announced via aria-live regions",
           "Drag and drop zone has a keyboard-accessible 'browse' alternative",
