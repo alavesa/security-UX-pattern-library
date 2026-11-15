@@ -81,14 +81,14 @@ export function RedSketchPage() {
         <p className="text-sm mt-3 font-mono" style={{ color: "var(--text)" }}>
           A CLI tool that reads Figma files and generates security threat models using STRIDE — the industry-standard framework covering Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.
           <br />
-          Powered by Claude AI and the 37 patterns from this library.
+          Powered by Claude AI and the 40 patterns from this library.
         </p>
       </div>
 
       {/* Stats bar */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
         {[
-          { value: "37", label: "Patterns", color: "var(--green)" },
+          { value: "40", label: "Patterns", color: "var(--green)" },
           { value: "19", label: "Regulations", color: "var(--cyan)" },
           { value: "6", label: "STRIDE categories", color: "var(--amber)" },
           { value: "~$0.15–0.50", label: "Per scan", color: "var(--ai-color)" },
@@ -114,7 +114,7 @@ export function RedSketchPage() {
             { icon: FileSearch, step: "1", title: "Reads your Figma design", desc: "Parses the node hierarchy, component names, and text content via the Figma REST API", color: "var(--cyan)" },
             { icon: Crosshair, step: "2", title: "Identifies security-relevant assets", desc: "Login forms, data inputs, file uploads, payment flows, consent screens, admin panels, AI features", color: "var(--red, #ff3333)" },
             { icon: Shield, step: "3", title: "Generates STRIDE threat analysis", desc: "Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege", color: "var(--amber)" },
-            { icon: AlertTriangle, step: "4", title: "Maps to patterns and regulations", desc: "Matches findings against 37 Security UX patterns from this library and flags compliance gaps across 19 regulations", color: "var(--green)" },
+            { icon: AlertTriangle, step: "4", title: "Maps to patterns and regulations", desc: "Matches findings against 40 Security UX patterns from this library and flags compliance gaps across 19 regulations", color: "var(--green)" },
           ].map(({ icon: Icon, step, title, desc, color }) => (
             <div
               key={step}
@@ -231,7 +231,7 @@ export function RedSketchPage() {
         </h2>
         <div className="flex flex-wrap gap-2">
           {[
-            "GDPR", "CCPA", "SOC 2", "ISO 27001", "PCI DSS 4.0",
+            "GDPR", "CCPA", "SOC 2", "ISO 27001", "PCI DSS 4.0.1",
             "FTC Act", "EU AI Act", "US AI Laws", "NIS2", "DORA",
             "CRA", "EAA", "IEC 62443", "IEC 61511", "ISA-18.2",
             "ISA-101", "WCAG 2.2", "WebAuthn", "ISO/IEC 42001",
@@ -277,7 +277,7 @@ export function RedSketchPage() {
           </div>
           <div className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>
             Your API key is stored locally. Design data sent to Claude API over HTTPS only. No images sent. RedSketch collects no analytics or telemetry.
-            Per <a href="https://www.anthropic.com/policies/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--green)" }}>Anthropic's API terms</a>, inputs are not used for training. Review their policy directly.
+            Per <a href="https://www.anthropic.com/legal/commercial-terms" target="_blank" rel="noopener noreferrer" style={{ color: "var(--green)" }}>Anthropic's API terms</a>, inputs are not used for training. Review their policy directly.
           </div>
         </div>
       </div>

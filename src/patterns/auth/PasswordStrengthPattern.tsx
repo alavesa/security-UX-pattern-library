@@ -247,7 +247,7 @@ export function PasswordStrengthPattern() {
           "Don't hash passwords with MD5 or SHA1 — use bcrypt, scrypt, or Argon2",
           "Don't store the breached password check result — only check, never log the password",
         ]}
-        securityRationale="Weak passwords remain the #1 cause of account compromise. NIST SP 800-63B (2017, updated 2024) shifted from complexity rules to length + dictionary checks. Real-time feedback steers users toward strong passwords without creating the frustration that leads to password reuse. Checking against breach databases (CWE-521) catches passwords that are technically complex but already compromised. The breach warning is critical — if a password appears in a breach database, it will be tried by attackers within hours."
+        securityRationale="Weak passwords remain the #1 cause of account compromise. NIST SP 800-63B (Revision 4, July 2025) confirmed the shift from complexity rules to length + dictionary checks. Real-time feedback steers users toward strong passwords without creating the frustration that leads to password reuse. Checking against breach databases (CWE-521) catches passwords that are technically complex but already compromised. The breach warning is critical — if a password appears in a breach database, it will be tried by attackers within hours."
         accessibilityNotes={[
           "Strength meter uses both color AND text labels — never color alone",
           "Checklist items use semantic icons (check/x) with sufficient contrast",

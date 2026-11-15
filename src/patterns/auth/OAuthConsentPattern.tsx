@@ -243,7 +243,7 @@ export function OAuthConsentPattern() {
           "Don't auto-expand permissions on re-authorization — ask again for new scopes",
           "Don't make denial harder than authorization",
         ]}
-        securityRationale="OAuth consent screens are the primary defense against third-party app abuse. CWE-250 (Execution with Unnecessary Privileges) is the underlying issue. The 2024 GitHub OAuth attack exploited over-permissioned tokens to steal code from thousands of repositories. The UX insight: users click 'Authorize' without reading the permission list — especially on mobile. Making the list short (least privilege), separating required from optional, and explaining each permission in plain language makes informed consent possible."
+        securityRationale="OAuth consent screens are the primary defense against third-party app abuse. CWE-250 (Execution with Unnecessary Privileges) is the underlying issue. In April 2022, attackers used OAuth tokens stolen from Heroku and Travis CI to download private repositories from dozens of GitHub organisations, including npm; in August 2025, OAuth tokens for the Salesloft Drift app were used to export data from numerous Salesforce customer instances. The UX insight: users click 'Authorize' without reading the permission list — especially on mobile. Making the list short (least privilege), separating required from optional, and explaining each permission in plain language makes informed consent possible."
         accessibilityNotes={[
           "Permission checkboxes must be keyboard accessible",
           "Required vs optional is conveyed with both text labels and visual treatment",

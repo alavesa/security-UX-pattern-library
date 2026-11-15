@@ -70,6 +70,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/owasp/security-misconfiguration", label: "Security Config", category: "OWASP" },
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
       { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
+      { path: "/patterns/owasp/exceptional-conditions", label: "Exceptional Conditions", category: "OWASP" },
     ],
   },
   {
@@ -95,12 +96,13 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/governance/design-review", label: "Security Design Review", category: "Governance" },
       { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
       { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
+      { path: "/patterns/owasp/exceptional-conditions", label: "Exceptional Conditions", category: "OWASP" },
     ],
   },
   {
     id: "pci",
-    name: "PCI DSS 4.0",
-    fullName: "Payment Card Industry Data Security Standard v4.0 — March 2025",
+    name: "PCI DSS 4.0.1",
+    fullName: "Payment Card Industry Data Security Standard v4.0.1 — all requirements mandatory since March 31, 2025",
     color: "#ef4444",
     patterns: [
       { path: "/patterns/auth/login", label: "Login Flow", category: "Auth" },
@@ -109,11 +111,12 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/auth/session-timeout", label: "Session Timeout", category: "Auth" },
       { path: "/patterns/auth/passkeys", label: "Passkeys (WebAuthn)", category: "Auth" },
       { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "Data" },
-      { path: "/patterns/data/secure-file-upload", label: "Secure File Upload", category: "Data" },
+      { path: "/patterns/data/file-upload", label: "Secure File Upload", category: "Data" },
       { path: "/patterns/data/activity-log", label: "Activity & Audit Log", category: "Data" },
       { path: "/patterns/owasp/broken-access-control", label: "Access Control", category: "OWASP" },
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
-      { path: "/patterns/owasp/security-misconfig", label: "Security Misconfiguration", category: "OWASP" },
+      { path: "/patterns/owasp/security-misconfiguration", label: "Security Misconfiguration", category: "OWASP" },
+      { path: "/patterns/owasp/exceptional-conditions", label: "Exceptional Conditions", category: "OWASP" },
     ],
   },
   {
@@ -128,6 +131,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/dark/bait-switch", label: "Bait & Switch", category: "Dark Patterns" },
       { path: "/patterns/dark/forced-continuity", label: "Forced Continuity", category: "Dark Patterns" },
       { path: "/patterns/dark/privacy-zuckering", label: "Privacy Zuckering", category: "Dark Patterns" },
+      { path: "/patterns/dark/addictive-design", label: "Addictive Design", category: "Dark Patterns" },
     ],
   },
   {
@@ -150,7 +154,7 @@ const ALL_REGULATIONS: Regulation[] = [
   {
     id: "usai",
     name: "US AI Laws",
-    fullName: "Colorado AI Act + California AI Transparency Act (2026)",
+    fullName: "California AI Transparency Act (in force Aug 2, 2026) + Colorado SB 26-189 automated decision-making law (from Jan 1, 2027)",
     color: "#06b6d4",
     patterns: [
       { path: "/patterns/ai/disclosure", label: "AI Disclosure", category: "AI" },
@@ -177,6 +181,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "OWASP" },
       { path: "/patterns/governance/design-review", label: "Security Design Review", category: "Governance" },
       { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
+      { path: "/patterns/threat/security-updates", label: "Security Update Notification", category: "Threat" },
     ],
   },
   {
@@ -263,6 +268,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/governance/design-review", label: "Security Design Review", category: "Governance" },
       { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
       { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
+      { path: "/patterns/threat/security-updates", label: "Security Update Notification", category: "Threat" },
     ],
   },
   {
@@ -284,6 +290,7 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "Threat" },
       { path: "/patterns/governance/change-management", label: "Change Management", category: "Governance" },
       { path: "/patterns/governance/compliance-audit", label: "Compliance Audit", category: "Governance" },
+      { path: "/patterns/owasp/exceptional-conditions", label: "Exceptional Conditions", category: "OWASP" },
     ],
   },
   {
@@ -304,6 +311,8 @@ const ALL_REGULATIONS: Regulation[] = [
       { path: "/patterns/industrial/operator-auth", label: "Operator Authentication", category: "Industrial" },
       { path: "/patterns/industrial/safety-critical", label: "Safety-Critical Confirmation", category: "Industrial" },
       { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "Threat" },
+      { path: "/patterns/threat/security-updates", label: "Security Update Notification", category: "Threat" },
+      { path: "/patterns/owasp/exceptional-conditions", label: "Exceptional Conditions", category: "OWASP" },
     ],
   },
   {
@@ -393,7 +402,7 @@ export function CompliancePage() {
         <h2 className="text-sm font-mono font-bold mb-3" style={{ color: "var(--text-bright)" }}>How it works</h2>
         <div className="space-y-2 text-xs font-mono" style={{ color: "var(--text)" }}>
           <p><span style={{ color: "var(--green)" }}>1.</span> Select the regulations your product must comply with</p>
-          <p><span style={{ color: "var(--green)" }}>2.</span> The mapper cross-references each regulation against the 37 patterns</p>
+          <p><span style={{ color: "var(--green)" }}>2.</span> The mapper cross-references each regulation against the 40 patterns</p>
           <p><span style={{ color: "var(--green)" }}>3.</span> Results are sorted by impact — patterns satisfying multiple regulations appear first</p>
           <p><span style={{ color: "var(--green)" }}>4.</span> Click any pattern to see its interactive demo, guidelines, and implementation notes</p>
         </div>
@@ -535,19 +544,19 @@ export function CompliancePage() {
           {[
             { label: "GDPR", url: "https://gdpr-info.eu/" },
             { label: "NIS2", url: "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive" },
-            { label: "DORA", url: "https://www.digital-operational-resilience-act.com/" },
+            { label: "DORA", url: "https://www.eiopa.europa.eu/digital-operational-resilience-act-dora_en" },
             { label: "EU AI Act", url: "https://artificialintelligenceact.eu/" },
             { label: "CRA", url: "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" },
             { label: "OWASP", url: "https://owasp.org/www-project-top-ten/" },
             { label: "WCAG 2.2", url: "https://www.w3.org/WAI/WCAG22/quickref/" },
             { label: "ISO 27001", url: "https://www.iso.org/standard/27001" },
             { label: "SOC 2", url: "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" },
-            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },
+            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards" },
             { label: "CCPA", url: "https://oag.ca.gov/privacy/ccpa" },
             { label: "FTC", url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" },
-            { label: "ePrivacy", url: "https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation" },
-            { label: "EAA", url: "https://ec.europa.eu/social/main.jsp?catId=1202" },
-            { label: "PCI DSS 4.0", url: "https://www.pcisecuritystandards.org/document_library/" },
+            { label: "ePrivacy", url: "https://digital-strategy.ec.europa.eu/en/policies/digital-privacy" },
+            { label: "EAA", url: "https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/european-accessibility-act-eaa_en" },
+            { label: "PCI DSS 4.0.1", url: "https://www.pcisecuritystandards.org/document_library/" },
           ].map(({ label, url }) => (
             <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
               {label}

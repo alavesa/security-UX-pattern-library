@@ -83,7 +83,7 @@ function ForcedContinuityDemo() {
                   <li><strong style={{ color: "var(--text-bright)" }}>Auto-charge is the default</strong> — no reminder email before the trial ends</li>
                   <li><strong style={{ color: "var(--text-bright)" }}>"Recurring charges" in fine print</strong> — user may not realize it's a subscription</li>
                   <li><strong style={{ color: "var(--text-bright)" }}>No cancellation reminder</strong> — relies on users forgetting to cancel</li>
-                  <li>The FTC's "Negative Option Rule" (2024) makes this illegal in many jurisdictions</li>
+                  <li>US ROSCA and state automatic-renewal laws make this illegal in many jurisdictions</li>
                 </ul>
               </div>
             </div>
@@ -190,7 +190,7 @@ export function ForcedContinuityPattern() {
         title="Forced Continuity"
         description="Free trials that auto-charge when they expire. Credit card required upfront, price hidden in fine print, no cancellation reminder. The subscription trap."
         severity="critical"
-        tags={["Dark Pattern", "FTC Negative Option Rule", "Consumer Protection"]}
+        tags={["Dark Pattern", "ROSCA", "Consumer Protection"]}
       />
 
       <DemoContainer label="forced continuity (dark vs ethical)">
@@ -216,7 +216,7 @@ export function ForcedContinuityPattern() {
           "Don't auto-charge without sending a pre-charge notification",
           "Don't use 'We'll miss you' or other emotional manipulation in cancellation flows",
         ]}
-        securityRationale="The FTC's Negative Option Rule (updated 2024) requires: (1) clear disclosure of material terms before charge, (2) affirmative consent, (3) easy cancellation. Violations result in fines up to $50,000 per incident. The EU Consumer Rights Directive has similar requirements. From a security UX perspective, forced continuity trains users to distrust legitimate payment flows — when users expect to be tricked, they're less likely to engage with genuine security prompts about their payment methods."
+        securityRationale="In the US, the Restore Online Shoppers' Confidence Act (ROSCA) and FTC Act Section 5 require: (1) clear disclosure of material terms before charge, (2) express informed consent, (3) a simple way to cancel. The FTC's 2024 'Click-to-Cancel' amendments to the Negative Option Rule were vacated by the 8th Circuit in July 2025 and never took effect; the FTC reopened rulemaking in March 2026 and enforces under ROSCA meanwhile — Amazon agreed to pay $2.5 billion in September 2025 over Prime enrolment and cancellation flows. Civil penalties run up to $53,088 per violation, and state laws such as California's Automatic Renewal Law add same-medium cancellation. The EU Consumer Rights Directive has similar requirements. From a security UX perspective, forced continuity trains users to distrust legitimate payment flows — when users expect to be tricked, they're less likely to engage with genuine security prompts about their payment methods."
         accessibilityNotes={[
           "Price information must not be in low-contrast text — it's material information",
           "Trial terms must be readable by screen readers in logical order",

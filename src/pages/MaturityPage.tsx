@@ -172,7 +172,7 @@ export function MaturityPage() {
     if ((answers.response ?? 0) < 3) recs.push({ path: "/patterns/threat/breach-notification", label: "Breach Notification", reason: "Create breach communication plan" });
     if ((answers.access ?? 0) < 3) recs.push({ path: "/patterns/owasp/broken-access-control", label: "Access Control", reason: "Implement visible RBAC in the UI" });
     if ((answers.ux ?? 0) < 3) recs.push({ path: "/score", label: "Security UX Score", reason: "Audit your current security UX" });
-    if ((answers.ai ?? 0) < 3) recs.push({ path: "/patterns/ai/disclosure", label: "AI Disclosure", reason: "Label AI interactions — EU AI Act deadline Aug 2026" });
+    if ((answers.ai ?? 0) < 3) recs.push({ path: "/patterns/ai/disclosure", label: "AI Disclosure", reason: "Label AI interactions — EU AI Act Art. 50 in force since Aug 2, 2026" });
     if ((answers.industrial ?? 0) < 3 && (answers.industrial ?? 0) > 0) recs.push({ path: "/patterns/industrial/operator-auth", label: "Operator Auth", reason: "Implement glove-friendly authentication for operators" });
     if ((answers.industrial ?? 0) < 3 && (answers.industrial ?? 0) > 0) recs.push({ path: "/patterns/industrial/alarm-fatigue", label: "Alarm Management", reason: "Implement ISA-18.2 alarm grouping and shelving" });
     if ((answers.industrial ?? 0) < 3 && (answers.industrial ?? 0) > 0) recs.push({ path: "/patterns/industrial/navigation-levels", label: "Navigation Levels", reason: "Implement ISA-101 4-level navigation hierarchy" });
@@ -396,7 +396,7 @@ export function MaturityPage() {
             { label: "CMMI", url: "https://cmmiinstitute.com/" },
             { label: "OWASP SAMM", url: "https://owaspsamm.org/" },
             { label: "NIST CSF", url: "https://www.nist.gov/cyberframework" },
-            { label: "IEC 62443 SL", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },
+            { label: "IEC 62443 SL", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards" },
             { label: "ISO 27001", url: "https://www.iso.org/standard/27001" },
             { label: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
             { label: "EU AI Act", url: "https://artificialintelligenceact.eu/" },

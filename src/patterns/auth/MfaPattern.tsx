@@ -313,7 +313,7 @@ export function MfaPattern() {
           "Don't allow immediate resend — enforce cooldown to prevent SMS bombing",
           "Don't let backup codes be reused — invalidate immediately after use",
         ]}
-        securityRationale="MFA prevents 99.9% of automated account compromise attacks (Microsoft, 2023). TOTP (Time-based One-Time Password) is preferred over SMS because SMS is vulnerable to SIM swapping and SS7 interception. Backup codes provide a critical recovery path when the primary device is lost — without them, users get permanently locked out, which leads to insecure recovery processes. The progressive resend cooldown prevents SMS bombing attacks while still allowing legitimate retries."
+        securityRationale="MFA can block over 99.9% of account compromise attacks (Microsoft, 2019), and phishing-resistant MFA stops over 99% of identity attacks even when the attacker has the correct password (Microsoft Digital Defense Report 2025). TOTP (Time-based One-Time Password) is preferred over SMS because SMS is vulnerable to SIM swapping and SS7 interception. Backup codes provide a critical recovery path when the primary device is lost — without them, users get permanently locked out, which leads to insecure recovery processes. The progressive resend cooldown prevents SMS bombing attacks while still allowing legitimate retries."
         accessibilityNotes={[
           "Input group uses role='group' with aria-label for screen readers",
           "Each input has aria-label='Digit N' for navigation",

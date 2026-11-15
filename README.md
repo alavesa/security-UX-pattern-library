@@ -2,7 +2,7 @@
 
 [![Reviewed by PatchPilots](https://img.shields.io/badge/reviewed%20by-PatchPilots%20🎯-blueviolet)](https://github.com/alavesa/patchpilots)
 
-**Live site: [uxsec.dev](https://uxsec.dev)** — 37 interactive patterns for designing secure user experiences.
+**Live site: [uxsec.dev](https://uxsec.dev)** — 40 interactive patterns for designing secure user experiences.
 
 Interactive patterns for designing secure user experiences.
 
@@ -19,18 +19,20 @@ $ ls ./patterns
    oauth_consent ......... OAuth 2.0, CWE-250
    accessible_auth ....... WCAG 2.2, SC 3.3.8
 
-🔒 threat/ (3)
+🔒 threat/ (4)
    breach_notification ... GDPR Art. 33/34, CWE-200
    phishing_warning ...... OWASP A01, CWE-601
    suspicious_activity ... OWASP A09, CWE-778
+   security_updates ...... CRA Annex I, Art. 13
 
-⚠ dark_patterns/ (6)
+⚠ dark_patterns/ (7)
    confirmshaming ........ EU DSA, Deceptive Design
    cookie_consent ........ GDPR Art. 7, ePrivacy
    hidden_unsubscribe .... GDPR Art. 17, Right to Erasure
    privacy_zuckering ..... GDPR Art. 5, Data Minimization
    bait_and_switch ....... FTC Act Section 5
-   forced_continuity ..... FTC Negative Option Rule
+   forced_continuity ..... ROSCA, FTC Act Section 5
+   addictive_design ...... EU DFA Art. 17 (proposal), DSA Art. 25
 
 🔐 data/ (4)
    encryption_indicators . OWASP A06, CWE-311
@@ -38,10 +40,11 @@ $ ls ./patterns
    data_deletion ......... GDPR Art. 17, CWE-212
    activity_log .......... GDPR Art. 15, CWE-778
 
-🛡 owasp/ (3)
+🛡 owasp/ (4)
    A01_access_control .... CWE-284, CWE-639
    A02_misconfiguration .. CWE-16, CWE-209
    A09_logging ........... CWE-778, CWE-223
+   A10_error_states ...... CWE-209, CWE-636
 
 🤖 ai/ (6)
    ai_disclosure ......... EU AI Act Art. 50
@@ -79,7 +82,7 @@ $█
 
 Gathered from 20 years of experience in safety-critical industries — energy, maritime, drilling operations — and a double M.Sc. in Cyber Security and Information Systems. The patterns comply to any domain.
 
-## 37 Interactive Patterns + 5 Strategic Tools + 2 Operational CLI Tools
+## 40 Interactive Patterns + 5 Strategic Tools + 2 Operational CLI Tools
 
 The most comprehensive interactive security UX pattern library. Each pattern has a live demo, do/don't guidelines, security rationale with OWASP/CWE/GDPR references, and accessibility notes.
 
@@ -87,7 +90,7 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 
 | Tool | What it does |
 |------|-------------|
-| **[Ripple](https://uxsec.dev/ripple)** | Paste any headline → structured analysis prompt through 3 lenses: UX & Design Systems, Security & Compliance, AI & Emerging Risk. Powered by all 37 patterns. |
+| **[Ripple](https://uxsec.dev/ripple)** | Paste any headline → structured analysis prompt through 3 lenses: UX & Design Systems, Security & Compliance, AI & Emerging Risk. Powered by all 40 patterns. |
 | **Security UX Score** | Checklist across 8 categories → A+ through F grade. Industrial & Governance can be marked N/A for fair scoring. |
 | **Compliance Mapper** | Select from 19 regulations (GDPR, NIS2, DORA, CRA, EU AI Act, ISO 42001, EAA, IEC 62443...) → see which patterns you need |
 | **Maturity Model** | 10-question assessment → current level, priority areas, roadmap to next level |
@@ -107,15 +110,16 @@ The most comprehensive interactive security UX pattern library. Each pattern has
 | OAuth Consent | Over-permissioned vs least privilege, granular control, explained permissions |
 | Accessible Authentication | CAPTCHA alternatives (passkey, magic link), screen reader MFA, timed actions with announcements (WCAG 2.2 SC 3.3.8) |
 
-## Threat Response (3)
+## Threat Response (4)
 
 | Pattern | What it covers |
 |---------|----------------|
 | Breach Notification | In-app banner, full-page with timeline, email with GDPR refs (3 variants) |
 | Phishing Warning | Blocked page, email annotations, link safety preview (3 variants) |
 | Suspicious Activity | Sign-in alerts, session management, new device approval (3 variants) |
+| Security Update Notification | Security-only update notice, auto-update opt-out, end-of-support date (CRA Annex I / Art. 13, 3 variants) |
 
-## Dark Patterns — Anti-Patterns (6)
+## Dark Patterns — Anti-Patterns (7)
 
 Each shows the manipulative version side-by-side with the ethical alternative.
 
@@ -127,6 +131,7 @@ Each shows the manipulative version side-by-side with the ethical alternative.
 | Privacy Zuckering | Pre-enabled permissions | Opt-in with per-permission explanations |
 | Bait & Switch | X button enables features | X means close, always |
 | Forced Continuity | Free trial auto-charge trap | No-card trial, pre-expiry reminder |
+| Addictive Design | Autoplay, endless feed, punishing streaks, come-back notifications | Per-feature off switches one tap from the feed, break points (EU DFA proposal Art. 17) |
 
 ## Data Protection (4)
 
@@ -137,13 +142,14 @@ Each shows the manipulative version side-by-side with the ethical alternative.
 | Data Deletion | GDPR-compliant deletion with export, confirmation, grace period |
 | Activity & Audit Log | Account activity, active devices with session revoke, data access log (GDPR Art. 15) |
 
-## OWASP Top 10:2025 (3)
+## OWASP Top 10:2025 (4)
 
 | Pattern | What it covers |
 |---------|----------------|
 | A01 Broken Access Control | Role-based UI, IDOR prevention, privilege escalation blocking |
 | A02 Security Misconfiguration | Security headers dashboard, debug mode, default credentials |
 | A09 Logging & Alerting | Live event log, anomaly detection, per-user audit trails |
+| A10 Mishandling of Exceptional Conditions | Leaky error messages, fail-open checks, interrupted transactions vs error states that fail safely |
 
 ## AI Transparency & Agent Safety (6) — EU AI Act, OWASP Agentic Top 10
 
@@ -177,10 +183,10 @@ Each shows the manipulative version side-by-side with the ethical alternative.
 
 | Company | Fine | Reason |
 |---------|------|--------|
-| Amazon | $30M | Manipulative subscription design |
-| Epic Games | $245M | Deceptive in-game purchases |
-| TikTok | €345M | Public-by-default dark pattern |
-| Meta | €1.2B | GDPR data transfer violations |
+| Amazon | $2.5B | Deceptive Prime enrolment and obstructed cancellation (FTC, 2025) |
+| TikTok | €345M | Public-by-default dark pattern (Irish DPC, 2023) |
+| Google | €325M | Refusing cookies harder than accepting (CNIL, 2025) |
+| Epic Games | $245M | Dark patterns causing unwanted purchases (FTC, 2023) |
 
 ## Run locally
 
@@ -277,15 +283,15 @@ Hacker terminal aesthetic — black background, green glow, JetBrains Mono, scan
 
 Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity border) variants for consistent tinted containers. Semantic colors (red for errors, green for success, amber for warnings) are used across all categories regardless of accent color.
 
-## Sources (46)
+## Sources (59)
 
 **EU Regulation:** GDPR, NIS2, DORA, CRA, EU AI Act, EU DSA, ePrivacy, EU Consumer Rights Directive, European Accessibility Act (EAA)
 
-**Standards & Compliance:** OWASP, CWE, NIST SP 800-63B, NIST CSF, NIST SP 800-30, WCAG 2.2 (SC 3.3.8 Accessible Auth), ISO 27001, ISO 27005, ISO/IEC 42001, SOC 2, PCI DSS 4.0, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act, CMMI, OWASP SAMM, OWASP Risk Rating
+**Standards & Compliance:** OWASP, CWE, NIST SP 800-63B, NIST CSF, NIST SP 800-30, WCAG 2.2 (SC 3.3.8 Accessible Auth), ISO 27001, ISO 27005, ISO/IEC 42001, SOC 2, PCI DSS 4.0.1, WebAuthn/FIDO2, OAuth 2.0, CCPA, FTC, C2PA, AI Transparency Code, IAB Framework, US State AI Laws, Illinois AI Act, CMMI, OWASP SAMM, OWASP Risk Rating
 
 **Industrial:** IEC 62443, IEC 61511, ISA-18.2, ISA-101, EEMUA 191
 
-**Research:** Verizon DBIR, IBM Breach Report, Microsoft MFA Study, USEC 2026, Deceptive Design, Dark Patterns Enforcement, RFC 6238
+**Research:** Verizon DBIR 2026, IBM Breach Report, Microsoft MFA Study, USEC 2026, Deceptive Design, Dark Patterns Enforcement, RFC 6238
 
 ## Author
 
@@ -298,7 +304,7 @@ Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity
 ## Roadmap
 
 ### Ripple — live intelligence tool
-- [x] **Phase 1: Prompt generator** — paste a headline, get a structured prompt with all 37 patterns as context, copy into Claude or ChatGPT *(shipped)*
+- [x] **Phase 1: Prompt generator** — paste a headline, get a structured prompt with all 40 patterns as context, copy into Claude or ChatGPT *(shipped)*
 - [ ] **Phase 2: Claude API integration** — inline analysis via a thin proxy (Cloudflare Worker), no user API keys needed. Three-lens results rendered directly on the page with pattern links.
 - [ ] **Phase 3: Adaptive lenses** — LLM picks the most relevant third lens per headline instead of fixed three. Could surface supply chain risk, industrial safety, dark patterns, or AI governance depending on context.
 - [ ] **Related patterns from LLM output** — parse the API response for pattern URLs and replace keyword matching with LLM-referenced patterns
@@ -308,7 +314,7 @@ Each color has `--*-glow` (15% opacity background) and `--*-border` (25% opacity
 - [x] **Add `<noscript>` fallback content** — terminal-styled static HTML fallback for NoScript users. Shows site description, pattern count, tool list, and GitHub link. "No tracking. No cookies. No analytics." *(shipped)*
 
 ### Patterns to add
-- [ ] More OWASP Top 10:2025 coverage (currently A01, A02, A09; A10 Mishandling of Exceptional Conditions next)
+- [ ] More OWASP Top 10:2025 coverage (currently A01, A02, A09, A10)
 - [ ] API security UX patterns
 
 ### Site improvements

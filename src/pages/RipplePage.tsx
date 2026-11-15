@@ -75,7 +75,7 @@ export function RipplePage() {
         <div className="grid sm:grid-cols-3 gap-3 mb-5">
           {[
             { step: "01", label: "Paste a headline", desc: "Any news event, breach report, or regulation update" },
-            { step: "02", label: "Copy the prompt", desc: "Ripple builds a structured prompt with all 37 patterns as context" },
+            { step: "02", label: "Copy the prompt", desc: "Ripple builds a structured prompt with all 40 patterns as context" },
             { step: "03", label: "Paste into an LLM", desc: "Claude or ChatGPT analyzes through three lenses" },
           ].map(({ step, label, desc }) => (
             <div key={step} className="flex gap-3">
@@ -269,7 +269,7 @@ export function RipplePage() {
             { label: "ISO/IEC 42001", url: "https://www.iso.org/standard/42001" },
             { label: "GDPR", url: "https://gdpr-info.eu/" },
             { label: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
-            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },
+            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards" },
             { label: "ENISA Threat Landscape", url: "https://www.enisa.europa.eu/publications/enisa-threat-landscape-2024" },
             { label: "Cyber Resilience Act", url: "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" },
             { label: "DORA", url: "https://eur-lex.europa.eu/eli/reg/2022/2554" },

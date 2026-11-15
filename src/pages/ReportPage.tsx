@@ -335,7 +335,7 @@ export function ReportPage() {
             { label: "GDPR", url: "https://gdpr-info.eu/" },
             { label: "EU AI Act", url: "https://artificialintelligenceact.eu/" },
             { label: "FTC", url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" },
-            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },
+            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards" },
           ].map(({ label, url }) => (
             <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
               {label}

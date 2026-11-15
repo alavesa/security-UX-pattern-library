@@ -245,7 +245,7 @@ export function CookieConsentPattern() {
           "Don't make rejecting harder than accepting — GDPR Article 7 requires equal ease",
           "Don't use 'We value your privacy' while designing to extract maximum consent",
         ]}
-        securityRationale="Cookie consent dark patterns violate GDPR Article 7 (conditions for consent), which requires consent to be 'freely given, specific, informed, and unambiguous.' The EU Data Protection Board (EDPB) has explicitly ruled that 'reject' must be as easy as 'accept.' Fines for non-compliance reach up to 4% of global annual turnover. Beyond legal risk, dark patterns in consent erode the trust foundation that every other security measure depends on."
+        securityRationale="Cookie consent dark patterns violate GDPR Article 7 (conditions for consent), which requires consent to be 'freely given, specific, informed, and unambiguous.' The EU Data Protection Board (EDPB) has explicitly ruled that 'reject' must be as easy as 'accept.' Fines for non-compliance reach up to 4% of global annual turnover. Beyond legal risk, dark patterns in consent erode the trust foundation that every other security measure depends on. As of November 2026 the EU Digital Omnibus is still in negotiation, so cookie consent is still governed by ePrivacy Directive Art. 5(3) and the GDPR; both the Commission proposal and the Council's October 2026 mandate would require a single-click way to refuse and bar re-asking for months, so an equal-weight Reject button is where the law is heading as well as where it is."
         accessibilityNotes={[
           "Both Accept and Reject buttons must meet WCAG AA contrast requirements",
           "The banner should be focusable and announced by screen readers on page load",

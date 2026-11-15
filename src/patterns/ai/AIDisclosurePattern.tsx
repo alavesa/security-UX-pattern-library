@@ -174,7 +174,7 @@ function AIDisclosureDemo() {
             <p style={{ color: "var(--red)" }}>What's wrong:</p>
             <p style={{ color: "var(--text)" }}>"Sarah from Sales" is actually an AI chatbot pretending to be human</p>
             <p style={{ color: "var(--text)" }}>No disclosure that user is interacting with AI</p>
-            <p style={{ color: "var(--text)" }}>Violates EU AI Act Article 50(1) — effective August 2026</p>
+            <p style={{ color: "var(--text)" }}>Violates EU AI Act Article 50(1) — in force since August 2, 2026</p>
           </>
         ) : (
           <>
@@ -199,7 +199,7 @@ export function AIDisclosurePattern() {
         title="AI Interaction Disclosure"
         description="EU AI Act Article 50 requires users to be informed when they're interacting with AI. Compare a chatbot pretending to be human vs the compliant approach with clear AI labeling."
         severity="critical"
-        tags={["EU AI Act Art. 50", "AI Transparency", "August 2026 Deadline"]}
+        tags={["EU AI Act Art. 50", "AI Transparency", "In force since Aug 2026"]}
       />
 
       <DemoContainer label="AI disclosure (non-compliant vs compliant)">
@@ -225,7 +225,7 @@ export function AIDisclosurePattern() {
           "Don't remove AI labels when the conversation gets longer",
           "Don't claim the AI 'understands' or 'cares' — avoid anthropomorphization",
         ]}
-        securityRationale="EU AI Act Article 50(1) requires that 'providers shall ensure that AI systems intended to interact directly with natural persons are designed and developed in such a way that the natural persons concerned are informed that they are interacting with an AI system.' Non-compliance faces fines up to 15M EUR or 3% of global annual turnover. The deadline is August 2026. Beyond compliance, undisclosed AI creates a trust deficit — when users discover they were misled, they lose confidence in all the product's claims."
+        securityRationale="EU AI Act Article 50(1) requires that 'providers shall ensure that AI systems intended to interact directly with natural persons are designed and developed in such a way that the natural persons concerned are informed that they are interacting with an AI system.' Non-compliance faces fines up to 15M EUR or 3% of global annual turnover. The obligation has applied since August 2, 2026. Beyond compliance, undisclosed AI creates a trust deficit — when users discover they were misled, they lose confidence in all the product's claims."
         accessibilityNotes={[
           "AI disclosure banner must be screen reader accessible",
           "Bot icon must have descriptive alt text ('AI assistant')",

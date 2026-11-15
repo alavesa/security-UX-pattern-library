@@ -8,19 +8,19 @@ export function ConvincePage() {
   const handleCopy = () => {
     const text = `Security UX: Why It Matters
 
-€1.86B+ in dark pattern fines since 2023
-204 days — average time to detect a breach
+€3B+ in deceptive-design penalties since 2023
+247 days — average time to identify and contain a breach
 100% of tested apps have some form of broken access control (OWASP Top 10:2025)
 99.9% of account compromises prevented by MFA
 
 Key regulations:
 - GDPR Art. 7: consent must be as easy to withdraw as to give
-- EU AI Act Art. 50(1): chatbot disclosure (in force since Aug 2, 2026); Art. 50(2) watermarking + nudifier/CSAM ban (Dec 2, 2026)
+- EU AI Act Art. 50(1): chatbot disclosure (in force since Aug 2, 2026); Art. 50(2) machine-readable marking for generative systems already on the market + nudifier/CSAM ban (Dec 2, 2026)
 - Cyber Resilience Act: vulnerability reporting via ENISA Single Reporting Platform (in force since Sep 11, 2026); full obligations (Dec 11, 2027)
 - EU AI Act high-risk (Annex III, incl. Art. 14 human oversight): Dec 2, 2027 — postponed by Digital Omnibus Reg. 2026/1744
-- FTC Negative Option Rule: cancellation must equal signup ease
+- US ROSCA + FTC Act §5: clear terms, express consent, simple cancellation (Amazon paid $2.5B in 2025)
 - European Accessibility Act: digital services must be accessible (enforced since June 2025)
-- PCI DSS 4.0: MFA required for all cardholder data access (enforced since March 2025)
+- PCI DSS 4.0.1: MFA required for all cardholder data access (enforced since March 2025)
 
 What to do:
 1. Audit current security UX → uxsec.dev/score
@@ -29,7 +29,7 @@ What to do:
 4. Generate prioritized report → uxsec.dev/report
 5. Trace headline implications → uxsec.dev/ripple
 
-Source: uxsec.dev — 37 interactive patterns, 19 regulations, 56 cited sources`;
+Source: uxsec.dev — 40 interactive patterns, 19 regulations, 59 cited sources`;
 
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
@@ -72,10 +72,10 @@ Source: uxsec.dev — 37 interactive patterns, 19 regulations, 56 cited sources`
 
         <div className="grid sm:grid-cols-2 gap-3 mb-4">
           {[
-            { stat: "€1.2B", context: "Meta — GDPR data transfer violations", year: "2023" },
-            { stat: "€345M", context: "TikTok — public-by-default dark pattern", year: "2023" },
-            { stat: "$245M", context: "Epic Games — deceptive in-game purchases", year: "2024" },
-            { stat: "$30M", context: "Amazon — manipulative subscription flows", year: "2026" },
+            { stat: "$2.5B", context: "Amazon — deceptive Prime enrolment and obstructed cancellation (FTC)", year: "2025" },
+            { stat: "€345M", context: "TikTok — children's accounts public by default (Irish DPC)", year: "2023" },
+            { stat: "€325M", context: "Google — refusing cookies harder than accepting (CNIL)", year: "2025" },
+            { stat: "$245M", context: "Epic Games — dark patterns causing unwanted purchases (FTC)", year: "2023" },
           ].map(({ stat, context, year }) => (
             <div key={context} className="flex items-start gap-3 p-3 rounded-lg" style={{ background: "rgba(255,51,51,0.05)", border: "1px solid rgba(255,51,51,0.15)" }}>
               <span className="font-mono font-bold text-lg shrink-0" style={{ color: "var(--red)" }}>{stat}</span>
@@ -88,7 +88,7 @@ Source: uxsec.dev — 37 interactive patterns, 19 regulations, 56 cited sources`
         </div>
 
         <p className="text-xs font-mono" style={{ color: "var(--text)" }}>
-          <strong style={{ color: "var(--red)" }}>Total: €1.86B+ in fines since 2023.</strong> These aren't back-end security failures — they're UX decisions. A consent screen that manipulates. A deletion flow that's intentionally hard. A default setting that exposes data. The regulators are looking at the front end now.
+          <strong style={{ color: "var(--red)" }}>Together: more than €3B in deceptive-design penalties since 2023.</strong> These aren't back-end security failures — they're UX decisions. A consent screen that manipulates. A deletion flow that's intentionally hard. A default setting that exposes data. The regulators are looking at the front end now.
         </p>
       </div>
 
@@ -100,9 +100,9 @@ Source: uxsec.dev — 37 interactive patterns, 19 regulations, 56 cited sources`
 
         <div className="space-y-3">
           {[
-            { stat: "204 days", desc: "Average time to detect a data breach", source: "IBM Cost of a Data Breach 2023", impact: "Every day of delayed detection increases the cost by $1,000+" },
+            { stat: "247 days", desc: "Average time to identify and contain a data breach", source: "IBM Cost of a Data Breach Report 2026", impact: "Average breach cost: a record $4.99M — and it grows with every day undetected" },
             { stat: "100%", desc: "Of tested applications have some form of broken access control", source: "OWASP Top 10:2025", impact: "The #1 web vulnerability — and it's visible to users in the UI" },
-            { stat: "99.9%", desc: "Of account compromises prevented by MFA", source: "Microsoft Security Blog, 2023", impact: "The single highest-ROI security UX investment" },
+            { stat: "99.9%", desc: "Of account compromises prevented by MFA", source: "Microsoft Security Blog, 2019", impact: "The single highest-ROI security UX investment" },
             { stat: "72 hours", desc: "Maximum time to notify authorities of a breach", source: "GDPR Article 33", impact: "Requires a tested breach notification flow — not ad-hoc emails" },
           ].map(({ stat, desc, source, impact }) => (
             <div key={desc} className="p-3 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
@@ -126,12 +126,12 @@ Source: uxsec.dev — 37 interactive patterns, 19 regulations, 56 cited sources`
         <div className="space-y-2">
           {[
             { date: "Now", reg: "GDPR Art. 7", req: "Consent as easy to withdraw as to give — no dark patterns in cookie banners", penalty: "Up to 4% of global annual turnover" },
-            { date: "Now", reg: "FTC Neg. Option Rule", req: "Cancellation must be as easy as signup — no retention mazes", penalty: "Up to $50,000 per incident" },
+            { date: "Now", reg: "US ROSCA + FTC Act §5", req: "Clear terms, express informed consent and a simple way to cancel — the 2024 Click-to-Cancel rule was vacated, enforcement continues", penalty: "Up to $53,088 per violation" },
             { date: "Now", reg: "European Accessibility Act", req: "Digital services must be accessible — auth flows, consent, notifications (enforced since June 2025)", penalty: "Varies by member state" },
-            { date: "Now", reg: "PCI DSS 4.0", req: "MFA required for all access to cardholder data — phishing-resistant auth, secure session management (enforced since March 2025)", penalty: "Fines $5,000–$100,000/month + loss of card processing" },
+            { date: "Now", reg: "PCI DSS 4.0.1", req: "MFA required for all access to cardholder data — phishing-resistant auth, secure session management (enforced since March 2025)", penalty: "Fines $5,000–$100,000/month + loss of card processing" },
             { date: "Now", reg: "EU AI Act Art. 50(1)", req: "Chatbots must disclose they are AI — no pretending to be human (in force since Aug 2, 2026; official EU labelling icons available)", penalty: "Up to €15M or 3% of global turnover" },
             { date: "Now", reg: "Cyber Resilience Act Art. 14", req: "Vulnerability reporting — 24h early warning, 72h notification via ENISA Single Reporting Platform (in force since Sep 11, 2026)", penalty: "Up to €15M or 2.5% of global turnover" },
-            { date: "Dec 2, 2026", reg: "EU AI Act Art. 50(2) + prohibited", req: "AI watermarking obligations · ban on nudifier and CSAM-generating AI (postponed Apr 2026)", penalty: "Up to €35M or 7% of global turnover (prohibited systems)" },
+            { date: "Dec 2, 2026", reg: "EU AI Act Art. 50(2) + prohibited", req: "Machine-readable marking for generative AI systems already on the market before Aug 2, 2026 · ban on nudifier and CSAM-generating AI", penalty: "Up to €35M or 7% of global turnover (prohibited systems)" },
             { date: "Dec 2, 2027", reg: "EU AI Act Annex III (high-risk)", req: "Human oversight (Art. 14), transparency to deployers, logging — postponed 16 months by the Digital Omnibus (Reg. 2026/1744); Annex I product-embedded AI follows Aug 2, 2028", penalty: "Up to €15M or 3% of global turnover" },
             { date: "Dec 11, 2027", reg: "Cyber Resilience Act", req: "Full product security obligations for products with digital elements", penalty: "Up to €15M or 2.5% of global turnover" },
           ].map(({ date, reg, req, penalty }) => (
@@ -181,7 +181,7 @@ Source: uxsec.dev — 37 interactive patterns, 19 regulations, 56 cited sources`
             { step: "2", action: "Map your compliance requirements", desc: "Select your applicable regulations — get the exact patterns you need to implement.", link: "/compliance", cmd: "$ get --compliance" },
             { step: "3", action: "Assess your maturity level", desc: "10 questions → your current level (1-4), weakest areas, and a roadmap to the next level.", link: "/maturity", cmd: "$ get --maturity" },
             { step: "4", action: "Generate a stakeholder report", desc: "Answer 6 questions about your product → downloadable .md report with prioritized patterns.", link: "/report", cmd: "$ get --report" },
-            { step: "5", action: "Trace headline implications", desc: "Paste any news event into Ripple → get UX, security, and compliance implications through 37 patterns.", link: "/ripple", cmd: "$ live --ripple" },
+            { step: "5", action: "Trace headline implications", desc: "Paste any news event into Ripple → get UX, security, and compliance implications through 40 patterns.", link: "/ripple", cmd: "$ live --ripple" },
           ].map(({ step, action, desc, link, cmd }) => (
             <Link key={step} to={link} className="flex items-start gap-3 p-3 rounded-lg no-underline transition-all" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--cyan-border)"; }}
@@ -228,18 +228,18 @@ Source: uxsec.dev — 37 interactive patterns, 19 regulations, 56 cited sources`
               <li><a href="https://gdpr-info.eu/art-7-gdpr/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>GDPR Art. 7</a> <span style={{ color: "var(--text-dim)" }}>— Conditions for consent</span></li>
               <li><a href="https://gdpr-info.eu/art-33-gdpr/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>GDPR Art. 33</a> <span style={{ color: "var(--text-dim)" }}>— 72h breach notification</span></li>
               <li><a href="https://artificialintelligenceact.eu/article/50/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>EU AI Act Art. 50</a> <span style={{ color: "var(--text-dim)" }}>— AI transparency (Aug/Dec 2026)</span></li>
-              <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> <span style={{ color: "var(--text-dim)" }}>— Cancellation ease</span></li>
-              <li><a href="https://ec.europa.eu/social/main.jsp?catId=1202" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>European Accessibility Act</a> <span style={{ color: "var(--text-dim)" }}>— June 2025</span></li>
+              <li><a href="https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>FTC Negative Option Rule</a> <span style={{ color: "var(--text-dim)" }}>— rule status and 2026 rulemaking</span></li>
+              <li><a href="https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/european-accessibility-act-eaa_en" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>European Accessibility Act</a> <span style={{ color: "var(--text-dim)" }}>— June 2025</span></li>
               <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Cyber Resilience Act</a> <span style={{ color: "var(--text-dim)" }}>— reporting live Sep 2026, full Dec 2027</span></li>
               <li><a href="https://eur-lex.europa.eu/eli/reg/2026/1744/oj" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Digital Omnibus on AI</a> <span style={{ color: "var(--text-dim)" }}>— Reg. 2026/1744, high-risk to Dec 2027</span></li>
-              <li><a href="https://www.pcisecuritystandards.org/document_library/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>PCI DSS 4.0</a> <span style={{ color: "var(--text-dim)" }}>— March 2025</span></li>
+              <li><a href="https://www.pcisecuritystandards.org/document_library/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>PCI DSS 4.0.1</a> <span style={{ color: "var(--text-dim)" }}>— March 2025</span></li>
               <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>ISO/IEC 42001</a> <span style={{ color: "var(--text-dim)" }}>— AI management system (2023)</span></li>
             </ul>
           </div>
           <div>
             <p className="text-xs font-mono font-semibold mb-2" style={{ color: "var(--green)" }}>ROI references</p>
             <ul className="space-y-1.5 text-xs font-mono" style={{ color: "var(--text)" }}>
-              <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Verizon DBIR 2024</a> <span style={{ color: "var(--text-dim)" }}>— Phishing #1 vector</span></li>
+              <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Verizon DBIR 2026</a> <span style={{ color: "var(--text-dim)" }}>— Phishing #1 vector</span></li>
               <li><a href="https://blog.google/technology/safety-security/the-beginning-of-the-end-of-the-password/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Google Passkey Report</a> <span style={{ color: "var(--text-dim)" }}>— 50% faster sign-in</span></li>
               <li><a href="https://www.deceptive.design/" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline" style={{ color: "var(--text-bright)" }}>Deceptive Design</a> <span style={{ color: "var(--text-dim)" }}>— Dark pattern taxonomy</span></li>
             </ul>
@@ -254,7 +254,7 @@ Source: uxsec.dev — 37 interactive patterns, 19 regulations, 56 cited sources`
           "Security is a design decision.<br />Bad UX is a vulnerability."
         </blockquote>
         <p className="text-xs font-mono mb-4" style={{ color: "var(--text)" }}>
-          37 interactive patterns · 19 regulations · 56 cited sources · Open source
+          40 interactive patterns · 19 regulations · 59 cited sources · Open source
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button

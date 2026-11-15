@@ -8,6 +8,7 @@ function PasskeysDemo() {
   const [scenario, setScenario] = useState<"register" | "login" | "manage">("register");
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [order, setOrder] = useState<"passkey" | "password">("passkey");
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const simulateAuth = (nextStep: number) => {
@@ -113,6 +114,36 @@ function PasskeysDemo() {
       {scenario === "login" && (
         <div className="rounded-2xl p-6 sm:p-8" style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}>
           {step === 0 && (
+            <div className="flex gap-1 mb-5 p-1 rounded-lg" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
+              {(["passkey", "password"] as const).map(o => (
+                <button type="button" key={o} onClick={() => setOrder(o)} className="flex-1 text-xs py-1.5 rounded-md font-mono border-none cursor-pointer" style={{ background: order === o ? (o === "passkey" ? "var(--green-glow)" : "rgba(255,51,51,0.15)") : "transparent", color: order === o ? (o === "passkey" ? "var(--green)" : "var(--red)") : "var(--text)" }}>
+                  {o === "passkey" ? "Passkey-first" : "Password-first"}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {step === 0 && order === "password" && (
+            <div className="text-center">
+              <h2 className="text-xl font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Welcome back</h2>
+              <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>Sign in to your account</p>
+
+              <div className="space-y-2 mb-3 text-left">
+                <input type="email" readOnly value="alex@example.com" aria-label="Email" className="w-full px-3 py-2.5 rounded-lg text-sm font-mono" style={{ background: "var(--bg)", color: "var(--text-bright)", border: "1px solid var(--border)" }} />
+                <input type="password" readOnly value="placeholder" aria-label="Password" className="w-full px-3 py-2.5 rounded-lg text-sm font-mono" style={{ background: "var(--bg)", color: "var(--text-bright)", border: "1px solid var(--border)" }} />
+              </div>
+              <button type="button" className="w-full py-3 rounded-lg font-medium font-mono text-sm border-none cursor-pointer mb-2" style={{ background: "var(--red)", color: "var(--bg)" }}>
+                Sign in
+              </button>
+              <button type="button" onClick={() => simulateAuth(1)} disabled={loading} className="text-[11px] font-mono bg-transparent border-none cursor-pointer underline" style={{ color: "var(--text-dim)" }}>
+                {loading ? "Authenticating..." : "Other sign-in options"}
+              </button>
+
+              <p className="text-xs font-mono mt-4 text-left" style={{ color: "var(--red)" }}>This user already has a passkey. The page still asks for the password first and hides the passkey behind "Other sign-in options" — so the phishable credential stays in daily use.</p>
+            </div>
+          )}
+
+          {step === 0 && order === "passkey" && (
             <div className="text-center">
               <h2 className="text-xl font-bold font-mono mb-1" style={{ color: "var(--text-bright)" }}>Welcome back</h2>
               <p className="text-sm font-mono mb-6" style={{ color: "var(--text)" }}>Sign in with your passkey</p>
@@ -227,6 +258,7 @@ export function PasskeysPattern() {
         ]}
         donts={[
           "Don't hide passkeys behind settings — promote them during login and account setup",
+          "Don't offer a password or code before the passkey to someone who already has a passkey — a password-first page keeps the phishable path as the default",
           "Don't require a password after passkey auth — that defeats the purpose",
           "Don't auto-delete passkeys without user confirmation",
           "Don't call them 'security keys' or 'FIDO2 credentials' — use 'passkeys' (the standard term)",
@@ -234,7 +266,7 @@ export function PasskeysPattern() {
           "Don't remove password login before the user has passkeys on multiple devices",
           "Don't show technical errors ('PublicKeyCredential failed') — show human-readable messages",
         ]}
-        securityRationale="Passkeys (WebAuthn/FIDO2) are phishing-resistant by design: the private key never leaves the device and is bound to the specific origin (domain). Even if a user visits a perfect phishing site, the passkey won't work because the domain doesn't match. Google reported a 50% reduction in sign-in time and near-zero account takeover for passkey users. Apple, Google, and Microsoft all support passkey sync across devices. The UX challenge: users don't understand public key cryptography — they understand 'use your fingerprint instead of a password.' Lead with the benefit."
+        securityRationale="Passkeys (WebAuthn/FIDO2) are phishing-resistant by design: the private key never leaves the device and is bound to the specific origin (domain). Even if a user visits a perfect phishing site, the passkey won't work because the domain doesn't match. Google reported a 50% reduction in sign-in time and near-zero account takeover for passkey users. Apple, Google, and Microsoft all support passkey sync across devices. The UX challenge: users don't understand public key cryptography — they understand 'use your fingerprint instead of a password.' Lead with the benefit. FIDO's October 2026 Passkey Index reports that more than a third of successful sign-ins on participating services now use a passkey (36%), that 42% of eligible accounts have one enrolled, and attributes the remaining gap between having a passkey and using one to sign-in flows that offer a password or code before the passkey — even to people who have one. The order of the buttons is the adoption strategy."
         accessibilityNotes={[
           "Passkey creation must explain the concept before requiring biometric input",
           "Biometric prompts should have a fallback (PIN, pattern) for users who can't use biometrics",

@@ -13,7 +13,7 @@ const CHECKS: CheckItem[] = [
   // Authentication (30 points)
   { id: "auth-generic-errors", question: "Login errors are generic ('Invalid email or password')", category: "Authentication", weight: 5, tip: "Generic errors prevent account enumeration (CWE-204)" },
   { id: "auth-rate-limit", question: "Login has rate limiting / account lockout", category: "Authentication", weight: 5, tip: "Prevents brute force attacks (OWASP A07)" },
-  { id: "auth-mfa", question: "Multi-factor authentication is available", category: "Authentication", weight: 5, tip: "MFA prevents 99.9% of automated account compromise" },
+  { id: "auth-mfa", question: "Multi-factor authentication is available", category: "Authentication", weight: 5, tip: "MFA can block over 99.9% of account compromise attacks (Microsoft)" },
   { id: "auth-password-strength", question: "Password strength feedback is shown in real-time", category: "Authentication", weight: 3, tip: "Guides users toward strong passwords without frustration" },
   { id: "auth-breach-check", question: "Passwords are checked against known breaches", category: "Authentication", weight: 4, tip: "Have I Been Pwned API catches compromised passwords" },
   { id: "auth-session-timeout", question: "Sessions timeout with a warning before expiry", category: "Authentication", weight: 4, tip: "Protects against session hijacking on shared devices" },
@@ -31,22 +31,24 @@ const CHECKS: CheckItem[] = [
   { id: "data-activity-log", question: "Users can view their account activity and active sessions", category: "Data Protection", weight: 4, tip: "GDPR Art. 15 — users have the right to know who accessed their data" },
   { id: "data-csp", question: "Content Security Policy headers are set", category: "Data Protection", weight: 4, tip: "Prevents XSS and data injection attacks" },
 
-  // Threat Response (20 points)
+  // Threat Response (24 points)
   { id: "threat-suspicious", question: "Users are alerted about suspicious sign-ins", category: "Threat Response", weight: 5, tip: "Location + device context helps users identify real threats" },
   { id: "threat-session-revoke", question: "Users can view and revoke active sessions", category: "Threat Response", weight: 5, tip: "Gives users control over their account security" },
   { id: "threat-breach-plan", question: "There's a breach notification plan/process", category: "Threat Response", weight: 5, tip: "GDPR requires notification within 72 hours" },
-  { id: "threat-phishing", question: "Phishing/suspicious link warnings are shown", category: "Threat Response", weight: 5, tip: "Phishing is the #1 attack vector (Verizon DBIR)" },
+  { id: "threat-phishing", question: "Phishing/suspicious link warnings are shown", category: "Threat Response", weight: 5, tip: "Phishing starts 16% of breaches; the human element is present in 62% (Verizon DBIR 2026)" },
+  { id: "threat-updates", question: "Security updates are announced separately from feature updates, with a stated end-of-support date", category: "Threat Response", weight: 4, tip: "CRA Annex I — automatic security updates on by default, clear opt-out, notification, option to postpone" },
 
-  // Ethical Design (25 points)
+  // Ethical Design (29 points)
   { id: "ethical-cookie", question: "Cookie consent has equally prominent Accept/Reject", category: "Ethical Design", weight: 5, tip: "GDPR Article 7 — consent as easy to withdraw as to give" },
   { id: "ethical-no-shame", question: "Decline buttons use neutral language (no confirmshaming)", category: "Ethical Design", weight: 4, tip: "Guilt-trip language erodes trust" },
   { id: "ethical-no-dark", question: "No bait-and-switch UI (X means close)", category: "Ethical Design", weight: 4, tip: "UI elements must do exactly what they promise" },
-  { id: "ethical-cancel-easy", question: "Cancellation is as easy as signup", category: "Ethical Design", weight: 4, tip: "FTC Negative Option Rule requires equal ease" },
+  { id: "ethical-cancel-easy", question: "Cancellation is as easy as signup", category: "Ethical Design", weight: 4, tip: "US ROSCA requires a simple way to cancel; California's Automatic Renewal Law requires cancelling in the same medium as signup" },
   { id: "ethical-privacy-defaults", question: "Privacy settings default to most protective", category: "Ethical Design", weight: 4, tip: "GDPR data minimization principle" },
   { id: "ethical-permissions", question: "App permissions are opt-in, not opt-out", category: "Ethical Design", weight: 4, tip: "Pre-enabled permissions violate informed consent" },
+  { id: "ethical-engagement", question: "Autoplay, endless feeds, streaks and come-back notifications each have an easy off switch", category: "Ethical Design", weight: 4, tip: "EU Digital Fairness Act proposal Art. 17 (Nov 2026) — switch-off tools for addictive design features" },
 
   // AI Transparency (15 points)
-  { id: "ai-disclosure", question: "AI chatbots/assistants are labeled as AI, not presented as human", category: "AI Transparency", weight: 5, tip: "EU AI Act Article 50 — effective August 2026" },
+  { id: "ai-disclosure", question: "AI chatbots/assistants are labeled as AI, not presented as human", category: "AI Transparency", weight: 5, tip: "EU AI Act Article 50 — in force since August 2, 2026" },
   { id: "ai-content", question: "AI-generated content is labeled with visible indicators", category: "AI Transparency", weight: 5, tip: "EU AI Act Art. 50(2) requires machine-readable marking" },
   { id: "ai-decisions", question: "AI decisions about users include explanation and human appeal", category: "AI Transparency", weight: 5, tip: "GDPR Art. 22 — right to meaningful explanation" },
   { id: "ai-agent-consent", question: "AI agents ask for permission on a dedicated screen before irreversible or financial actions, showing where the instruction came from", category: "AI Transparency", weight: 5, tip: "OWASP Agentic Top 10 ASI01/ASI09 — human approval for high-impact actions, never inside the chat" },
@@ -57,10 +59,11 @@ const CHECKS: CheckItem[] = [
   { id: "ind-alarms", question: "Alarm management follows ISA-18.2 (max 6/hour, grouped by root cause)", category: "Industrial", weight: 5, tip: "Alarm fatigue contributed to Deepwater Horizon, Texas City disasters" },
   { id: "ind-nav", question: "HMI follows ISA-101 navigation hierarchy (overview → area → unit → detail)", category: "Industrial", weight: 5, tip: "Operators must reach any detail within 3 clicks during abnormal situations" },
 
-  // OWASP (15 points)
+  // OWASP (20 points)
   { id: "owasp-access", question: "Access control enforced at UI level (role-based views, disabled actions)", category: "OWASP", weight: 5, tip: "A01 Broken Access Control — found in 100% of tested apps (OWASP 2025)" },
   { id: "owasp-config", question: "Security headers visible to users (HTTPS, CSP status)", category: "OWASP", weight: 5, tip: "A02 Security Misconfiguration (2025) — debug mode and default creds exposed" },
-  { id: "owasp-logging", question: "Security events logged and visible to admins/users", category: "OWASP", weight: 5, tip: "A09 Logging & Alerting — average breach detection is 204 days without monitoring" },
+  { id: "owasp-logging", question: "Security events logged and visible to admins/users", category: "OWASP", weight: 5, tip: "A09 Logging & Alerting — breaches take 247 days on average to identify and contain (IBM 2026) without monitoring" },
+  { id: "owasp-errors", question: "Error states say what failed, what state data is in and what to do next — without stack traces, and checks fail closed", category: "OWASP", weight: 5, tip: "A10 Mishandling of Exceptional Conditions (new in 2025) — CWE-209 leaky errors, CWE-636 failing open" },
 
   // Governance (15 points — skip if not applicable)
   { id: "gov-review", question: "Security UX changes go through a design review process", category: "Governance", weight: 5, tip: "Without review, each team reinvents security UX differently" },
@@ -296,17 +299,17 @@ export function ScorePage() {
         <div className="flex flex-wrap gap-1.5 text-xs font-mono">
           {[
             { label: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
-            { label: "NIST 800-63B", url: "https://pages.nist.gov/800-63-3/" },
+            { label: "NIST 800-63B", url: "https://pages.nist.gov/800-63-4/sp800-63b.html" },
             { label: "WCAG 2.2", url: "https://www.w3.org/WAI/WCAG22/quickref/#accessible-authentication-minimum" },
             { label: "EU AI Act Art. 50", url: "https://artificialintelligenceact.eu/article/50/" },
             { label: "GDPR", url: "https://gdpr-info.eu/" },
             { label: "FTC Neg. Option Rule", url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule" },
-            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series" },
-            { label: "ISA-18.2", url: "https://www.isa.org/products/ansi-isa-18-2-2016-management-of-alarm-systems-fo" },
+            { label: "IEC 62443", url: "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards" },
+            { label: "ISA-18.2", url: "https://www.isa.org/products/ansi-isa-18-2-2016-management-of-alarm-systems-for" },
             { label: "Verizon DBIR", url: "https://www.verizon.com/business/resources/reports/dbir/" },
             { label: "IBM Breach Report", url: "https://www.ibm.com/reports/data-breach" },
             { label: "Deceptive Design", url: "https://www.deceptive.design/" },
-            { label: "PCI DSS 4.0", url: "https://www.pcisecuritystandards.org/document_library/" },
+            { label: "PCI DSS 4.0.1", url: "https://www.pcisecuritystandards.org/document_library/" },
           ].map(({ label, url }) => (
             <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="px-2 py-1 rounded no-underline hover:underline" style={{ background: "var(--bg)", color: "var(--green)", border: "1px solid var(--border)" }}>
               {label}

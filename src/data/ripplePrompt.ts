@@ -82,10 +82,10 @@ export function matchPatternsToHeadline(headline: string): typeof ALL_PATTERNS {
     if (lower.includes(p.label.toLowerCase())) score += 3;
     const catKeywords: Record<Category, string[]> = {
       auth: ["login", "password", "authentication", "credential", "mfa", "passkey", "oauth", "session"],
-      threat: ["breach", "phishing", "attack", "hack", "incident", "ransomware", "malware"],
-      dark: ["dark pattern", "consent", "unsubscribe", "manipulat", "deceptive", "bait"],
+      threat: ["breach", "phishing", "attack", "hack", "incident", "ransomware", "malware", "patch", "security update", "firmware", "end of support"],
+      dark: ["dark pattern", "consent", "unsubscribe", "manipulat", "deceptive", "bait", "addictive", "autoplay", "infinite scroll", "streak"],
       data: ["encrypt", "upload", "delet", "audit", "log", "data"],
-      owasp: ["access control", "misconfigur", "monitor", "logging", "vulnerability"],
+      owasp: ["access control", "misconfigur", "monitor", "logging", "vulnerability", "error", "exception", "outage", "crash"],
       ai: ["ai", "artificial intelligence", "chatbot", "deepfake", "machine learning", "llm", "generative"],
       industrial: ["industrial", "operator", "safety", "alarm", "scada", "ot ", "control system", "hmi"],
       governance: ["compliance", "audit", "review", "change management", "regulation", "nis2", "gdpr", "dora"],

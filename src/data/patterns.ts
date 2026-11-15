@@ -33,6 +33,7 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/threat/breach-notification", label: "Breach Notification", category: "threat", tags: ["incident response", "GDPR Art. 33", "CWE-200", "breach"] },
   { path: "/patterns/threat/phishing-warning", label: "Phishing Warning", category: "threat", tags: ["threat response", "OWASP A01", "CWE-601", "phishing"] },
   { path: "/patterns/threat/suspicious-activity", label: "Suspicious Activity", category: "threat", tags: ["threat response", "OWASP A09", "CWE-778", "session"] },
+  { path: "/patterns/threat/security-updates", label: "Security Update Notification", category: "threat", tags: ["CRA Annex I", "CRA Art. 13", "security update", "patch", "automatic updates", "end of support", "IoT", "firmware"] },
   // Dark patterns
   { path: "/patterns/dark/confirmshaming", label: "Confirmshaming", category: "dark", tags: ["dark pattern", "EU DSA", "deceptive design", "consent"] },
   { path: "/patterns/dark/cookie-consent", label: "Cookie Consent", category: "dark", tags: ["dark pattern", "GDPR Art. 7", "ePrivacy", "consent", "cookies"] },
@@ -40,6 +41,7 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/dark/privacy-zuckering", label: "Privacy Zuckering", category: "dark", tags: ["dark pattern", "GDPR Art. 5", "data minimization", "permissions"] },
   { path: "/patterns/dark/bait-switch", label: "Bait & Switch", category: "dark", tags: ["dark pattern", "FTC Act", "deceptive design"] },
   { path: "/patterns/dark/forced-continuity", label: "Forced Continuity", category: "dark", tags: ["dark pattern", "FTC", "subscription", "free trial"] },
+  { path: "/patterns/dark/addictive-design", label: "Addictive Design", category: "dark", tags: ["dark pattern", "Digital Fairness Act", "EU DSA Art. 25", "addictive design", "autoplay", "infinite scroll", "streaks", "notifications"] },
   // Data
   { path: "/patterns/data/encryption", label: "Encryption Indicators", category: "data", tags: ["data protection", "OWASP A06", "CWE-311", "encryption", "E2E"] },
   { path: "/patterns/data/file-upload", label: "Secure File Upload", category: "data", tags: ["data protection", "OWASP A06", "CWE-434", "malware", "upload"] },
@@ -49,6 +51,7 @@ const RAW_PATTERNS: Omit<PatternInfo, 'categoryColor'>[] = [
   { path: "/patterns/owasp/broken-access-control", label: "Broken Access Control", category: "owasp", tags: ["OWASP A01", "CWE-284", "CWE-639", "RBAC", "IDOR"] },
   { path: "/patterns/owasp/security-misconfiguration", label: "Security Misconfiguration", category: "owasp", tags: ["OWASP A02", "CWE-16", "CWE-209", "headers", "debug"] },
   { path: "/patterns/owasp/logging-monitoring", label: "Logging & Monitoring", category: "owasp", tags: ["OWASP A09", "CWE-778", "CWE-223", "audit", "anomaly"] },
+  { path: "/patterns/owasp/exceptional-conditions", label: "Mishandling of Exceptional Conditions", category: "owasp", tags: ["OWASP A10", "CWE-209", "CWE-636", "CWE-754", "error handling", "error message", "fail open", "rollback"] },
   // AI
   { path: "/patterns/ai/disclosure", label: "AI Disclosure", category: "ai", tags: ["EU AI Act", "Art. 50", "chatbot", "transparency"] },
   { path: "/patterns/ai/content-labeling", label: "AI Content Labeling", category: "ai", tags: ["EU AI Act", "Art. 50", "EU icons", "C2PA", "watermark", "deepfake"] },

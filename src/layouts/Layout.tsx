@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch, Users, Waves, Crosshair, Hand } from "lucide-react";
+import { Shield, Lock, KeyRound, Timer, UserCheck, LogIn, ShieldAlert, AlertTriangle, Activity, ShieldOff, Cookie, Trash2, Eye, EyeOff, MousePointerClick, CreditCard, Upload, Settings, Bot, Sparkles, Brain, Menu, X, ChevronDown, Target, BarChart3, ClipboardCheck, Search, FileText, Fingerprint, Zap, Bell, Key, ExternalLink, Layers, GitBranch, Users, Waves, Crosshair, Hand, Flame, Bug, Download } from "lucide-react";
 import { SearchDialog } from "../components/SearchDialog";
 
 interface NavCategory {
@@ -30,6 +30,7 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/threat/breach-notification", label: "breach_notification", icon: ShieldAlert },
       { path: "/patterns/threat/phishing-warning", label: "phishing_warning", icon: AlertTriangle },
       { path: "/patterns/threat/suspicious-activity", label: "suspicious_activity", icon: Activity },
+      { path: "/patterns/threat/security-updates", label: "security_updates", icon: Download },
     ],
   },
   {
@@ -41,6 +42,7 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/dark/privacy-zuckering", label: "privacy_zuckering", icon: Eye },
       { path: "/patterns/dark/bait-switch", label: "bait_and_switch", icon: MousePointerClick },
       { path: "/patterns/dark/forced-continuity", label: "forced_continuity", icon: CreditCard },
+      { path: "/patterns/dark/addictive-design", label: "addictive_design", icon: Flame },
     ],
   },
   {
@@ -58,6 +60,7 @@ const CATEGORIES: NavCategory[] = [
       { path: "/patterns/owasp/broken-access-control", label: "A01_access", icon: Shield },
       { path: "/patterns/owasp/security-misconfiguration", label: "A02_misconfig", icon: Settings },
       { path: "/patterns/owasp/logging-monitoring", label: "A09_logging", icon: Activity },
+      { path: "/patterns/owasp/exceptional-conditions", label: "A10_error_states", icon: Bug },
     ],
   },
   {

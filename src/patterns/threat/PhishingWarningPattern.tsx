@@ -244,7 +244,7 @@ export function PhishingWarningPattern() {
           "Don't hide the phishing indicators — educating users is part of the defense",
           "Don't rely solely on URL checking — analyze email headers, content patterns, and sender reputation",
         ]}
-        securityRationale="Phishing is the #1 initial attack vector for data breaches (Verizon DBIR, 2024). Technical controls (DMARC, link scanning) catch many attacks, but user-facing warnings are the last line of defense. The key UX insight: most users can't distinguish phishing from legitimate emails. Instead of expecting them to, the UI should do the detection and clearly explain what's suspicious. The goal is education through exposure — every warning teaches the user to spot the next attack."
+        securityRationale="Phishing is the initial access vector in 16% of breaches and the human element is present in 62% (Verizon DBIR 2026). Technical controls (DMARC, link scanning) catch many attacks, but user-facing warnings are the last line of defense. The key UX insight: most users can't distinguish phishing from legitimate emails. Instead of expecting them to, the UI should do the detection and clearly explain what's suspicious. The goal is education through exposure — every warning teaches the user to spot the next attack."
         accessibilityNotes={[
           "Warning pages use high-contrast colors meeting WCAG AA",
           "Blocked content shows text explanation, not just a colored banner",
